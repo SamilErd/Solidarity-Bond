@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connection
+{% endblock %}
+
+{% block body %}
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">Solidarity-Bond | Connexion</h1>
+			<p class="lead">
+				Bienvenue sur Solidarity-Bond ! veuillez vous connecter.
+			</p>
+		</div>
+	</div>
+
+
+	<div class="bdr-login w-50 mx-auto mb-5">
+		<div class="m-4 text-center">
+			{% if error %}
+				<div class="alert alert-danger">
+					{{error.messageKey}}
+				</div>
+			{% endif %}
+
+			<p class="size-text">Connectez-vous</p>
+
+			<form action=" {{ path('security_login') }}" class="form-signin w-50 mx-auto" method="post">
+				<input placeholder="Email" required name="_username" type="text" class="bordered form-control mb-1"></input>
+			<input placeholder="Password" required name="_password" type="password" class="bordered form-control mb-2"></input>
+
+		<button type="submit" class="btn btn-dark btn-block colored bordered">
+			Se connecter
+		</button>
+
+		<div class="mt-4">
+			<span class="meta">Vous n'avez pas encore de compte CESI ?</span>
+			<br/>
+			<a href="{{path('security_register')}}">Inscrivez-vous</a>
+		</div>
+	</form>
+</div></div>{% endblock %}
