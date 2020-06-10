@@ -27,8 +27,10 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
 
             return $this->redirectToRoute('security_login');
         }
