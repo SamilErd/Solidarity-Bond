@@ -60,6 +60,21 @@ class User implements UserInterface
      */
     private $Orders;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Street;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $PostalCode;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Country;
+
     public function __construct()
     {
         $this->Orders = new ArrayCollection();
@@ -204,4 +219,42 @@ class User implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function getStreet(): ?string
+    {
+        return $this->Street;
+    }
+
+    public function setStreet(?string $Street): self
+    {
+        $this->Street = $Street;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?int
+    {
+        return $this->PostalCode;
+    }
+
+    public function setPostalCode(?int $PostalCode): self
+    {
+        $this->PostalCode = $PostalCode;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->Country;
+    }
+
+    public function setCountry(?string $Country): self
+    {
+        $this->Country = $Country;
+
+        return $this;
+    }
+
+
 }

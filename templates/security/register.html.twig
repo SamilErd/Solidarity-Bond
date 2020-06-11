@@ -14,11 +14,13 @@
 		<div class="m-4 text-center">
 
 			<p class="size-text">Inscrivez-vous</p>
+			
 			{{ form_start(form) }}
-
+			
 			<div class="form">
 				{{ form_errors(form.email) }}
-				{{ form_errors(form.password) }}
+			
+				
 				<div class="row">
 					<div class="col-6 mb-3 mt-3">
 						{{ form_widget(form.FirstName, {'attr':
@@ -37,9 +39,18 @@
                 }}
 					</div>
 					<div class="col-6 mb-3">
-						{{ form_widget(form.password, {'attr':
+						{{ form_widget(form.password.first, {'attr':
                         {
-                        'placeholder' : "Mots de passe"
+                        'placeholder' : "Mot de passe"
+                        }
+                    	}) 
+                	}}
+					{{ form_errors(form.password.first) }}
+					</div>
+					<div class="col-6 mb-3">
+						{{ form_widget(form.password.second, {'attr':
+                        {
+                        'placeholder' : "Confirmez le mot de passe"
                         }
                     }) 
                 }}
@@ -61,6 +72,30 @@
                     }}
 					</div>
 				</div>
+				<div class="col-6 mb-3">
+						{{ form_widget(form.street, {'attr':
+                    {
+                    'placeholder' : "Addresse"
+                    }
+                }) 
+            }}
+				</div>
+				<div class="col-6 mb-3">
+						{{ form_widget(form.postalcode, {'attr':
+                    {
+                    'placeholder' : "Code Postal"
+                    }
+                }) 
+            }}
+					</div>
+					<div class="col-6 mb-3">
+						{{ form_widget(form.country, {'attr':
+                    {
+                    'placeholder' : "Pays"
+                    }
+                }) 
+            }}
+					</div>
 				
 				<button type="submit" class="btn btn-dark btn-block mt-4">
 					S'inscrire
