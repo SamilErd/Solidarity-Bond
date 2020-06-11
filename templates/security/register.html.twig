@@ -26,6 +26,7 @@
 					<div class="col-6 mb-3 mt-3">
 						{{ form_widget(form.FirstName, {'attr':
                         {
+						'class' : 'form_css',
                         'placeholder' : "Nom"
                         }
                     }) 
@@ -34,6 +35,7 @@
 					<div class="col-6 mb-3 mt-3">
 						{{ form_widget(form.LastName, {'attr':
                         {
+						'class' : 'form_css',
                         'placeholder' : "Prénom"
                         }
                     }) 
@@ -42,6 +44,7 @@
 					<div class="col-6 mb-3">
 						{{ form_widget(form.password.first, {'attr':
                         {
+						'class' : 'form_css',
                         'placeholder' : "Mot de passe"
                         }
                     	}) 
@@ -51,6 +54,7 @@
 					<div class="col-6 mb-3">
 						{{ form_widget(form.password.second, {'attr':
                         {
+						'class' : 'form_css',
                         'placeholder' : "Confirmez le mot de passe"
                         }
                     }) 
@@ -59,6 +63,7 @@
 					<div class="col-6 mb-3">
 						{{ form_widget(form.email, {'attr':
                     {
+					'class' : 'form_css',
                     'placeholder' : "Email"
                     }
                 }) 
@@ -67,6 +72,7 @@
 					<div class="col-6 mb-3 mt-3">
 						{{ form_widget(form.phoneNum, {'attr':
                             {
+							'class' : 'form_css',
                             'placeholder' : "Téléphone"
                             }
                         }) 
@@ -76,6 +82,7 @@
 				<div class="col-6 mb-3">
 						{{ form_widget(form.street, {'attr':
                     {
+					'class' : 'form_css',
                     'placeholder' : "Addresse"
                     }
                 }) 
@@ -84,6 +91,7 @@
 				<div class="col-6 mb-3">
 						{{ form_widget(form.postalcode, {'attr':
                     {
+					'class' : 'form_css',
                     'placeholder' : "Code Postal"
                     }
                 }) 
@@ -92,6 +100,7 @@
 					<div class="col-6 mb-3">
 						{{ form_widget(form.country, {'attr':
                     {
+					'class' : 'form_css',
                     'placeholder' : "Pays"
                     }
                 }) 
@@ -106,7 +115,7 @@
 				<span class="meta">Vos comptes avez déja un compte ?
 				</span>
 				<br/>
-				<a href="{{path('security_login')}}">Connectez-vous</a>
+				<a href="{{path('security_login')}}"  id="text">Connectez-vous</a>
 			</div>
 			{{ form_end(form) }}
 		</div>

@@ -83,7 +83,7 @@
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         {% if app.user %} <div class="color-link">{{ app.user.username }}</div> {% else %} <div
-                            class="color-link mr-5">Se connecter</div> {% endif %}
+                            class="color-link mr-5" id="text">Se connecter</div> {% endif %}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right p-2 mw-250" arialabelledby="account-button">
                         <div class="row">
@@ -95,7 +95,7 @@
                             </div>
                             {% else %}
                             <div class="col-12">
-                                <a href="   " class="btn btn-dark color-link btn-block mt-1 mb-1">
+                                <a href="{{path('security_register')}}" class="btn btn-dark color-link btn-block mt-1 mb-1">
                                     Inscription
                                 </a>
                             </div>
@@ -206,8 +206,8 @@
                         <h4 class="">Informations légales </h4>
                         <ul class="list-unstyled">
                             <li><a class="color-link" href="{{path('privacy_policy')}}">Politique de confidentialité</a></li>
-                            <li><a class="color-link" href="{{path('about_group')}}">À Propos</a></li>
                             <li><a class="color-link" href="{{path('contact')}}">Nous contacter</a></li>
+                            <li><a class="color-link" href="{{path('about_group')}}">À Propos</a></li>
                         </ul>
                     </p>
                 </div>

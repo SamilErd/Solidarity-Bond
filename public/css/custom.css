@@ -5,3 +5,20 @@
 */
 
 /** Colors **/
+
+/**
+* CSS for form
+*/
+
+.form_css {
+    width: 75%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid;
+    color: #999999;
+  }
+
+  #text {
+    color: #999999;
+  }
