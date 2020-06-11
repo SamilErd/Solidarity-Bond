@@ -7,9 +7,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(
+ *  fields={"Email"},
+ *  message= " l'email que vous averz utilisé est déja utilisée."
+ * )
  */
 class User implements UserInterface
 {
@@ -48,7 +53,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $Role = [];
+    private $Roles = [];
 
     /**
      * @ORM\OneToMany(targetEntity=Order::class, mappedBy="id_user", orphanRemoval=true)
@@ -125,14 +130,18 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getRole(): ?array
+    public function getRoles(): array
     {
-        return $this->Role;
+        $roles = $this->Roles;
+        //guarantee every user at least has ROLE_USER
+        $roles[] = "ROLE_USER";
+
+        return array_unique($roles);
     }
 
-    public function setRole(array $Role): self
+    public function setRoles(array $roles): self
     {
-        $this->Role = $Role;
+        $this->Roles = $roles;
 
         return $this;
     }
@@ -175,26 +184,8 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
-    }
 
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        //guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
+        return $this->Email;
     }
 
     /**

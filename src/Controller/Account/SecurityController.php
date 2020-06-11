@@ -27,6 +27,7 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles(["ROLE_USER"]);
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -46,11 +47,19 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils)
     {
         $error = $authenticationUtils->getLastAuthenticationError();
-
+        $lastUsername = $authenticationUtils->getLastUsername();
         return $this->render('security/login.html.twig', [
             'error' => $error,
+            'last_username' => $lastUsername
         ]);
     }
+
+
+    /**
+     * @Route("/logout", name="security_logout")
+     */
+    public function logout() {}
+
 
     /**
      * @Route("/account", name="security_account")
