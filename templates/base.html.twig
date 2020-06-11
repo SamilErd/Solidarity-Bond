@@ -41,7 +41,7 @@
                         </div>
                         {% else %}
                         <div class="col-12">
-                            <a href="       " class="btn btn-dark color-link btn-block mt-1 mb-1">
+                            <a href="{{path('security_account')}}" class="btn btn-dark color-link btn-block mt-1 mb-1">
                                 Mon Profil
                             </a>
                         </div>
@@ -102,7 +102,7 @@
 
                             {% endif %}
                             <div class="col-12">
-                                <a href="{% if app.user %}      {% else %}      {% endif %}"
+                                <a href="{% if app.user %}{{path('security_logout')}}{% else %}{{path('security_login')}}{% endif %}"
                                     class="btn btn-dark color-link btn-block mt-1 mb-1">
                                     {% if app.user %} Déconnexion {% else %} Connexion {% endif %}
                                 </a>

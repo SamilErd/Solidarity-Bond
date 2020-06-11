@@ -4,6 +4,7 @@ namespace App\Controller\Account;
 
 use App\Entity\User;
 use App\Form\RegisterType;
+use App\Form\EditUserType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -47,10 +48,8 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils)
     {
         $error = $authenticationUtils->getLastAuthenticationError();
-        $lastUsername = $authenticationUtils->getLastUsername();
         return $this->render('security/login.html.twig', [
             'error' => $error,
-            'last_username' => $lastUsername
         ]);
     }
 
@@ -64,8 +63,47 @@ class SecurityController extends AbstractController
     /**
      * @Route("/account", name="security_account")
      */
-    public function account()
+    public function account(Request $request, UserPasswordEncoderInterface $encoder)
     {
-        return $this->render('security/account.html.twig');
+        $thisuser = $this->getUser();
+        $id = $thisuser->getId();
+        $form = $this->createForm(RegisterType::class, $thisuser);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $user = $entityManager->getRepository(User::class)->find($id);
+
+            $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
+            $entityManager->persist($user);
+            $entityManager->flush();
+            
+            
+            return $this->redirectToRoute('security_update');
+        }
+
+
+
+
+        return $this->render('security/account.html.twig', [
+            'form' => $form->createView(),
+            'id' => $id,
+
+        ]);
     }
+
+        /**
+     * @Route("/update", name="security_update")
+     */
+    public function update(Request $request){
+    
+
+        $form = $this->createForm(RegisterType::class, $this->getUser());
+        $form->handleRequest($request);
+        return $this->render('security/account.html.twig', [
+            'form' => $form->createView(),
+            'updatemessage' => "Votre compte a été mis à jour."
+        ]);
+    }
+
 }
