@@ -14,7 +14,6 @@ class MainController extends AbstractController
      */
     public function index(Request $request)
     {
-        $locale = $request->getLocale();
         return $this->render('main/index.html.twig');
     }
 
@@ -23,13 +22,6 @@ class MainController extends AbstractController
      */
     public function privacy(){
         return $this->render('legal/privacy.html.twig');
-    }
-
-    /**
-     * @Route("/about", name="about")
-     */
-    public function about(){
-        return $this->render('legal/about.html.twig');
     }
 
 
