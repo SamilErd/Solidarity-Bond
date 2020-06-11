@@ -25,5 +25,12 @@ class MainController extends AbstractController
         return $this->render('legal/privacy.html.twig');
     }
 
+    /**
+     * @Route("/about", name="about")
+     */
+    public function about(){
+        return $this->render('legal/about.html.twig');
+    }
+
 
 }
