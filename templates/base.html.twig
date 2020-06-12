@@ -76,14 +76,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="      "><div class="color-link">Boutique</div></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="color-link, nav-link" href="{{path('contact')}}">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="color-link, nav-link" href="{{path('about_group')}}">À Propos</a>
+                    </li>
 
                     </div>
                 </ul>
                 <div class="dropdown d-none d-lg-block ml-auto">
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        {% if app.user %} <div class="color-link">{{ app.user.username }}</div> {% else %} <div
-                            class="color-link mr-5" id="text">Se connecter</div> {% endif %}
+                        {% if app.user %} <div class="color-link" id="text_color">{{ app.user.firstname }}</div> {% else %} <div
+                            class="color-link mr-5" id="text_color">Se connecter</div> {% endif %}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right p-2 mw-250" arialabelledby="account-button">
                         <div class="row">
@@ -206,8 +212,6 @@
                         <h4 class="">Informations légales </h4>
                         <ul class="list-unstyled">
                             <li><a class="color-link" href="{{path('privacy_policy')}}">Politique de confidentialité</a></li>
-                            <li><a class="color-link" href="{{path('contact')}}">Nous contacter</a></li>
-                            <li><a class="color-link" href="{{path('about_group')}}">À Propos</a></li>
                         </ul>
                     </p>
                 </div>

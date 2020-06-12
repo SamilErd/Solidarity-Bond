@@ -21,7 +21,7 @@ class MoreController extends AbstractController
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->addFlash('succes', 'Voter email a bien été envoyé');
+            $this->addFlash('succes', 'Votre message a bien été envoyé');
 
             $message = (new \Swift_Message('Nouveau Message'))
             ->setFrom($contact->getEmail())
