@@ -78,35 +78,36 @@
                     }}
 					</div>
 				</div>
-				<div class="col-6 mb-3">
-						{{ form_widget(form.street, {'attr':
-                    {
-                    'placeholder' : "Addresse",
-					'class' : 'form_css'
-					
-                    }
-                }) 
-            }}
-				</div>
-				<div class="col-6 mb-3">
-						{{ form_widget(form.postalcode, {'attr':
-                    {
-                    'placeholder' : "Code Postal",
-					'class' : 'form_css'
-                    }
-                }) 
-            }}
+				<div class="row row-cols-1">
+					<div class="col-6 mb-3">
+							{{ form_widget(form.street, {'attr':
+						{
+						'placeholder' : "Addresse",
+						'class' : 'form_css'
+						
+						}
+					}) 
+				}}
 					</div>
 					<div class="col-6 mb-3">
-						{{ form_widget(form.country, {'attr':
-                    {
-                    'placeholder' : "Pays",
-					'class' : 'form_css'
-                    }
-                }) 
-            }}
+							{{ form_widget(form.postalcode, {'attr':
+						{
+						'placeholder' : "Code Postal",
+						'class' : 'form_css'
+						}
+					}) 
+				}}
+						</div>
+						<div class="col-6 mb-3">
+							{{ form_widget(form.country, {'attr':
+						{
+						'placeholder' : "Pays",
+						'class' : 'form_css'
+						}
+					}) 
+				}}
+						</div>
 					</div>
-					
 					<button type="submit" class="btn btn-dark btn-lg mt-4">
 						Mettre à jour
 					</button>
