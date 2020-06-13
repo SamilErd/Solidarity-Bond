@@ -18,7 +18,25 @@
     border-bottom: 2px solid;
     color: #999999;
   }
+  .btn_form_css {
+    width: 75%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid;
+    background-color: #008CBA;
+    color: #FFFFFF;
+  }
 
   #text {
     color: #999999;
   }
+  
+  .cards{
+    text-align: center;
+    margin: 0 auto;
+    width: 50% ;
+    height: 100%;
+  }
+  
+  

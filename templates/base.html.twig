@@ -48,7 +48,7 @@
                         {% endif %}
                         {% if is_granted('ROLE_FABLAB')%}
                         <div class="col-12">
-                            <a href="       " class="btn btn-dark color-link btn-block mt-1 mb-1">
+                            <a href="{{path('admin')}}" class="btn btn-dark color-link btn-block mt-1 mb-1">
                                 Administration
                             </a>
                         </div>
@@ -76,20 +76,29 @@
                     <li class="nav-item">
                         <a class="nav-link" href="      "><div class="color-link">Boutique</div></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('about_group')}}"><div class="color-link">À Propos</div></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('contact')}}"><div class="color-link">Nous contacter</div></a>
+                    </li>
+                    
+                           
+                        
 
                     </div>
                 </ul>
-                <div class="dropdown d-none d-lg-block ml-auto">
+                                <div class="dropdown d-none d-lg-block ml-auto">
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        {% if app.user %} <div class="color-link">{{ app.user.username }}</div> {% else %} <div
-                            class="color-link mr-5" id="text">Se connecter</div> {% endif %}
+                        {% if app.user %} <div class="color-link">{{ app.user.FirstName }}</div> {% else %} <div
+                            class="color-link mr-5">Se connecter</div> {% endif %}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right p-2 mw-250" arialabelledby="account-button">
                         <div class="row">
                             {% if app.user %}
                             <div class="col-12">
-                                <a href="     " class="btn btn-dark color-link btn-block mt-1 mb-1">
+                                <a href="{{path('security_account')}}" class="btn btn-dark color-link btn-block mt-1 mb-1">
                                     Mon Profil
                                 </a>
                             </div>
@@ -101,6 +110,14 @@
                             </div>
 
                             {% endif %}
+                        {% if is_granted('ROLE_FABLAB')%}
+                        <div class="col-12">
+                            <a href="{{path('admin')}}" class="btn btn-dark color-link btn-block mt-1 mb-1">
+                                Administration
+                            </a>
+                        </div>
+                        {% else %}
+                        {% endif %}
                             <div class="col-12">
                                 <a href="{% if app.user %}{{path('security_logout')}}{% else %}{{path('security_login')}}{% endif %}"
                                     class="btn btn-dark color-link btn-block mt-1 mb-1">
@@ -206,9 +223,7 @@
                         <h4 class="">Informations légales </h4>
                         <ul class="list-unstyled">
                             <li><a class="color-link" href="{{path('privacy_policy')}}">Politique de confidentialité</a></li>
-                            <li><a class="color-link" href="{{path('contact')}}">Nous contacter</a></li>
-                            <li><a class="color-link" href="{{path('about_group')}}">À Propos</a></li>
-                        </ul>
+                            </ul>
                     </p>
                 </div>
             </div>
