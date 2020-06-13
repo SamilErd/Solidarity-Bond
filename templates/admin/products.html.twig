@@ -20,7 +20,7 @@
         <div class="col">
             {% for product in products %}
                 <div class="card card-block">
-                    <img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180" src={{ asset('images/products/{{product.Image}}')}} data-holder-rendered="true" style="height: auto; width: 100%; display: block; color: white;margin: 15px auto">
+                    <img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180" src="../images/products/{{product.Image}}" data-holder-rendered="true" style="height: auto; width: 100%; display: block; color: white;margin: 15px auto">
                     <div class="card-block">
                         <h4 class="card-title">{{product.ProductName}}</h4>
                         <p class="card-text" style="margin: 15px; height: 100px">{{product.Description}}</p>

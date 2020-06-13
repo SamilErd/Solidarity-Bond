@@ -58,10 +58,10 @@ class AdminController extends AbstractController
             $directory="public/images/products";
 
             $file = $formnp['Image']->getData();
-            $filename = $file->getClientOriginalName();
-            $file->move($directory, $filename);
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move($this->getParameter('upload_directory_photos'), $fileName);
             
-            $product->setImage($filename);
+            $product->setImage($fileName);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($product);
