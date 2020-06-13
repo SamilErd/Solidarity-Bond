@@ -4,24 +4,26 @@
 {% endblock %}
 
 {% block body %}
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 18px / 1.5 sans-serif;
-		}
-		.example-wrapper code {
-			background: #F5F5F5;
-			padding: 2px 6px;
-		}
-	</style>
-
 
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
 			<h1 class="display-4">Solidarity-Bond</h1>
 			<p class="lead">Bienvenue sur le site de Solidarity-Bond, un projet mis en place par des étudiants du CESI Strasbourg dans le but de vendre des visières à bas prix !</p>
+		</div>
+	</div>
+
+	{# Alerte pour message envoyé #}
+
+	<div class="container">
+		<div class="row">
+		{% for message in app.flashes('succes') %}
+			<div class="alert alert-success alert-dismissible fade show" role="alert" id="notification">
+				{{message}}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    				<span aria-hidden="true">&times;</span>
+ 				</button>
+			</div>
+   		{% endfor %}
 		</div>
 	</div>
 

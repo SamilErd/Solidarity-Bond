@@ -21,7 +21,7 @@
 				
 				{{ form_errors(form.email) }}
 			
-				
+				<div class="container">
 				<div class="row">
 					<div class="col-6 mb-3 mt-3">
 						{{ form_widget(form.FirstName, {'attr':
@@ -69,7 +69,7 @@
                 }) 
             }}
 					</div>
-					<div class="col-6 mb-3 mt-3">
+					<div class="col-6 mb-3">
 						{{ form_widget(form.phoneNum, {'attr':
                             {
 							'class' : 'form_css',
@@ -79,44 +79,50 @@
                     }}
 					</div>
 				</div>
-				<div class="col-6 mb-3">
-						{{ form_widget(form.street, {'attr':
-                    {
-					'class' : 'form_css',
-                    'placeholder' : "Addresse"
-                    }
-                }) 
-            }}
-				</div>
-				<div class="col-6 mb-3">
-						{{ form_widget(form.postalcode, {'attr':
-                    {
-					'class' : 'form_css',
-                    'placeholder' : "Code Postal"
-                    }
-                }) 
-            }}
+
+				<div class="row row-cols-1">
+					<div class="col-6 mb-3">
+							{{ form_widget(form.street, {'attr':
+						{
+						'class' : 'form_css',
+						'placeholder' : "Addresse"
+						}
+					}) 
+				}}
 					</div>
 					<div class="col-6 mb-3">
-						{{ form_widget(form.country, {'attr':
-                    {
-					'class' : 'form_css',
-                    'placeholder' : "Pays"
-                    }
-                }) 
-            }}
+							{{ form_widget(form.postalcode, {'attr':
+						{
+						'class' : 'form_css',
+						'placeholder' : "Code Postal"
+						}
+					}) 
+				}}
 					</div>
-				
-				<button type="submit" class="btn btn-dark btn-block mt-4">
+					<div class="col-6 mb-3">
+							{{ form_widget(form.country, {'attr':
+						{
+						'class' : 'form_css',
+						'placeholder' : "Pays"
+						}
+					}) 
+				}}
+					</div>
+				</div>
+				</div>
+
+				<button type="submit" class="btn btn-dark btn-lg mt-4">
 					S'inscrire
 				</button>
 			</div>
+
 			<div class="mt-4">
 				<span class="meta">Vos comptes avez déja un compte ?
 				</span>
 				<br/>
 				<a href="{{path('security_login')}}"  id="text">Connectez-vous</a>
 			</div>
+			
 			{{ form_end(form) }}
 		</div>
 	</div>

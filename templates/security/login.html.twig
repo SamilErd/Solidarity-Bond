@@ -8,7 +8,7 @@
 		<div class="container">
 			<h1 class="display-4">Solidarity-Bond | Connexion</h1>
 			<p class="lead">
-				Bienvenue sur Solidarity-Bond ! veuillez vous connecter.
+				Bienvenue sur Solidarity-Bond ! Veuillez vous connecter.
 			</p>
 		</div>
 	</div>
@@ -23,19 +23,22 @@
 			{% endif %}
 
 			<p class="size-text">Connectez-vous</p>
+			<div class="container">
+			<div class="row">
+				<form action=" {{ path('security_login') }}" class="form-signin w-50 mx-auto" method="post">
+					<input placeholder="Email" required name="_username" type="text" class="form_css form-control mb-3 col-md-8 offset-md-2" ></input>
+					<input placeholder="Password" required name="_password" type="password" class="form_css form-control mb-4 col-md-8 offset-md-2"></input>
 
-			<form action=" {{ path('security_login') }}" class="form-signin w-50 mx-auto" method="post">
-				<input placeholder="Email" required name="_username" type="text" class="bordered form-control mb-1"></input>
-			<input placeholder="Password" required name="_password" type="password" class="bordered form-control mb-2"></input>
+					<button type="submit" class="btn btn-dark btn-lg mt-4 mb-3">
+						Se connecter
+					</button>
 
-		<button type="submit" class="btn btn-dark btn-block colored bordered">
-			Se connecter
-		</button>
-
-		<div class="mt-4">
-			<span class="meta">Vous n'avez pas encore de compte ?</span>
-			<br/>
-			<a href="{{path('security_register')}}" id="text">Inscrivez-vous</a>
-		</div>
-	</form>
+					<div class="mt-4">
+						<span class="meta">Vous n'avez pas encore de compte ?</span>
+						<br/>
+						<a href="{{path('security_register')}}" id="text">Inscrivez-vous</a>
+					</div>
+				</form>
+			</div>
+			</div>
 </div></div>{% endblock %}

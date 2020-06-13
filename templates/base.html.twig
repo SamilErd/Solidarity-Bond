@@ -21,7 +21,7 @@
 
     <header>
 
-        <nav class="navbar navbar-expand-lg navbar-dark" id="navbar" style="background-color : #27251f;">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar" style="background-color : #27251f;">
             <a class="navbar-brand" href="/"><div
                         class="color-link">Solidarity-Bond</div></a>
 
@@ -104,7 +104,7 @@
                             </div>
                             {% else %}
                             <div class="col-12">
-                                <a href="{{path('security_register')}}" class="btn btn-dark color-link btn-block mt-1 mb-1">
+                                <a href="{{path('security_register')}}" id="footer" class="btn btn-block mt-1 mb-1">
                                     Inscription
                                 </a>
                             </div>
@@ -120,7 +120,7 @@
                         {% endif %}
                             <div class="col-12">
                                 <a href="{% if app.user %}{{path('security_logout')}}{% else %}{{path('security_login')}}{% endif %}"
-                                    class="btn btn-dark color-link btn-block mt-1 mb-1">
+                                    class="btn btn-block mt-1 mb-1" id="footer" >
                                     {% if app.user %} Déconnexion {% else %} Connexion {% endif %}
                                 </a>
                             </div>
@@ -131,7 +131,8 @@
         </nav>
     </header>
 
-    {% block body %}{% endblock %}
+    {% block body %}
+    {% endblock %}
     <div id="cookiewarn" class=" fixed-bottom " style="display: block;">
         <div class="" style="height:20%; width: 100%; text-align: center; position:relative; background-color:#d0d0ce
  ;">
@@ -194,27 +195,11 @@
             window.history.back();
         }
     </script>
-    <footer class="sticky-bottom">
+
+    <footer class="sticky-bottom mt-3" id="footer">
+
+
         <div class="container">
-            <div class="row">
-                <div class="col-sm text-center">
-                            <p class="">
-                                <h4 id="list-item-1">Informations</h4>
-                                <ul class="list-unstyled color-link">
-                                    <li>Fab-Lab Cesi</li>
-                                    <li>Campus Strasbourg</li>
-                                    <li>2 Allée des Foulons, 67380</li>
-                                    <li>Strasbourg Lingolsheim</li>
-                                    <li><a class="color-link" href="{{path('about_fablab')}}">En savoir plus</a></li>
-                                    </ul>
-                            </p>
-                        </div>
-                <div class="col-sm text-center">
-                    <p class="">
-                        <h4 class="">Suivez nous sur :</h4>
-                        <a target="_blank"  class="color-link" href="https://www.facebook.com/pg/Solidarity-Bond-Strasbourg-102482274841635/posts/?ref=page_internal" ><i class="fab fa-facebook-f"></i></a>
-                        <a target="_blank"  class="color-link" href="https://twitter.com/SolidarityStras" ><i class="fab fa-twitter"></i></a>
-                        <a target="_blank"  class="color-link" href="https://www.instagram.com/solidarity_bond/" ><i class="fab fa-instagram"></i></a>
 
                     </p>
                 </div>
@@ -228,9 +213,19 @@
                 </div>
             </div>
         </div>
+
+        <div class="row text-center py-3" id="copyright">
+            <div class="col-lg">
+                <a href="{{path('about_fablab')}}" id="text_color">En savoir plus</a>
+            </div>
+            <div class="footer-copyright col-lg" >© 2020 Copyright:
+                <a href="https://solidaritybond-stras.yj.fr/" id="text_color"> solidaritybond-stras.yj.fr</a>
+            </div>
+            <div class="col-lg">
+                <a href="{{path('privacy_policy')}}" id="text_color">Politique de confidentialité</a>
+            </div>
+        </div>
     </footer>
-
-
 
 
     
