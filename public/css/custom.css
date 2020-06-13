@@ -124,3 +124,9 @@
   background-color: #1d1d16;
   color: white;
 }
+.cards{
+  text-align: center;
+  margin: 0 auto;
+  width: 50% ;
+  height: 100%;
+}
