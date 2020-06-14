@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 
 use App\Form\NewProductType;
-use App\Entity\Product;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
