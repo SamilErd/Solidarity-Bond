@@ -80,7 +80,7 @@
                         <a class="nav-link" href="{{path('about_group')}}"><div class="color-link">À Propos</div></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{path('contact')}}"><div class="color-link">Nous contacter</div></a>
+                        <a class="nav-link" href="{{path('contact')}}"><div class="color-link">Contact</div></a>
                     </li>
                     
                            
@@ -91,14 +91,14 @@
                                 <div class="dropdown d-none d-lg-block ml-auto">
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        {% if app.user %} <div class="color-link">{{ app.user.FirstName }}</div> {% else %} <div
-                            class="color-link mr-5">Se connecter</div> {% endif %}
+                        {% if app.user %} <div id="text_color">{{ app.user.FirstName }}</div> {% else %} <div
+                            class="mr-5" id="text_color">Se connecter</div> {% endif %}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right p-2 mw-250" arialabelledby="account-button">
                         <div class="row">
                             {% if app.user %}
                             <div class="col-12">
-                                <a href="{{path('security_account')}}" class="btn btn-dark color-link btn-block mt-1 mb-1">
+                                <a href="{{path('security_account')}}" class="btn btn-dark color-link btn-block mt-1 mb-1" id="footer">
                                     Mon Profil
                                 </a>
                             </div>
@@ -112,7 +112,7 @@
                             {% endif %}
                         {% if is_granted('ROLE_FABLAB')%}
                         <div class="col-12">
-                            <a href="{{path('admin')}}" class="btn btn-dark color-link btn-block mt-1 mb-1">
+                            <a href="{{path('admin')}}" class="btn btn-dark color-link btn-block mt-1 mb-1" id="footer">
                                 Administration
                             </a>
                         </div>
@@ -196,21 +196,17 @@
         }
     </script>
 
+    
+
     <footer class="sticky-bottom mt-3" id="footer">
 
-
-        <div class="container">
-
-                    </p>
-                </div>
-                <div class="col-sm text-center">
-                    <p class="">
-                        <h4 class="">Informations légales </h4>
-                        <ul class="list-unstyled">
-                            <li><a class="color-link" href="{{path('privacy_policy')}}">Politique de confidentialité</a></li>
-                            </ul>
-                    </p>
-                </div>
+        <div class="container-fluid">
+            <div class="col-sm text-center mb-3 mt-2">
+                        <p>
+                            <h4>Suivez nous sur :</h4>
+                            <a target="_blank"  id="text_color" href="https://www.facebook.com/pg/Solidarity-Bond-Strasbourg-102482274841635/posts/?ref=page_internal" ><i class="fab fa-facebook-f"></i></a>
+                            <a target="_blank"  id="text_color" href="https://twitter.com/SolidarityStras" ><i class="fab fa-twitter"></i></a>
+                            <a target="_blank"  id="text_color" href="https://www.instagram.com/solidarity_bond/" ><i class="fab fa-instagram"></i></a>
             </div>
         </div>
 
