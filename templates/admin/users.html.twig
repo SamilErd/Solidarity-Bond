@@ -12,24 +12,32 @@
         </div>
     </div> 
             
-
-            <table style="width:100%">
-            <tr>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Addresse</th>
-                <th>email</th>
-            </tr>
+        <div class="container">
+            <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Adresse Email</th>
+                <th scope="col">Numér de Téléphone</th>
+                <th scope="col">Adresse</th>
+                </tr>
+            </thead>
+            <tbody>
             {% for user in users %}
-            <tr>
-                <td>{{user.FirstName}}</td>
+                <tr>
+                <th>{{user.id}}</th>
                 <td>{{user.LastName}}</td>
-                <td>{{user.Street}}, {{user.PostalCode}}, {{user.country}}</td>
+                <td>{{user.FirstName}}</td>
                 <td>{{user.Email}}</td>
-            </tr>
+                <td>{{user.phoneNum}}</td>
+                <td>{{user.Street}}, {{user.PostalCode}}, {{user.country}}</td>
+                </tr>
             {% endfor %}
+            </tbody>
             </table>
-
+        </div>
             
                   
 

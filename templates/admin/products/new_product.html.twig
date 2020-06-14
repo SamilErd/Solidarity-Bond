@@ -7,76 +7,74 @@
 
 {% block body %}
 
+<div class="jumbotron jumbotron-fluid">
+	<div class="container">
+				<h1 class="display-4">Ajouter un produit</h1>
+			</div>
+</div>
 
-<div class="container">
-			<h1 class="display-4">Ajouter un produit.</h1>
-		</div>
-
-
-
-			{{ form_start(formnp) }}
-			
-			<div class="form">
-			
-				{{ form_errors(formnp) }}
-				<div class="row">
-					<div class="col-6 mb-3 mt-3">
-						{{ form_widget(formnp.ProductName, {'attr':
-                        {
-						'class' : 'form_css',
-                        'placeholder' : "Nom du produit"
-                        }
-                    }) 
-                }}
-					</div>
-					<div class="col-6 mb-3 mt-3">
-						{{ form_widget(formnp.Description, {'attr':
-                        {
-						'class' : 'form_css',
-                        'placeholder' : "Description"
-                        }
-                    }) 
-                }}
-					</div>
-					<div class="col-6 mb-3">
-						{{ form_widget(formnp.Price, {'attr':
-                        {
-						'class' : 'form_css',
-                        'placeholder' : "Prix"
-                        }
-                    	}) 
-                	}}
-					
-					</div>
-					<div class="col-6 mb-3">
-						{{ form_widget(formnp.Stock, {'attr':
-                        {
-						'class' : 'form_css',
-                        'placeholder' : "Stock"
-                        }
-                    }) 
-                }}
-					</div>
-					<div class="col-6 mb-3" >
-						{{ form_widget(formnp.Image, {'attr':
-                    {
-					'class' : 'form_css',
-                    'placeholder' : "Choisissez votre image"
-                    }
-                }) 
-            }}
-					</div> 
-					<div class="col-6 mb-3" >
-						{{ form_widget(formnp.Ajouter, {'attr':
-                    {
-					'class' : 'btn_form_css',
-                    }
-                }) 
-            }}
-					</div> 
-
-
+				{{ form_start(formnp) }}
+			<div class="container">	
+				<div class="form">
 				
+					{{ form_errors(formnp) }}
+					<div class="row">
+						<div class="col-6 mb-3 mt-3">
+							{{ form_widget(formnp.ProductName, {'attr':
+							{
+							'class' : 'form_css',
+							'placeholder' : "Nom du produit"
+							}
+							}) 
+						}}
+						</div>
+						<div class="col-6 mb-3 mt-3">
+							{{ form_widget(formnp.Description, {'attr':
+							{
+							'class' : 'form_css',
+							'placeholder' : "Description"
+							}
+							}) 
+						}}
+						</div>
+						<div class="col-6 mb-3">
+							{{ form_widget(formnp.Price, {'attr':
+							{
+							'class' : 'form_css',
+							'placeholder' : "Prix"
+							}
+							}) 
+						}}
+						
+						</div>
+						<div class="col-6 mb-3">
+							{{ form_widget(formnp.Stock, {'attr':
+							{
+							'class' : 'form_css',
+							'placeholder' : "Stock"
+							}
+							}) 
+						}}
+						</div>
+						<div class="col-6 mb-3" >
+							{{ form_widget(formnp.Image, {'attr':
+							{
+							'class' : 'form_css mt-2',
+							'placeholder' : "Choisissez votre image"
+							}
+							}) 
+						}}
+						</div> 
+						<div class="col-12 mb-3 btn-center" >
+							{{ form_widget(formnp.Ajouter, {'attr':
+							{
+							'class' : 'btn_form_css mt-5',
+							}
+							}) 
+						}}
+						</div> 
+					</div>
+				</div>
 			</div>
 
 {{ form_end(formnp) }}

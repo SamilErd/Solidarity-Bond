@@ -29,7 +29,7 @@
   }
 
   .btn_form_css {
-    width: 75%;
+    width: 50%;
     padding: 12px 20px;
     box-sizing: border-box;
     border: none;
@@ -37,19 +37,24 @@
     background-color: #008CBA;
     color: #FFFFFF;
   }
+  .btn-center {
+    text-align: center;
+  }
 
   #text_color {
     color: #999999;
   }
-  .cards{
-    text-align: center;
-    margin: 0 auto;
-    width: 50% ;
-    height: 100%;
-  }
 
   #text_color:hover{
     color: #cccccc;
+  }
+
+  #button-contact {
+    margin-bottom: 10px;
+    background-color : #27251f;
+    color: white;
+    width: auto;
+    margin-left: 45%;
   }
 
   #button {
@@ -57,7 +62,9 @@
     background-color : #27251f;
     color: white;
     width: auto;
-    margin-left: 45%;;
+  }
+  #button:hover {
+    color: #cccccc;
   }
 
 /**
@@ -134,6 +141,7 @@
   height: auto;
 }
 
+
 #copyright {
   background-color: #1d1d16;
   color: white;
@@ -143,12 +151,25 @@
 * CSS for admin dashboard
 */
 
-/**.cards{
+.cards{
   text-align: center;
-  margin: 0 auto;
-  width: 50% ;
-  height: 100%;
-}*/
+  margin: auto;
+  width: 20% ;
+  height: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.cards-img {
+  height: auto;
+  width: 100%; 
+  display: block;
+  margin: auto;
+}
+
+.cards-text {
+  margin: 15px; 
+  height: auto;
+}
 
 /**
 * CSS for card admin
@@ -162,13 +183,6 @@
   --spacing-xl: 32px;
   --spacing-xxl: 64px;
   --width-container: 1200px;
-}
-
-* {
-  border: 0;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 .hero-section {
@@ -200,12 +214,12 @@
   }
 }
 
-.card {
+a.card {
   list-style: none;
   position: relative;
 }
 
-.card:before {
+a.card:before {
   content: "";
   display: block;
   padding-bottom: 100%;
@@ -227,11 +241,11 @@
   transition: filter 200ms linear, transform 200ms linear;
 }
 
-.card:hover .card__background {
+a.card:hover .card__background {
   transform: scale(1.05) translateZ(0);
 }
 
-.card-grid:hover > .card:not(:hover) .card__background {
+.card-grid:hover > a.card:not(:hover) .card__background {
   filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
 }
 

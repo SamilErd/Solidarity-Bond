@@ -17,6 +17,7 @@
         <form>
         {{ form_start(form) }}
             <div class="form-row">
+            {{ form_errors(form) }}
                 <div class="form-group col-md-8">
                 {{ form_widget(form.lastname, {'attr':{'class': 'form_css_contact', 'placeholder':'Nom'}}) }}
                 </div>
@@ -40,7 +41,7 @@
                 </div>
             </div>
 
-            <button type="submit" id="button" class="btn btn-lg colored bordered mb-10 mt-3">Envoyer</button>
+            <button type="submit" id="button-contact" class="btn btn-lg colored bordered mb-10 mt-3">Envoyer</button>
 
             {{ form_end(form) }}
         </form>
