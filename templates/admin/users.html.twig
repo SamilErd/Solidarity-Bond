@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interface Fab-Lab
+{% endblock %}
+
+    {% block stylesheets %}{% endblock %}
+
+{% block body %}
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">Vous pouvez consulter les utilisateurs ici.</h1>
+        </div>
+    </div> 
+            
+
+            <table style="width:100%">
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Addresse</th>
+                <th>email</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{user.FirstName}}</td>
+                <td>{{user.LastName}}</td>
+                <td>{{user.Street}}, {{user.PostalCode}}, {{user.country}}</td>
+                <td>{{user.Email}}</td>
+            </tr>
+            {% endfor %}
+            </table>
+
+            
+                  
+
+
+
+
+
+{% endblock %}
