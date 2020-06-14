@@ -2,7 +2,6 @@
 
 {% block title %}Interface Fab-Lab
 {% endblock %}
-
     {% block stylesheets %}{% endblock %}
 
 {% block body %}
@@ -27,17 +26,23 @@
                     </div>
                 </div>
             </div>
-
             <div class="col">
                 <div class="card card-block">
                 <img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180" src={{ asset('images/visiere.jpg')}} data-holder-rendered="true" style="height: auto; width: 100%; display: block; margin: 15px auto">
                 <div class="card-block">
                     <h4 class="card-title">Gestion de la production</h4>
-                    <p class="card-text" style="margin: 15px; height: 100px">C'est ici que vous allez mettre à jour votre production</p>
+                    <p class="card-text" style="margin: 15px; height: 100px">C'est ici que vous allez mettre à jour votre production.</p>
                     <a href="{{path('admin_products')}}" class="btn btn-primary" style="margin: 15px;">Gérer</a>
                 </div>
-
-            
+            </div>
+            <div class="col">
+                <div class="card card-block">
+                <img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180" src={{ asset('images/users.png')}} data-holder-rendered="true" style="height: auto; width: 100%; display: block; margin: 15px auto">
+                <div class="card-block">
+                    <h4 class="card-title">Gestion des utilisateurs</h4>
+                    <p class="card-text" style="margin: 15px; height: 100px">C'est ici que vous allez pouvoir gérer les utilisateurs.</p>
+                    <a href="{{path('admin_users')}}" class="btn btn-primary" style="margin: 15px;">Gérer</a>
+                </div>
             </div>
         </div>            
     </div >  

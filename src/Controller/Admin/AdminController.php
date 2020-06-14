@@ -2,14 +2,10 @@
 
 namespace App\Controller\Admin;
 
-
-use App\Form\NewProductType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use App\Repository\ProductRepository;
 
 
 
