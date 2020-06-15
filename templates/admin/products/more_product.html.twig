@@ -7,17 +7,20 @@
 
 {% block body %}
 
+		<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Combien en avez-vous produit ?</h1>
+			<h1 class="display-4">Rajouter du stock</h1>
+			<p>Combien de produit avez vous fabriqué ?</p>
 		</div>
+	</div>
 
-		<div>
+		<div class="container">
 			<form action=" {{ path('admin_more') }}" class="form-signin w-50 mx-auto" method="post">
-			<input placeholder="Nombre produit" name="morenum" type="integer" class="bordered form-control mb-1"></input>
+			<input placeholder="Nombre produit" name="morenum" type="integer" class="form_css mb-1"></input>
 			<input name="id" type="hidden" value="{{ product.id }}"></input>
 
-			<button type="submit" class="btn btn-dark btn-block colored bordered">
-			Mettre à jour
+			<button type="submit" class="btn mt-3" id="button">
+			Mettre à jour le stock
 			</button>
 		</div>
 

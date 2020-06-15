@@ -4,7 +4,6 @@
 *For : Projet Solidarity-Bond
 */
 
-/** Colors **/
 
 /**
 * CSS for form
@@ -81,6 +80,10 @@
     padding: 2px 6px;
   }
 
+  ul {
+    list-style-type: none;
+  }
+
 /**
 * CSS for alert
 */
@@ -147,129 +150,36 @@
   color: white;
 }
 
-/**
-* CSS for admin dashboard
-*/
-
-.cards{
-  text-align: center;
-  margin: auto;
-  width: 20% ;
-  height: auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.cards-img {
-  height: auto;
-  width: 100%; 
-  display: block;
-  margin: auto;
-}
-
-.cards-text {
-  margin: 15px; 
-  height: auto;
-}
 
 /**
 * CSS for card admin
 */
-:root {
-  --text-light: rgba(255, 255, 255, 0.6);
-  --text-lighter: rgba(255, 255, 255, 0.9);
-  --spacing-s: 8px;
-  --spacing-m: 16px;
-  --spacing-l: 24px;
-  --spacing-xl: 32px;
-  --spacing-xxl: 64px;
-  --width-container: 1200px;
+
+.zoom {
+  padding: 50px;
+  transition: transform .2s;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
 }
 
-.hero-section {
-  align-items: flex-start;
-  display: flex;
-  min-height: 100%;
-  justify-content: center;
-  padding: var(--spacing-xxl) var(--spacing-l);
+.zoom:hover {
+  transform: scale(1.1);
 }
 
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-column-gap: var(--spacing-l);
-  grid-row-gap: var(--spacing-l);
-  max-width: var(--width-container);
-  width: 100%;
+/**
+* CSS for card shop
+*/
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
 }
 
-@media (min-width: 540px) {
-  .card-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 960px) {
-  .card-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-a.card {
-  list-style: none;
-  position: relative;
-}
-
-a.card:before {
-  content: "";
-  display: block;
-  padding-bottom: 100%;
-  width: 100%;
-}
-
-.card__background {
-  background-size: cover;
-  background-position: center;
-  border-radius: var(--spacing-l);
-  bottom: 0;
-  filter: brightness(0.75) saturate(1.2) contrast(0.85);
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transform-origin: center;
-  transform: scale(1) translateZ(0);
-  transition: filter 200ms linear, transform 200ms linear;
-}
-
-a.card:hover .card__background {
-  transform: scale(1.05) translateZ(0);
-}
-
-.card-grid:hover > a.card:not(:hover) .card__background {
-  filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
-}
-
-.card__content {
-  left: 0;
-  padding: var(--spacing-l);
-  position: absolute;
-  top: 0;
-}
-
-.card__category {
-  color: var(--text-light);
-  font-size: 0.9rem;
-  margin-bottom: var(--spacing-s);
-  text-transform: uppercase;
-}
-
-.card__heading {
-  color: var(--text-lighter);
-  font-size: 1.9rem;
-  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
-  line-height: 1.4;
-  word-spacing: 100vw;
-}
-ul {
-  list-style-type: none;
+.price {
+  color: grey;
+  font-size: 22px;
 }
