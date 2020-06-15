@@ -25,7 +25,8 @@
 					<div class="col-6 mb-3 mt-3">
 						{{ form_widget(form.FirstName, {'attr':
                         {
-                        'placeholder' : "Nom"
+                        'placeholder' : "Nom",
+						'class': 'form_css'
                         }
                     }) 
                 }}
@@ -33,7 +34,8 @@
 					<div class="col-6 mb-3 mt-3">
 						{{ form_widget(form.LastName, {'attr':
                         {
-                        'placeholder' : "Prénom"
+                        'placeholder' : "Prénom",
+						'class' : 'form_css'
                         }
                     }) 
                 }}
@@ -41,7 +43,8 @@
 					<div class="col-6 mb-3">
 						{{ form_widget(form.password.first, {'attr':
                         {
-                        'placeholder' : "Mot de passe"
+                        'placeholder' : "Mot de passe",
+						'class' : 'form_css'
                         }
                     	}) 
                 	}}
@@ -50,7 +53,8 @@
 					<div class="col-6 mb-3">
 						{{ form_widget(form.password.second, {'attr':
                         {
-                        'placeholder' : "Confirmez le mot de passe"
+                        'placeholder' : "Confirmez le mot de passe",
+						'class' : 'form_css'
                         }
                     }) 
                 }}
@@ -58,7 +62,8 @@
 					<div class="col-6 mb-3">
 						{{ form_widget(form.email, {'attr':
                     {
-                    'placeholder' : "Email"
+                    'placeholder' : "Email",
+					'class' : 'form_css'
                     }
                 }) 
             }}
@@ -66,40 +71,47 @@
 					<div class="col-6 mb-3 mt-3">
 						{{ form_widget(form.phoneNum, {'attr':
                             {
-                            'placeholder' : "Téléphone"
+                            'placeholder' : "Téléphone",
+							'class' : 'form_css'
                             }
                         }) 
                     }}
 					</div>
 				</div>
-				<div class="col-6 mb-3">
-						{{ form_widget(form.street, {'attr':
-                    {
-                    'placeholder' : "Addresse"
-                    }
-                }) 
-            }}
-				</div>
-				<div class="col-6 mb-3">
-						{{ form_widget(form.postalcode, {'attr':
-                    {
-                    'placeholder' : "Code Postal"
-                    }
-                }) 
-            }}
+				<div class="row row-cols-1">
+					<div class="col-6 mb-3">
+							{{ form_widget(form.street, {'attr':
+						{
+						'placeholder' : "Addresse",
+						'class' : 'form_css'
+						
+						}
+					}) 
+				}}
 					</div>
 					<div class="col-6 mb-3">
-						{{ form_widget(form.country, {'attr':
-                    {
-                    'placeholder' : "Pays"
-                    }
-                }) 
-            }}
+							{{ form_widget(form.postalcode, {'attr':
+						{
+						'placeholder' : "Code Postal",
+						'class' : 'form_css'
+						}
+					}) 
+				}}
+						</div>
+						<div class="col-6 mb-3">
+							{{ form_widget(form.country, {'attr':
+						{
+						'placeholder' : "Pays",
+						'class' : 'form_css'
+						}
+					}) 
+				}}
+						</div>
 					</div>
+					<button type="submit" class="btn btn-dark btn-lg mt-4">
+						Mettre à jour
+					</button>
 				
-				<button type="submit" class="btn btn-dark btn-block mt-4">
-					Mettre à jour
-				</button>
 			</div>
 
 			{{ form_end(form) }}

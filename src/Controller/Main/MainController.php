@@ -14,6 +14,7 @@ class MainController extends AbstractController
      */
     public function index(Request $request)
     {
+        //redering the homepage
         return $this->render('main/index.html.twig');
     }
 
@@ -21,8 +22,7 @@ class MainController extends AbstractController
      * @Route("/privacy", name="privacy_policy")
      */
     public function privacy(){
+        //rendering the privacy policy
         return $this->render('legal/privacy.html.twig');
     }
-
-
 }

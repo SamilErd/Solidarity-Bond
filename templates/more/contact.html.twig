@@ -5,15 +5,6 @@
 
 {% block body %}
 
-<style> 
-.foo {
-  width: 75%;
-  padding: 12px 20px;
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 2px solid;
-}
-</style>
 
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
@@ -26,29 +17,32 @@
         <form>
         {{ form_start(form) }}
             <div class="form-row">
-                <div class="form-group col-md-6">
-                {{ form_widget(form.lastname, {'attr':{'class': 'foo', 'placeholder':'Nom'}}) }}
+            {{ form_errors(form) }}
+                <div class="form-group col-md-8">
+                {{ form_widget(form.lastname, {'attr':{'class': 'form_css_contact', 'placeholder':'Nom'}}) }}
                 </div>
-                <div class="form-group col-md-6">
-                {{ form_widget(form.firstname, {'attr':{'class': 'foo', 'placeholder':'Prénom'}}) }}
+                <div class="form-group col-md-8">
+                {{ form_widget(form.firstname, {'attr':{'class': 'form_css_contact', 'placeholder':'Prénom'}}) }}
                 </div>
             </div>
 
             <div class="form-row" >
-                <div class="form-group col-md-6">
-                {{ form_widget(form.email, {'attr':{'class' : 'foo', 'placeholder':'Adresse Email'}}) }}
+                <div class="form-group col-md-8">
+                {{ form_widget(form.email, {'attr':{'class' : 'form_css_contact', 'placeholder':'Adresse Email'}}) }}
                 </div>
-                <div class="form-group col-md-6">
-                {{ form_widget(form.phone, {'attr':{'class': 'foo', 'placeholder':'Numéro de téléphone'}}) }}
+                <div class="form-group col-md-8">
+                {{ form_widget(form.phone, {'attr':{'class': 'form_css_contact', 'placeholder':'Numéro de téléphone'}}) }}
                 </div>
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-6">
-                {{ form_widget(form.message, {'attr':{'class': 'foo', 'placeholder':'Votre message'}}) }}
+                <div class="form-group col-md-8">
+                {{ form_widget(form.message, {'attr':{'class': 'form_css_contact', 'placeholder':'Votre message'}}) }}
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary mb-5">Envoyer</button>
+
+            <button type="submit" id="button-contact" class="btn btn-lg colored bordered mb-10 mt-3">Envoyer</button>
+
             {{ form_end(form) }}
         </form>
     </div>

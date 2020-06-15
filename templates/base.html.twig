@@ -9,6 +9,7 @@
     </title>
     <!--FontAwesome-->
     <script src="https://kit.fontawesome.com/8190148fda.js" crossorigin="anonymous"></script>
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href={{ asset('css/bootstrap.min.css')}}>
     <!--Custom style sheet-->
@@ -48,7 +49,7 @@
                         {% endif %}
                         {% if is_granted('ROLE_FABLAB')%}
                         <div class="col-12">
-                            <a href="       " class="btn btn-dark color-link btn-block mt-1 mb-1">
+                            <a href="{{path('admin')}}" class="btn btn-dark color-link btn-block mt-1 mb-1">
                                 Administration
                             </a>
                         </div>
@@ -74,36 +75,53 @@
                         <a class="nav-link" href="{{path('index')}}"><div class="color-link">Accueil</div></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="      "><div class="color-link">Boutique</div></a>
+                        <a class="nav-link" href="{{path('show_products')}}"><div class="color-link">Boutique</div></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('about_group')}}"><div class="color-link">À Propos</div></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('contact')}}"><div class="color-link">Contact</div></a>
+                    </li>
+                    
+                           
+                        
 
                     </div>
                 </ul>
-                <div class="dropdown d-none d-lg-block ml-auto">
+                                <div class="dropdown d-none d-lg-block ml-auto">
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        {% if app.user %} <div class="color-link">{{ app.user.username }}</div> {% else %} <div
-                            class="color-link mr-5">Se connecter</div> {% endif %}
+                        {% if app.user %} <div id="text_color">{{ app.user.FirstName }}</div> {% else %} <div
+                            class="mr-5" id="text_color">Se connecter</div> {% endif %}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right p-2 mw-250" arialabelledby="account-button">
                         <div class="row">
                             {% if app.user %}
                             <div class="col-12">
-                                <a href="     " class="btn btn-dark color-link btn-block mt-1 mb-1">
+                                <a href="{{path('security_account')}}" class="btn btn-dark color-link btn-block mt-1 mb-1" id="footer">
                                     Mon Profil
                                 </a>
                             </div>
                             {% else %}
                             <div class="col-12">
-                                <a href="   " class="btn btn-dark color-link btn-block mt-1 mb-1">
+                                <a href="{{path('security_register')}}" id="footer" class="btn btn-block mt-1 mb-1">
                                     Inscription
                                 </a>
                             </div>
 
                             {% endif %}
+                        {% if is_granted('ROLE_FABLAB')%}
+                        <div class="col-12">
+                            <a href="{{path('admin')}}" class="btn btn-dark color-link btn-block mt-1 mb-1" id="footer">
+                                Administration
+                            </a>
+                        </div>
+                        {% else %}
+                        {% endif %}
                             <div class="col-12">
                                 <a href="{% if app.user %}{{path('security_logout')}}{% else %}{{path('security_login')}}{% endif %}"
-                                    class="btn btn-dark color-link btn-block mt-1 mb-1">
+                                    class="btn btn-block mt-1 mb-1" id="footer" >
                                     {% if app.user %} Déconnexion {% else %} Connexion {% endif %}
                                 </a>
                             </div>
@@ -114,7 +132,8 @@
         </nav>
     </header>
 
-    {% block body %}{% endblock %}
+    {% block body %}
+    {% endblock %}
     <div id="cookiewarn" class=" fixed-bottom " style="display: block;">
         <div class="" style="height:20%; width: 100%; text-align: center; position:relative; background-color:#d0d0ce
  ;">
@@ -177,45 +196,33 @@
             window.history.back();
         }
     </script>
-    <footer class="sticky-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm text-center">
-                            <p class="">
-                                <h4 id="list-item-1">Informations</h4>
-                                <ul class="list-unstyled color-link">
-                                    <li>Fab-Lab Cesi</li>
-                                    <li>Campus Strasbourg</li>
-                                    <li>2 Allée des Foulons, 67380</li>
-                                    <li>Strasbourg Lingolsheim</li>
-                                    <li><a class="color-link" href="{{path('about_fablab')}}">En savoir plus</a></li>
-                                    </ul>
-                            </p>
-                        </div>
-                <div class="col-sm text-center">
-                    <p class="">
-                        <h4 class="">Suivez nous sur :</h4>
-                        <a target="_blank"  class="color-link" href="https://www.facebook.com/pg/Solidarity-Bond-Strasbourg-102482274841635/posts/?ref=page_internal" ><i class="fab fa-facebook-f"></i></a>
-                        <a target="_blank"  class="color-link" href="https://twitter.com/SolidarityStras" ><i class="fab fa-twitter"></i></a>
-                        <a target="_blank"  class="color-link" href="https://www.instagram.com/solidarity_bond/" ><i class="fab fa-instagram"></i></a>
 
-                    </p>
-                </div>
-                <div class="col-sm text-center">
-                    <p class="">
-                        <h4 class="">Informations légales </h4>
-                        <ul class="list-unstyled">
-                            <li><a class="color-link" href="{{path('privacy_policy')}}">Politique de confidentialité</a></li>
-                            <li><a class="color-link" href="{{path('about_group')}}">À Propos</a></li>
-                            <li><a class="color-link" href="{{path('contact')}}">Nous contacter</a></li>
-                        </ul>
-                    </p>
-                </div>
+    
+
+    <footer class="sticky-bottom mt-3" id="footer">
+
+        <div class="container-fluid">
+            <div class="col-sm text-center mb-3 mt-2">
+                        <p>
+                            <h4>Suivez nous sur :</h4>
+                            <a target="_blank"  id="text_color" href="https://www.facebook.com/pg/Solidarity-Bond-Strasbourg-102482274841635/posts/?ref=page_internal" ><i class="fab fa-facebook-f mr-3 fa-2x"></i></a>
+                            <a target="_blank"  id="text_color" href="https://twitter.com/SolidarityStras" ><i class="fab fa-twitter mr-3 fa-2x"></i></a>
+                            <a target="_blank"  id="text_color" href="https://www.instagram.com/solidarity_bond/" ><i class="fab fa-instagram mr-3 fa-2x"></i></a>
+            </div>
+        </div>
+
+        <div class="row text-center py-3" id="copyright">
+            <div class="col-lg">
+                <a href="{{path('about_fablab')}}" id="text_color">En savoir plus</a>
+            </div>
+            <div class="footer-copyright col-lg" >© 2020 Copyright:
+                <a href="https://solidaritybond-stras.yj.fr/" id="text_color"> solidaritybond-stras.yj.fr</a>
+            </div>
+            <div class="col-lg">
+                <a href="{{path('privacy_policy')}}" id="text_color">Politique de confidentialité</a>
             </div>
         </div>
     </footer>
-
-
 
 
     
@@ -228,6 +235,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     {% block javascripts %}{% endblock %}
 </body>
 

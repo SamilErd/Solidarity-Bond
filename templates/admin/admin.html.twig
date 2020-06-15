@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interface Fab-Lab
+{% endblock %}
+    {% block stylesheets %}{% endblock %}
+
+{% block body %}
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">Bienvenue sur l'interface FAB-LAB.</h1>
+
+		</div>
+	</div>
+
+
+    
+<div class="container" >
+    <div class="hero-section">
+                {#<div class="card card-block">
+                    <img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180" src={{ asset('images/cart.png')}} data-holder-rendered="true" style="height: auto; width: 100%; display: block; color: white;margin: 15px auto">
+                    <div class="card-block">
+                        <h4 class="card-title">Gestion des commandes</h4>
+                        <p class="card-text" style="margin: 15px; height: 100px">C'est ici que vous vérrez les commandes faites par les clients.</p>
+                        <a href="{{path('admin_products')}}" class="btn btn-primary" style="margin: 15px;">Gérer</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card card-block">
+                    <img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180" src={{ asset('images/visiere.jpg')}} data-holder-rendered="true" style="height: auto; width: 100%; display: block; margin: 15px auto">
+                    <div class="card-block">
+                        <h4 class="card-title">Gestion de la production</h4>
+                        <p class="card-text" style="margin: 15px; height: 100px">C'est ici que vous allez mettre à jour votre production</p>
+                        <a href="{{path('admin_products')}}" class="btn btn-primary" style="margin: 15px;">Gérer</a>
+                    </div>
+                </div>
+            </div>#}     
+
+            <div class="card-grid">
+                <a class="card" href="{{path('admin_orders')}}">
+                <div class="card__background" style="background-image: url(/images/cart.png)"></div>
+                    <div class="card__content">
+                        <h3 class="card__heading">Gestion des commandes</h3>
+                    </div>
+                </a>
+                <a class="card" href="{{path('admin_products')}}">
+                <div class="card__background" style="background-image: url(/images/visiere.jpg)"></div>
+                    <div class="card__content">
+                        <h3 class="card__heading">Gestion de la production</h3>
+                    </div>
+                </a>
+                <a class="card" href="{{path('admin_users')}}">
+                <div class="card__background" style="background-image: url(/images/users.png)"></div>
+                    <div class="card__content">
+                        <h3 class="card__heading">Gestion des utilisateurs</h3>
+                    </div>
+                </a>
+            </div>
+
+    </div >  
+</div>  
+
+
+
+
+{% endblock %}
