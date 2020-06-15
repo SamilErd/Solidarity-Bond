@@ -273,3 +273,22 @@ a.card:hover .card__background {
 ul {
   list-style-type: none;
 }
+
+.div_container_shop {
+  width:75% ; 
+  height: 100%; 
+  margin : 100px auto 300px;
+}
+
+.div1{
+  width: auto; 
+  height: 100%;
+  float: left;
+  margin-right: 100px;
+  
+}
+.div2{
+  width: auto; 
+  height: 100%;
+  padding: 50px 50px 50px;
+}
