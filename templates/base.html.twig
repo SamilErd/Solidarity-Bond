@@ -9,11 +9,12 @@
     </title>
     <!--FontAwesome-->
     <script src="https://kit.fontawesome.com/8190148fda.js" crossorigin="anonymous"></script>
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href={{ asset('css/bootstrap.min.css')}}>
     <!--Custom style sheet-->
     <link rel="stylesheet" href={{ asset('css/custom.css')}}>
-    
+
     {% block stylesheets %}{% endblock %}
 </head>
 
@@ -74,7 +75,7 @@
                         <a class="nav-link" href="{{path('index')}}"><div class="color-link">Accueil</div></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="      "><div class="color-link">Boutique</div></a>
+                        <a class="nav-link" href="{{path('show_products')}}"><div class="color-link">Boutique</div></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{path('about_group')}}"><div class="color-link">À Propos</div></a>
@@ -234,6 +235,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     {% block javascripts %}{% endblock %}
 </body>
 

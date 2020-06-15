@@ -270,3 +270,6 @@ a.card:hover .card__background {
   line-height: 1.4;
   word-spacing: 100vw;
 }
+ul {
+  list-style-type: none;
+}

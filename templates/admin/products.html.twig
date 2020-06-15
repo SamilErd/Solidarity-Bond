@@ -12,6 +12,9 @@
 
 		</div>
 	</div>
+
+
+    
     <div style="text-align:center">
     <a href="{{path('admin_new_product')}}" class="btn" id="button">Ajouter un produit</a>
     </div>
@@ -22,11 +25,11 @@
                     <img class="card-img-top cards-img" data-src="holder.js/100px180/" alt="100%x180" src="../images/products/{{product.Image}}" data-holder-rendered="true">
                     <div class="card-block">
                         <h4 class="card-title">{{product.ProductName}}</h4>
-                        <p class="card-text">{{product.Description}}</p>
-                        <p class="card-text">Prix : {{product.Price}} €</p>
-                        <p class="card-text">Stock : {{product.Stock}} restant</p>
-                        <a href="{{path('admin_more_page', {'id': product.id } )}}" class="btn" id="button" style="margin: 15px;">j'en ai produit</a>
-                        <a href="{{path('admin_sold_page', {'id': product.id } )}}" class="btn" id="button" style="margin: 15px;">j'en ai vendu</a>
+                        <p class="card-text" style="margin: 15px; height: 100px">{{product.Description}}</p>
+                        <p class="card-text" style="margin: 15px; height: 100px">Prix : {{product.Price}} €</p>
+                        <p class="card-text" style="margin: 15px; height: 100px">Stock : {{product.Stock}} restant</p>
+                        <a href="{{path('admin_more_page', {'id': product.id } )}}" class="btn btn-primary" style="margin: 15px;">j'en ai produit</a>
+                        <a href="{{path('admin_sold_page', {'id': product.id } )}}" class="btn btn-primary" style="margin: 15px;">j'en ai vendu</a>
                     </div>
                 </div>
             {% endfor %}
