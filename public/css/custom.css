@@ -182,4 +182,35 @@
 .price {
   color: grey;
   font-size: 22px;
+
+}
+
+.card__heading {
+  color: var(--text-lighter);
+  font-size: 1.9rem;
+  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+  line-height: 1.4;
+  word-spacing: 100vw;
+}
+ul {
+  list-style-type: none;
+}
+
+.div_container_shop {
+  width:75% ; 
+  height: 100%; 
+  margin : 100px auto 300px;
+}
+
+.div1{
+  width: auto; 
+  height: 100%;
+  float: left;
+  margin-right: 100px;
+  
+}
+.div2{
+  width: auto; 
+  height: 100%;
+  padding: 50px 50px 50px;
 }
