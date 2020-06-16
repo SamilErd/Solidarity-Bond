@@ -17,6 +17,7 @@
       border-bottom: 2px solid;
       color: #999999;
     }
+    
   .form_css_contact {
     width: 75%;
     padding: 12px 20px;
@@ -28,14 +29,16 @@
   }
 
   .btn_form_css {
-    width: 50%;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: none;
-    border-bottom: 2px solid;
-    background-color: #008CBA;
-    color: #FFFFFF;
+    margin-bottom: 10px;
+    background-color : #27251f;
+    color: white;
+    width: auto;
   }
+
+  .btn_form_css:hover {
+    color: #cccccc;
+  }
+
   .btn-center {
     text-align: center;
   }
@@ -54,6 +57,10 @@
     color: white;
     width: auto;
     margin-left: 45%;
+  }
+
+  #button-contact:hover {
+    color: #cccccc;
   }
 
   #button {
