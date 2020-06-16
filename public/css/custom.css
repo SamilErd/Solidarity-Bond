@@ -180,7 +180,7 @@
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
+  max-width: 400px;
   margin: auto;
   text-align: center;
   font-family: arial;
@@ -199,6 +199,25 @@
   line-height: 1.4;
   word-spacing: 100vw;
 }
+.card-text-shop{
+  overflow: hidden;
+  width:300px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  
+  margin: 0 auto;
+  }
+  .card-title-shop{
+    overflow: hidden;
+    width:300px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    
+    margin: 0 auto;
+    }
+
 ul {
   list-style-type: none;
 }
@@ -220,4 +239,31 @@ ul {
   width: auto; 
   height: 100%;
   padding: 50px 50px 50px;
+}
+.confirm_div{
+  background-color: white;
+  
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  
+  left: 0;
+  right: 0;
+
+  margin: auto;
+  width:30em;
+  height:15em;
+  
+  text-align: center;
+  border: 1px solid #000000;
+}
+
+.confirm_buttons{
+  position: absolute; 
+  bottom: 0; 
+  width: 100%; 
+  height: 60px; 
+  bottom: 0;
+  margin: auto;
 }

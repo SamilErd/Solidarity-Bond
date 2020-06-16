@@ -134,7 +134,7 @@
 
     {% block body %}
     {% endblock %}
-    <div id="cookiewarn" class=" fixed-bottom " style="display: block;">
+    <div id="cookiewarn" class=" fixed-bottom " style="display:none">
         <div class="" style="height:20%; width: 100%; text-align: center; position:relative; background-color:#d0d0ce
  ;">
             <div class="border" style="border-color : black">
@@ -146,9 +146,6 @@
     </div>
 
     <script>
-        function isCookie(){
-            
-        }
         function HideCookieWarn() {
             var x = document.getElementById("cookiewarn");
                 if (x.style.display === "block") {
@@ -188,7 +185,10 @@
                         
         if (isCookie != "") {
             x.style.display = "none";     
-        } 
+        } else {
+            x.style.display = "block";
+        }
+        
         }
         
         function goPrev()

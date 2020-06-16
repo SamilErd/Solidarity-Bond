@@ -47,30 +47,69 @@ class ShopController extends AbstractController
             "product" => $product,
         ]);
     }
-
     /**
-     * @Route("/payment_{id}", name="payment")
+     * @Route("/show_order_{id}", name="show_order")
      */
-    public function payment(Request $request,$id, ProductRepository $prepo)
+    public function show_order($id, ProductRepository $prepo)
     {
-        //rendering the specific product's page [WHICH HASNT BEEN MADE FOR THE MOMENT]
-        $id = $request->request->get('id');
         $product = $prepo->find($id);
-        \Stripe\Stripe::setApiKey("sk_test_51GtxmVIdMDT276mzSGsxQhPhaEyMYKgvIJS2OBBw0QGMibDMSKKnMnwZq17BMbOxqbwSxpiYSnHQHCjOSguSSYAk00R2E3RFsj");
-       
-        \Stripe\Charge::create(array(
-            "amount" => $product->getPrice(),
-            "currency" => "eur",
-            "source" => $request->request->get('stripeToken'),
-            "description" => "Paiement de".$this->getUser()->getEmail()
-        ));
+        //rendering the specific product's page 
 
 
-        return $this->render('shop/product.html.twig', [
+
+        return $this->render('shop/order.html.twig', [
             "product" => $product,
         ]);
     }
 
+    /**
+     * @Route("/order_product_{id}_{quantity}", name="order_product")
+     */
+    public function order_product($id,$quantity, ProductRepository $prepo, \Swift_Mailer $mailer)
+    {
 
 
-}
+        $product = $prepo->find($id);
+        $contact = $this->getUser();
+
+
+        //rendering the specific product's page 
+        $this->addFlash('succes', 'Votre commande a été passée avec succès.');
+        //
+        $message = (new \Swift_Message('Nouveau Message'))
+        //getting the author's email
+        ->setFrom($contact->getEmail())
+        //sending to specific mail
+        ->setTo('contact@solidaritybond-stras.yj.fr')
+        //sending reply to author's email
+        ->setReplyTo($contact->getEmail())
+        //setting the content of the mail with the selected template
+        ->setBody($this->renderView('shop/emails_contact.html.twig',[
+            //setting the mail's contact info with contact variable
+            'contact' => $contact,
+            'product' => $product,
+            'Quantity' => $quantity,
+        ]), 'text/html');
+        //sending the message with the mailer
+        $mailer->send($message);
+        //redirecting to homepage
+
+
+
+        return $this->render('shop/confirm.html.twig', [
+            "product" => $product,
+            "quantity" => $quantity
+        ]);
+            
+        
+    }
+        
+
+/*
+        
+
+*/
+        
+
+
+        }

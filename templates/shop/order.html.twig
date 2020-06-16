@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interface Fab-Lab
+{% endblock %}
+
+    {% block stylesheets %}{% endblock %}
+
+{% block body %}
+
+<div id="all">
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">Vous voulez commander {{product.ProductName}}.</h1>
+        </div>
+    </div>     
+
+    <div style="text-align: center">
+    <h4>Est-ce que vos informations sont correctes?</h4>
+    <p>{{app.user.FirstName}} {{app.user.LastName}} </p>
+    <p>{{app.user.Email}}.</p>
+    <p>{{app.user.Street}}.</p>
+    <p>{{app.user.PostalCode}}, {{app.user.Country}}.</p>
+    <a href="{{path('security_account')}}" id="button" class="btn">Modifier mes informations</a>
+    <p>Si oui, combien voulez-vous en commander ?</p>
+    <select name="StockOptions" id="stock-select">
+        <option value="">--Choissez une option--</option>
+        {% for i in range(1, product.Stock) %}
+            <option value= {{ i }}> {{ i }}</option>
+        {% endfor %}
+    </select>
+    <button href="" id="button" class="btn" onclick="Popup()">Commander</button>
+    </div>
+    {% set Stock =  product.Stock %}
+    {% set ProductName =  product.ProductName %}
+    {% set Pid =  product.id %}
+</div>
+    <script type="text/javascript">
+        
+        function Popup(){
+            var Stock = "{{Stock}}";
+            var ProductName = "{{ProductName}}";
+            var selectvalue = document.getElementById('stock-select').value;
+            var sure = document.getElementById('sure');
+            var all = document.getElementById('all');
+            if( selectvalue >= 1 && selectvalue <= Stock ) {
+                document.getElementById("text").innerHTML = "Etes-vous sur de vouloir commander "+ selectvalue +" {{ProductName}} ? "
+                sure.style.display = "block";
+                all.style.pointerEvents = "none";
+                return selectvalue;
+            } else {
+                alert("Veuillez selectionnez une valeur correcte.");
+            }
+        }
+
+        function hide_confirm(){
+            var sure = document.getElementById('sure');
+            var all = document.getElementById('all');
+            if (sure.style.display === "block") {
+                sure.style.display = "none";
+                all.style.pointerEvents = "auto";
+                
+            }
+        }
+
+        function route(){
+            var quantity = document.getElementById('stock-select').value;
+            var Pid = "{{Pid}}";
+            var url = '{{ path("order_product", {'id': 'id', 'quantity':'quantity'}) }}'; 
+                    url = url.replace("id", Pid);
+                    url = url.replace("quantity", quantity);
+                    window.location.replace(url);
+            
+        }
+    </script>
+    <div class="confirm_div" id="sure" >
+        <h2 id="text"></h2>
+        <div class="confirm_buttons">
+            <button id="button" class="btn" onclick="route()">Confirmer</button>
+            <button id="button" class="btn" onclick="hide_confirm()">Annuler</button>
+        </div>
+    </div>
+{% endblock %}
