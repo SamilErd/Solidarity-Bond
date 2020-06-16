@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\ProductRepository;
 use App\Entity\Product;
+use App\Entity\Order;
 
 
 
@@ -71,7 +72,8 @@ class ShopController extends AbstractController
 
         $product = $prepo->find($id);
         $contact = $this->getUser();
-
+        $time = new \DateTime();
+        $order = new Order; 
 
         //rendering the specific product's page 
         $this->addFlash('succes', 'Votre commande a été passée avec succès.');
@@ -94,8 +96,20 @@ class ShopController extends AbstractController
         $mailer->send($message);
         //redirecting to homepage
 
+        $order->setIdUser($contact) ;  
 
+        $order->addIdProduct($product) ; 
+        
+        $order->setQuantity($quantity);
+        
+        $order->setDateOfOrder($time);
 
+        //getting the instance of the entity manager and 
+        $entityManager = $this->getDoctrine()->getManager();
+        //tells the entity manager to manage the product
+        $entityManager->persist($order);
+        //inserting the product in the database
+        $entityManager->flush();
         return $this->render('shop/confirm.html.twig', [
             "product" => $product,
             "quantity" => $quantity

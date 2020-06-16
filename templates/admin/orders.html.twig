@@ -8,11 +8,45 @@
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Gestion des commandes</h1>
-
-		</div>
-	</div>
-
+			<h1 class="display-4">Vous pouvez consulter les utilisateurs ici</h1>
+        </div>
+    </div> 
+            
+        <div class="container">
+            <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">#</th>
+				<th scope="col">Produits</th>
+				<th scope="col">Quantité</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+				<th scope="col">Email</th>
+                <th scope="col">Adresse</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+                <tr>
+                <th>{{order.id}}</th>
+				<th>
+				{% for product in order.IdProduct %}
+				{{product.ProductName}}
+					{% if order.IdProduct|length >1 %},{% else %}{% endif %}
+				{% endfor %}
+				</th>
+				<th>{{order.quantity}}</th>
+                <td>{{order.Iduser.FirstName}}</td>
+                <td>{{order.Iduser.LastName}}</td>
+				<td>{{order.Iduser.Email}}</td>
+                <td>{{order.Iduser.Street}}, {{order.Iduser.PostalCode}}, {{order.Iduser.country}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+        </div>
+            
+                  
 
 
 
