@@ -23,7 +23,7 @@
                         <img class="card-img-top" src="../images/products/{{product.Image}}" alt="Photo Produit" style="width:300px;height:300px;margin: 0 auto;">
                     <div class="card-block">
                         <h2 class="card-title-shop">{{product.ProductName}}</h2>
-                        <p class="card-text-shop">{{product.Description}}</p>
+                        <p class="card-text-shop d-inline-block text-truncate">{{product.Description}}</p>
                         <p class="price card-text" >{{product.price}} €</p>
                         <a href="{{path('show_product', {'id': product.id })}}" id="button" class="btn">En savoir plus</a>
                     </div>

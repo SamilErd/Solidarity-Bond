@@ -9,8 +9,16 @@
 
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Vous avez commandé {{quantity}} {{product.ProductName}}.</h1>
+			<h1 class="display-4">Commande réceptionné.</h1>
         </div>
-    </div>     
+    </div>
+
+    <div class="container">
+
+        <h3 class="alert alert-success">Votre commande de {{quantity}} {{product.ProductName}} à bien étais réceptionné.<i class="fa fa-check ml-3"></i></h3>
+        <br><br>
+        <h5>Vous pourez retrouver votre commande dans l'onglet <a href=" " id="text">Commande</a></h5>
+
+    </div>
 
 {% endblock %}

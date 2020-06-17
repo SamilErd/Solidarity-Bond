@@ -152,7 +152,7 @@
 }
 
 main {
-  min-height: calc(100vh - 56px - 150.3px);
+  min-height: calc(100vh - 0px - 142.3px);
 }
 
 
@@ -183,7 +183,7 @@ main {
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 400px;
+  max-width: 302px;
   margin: auto;
   text-align: center;
   font-family: arial;
@@ -206,6 +206,7 @@ main {
   overflow: hidden;
   width:300px;
   display: -webkit-box;
+  padding: 0px 5px;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   
@@ -225,24 +226,39 @@ ul {
   list-style-type: none;
 }
 
-.div_container_shop {
-  width:75% ; 
-  height: 100%; 
-  margin : 100px auto 300px;
+/**
+* CSS for product page
+*/
+
+.image-product {
+  width:300px;
+  height:300px;
+  border-style: solid;
+  border-color: #27251f;
+  border-radius: 3%;
+  border-width: 2px;
 }
 
-.div1{
-  width: auto; 
-  height: 100%;
-  float: left;
-  margin-right: 100px;
-  
+/**
+* CSS for order-product
+*/
+
+.order-info {
+  margin-bottom: 10px;
+    text-align: right;
 }
-.div2{
-  width: auto; 
-  height: 100%;
-  padding: 50px 50px 50px;
+
+.form_css_option {
+    width: 25%;
+    max-width: 25%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid;
+    color: #999999;
+    text-align: center;
 }
+
 .confirm_div{
   background-color: white;
   
@@ -255,11 +271,12 @@ ul {
   right: 0;
 
   margin: auto;
-  width:30em;
-  height:15em;
+  width:450px;
+  height:240px;
   
   text-align: center;
   border: 1px solid #000000;
+  border-radius: 2%;
 }
 
 .confirm_buttons{

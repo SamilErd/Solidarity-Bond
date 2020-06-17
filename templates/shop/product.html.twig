@@ -8,23 +8,39 @@
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">{{product.ProductName}}</h1>
+			<h1 class="display-4 text-center">{{product.ProductName}}</h1>
         </div>
     </div>     
 
 
-    <div class="div_container_shop">
+    <div class="container">
+        <div class="row">
+            <div class="col">
 
-        <img class="div1"src="../images/products/{{product.Image}}" style="width:300px;height:300px;">
-        <div class="div2" >
-        <h4>{{product.Description}}</h4>
-        <br></br>
-        <h4>{{product.Stock}} unités restant</h4>
-        <br></br>
-        <h4 style="float:left; margin-right: 20px ">{{product.Price}}€ </h4>
-        <a href="{{path('show_order', {'id': product.id })}}" id="button" class="btn">Commander</a>
+                <img class="image-product" src="../images/products/{{product.Image}}">
+
+            </div>
+
+            <div class="col" >
+
+                <h4 class="mr-7 mb-7">Prix: {{product.Price}} €</h4>
+                
+                <br><br>
+
+                <h4 class="mb-7">Stock: </h4>
+                <h5>{{product.Stock}} unités restant</h5>
+
+                <br><br>
+                
+                <h4 class="mb-7">Description:</h4>
+                <h5>{{product.Description}}</h5>
+
+                <br><br><br>
+                
+                <a class="btn" href="{{path('show_order', {'id': product.id })}}" id="button">Commander</a>
+                
+            </div>
         </div>
-        
     </div>
 
 
