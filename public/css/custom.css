@@ -151,12 +151,15 @@
   height: auto;
 }
 
+main {
+  min-height: calc(100vh - 56px - 150.3px);
+}
+
 
 #copyright {
   background-color: #1d1d16;
   color: white;
 }
-
 
 /**
 * CSS for card admin
