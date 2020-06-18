@@ -72,36 +72,44 @@ class ShopController extends AbstractController
     public function order_product( ProductRepository $prepo, \Swift_Mailer $mailer, CartService $cartService)
     {
         $items = $cartService->getFullCart();
-        $quantity = 0;
+        $products = [];
+        $quantity = [];
         $contact = $this->getUser();
         $time = new \DateTime();
         
+        $order = new Order; 
+               //getting the instance of the entity manager and 
+               $entityManager = $this->getDoctrine()->getManager();
+               //tells the entity manager to manage the product
+        
         foreach($items as $key => $item){
-                $order = new Order; 
+            
                 $product = $item["product"];
-                $quantity = $item["quantity"];
+                array_push($products, $product);
+                array_push($quantity , $item["quantity"]);
                 $id = $product->getId();
                 $order->setIdUser($contact) ; 
                 $order->setQuantity($quantity);    
-                $order->addIdProduct($product) ; 
+                $order->addHasProduct($product) ; 
+                $product->addInOrder($order);
                 $order->setDateOfOrder($time);
-                //getting the instance of the entity manager and 
-                $entityManager = $this->getDoctrine()->getManager();
-                //tells the entity manager to manage the product
+                
+ 
+                
                 $entityManager->persist($order);
-                //inserting the product in the database
-                $entityManager->flush();
+                $entityManager->persist($product);
                 
             }
 
             
         
+            
+                //inserting the product in the database
+                $entityManager->flush();
+                
+        $cartService->removeCart();
 
-       
 
-
-
-/*
         $message = (new \Swift_Message('Nouveau Message'))
         //getting the author's email
         ->setFrom($contact->getEmail())
@@ -113,14 +121,14 @@ class ShopController extends AbstractController
         ->setBody($this->renderView('emails/emails_order.html.twig',[
             //setting the mail's contact info with contact variable
             'contact' => $contact,
-            'product' => $product,
-            'Quantity' => $quantity,
+            'products' => $products,
+            'quantity' => $quantity,
         ]), 'text/html');
         //sending the message with the mailer
         $mailer->send($message);
         //redirecting to homepage
-*/
-        
+
+
 
         return $this->redirectToRoute("index");
 

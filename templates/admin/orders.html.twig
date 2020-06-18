@@ -23,6 +23,7 @@
                 <th scope="col">Prénom</th>
 				<th scope="col">Email</th>
                 <th scope="col">Adresse</th>
+                <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,16 +31,23 @@
                 <tr>
                 <th>{{order.id}}</th>
 				<th>
-				{% for product in order.IdProduct %}
+				{% for product in order.HasProduct %}
 				{{product.ProductName}}
-					{% if product.id < order.IdProduct|length %},{% else %}.{% endif %}
+					{% if product.id < order.HasProduct|length %},{% else %}.{% endif %}
 				{% endfor %}
 				</th>
-				<th>{{order.quantity}}</th>
+				<th>
+                {% for key, quantity in order.quantity %}
+                    {{quantity}}
+					{% if key < (quantity|length - 1) %},{% else %}.{% endif %}
+				{% endfor %}
+				
+                </th>
                 <td>{{order.Iduser.FirstName}}</td>
                 <td>{{order.Iduser.LastName}}</td>
 				<td>{{order.Iduser.Email}}</td>
                 <td>{{order.Iduser.Street}}, {{order.Iduser.PostalCode}}, {{order.Iduser.country}}</td>
+				<td><a href="#" class="btn" id="button">Voir la commande</td>
                 </tr>
             {% endfor %}
             </tbody>

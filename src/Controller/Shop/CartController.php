@@ -15,6 +15,8 @@ class CartController extends AbstractController
      */
     public function index(CartService $cartService)
     {
+
+
         return $this->render('shop/cart/cart.html.twig', [
             'items' => $cartService->getFullCart(),
             'total' => $cartService->getTotal()
@@ -27,7 +29,6 @@ class CartController extends AbstractController
     {
 
         $cartService->add($id, $quantity);
-
         return $this->redirectToRoute("show_products");
     }
 

@@ -20,10 +20,6 @@ class Order
      */
     private $id;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Product::class, mappedBy="InOrder")
-     */
-    private $Id_product;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Orders")
@@ -42,9 +38,15 @@ class Order
      */
     private $Quantity = [];
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Product::class)
+     */
+    private $HasProduct;
+
     public function __construct()
     {
         $this->Id_product = new ArrayCollection();
+        $this->HasProduct = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -60,28 +62,8 @@ class Order
         return $this->Id_product;
     }
 
-    public function addIdProduct(Product $idProduct): self
-    {
-        if (!$this->Id_product->contains($idProduct)) {
-            $this->Id_product[] = $idProduct;
-            $idProduct->setInOrder($this);
-        }
 
-        return $this;
-    }
-
-    public function removeIdProduct(Product $idProduct): self
-    {
-        if ($this->Id_product->contains($idProduct)) {
-            $this->Id_product->removeElement($idProduct);
-            // set the owning side to null (unless already changed)
-            if ($idProduct->getInOrder() === $this) {
-                $idProduct->setInOrder(null);
-            }
-        }
-
-        return $this;
-    }
+    
 
     public function getIdUser(): ?User
     {
@@ -117,6 +99,32 @@ class Order
     public function setQuantity(array $Quantity): self
     {
         $this->Quantity = $Quantity;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Product[]
+     */
+    public function getHasProduct(): Collection
+    {
+        return $this->HasProduct;
+    }
+
+    public function addHasProduct(Product $hasProduct): self
+    {
+        if (!$this->HasProduct->contains($hasProduct)) {
+            $this->HasProduct[] = $hasProduct;
+        }
+
+        return $this;
+    }
+
+    public function removeHasProduct(Product $hasProduct): self
+    {
+        if ($this->HasProduct->contains($hasProduct)) {
+            $this->HasProduct->removeElement($hasProduct);
+        }
 
         return $this;
     }

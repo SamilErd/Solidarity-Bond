@@ -12,7 +12,7 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index(Request $request)
+    public function index()
     {
         //redering the homepage
         return $this->render('main/index.html.twig');
