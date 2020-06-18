@@ -287,3 +287,55 @@ ul {
   bottom: 0;
   margin: auto;
 }
+
+.containeracc {
+  width:85%;
+  margin: 0 auto;
+  height: 30px;
+}
+
+.left-element {
+  width: 25%;
+  height: 100%;
+  float:left;
+  
+}
+.right-element {
+  height: 100%;
+  width: 70%;
+  float:right;
+  text-align: left;
+  
+}
+.btn-acc{
+  background-color: white;
+  color: black; /* White text */
+  display: block; /* Make the buttons appear below each other */
+  width: 300px;
+  height: 50px;
+  text-align: right;
+  border: 1px solid gray;
+  margin-bottom: 2px;
+  outline:none;
+
+}
+
+
+.Toright{
+  padding-left: 50px;
+  transition: transform .2s;
+}
+.Toright:hover {
+  transform: translate(10px,0);
+}
+.Toright:focus {
+  outline: 0 !important;
+}
+
+.line{
+  height:1px;
+  border:none;
+  color:#333;
+  background-color:#333;
+  width:100%
+}

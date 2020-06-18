@@ -43,6 +43,11 @@ class Order
      */
     private $HasProduct;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Status;
+
     public function __construct()
     {
         $this->Id_product = new ArrayCollection();
@@ -125,6 +130,18 @@ class Order
         if ($this->HasProduct->contains($hasProduct)) {
             $this->HasProduct->removeElement($hasProduct);
         }
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->Status;
+    }
+
+    public function setStatus(?string $Status): self
+    {
+        $this->Status = $Status;
 
         return $this;
     }

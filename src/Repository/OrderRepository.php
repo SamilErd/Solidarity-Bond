@@ -47,4 +47,13 @@ class OrderRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function OrderOfUser(int $user){
+
+        $query = $this->createQueryBuilder('o')
+            ->Where('o.id_user = :user')
+            ->setParameter('user', $user)
+            ->getQuery();
+            return $query->getResult();
+    }
 }
