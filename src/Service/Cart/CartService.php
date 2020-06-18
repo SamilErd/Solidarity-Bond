@@ -41,8 +41,6 @@ class CartService {
 
     public function getFullCart() : array {
         $cart = $this->session->get('cart', []);
-
-
         $cartWData = [];
         foreach($cart as $id => $quantity){
             $cartWData[] = [
@@ -50,15 +48,20 @@ class CartService {
                 'quantity' => $quantity
             ];
         }
+        
         return $cartWData;
     }
         
     public function getTotal() : float{
         $total = 0;
-        foreach($this->getFullCart() as $item){
-            $total+= $item['product']->getPrice() * $item['quantity'];
-        }
+            foreach($this->getFullCart() as $item){
+                $price = $item['product']->getPrice();
+                $total+= $price * $item['quantity'];
+            }
         return $total;
+    }
+    public function removeCart(){
+        $this->session->set('cart', []);
     }
 
     
