@@ -35,13 +35,49 @@
                 <h4 class="mb-7">Description:</h4>
                 <h5>{{product.Description}}</h5>
 
-                <br><br><br>
+                <br>
+                <p>Combien voulez-vous en ajouter ?</p>
+                <select name="StockOptions" id="stock-select">
+                    <option value="">--Choissez une option--</option>
+                    {% for i in range(1, product.Stock) %}
+                        <option value= {{ i }}> {{ i }}</option>
+                    {% endfor %}
+                </select>
+                <br>
                 
-                <a class="btn" href="{{path('show_order', {'id': product.id })}}" id="button">Commander</a>
+                
+                <button id="button" class="btn" onclick="add_cart()">Ajouter au panier</button>
                 
             </div>
         </div>
-    </div>
+        
+    {% set Stock =  product.Stock %}
+    {% set ProductName =  product.ProductName %}
+    {% set Pid =  product.id %}
+    {% set Price =  product.Price %}
+</div>
+    <script type="text/javascript">
+
+
+
+        function add_cart(){
+        var Stock = "{{Stock}}";
+        var url = window.location.href ;
+        var quantity = document.getElementById('stock-select').value;    
+        if( quantity >= 1 && quantity <= Stock ) {
+            var Pid = "{{Pid}}";
+            var uri = "{{ app.request.uri }}" ;
+            var url = '{{ path("cart_add", {'id': 'id', 'quantity':'quantity'}) }}'; 
+            url = url.replace("id", Pid);
+            url = url.replace("quantity", quantity);
+            window.location.replace(url);
+
+        } else {
+            alert("Veuillez selectionnez une valeur correcte.");
+        }
+        
+        }
+    </script>    
 
 
 

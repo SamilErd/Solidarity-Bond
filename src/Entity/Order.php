@@ -31,15 +31,16 @@ class Order
      */
     private $id_user;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $Quantity;
 
     /**
      * @ORM\Column(type="datetime")
      */
     private $DateOfOrder;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $Quantity = [];
 
     public function __construct()
     {
@@ -94,17 +95,7 @@ class Order
         return $this;
     }
 
-    public function getQuantity(): ?int
-    {
-        return $this->Quantity;
-    }
-
-    public function setQuantity(int $Quantity): self
-    {
-        $this->Quantity = $Quantity;
-
-        return $this;
-    }
+    
 
     public function getDateOfOrder(): ?\DateTimeInterface
     {
@@ -114,6 +105,18 @@ class Order
     public function setDateOfOrder(\DateTimeInterface $DateOfOrder): self
     {
         $this->DateOfOrder = $DateOfOrder;
+
+        return $this;
+    }
+
+    public function getQuantity(): ?array
+    {
+        return $this->Quantity;
+    }
+
+    public function setQuantity(array $Quantity): self
+    {
+        $this->Quantity = $Quantity;
 
         return $this;
     }

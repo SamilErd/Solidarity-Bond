@@ -32,7 +32,7 @@
 				<th>
 				{% for product in order.IdProduct %}
 				{{product.ProductName}}
-					{% if order.IdProduct|length >1 %},{% else %}{% endif %}
+					{% if product.id < order.IdProduct|length %},{% else %}.{% endif %}
 				{% endfor %}
 				</th>
 				<th>{{order.quantity}}</th>

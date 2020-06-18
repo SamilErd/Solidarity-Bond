@@ -6,68 +6,74 @@
     {% block stylesheets %}{% endblock %}
 
 {% block body %}
-
 <div id="all">
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Vous voulez commander {{product.ProductName}}</h1>
+			<h1 class="display-4">Vous voulez commander {{items | length}} produits.</h1>
         </div>
     </div>     
 
-    <div class="container" style="text-align: center">
-        <h3>Est-ce que vos informations sont correctes ?</h3>
-        
-        <div class="row mt-4">
-
-            <p><h5 class="col-md-6 order-info">Nom/Prénom : </h5>{{app.user.LastName}} {{app.user.FirstName}} </p>
-            <p><h5 class="col-md-6 order-info">Adresse Email :</h5>{{app.user.Email}}</p>
-            <p><h5 class="col-md-6 order-info">Adresse :</h5>{{app.user.Street}}</p>
-            <p><h5 class="col-md-6 order-info">Code postal/Pays :</h5>{{app.user.PostalCode}}, {{app.user.Country}}</p>
-
-        </div>
-
-        <a href="{{path('security_account')}}" id="button" class="btn mt-3">Modifier mes informations</a>
-
-        <h4 class="mt-3">Si oui, combien voulez-vous en commander ?</h4>
-
-
-            <select class=" form_css_option mt-3 mb-4" name="StockOptions" id="stock-select">
-
-                <option value="">--Choissez une option--</option>
-
-                {% for i in range(1, product.Stock) %}
-                    <option value= {{ i }}> {{ i }}</option>
-                {% endfor %}
-
-            </select>
-
-            <br>
-
-            <button href="" id="button" class="btn" onclick="Popup()">Commander</button>
-            
-
-        {% set Stock =  product.Stock %}
-        {% set ProductName =  product.ProductName %}
-        {% set Pid =  product.id %}
+    <div style="text-align: center">
+    <h4>Est-ce que vos informations sont correctes?</h4>
+    <p>{{app.user.FirstName}} {{app.user.LastName}} </p>
+    <p>{{app.user.Email}}.</p>
+    <p>{{app.user.Street}}.</p>
+    <p>{{app.user.PostalCode}}, {{app.user.Country}}.</p>
+    <a href="{{path('security_account')}}" id="button" class="btn">Modifier mes informations</a>
+    <br></br>
+    <hr style="height:1px;border:none;color:#333;background-color:#333; width:60%" />
+    <br></br>
+    <h4>Récapitulatif de votre commande</h4>
+    <div style="width:75%; margin: 0 auto">
+                    <table class="table">
+                            <thead>
+                                <th>Produit</th>
+                                <th>Prix</th>
+                                <th>Quantité</th>
+                                <th>Total</th>
+                                <th></th>
+                            </thead>
+                        <tbody>
+                            {% for item in items %}
+                            <tr>
+                                <th>{{item.product.ProductName}}</th>
+                                <th>{{item.product.Price}}</th>
+                                <th>{{item.quantity}}</th>
+                                <th>{{item.product.Price * item.quantity}}€</th>
+                                <th>
+                                    <a href="{{path('cart_remove', {'id' : item.product.id , 'url':  app.request.attributes.get('_route')  })   }}" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </th>
+                            </tr> 
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-right">Total : </td>
+                                <td>{{total}}€</td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
     </div>
+    <button href="" id="button" class="btn" onclick="Popup()">Commander</button>
+    </div>
+    {% set json = itemsJson %}
 </div>
-
     <script type="text/javascript">
         
+        
+
         function Popup(){
-            var Stock = "{{Stock}}";
-            var ProductName = "{{ProductName}}";
-            var selectvalue = document.getElementById('stock-select').value;
             var sure = document.getElementById('sure');
             var all = document.getElementById('all');
-            if( selectvalue >= 1 && selectvalue <= Stock ) {
-                document.getElementById("text").innerHTML = "Etes-vous sur de vouloir commander "+ selectvalue +" {{ProductName}} ? "
-                sure.style.display = "block";
-                all.style.pointerEvents = "none";
-                return selectvalue;
-            } else {
-                alert("Veuillez selectionnez une valeur.");
-            }
+            document.getElementById("text").innerHTML = "Etes-vous sur de vouloir commander "+ {{ items | length}} +" produits ? " ;
+            document.getElementById("price").innerHTML = "Cela fera "+{{ total}} + "€. " ;
+            sure.style.display = "block";
+            all.style.pointerEvents = "none";
         }
 
         function hide_confirm(){
@@ -80,23 +86,19 @@
             }
         }
 
-        function route(){
-            var quantity = document.getElementById('stock-select').value;
-            var Pid = "{{Pid}}";
-            var url = '{{ path("order_product", {'id': 'id', 'quantity':'quantity'}) }}'; 
-                    url = url.replace("id", Pid);
-                    url = url.replace("quantity", quantity);
-                    window.location.replace(url);
-            
-        }
+        
+
+
+
     </script>
-
-
     <div class="confirm_div" id="sure" >
-        <h2 class="mt-5" id="text"></h2>
+        <h2 id="text"></h2>
+        <h3 id="price"></h2>
         <div class="confirm_buttons">
-            <button id="button" class="btn mr-3" onclick="route()">Confirmer</button>
+            <a href="{{path('order_product')}}" id="button" class="btn" >Confirmer</a>
             <button id="button" class="btn" onclick="hide_confirm()">Annuler</button>
         </div>
     </div>
+        
+    
 {% endblock %}

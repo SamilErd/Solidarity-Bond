@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\ProductRepository;
 use App\Entity\Product;
 use App\Entity\Order;
+use App\Service\Cart\CartService;
 
 
 
@@ -49,35 +50,58 @@ class ShopController extends AbstractController
         ]);
     }
     /**
-     * @Route("/show_order_{id}", name="show_order")
+     * @Route("/show_order", name="show_order")
      */
-    public function show_order($id, ProductRepository $prepo)
+    public function show_order(CartService $cartService)
     {
-        $product = $prepo->find($id);
+        
         //rendering the specific product's page 
 
-
+        $itemsJson = json_encode($cartService->getFullCart());
 
         return $this->render('shop/order.html.twig', [
-            "product" => $product,
+            'items' => $cartService->getFullCart(),
+            'itemsJson' => $itemsJson,
+            'total' => $cartService->getTotal()
         ]);
     }
 
     /**
-     * @Route("/order_product_{id}_{quantity}", name="order_product")
+     * @Route("/order_product", name="order_product")
      */
-    public function order_product($id,$quantity, ProductRepository $prepo, \Swift_Mailer $mailer)
+    public function order_product( ProductRepository $prepo, \Swift_Mailer $mailer, CartService $cartService)
     {
-
-
-        $product = $prepo->find($id);
+        $items = $cartService->getFullCart();
+        $quantity = 0;
         $contact = $this->getUser();
         $time = new \DateTime();
-        $order = new Order; 
+        
+        foreach($items as $key => $item){
+                $order = new Order; 
+                $product = $item["product"];
+                $quantity = $item["quantity"];
+                $id = $product->getId();
+                $order->setIdUser($contact) ; 
+                $order->setQuantity($quantity);    
+                $order->addIdProduct($product) ; 
+                $order->setDateOfOrder($time);
+                //getting the instance of the entity manager and 
+                $entityManager = $this->getDoctrine()->getManager();
+                //tells the entity manager to manage the product
+                $entityManager->persist($order);
+                //inserting the product in the database
+                $entityManager->flush();
+                
+            }
 
-        //rendering the specific product's page 
-        $this->addFlash('succes', 'Votre commande a été passée avec succès.');
-        //
+            
+        
+
+       
+
+
+
+/*
         $message = (new \Swift_Message('Nouveau Message'))
         //getting the author's email
         ->setFrom($contact->getEmail())
@@ -86,7 +110,7 @@ class ShopController extends AbstractController
         //sending reply to author's email
         ->setReplyTo($contact->getEmail())
         //setting the content of the mail with the selected template
-        ->setBody($this->renderView('shop/emails_contact.html.twig',[
+        ->setBody($this->renderView('emails/emails_order.html.twig',[
             //setting the mail's contact info with contact variable
             'contact' => $contact,
             'product' => $product,
@@ -95,35 +119,12 @@ class ShopController extends AbstractController
         //sending the message with the mailer
         $mailer->send($message);
         //redirecting to homepage
-
-        $order->setIdUser($contact) ;  
-
-        $order->addIdProduct($product) ; 
-        
-        $order->setQuantity($quantity);
-        
-        $order->setDateOfOrder($time);
-
-        //getting the instance of the entity manager and 
-        $entityManager = $this->getDoctrine()->getManager();
-        //tells the entity manager to manage the product
-        $entityManager->persist($order);
-        //inserting the product in the database
-        $entityManager->flush();
-        return $this->render('shop/confirm.html.twig', [
-            "product" => $product,
-            "quantity" => $quantity
-        ]);
-            
-        
-    }
-        
-
-/*
-        
-
 */
         
 
+        return $this->redirectToRoute("index");
 
-        }
+        
+    }
+        
+}

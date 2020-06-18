@@ -19,12 +19,11 @@
 </head>
 
 <body onload="checkCookie();">
-
     <header>
-
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color : #27251f;">
-            <a class="navbar-brand" href="/"><div
-                        class="color-link">Solidarity-Bond</div></a>
+        <nav class="navbar navbar-expand-lg navbar-dark" id="navbar" style="background-color : #27251f;">
+            <a class="navbar-brand" href="/">
+                <div class="color-link">Solidarity-Bond</div>
+            </a>
 
             <div class="dropdown d-lg-none ml-auto">
                 <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -83,53 +82,59 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{path('contact')}}"><div class="color-link">Contact</div></a>
                     </li>
-                    
-                           
-                        
-
-                    </div>
                 </ul>
-                                <div class="dropdown d-none d-lg-block ml-auto">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        {% if app.user %} <div id="text_color">{{ app.user.FirstName }}</div> {% else %} <div
-                            class="mr-5" id="text_color">Se connecter</div> {% endif %}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right p-2 mw-250" arialabelledby="account-button">
-                        <div class="row">
-                            {% if app.user %}
-                            <div class="col-12">
-                                <a href="{{path('security_account')}}" class="btn btn-dark color-link btn-block mt-1 mb-1" id="footer">
-                                    Mon Profil
-                                </a>
-                            </div>
-                            {% else %}
-                            <div class="col-12">
-                                <a href="{{path('security_register')}}" id="footer" class="btn btn-block mt-1 mb-1">
-                                    Inscription
-                                </a>
-                            </div>
-
-                            {% endif %}
-                        {% if is_granted('ROLE_FABLAB')%}
+            </div>
+            <div class="dropdown d-none d-lg-block ml-auto">
+                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    {% if app.user %} <div id="text_color">{{ app.user.FirstName }}</div> {% else %} <div
+                        class="mr-5" id="text_color">Se connecter</div> {% endif %}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right p-2 mw-250" arialabelledby="account-button">
+                    <div class="row">
+                        {% if app.user %}
                         <div class="col-12">
-                            <a href="{{path('admin')}}" class="btn btn-dark color-link btn-block mt-1 mb-1" id="footer">
-                                Administration
+                            <a href="{{path('security_account')}}" class="btn btn-dark color-link btn-block mt-1 mb-1" id="footer">
+                                Mon Profil
                             </a>
                         </div>
                         {% else %}
+                        <div class="col-12">
+                            <a href="{{path('security_register')}}" id="footer" class="btn btn-block mt-1 mb-1">
+                                Inscription
+                            </a>
+                        </div>
+
                         {% endif %}
-                            <div class="col-12">
-                                <a href="{% if app.user %}{{path('security_logout')}}{% else %}{{path('security_login')}}{% endif %}"
-                                    class="btn btn-block mt-1 mb-1" id="footer" >
-                                    {% if app.user %} Déconnexion {% else %} Connexion {% endif %}
-                                </a>
-                            </div>
+                    {% if is_granted('ROLE_FABLAB')%}
+                    <div class="col-12">
+                        <a href="{{path('admin')}}" class="btn btn-dark color-link btn-block mt-1 mb-1" id="footer">
+                            Administration
+                        </a>
+                    </div>
+                    {% else %}
+                    {% endif %}
+                        <div class="col-12">
+                            <a href="{% if app.user %}{{path('security_logout')}}{% else %}{{path('security_login')}}{% endif %}"
+                                class="btn btn-block mt-1 mb-1" id="footer" >
+                                {% if app.user %} Déconnexion {% else %} Connexion {% endif %}
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </nav>
+
+                <button class="btn" type="button">
+                    <a href="{{ path('cart_index') }}"><i id="text_color" class="fa fa-shopping-cart mr-3 fa-1x" ></i></a>
+                </button>
+                
+            </div>
+
+        </div>
+    </nav>
+
+
+
     </header>
 
     <main>
@@ -238,7 +243,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
-    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{{asset('js/jQuery.js')}}"></script>
     {% block javascripts %}{% endblock %}
 </body>
 
