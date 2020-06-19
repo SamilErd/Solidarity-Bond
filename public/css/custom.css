@@ -249,8 +249,8 @@ ul {
 }
 
 .form_css_option {
-    width: 25%;
-    max-width: 25%;
+    width: 50%;
+    max-width: 45%;
     padding: 12px 20px;
     box-sizing: border-box;
     border: none;
@@ -286,4 +286,87 @@ ul {
   height: 60px; 
   bottom: 0;
   margin: auto;
+}
+
+.containeracc {
+  width:85%;
+  margin: 0 auto;
+  height: 30px;
+}
+
+.left-element {
+  width: 25%;
+  height: 100%;
+  float:left;
+  
+}
+.right-element {
+  height: 100%;
+  width: 70%;
+  float:right;
+  text-align: left;
+  
+}
+.btn-acc{
+  background-color: white;
+  color: black; /* White text */
+  display: block; /* Make the buttons appear below each other */
+  width: 300px;
+  height: 50px;
+  text-align: right;
+  border: 1px solid gray;
+  margin-bottom: 2px;
+  outline:none;
+
+}
+
+
+.Toright{
+  padding-left: 50px;
+  transition: transform .2s;
+}
+.Toright:hover {
+  transform: translate(10px,0);
+}
+.Toright:focus {
+  outline: 0 !important;
+}
+
+.line{
+  height:1px;
+  border:none;
+  color:#333;
+  background-color:#333;
+  width:100%
+}
+
+/**
+* CSS for cart
+*/
+
+.size-font {
+  font-size: 34px;
+  color: #4f7baf;
+}
+
+.table-cart {
+  margin-left: 8%;
+  max-width:60%;
+  text-align: center;
+}
+
+.card-cart {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  height: 200px;
+  max-width: auto;
+  margin: auto;
+  padding: 20px 10px;
+  text-align: center;
+  font-family: arial;
+  background-color: #e5e5e5;
+}
+
+hr.diviser {
+  border-top: 1px solid gray;
+
 }

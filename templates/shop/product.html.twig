@@ -36,8 +36,9 @@
                 <h5>{{product.Description}}</h5>
 
                 <br>
-                <p>Combien voulez-vous en ajouter ?</p>
-                <select name="StockOptions" id="stock-select">
+                <h4 class="mb-3">Combien voulez-vous en ajouter ?</h4>
+               
+                <select class="form_css_option" name="StockOptions" id="stock-select">
                     <option value="">--Choissez une option--</option>
                     {% for i in range(1, product.Stock) %}
                         <option value= {{ i }}> {{ i }}</option>
@@ -45,8 +46,8 @@
                 </select>
                 <br>
                 
-                
-                <button id="button" class="btn" onclick="add_cart()">Ajouter au panier</button>
+                {# <a class="btn mt-4" href="{{path('show_order')}}" onclick="add_card()" id="button">Ajouter au panier</a> #}
+                <button id="button" class="btn mt-4" onclick="add_cart()">Ajouter au panier</button>
                 
             </div>
         </div>
