@@ -65,5 +65,90 @@ function ShowPass() {
             z.style.display = "block";  
         }                      
  } 
+
+
+ function FNEdit(){
+    var x = document.getElementById("FN");
+    var y = document.getElementById("FNI");
+    if (x.style.display === "none") {
+        x.style.display = "block";  
+        y.style.display = "none";  
+    } else {
+        y.style.display = "block";
+        x.style.display = "none";  
+    } 
+ }
+ function LNEdit(){
+    var x = document.getElementById("LN");
+    var y = document.getElementById("LNI");
+    if (x.style.display === "none") {
+        x.style.display = "block";  
+        y.style.display = "none";  
+    } else {
+        y.style.display = "block";
+        x.style.display = "none";  
+    } 
+ }
+ function EEdit(){
+    var x = document.getElementById("E");
+    var y = document.getElementById("EI");
+    if (x.style.display === "none") {
+        x.style.display = "block";  
+        y.style.display = "none";  
+    } else {
+        y.style.display = "block";
+        x.style.display = "none";  
+    } 
+ }
+         
+ function PNEdit(){
+    var x = document.getElementById("PN");
+    var y = document.getElementById("PNI");
+    if (x.style.display === "none") {
+        x.style.display = "block";  
+        y.style.display = "none";  
+    } else {
+        y.style.display = "block";
+        x.style.display = "none";  
+    } 
+ }
+         
+ function SEdit(){
+    var x = document.getElementById("S");
+    var y = document.getElementById("SI");
+    if (x.style.display === "none") {
+        x.style.display = "block";  
+        y.style.display = "none";  
+    } else {
+        y.style.display = "block";
+        x.style.display = "none";  
+    } 
+ }
+         
+ function CPEdit(){
+    var x = document.getElementById("CP");
+    var y = document.getElementById("CPI");
+    if (x.style.display === "none") {
+        x.style.display = "block";  
+        y.style.display = "none";  
+    } else {
+        y.style.display = "block";
+        x.style.display = "none";  
+    } 
+ }
+         
+ function CEdit(){
+    var x = document.getElementById("C");
+    var y = document.getElementById("CI");
+    if (x.style.display === "none") {
+        x.style.display = "block";  
+        y.style.display = "none";  
+    } else {
+        y.style.display = "block";
+        x.style.display = "none";  
+    } 
+ }
+         
+         
             
  

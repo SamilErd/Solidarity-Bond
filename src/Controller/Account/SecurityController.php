@@ -81,11 +81,67 @@ class SecurityController extends AbstractController
         $error_edit ="";
         $user = $this->getUser();
         //Gets the actual user
+        $entityManager = $this->getDoctrine()->getManager();
         $id = $user->getId();
         $orders = $orepo->OrderOfUser($id);
         $password = $user->getPassword();
 
-            
+        if(!empty($_POST["FN"])){
+            $user->setFirstName($_POST['FN']);
+            $entityManager->persist($user);
+            //basically updating the user infos in the database
+            $entityManager->flush();
+            return $this->redirectToRoute('security_account');
+
+        }
+        if(!empty($_POST["LN"])){
+            $user->setLastName($_POST['LN']);
+            $entityManager->persist($user);
+            //basically updating the user infos in the database
+            $entityManager->flush();
+            return $this->redirectToRoute('security_account');
+
+        }
+        if(!empty($_POST["E"])){
+            $user->setEmail($_POST['E']);
+            $entityManager->persist($user);
+            //basically updating the user infos in the database
+            $entityManager->flush();
+            return $this->redirectToRoute('security_account');
+
+        }
+        if(!empty($_POST["PN"])){
+            $user->setPhoneNumber($_POST['PN']);
+            $entityManager->persist($user);
+            //basically updating the user infos in the database
+            $entityManager->flush();
+            return $this->redirectToRoute('security_account');
+
+        }
+        if(!empty($_POST["S"])){
+            $user->setStreet($_POST['S']);
+            $entityManager->persist($user);
+            //basically updating the user infos in the database
+            $entityManager->flush();
+            return $this->redirectToRoute('security_account');
+
+        }
+        if(!empty($_POST["CP"])){
+            $user->setPostalCode($_POST['CP']);
+            $entityManager->persist($user);
+            //basically updating the user infos in the database
+            $entityManager->flush();
+            return $this->redirectToRoute('security_account');
+
+        }
+        if(!empty($_POST["C"])){
+            $user->setCountry($_POST['C']);
+            $entityManager->persist($user);
+            //basically updating the user infos in the database
+            $entityManager->flush();
+            return $this->redirectToRoute('security_account');
+
+        }
         
             
         
@@ -99,7 +155,7 @@ class SecurityController extends AbstractController
             $checkPass = $encoder->isPasswordValid($user, $old_pwd);
             if($checkPass == true){
                 if($new_pwd === $con_pwd){
-                    $entityManager = $this->getDoctrine()->getManager();
+                    
                     $user->setPassword($encoder->encodePassword($user , $new_pwd));
                     //tells the entity manager to manage the user
                     $entityManager->persist($user);

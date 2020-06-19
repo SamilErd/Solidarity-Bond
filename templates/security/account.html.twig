@@ -29,14 +29,55 @@
 				</div>
 				<h4>Mes informations de compte</h4>
 				<hr class="line" />
-				<h4>Prenom: {{app.user.FirstName}}</h4>
+
+				<h4 class="acc-edit">Prenom:</h4>
+				<h4 class="acc-edit" id="FN">{{app.user.FirstName}}</h4>
+				<form id="FNI" style="display:none" action="{{path('security_account')}}" method="post">
+				<input class="form_css_acc" value ="{{app.user.FirstName}}" type="text"  name="FN" />
+				</form>
+				<div class="acc-edit text-right ">
+				<button class="acc-edit-btn" onclick="FNEdit();">
+				<i  class="fa fa-edit " ></i>
+				</button></div>
+
 				<hr class="line" />
-				<h4>Nom: {{app.user.LastName}}</h4>
+
+				<h4 class="acc-edit">Nom:</h4>
+				<h4 class="acc-edit" id="LN">{{app.user.LastName}}</h4>
+				<form id="LNI" style="display:none" action="{{path('security_account')}}" method="post">
+				<input class="form_css_acc" value = "{{app.user.LastName}}" type="text"  name="LN" />
+				</form>
+				<div class="acc-edit text-right ">
+				<button class="acc-edit-btn" onclick="LNEdit();">
+				<i  class="fa fa-edit " ></i>
+				</button></div>
+
 				<hr class="line" />
-				<h4>Email: {{app.user.Email}}</h4>
+
+				<h4 class="acc-edit">Email:</h4>
+				<h4 class="acc-edit" id="E">{{app.user.email}}</h4>
+				<form id="EI" style="display:none" action="{{path('security_account')}}" method="post">
+				<input class="form_css_acc" value = "{{app.user.email}}" type="text"  name="E" />
+				</form>
+				<div class="acc-edit text-right ">
+				<button class="acc-edit-btn" onclick="EEdit();">
+				<i  class="fa fa-edit " ></i>
+				</button></div>
+
 				<hr class="line" />
-				<h4>Telephone: {{app.user.PhoneNum}}</h4>
+
+				<h4 class="acc-edit">Telephone:</h4>
+				<h4 class="acc-edit" id="PN">{{app.user.phoneNum}}</h4>
+				<form id="PNI" style="display:none" action="{{path('security_account')}}" method="post">
+				<input class="form_css_acc" value = "{{app.user.phoneNum}}" type="text"  name="PN" />
+				</form>
+				<div class="acc-edit text-right ">
+				<button class="acc-edit-btn" onclick="PNEdit();">
+				<i  class="fa fa-edit " ></i>
+				</button></div>
+
 				<hr class="line" />
+
 				<button class="btn btn-dark " id="edit" onclick="ShowPass()" style="margin-bottom:20px">Modifier mon mot de passe</button>
 			</div>	
 
@@ -56,7 +97,7 @@
 			<div class="right-element" style="display:none" id="orders">
 				<div class="container">
 					<table class="table">
-					<thead class="thead-dark">
+					<thead >
 						<tr>
 						<th scope="col">#</th>
 						<th scope="col">Produits</th>
@@ -94,12 +135,43 @@
 
 			<div class="right-element" style="display:none" id="address"> 
 			<h4>Mon addresse</h4>
+
 			<hr class="line" />
-			<h4>Rue: {{app.user.Street}}</h4>
+
+			<h4 class="acc-edit">Rue:</h4>
+			<h4 class="acc-edit" id="S">{{app.user.street}}</h4>
+			<form id="SI" style="display:none" action="{{path('security_account')}}" method="post">
+			<input class="form_css_acc" value = "{{app.user.street}}" type="text"  name="S" />
+			</form>
+			<div class="acc-edit text-right ">
+			<button class="acc-edit-btn" onclick="SEdit();">
+			<i  class="fa fa-edit " ></i>
+			</button></div>
+
 			<hr class="line" />
-			<h4>Code Postal: {{app.user.PostalCode}}</h4>
-			<hr class="line" />
-			<h4>Pays: {{app.user.Country}}</h4>
+
+			<h4 class="acc-edit">Code Postal:</h4>
+			<h4 class="acc-edit" id="CP">{{app.user.postalCode}}</h4>
+			<form id="CPI" style="display:none" action="{{path('security_account')}}" method="post">
+			<input class="form_css_acc" value = "{{app.user.postalCode}}" type="text"  name="CP" />
+			</form>
+			<div class="acc-edit text-right ">
+			<button class="acc-edit-btn" onclick="CPEdit();">
+			<i  class="fa fa-edit " ></i>
+			</button></div>
+
+				<hr class="line" />
+
+			<h4 class="acc-edit">Pays:</h4>
+			<h4 class="acc-edit" id="C">{{app.user.country}}</h4>
+			<form id="CI" style="display:none" action="{{path('security_account')}}" method="post">
+			<input class="form_css_acc" value = "{{app.user.country}}" type="text"  name="C" />
+			</form>
+			<div class="acc-edit text-right ">
+			<button class="acc-edit-btn" onclick="CEdit();">
+			<i  class="fa fa-edit " ></i>
+			</button></div>
+
 			<hr class="line" />
 			</div>
 
