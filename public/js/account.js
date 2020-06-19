@@ -35,15 +35,15 @@ function ShowAddress() {
 function ShowPass() {
     var w = document.getElementById("infos");
     var x = document.getElementById("pass");
-    var v = document.getElementById("btn");
     var y = document.getElementById("address");
     var z = document.getElementById("orders");
     y.style.display = "none"; 
     z.style.display = "none"; 
+    w.style.display = "none";
         if (x.style.display === "none") {
             x.style.display = "block";  
-            v.style.display = "none";
          }  else {
+            w.style.display = "block";
             x.style.display = "none";
          }
          

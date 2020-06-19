@@ -73,43 +73,60 @@ class SecurityController extends AbstractController
 
 
     /**
-     * @Route("/account", name="security_account")
+     * @Route("/account/", name="security_account")
      */
-    public function account(Request $request, UserPasswordEncoderInterface $encoder, OrderRepository $orepo)
+    public function account( Request $request, UserPasswordEncoderInterface $encoder, OrderRepository $orepo)
     {
-
-        //Gets the actual user
-        $thisuser = $this->getUser();
-        $id = $thisuser->getId();
-        $orders = $orepo->OrderOfUser($id);
-        //Gets the id of the actual user
         
-        //creates a form with the user instance
-        $form = $this->createForm(RegisterType::class, $thisuser);
-        //handles the answer from the account page's form
-        $form->handleRequest($request);
-        //if the form is submitted without errors
-        if ($form->isSubmitted() && $form->isValid()) {
-            //Gets an instance of the entity manager
-            $entityManager = $this->getDoctrine()->getManager();
-            //Takes the user which will be modified
-            $user = $entityManager->getRepository(User::class)->find($id);
-            //encode's the new password
-            $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
-            //tells the entity manager to manage the user
-            $entityManager->persist($user);
-            //basically updating the user infos in the database
-            $entityManager->flush();
+        $error_edit ="";
+        $user = $this->getUser();
+        //Gets the actual user
+        $id = $user->getId();
+        $orders = $orepo->OrderOfUser($id);
+        $password = $user->getPassword();
+
             
-            //redirecting the user to the security_update
-            return $this->redirectToRoute('security_account');
+        
+            
+        
+
+
+        
+        if(!empty($_POST['CurrentPass'])){
+            $old_pwd = $_POST['CurrentPass'];
+            $new_pwd = $_POST['NewPass'];
+            $con_pwd = $_POST['ConfirmPass'];
+            $checkPass = $encoder->isPasswordValid($user, $old_pwd);
+            if($checkPass == true){
+                if($new_pwd === $con_pwd){
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $user->setPassword($encoder->encodePassword($user , $new_pwd));
+                    //tells the entity manager to manage the user
+                    $entityManager->persist($user);
+                    //basically updating the user infos in the database
+                    $entityManager->flush();
+                    //redirecting the user to the security_update
+                    return $this->redirectToRoute('security_account');
+
+                } else {
+                    $error_edit = " Vos mots de passes ne correspondent pas.";
+                }
+            } else {
+                $error_edit = " Votre mot de passe actuel est incorrect.";
+            }
+            $error_edit="";
         }
+               
+
+          
+        
         //rendering the user account's page
         return $this->render('security/account.html.twig', [
             //giving the account page the form variable and the user id
-            'form' => $form->createView(),
             'orders' => $orders,
+            'error_edit' => $error_edit,
         ]);
     }
 
+    
 }

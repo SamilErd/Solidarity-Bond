@@ -40,6 +40,6 @@ security:
     access_control:
         
          - { path: ^/admin, roles: ROLE_FABLAB }
-         - { path: ^/shop/checkout, roles: ROLE_USER }
+         - { path: ^/shop/, roles: ROLE_USER }
          
         # - { path: ^/profile, roles: ROLE_USER }

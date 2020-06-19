@@ -22,42 +22,33 @@
 
 
 			<div class="right-element" id="infos"> 
-			<h4>Mes informations de compte</h4>
-			<hr class="line" />
-			<h4>Prenom: {{app.user.FirstName}}</h4>
-			<hr class="line" />
-			<h4>Nom: {{app.user.LastName}}</h4>
-			<hr class="line" />
-			<h4>Email: {{app.user.Email}}</h4>
-			<hr class="line" />
-			<h4>Telephone: {{app.user.PhoneNum}}</h4>
-			<hr class="line" />
-			<button class="btn btn-dark " id="btn" onclick="ShowPass()" style="margin-bottom:20px">Modifier mon mot de passe</button>
-			
-				<div style="display:none" id="pass">
-				{{ form_start(form) }}
-				<div class="col-6 mb-3">
-						{{ form_widget(form.password.first, {'attr':
-                        {
-                        'placeholder' : "Mot de passe",
-						'class' : 'form_css'
-                        }
-                    	}) 
-                	}}
-					{{ form_errors(form.password.first) }}
-					</div>
-					<div class="col-6 mb-3">
-						{{ form_widget(form.password.second, {'attr':
-                        {
-                        'placeholder' : "Confirmez le mot de passe",
-						'class' : 'form_css'
-                        }
-                    }) 
-                }}
-					</div>
-				{{ form_end(form, {'render_rest': false}) }}
-				<a href="#" class="btn btn-dark " id="btn">Mettre à jour</a>
-				<button class="btn btn-dark " id="btn" onclick="ShowPass()">Annuler</button>
+				<div class="error-msg">
+					{% if error_edit is not empty %}
+					<p>{{ error_edit }}</p>
+					{% endif %}
+				</div>
+				<h4>Mes informations de compte</h4>
+				<hr class="line" />
+				<h4>Prenom: {{app.user.FirstName}}</h4>
+				<hr class="line" />
+				<h4>Nom: {{app.user.LastName}}</h4>
+				<hr class="line" />
+				<h4>Email: {{app.user.Email}}</h4>
+				<hr class="line" />
+				<h4>Telephone: {{app.user.PhoneNum}}</h4>
+				<hr class="line" />
+				<button class="btn btn-dark " id="edit" onclick="ShowPass()" style="margin-bottom:20px">Modifier mon mot de passe</button>
+			</div>	
+
+			<div class="right-element" style="display:none; " id="pass">
+				<div >
+					<form action="{{path('security_account')}}" method="post" >
+					<input class="form_css" placeholder = "Mot de passe actuel" type="password" name="CurrentPass" style="margin-bottom: 15px"/>
+					<input class="form_css" placeholder = "Nouveau mot de passe" type="password" name="NewPass" style="margin-bottom: 15px"/>
+					<input class="form_css" placeholder = "Confirmez votre mot de passe" type="password" name="ConfirmPass" style="margin-bottom: 15px" />
+					<button type="submit" class="btn btn-dark " id="btn" style="display:block ; width: 200px; margin-bottom: 10px">Mettre à jour</button>
+					<button class="btn btn-dark " id="btn" onclick="ShowPass()" style="display:block; width: 200px">Annuler</button>
+					</form>
 				</div>
 			</div>
 
@@ -100,6 +91,7 @@
 					</table>
 				</div>	
 			</div>
+
 			<div class="right-element" style="display:none" id="address"> 
 			<h4>Mon addresse</h4>
 			<hr class="line" />
@@ -109,11 +101,6 @@
 			<hr class="line" />
 			<h4>Pays: {{app.user.Country}}</h4>
 			<hr class="line" />
-			
-
-
-
-
 			</div>
 
 
