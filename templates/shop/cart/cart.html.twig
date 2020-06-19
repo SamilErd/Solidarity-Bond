@@ -1,50 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CartController!
+{% block title %}Panier
 {% endblock %}
 
 {% block body %}
-<div style="width:75%; margin: 0 auto">
-    <div style="text-align:center">
-        <h1>Votre panier</h1>
-    </div>
+
+    <div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">Votre panier</h1>
+		</div>
+	</div>
+
+<div class="container">
     {% if items | length > 0 %}
-        <table class="table">
-            <thead>
-                <th>Produit</th>
-                <th>Prix</th>
-                <th>Quantité</th>
-                <th>Total</th>
+
+    <div class="row">
+
+        <table class="col table table-cart">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Produit</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Quantité</th>
                 <th></th>
+            </tr>
             </thead>
+
         <tbody>
             {% for item in items %}
-               <tr>
+            <tr>
                 <th>{{item.product.ProductName}}</th>
-                <th>{{item.product.Price}}</th>
+                <th>{{item.product.Price}} €</th>
                 <th>{{item.quantity}}</th>
-                <th>{{item.product.Price * item.quantity}}€</th>
                 <th>
-                    <a href="{{path('cart_remove', {'id' : item.product.id , 'url':  app.request.attributes.get('_route')  })   }}" class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
+                    <a href="{{path('cart_remove', {'id' : item.product.id , 'url':  app.request.attributes.get('_route')  })   }}" class="btn btn-sm">
+                        <i class="fas fa-times"></i>
                     </a>   
                 </th>
             </tr> 
             {% endfor %}
         </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3" class="text-right">Total : </td>
-                <td>{{total}}€</td>
-                <td>
-                    <a class="btn" href="{{path('show_order')}}" id="button">Commander</a>
-                </td>
-            </tr>
-        </tfoot>
-    </table>
+
+        </table>
+
+        <div class="col">
+            <div class="card card-cart">
+            {% for item in items %}
+                <div class="card-block">
+                    <p>Montant total de vos articles</p>
+                    <p class="size-font">{{item.product.Price * item.quantity}} €</p>
+                    <hr class="diviser">
+                    <a class="btn" href="{{path('show_order')}}" id="button">Passer Commande</a>
+                    
+                </div>
+            {% endfor %}
+            </div>
+
+        </div>
+    </div>
 
     {% else %}
 
+    <h4 class="text-center">Votre panier est vide !</h4>
+
     {% endif %}
 </div>
+
 {% endblock %}
