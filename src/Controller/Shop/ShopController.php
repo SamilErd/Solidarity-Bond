@@ -40,11 +40,9 @@ class ShopController extends AbstractController
      */
     public function show_product($id, ProductRepository $prepo)
     {
+        //finding the specific product in the database
         $product = $prepo->find($id);
-        //rendering the specific product's page [WHICH HASNT BEEN MADE FOR THE MOMENT]
-
-
-
+        //rendering the specific product's page
         return $this->render('shop/product.html.twig', [
             "product" => $product,
         ]);
@@ -54,14 +52,9 @@ class ShopController extends AbstractController
      */
     public function show_order(CartService $cartService)
     {
-        
-        //rendering the specific product's page 
-
-        $itemsJson = json_encode($cartService->getFullCart());
-
+        //redering the order panel with the users cart
         return $this->render('shop/order.html.twig', [
             'items' => $cartService->getFullCart(),
-            'itemsJson' => $itemsJson,
             'total' => $cartService->getTotal()
         ]);
     }
@@ -71,44 +64,53 @@ class ShopController extends AbstractController
      */
     public function order_product( ProductRepository $prepo, \Swift_Mailer $mailer, CartService $cartService)
     {
+        //getting the cart from the cartService
         $items = $cartService->getFullCart();
+        //initiating the arrays
         $products = [];
         $quantity = [];
+        //getting the user infos as contact
         $contact = $this->getUser();
+        //creating a new time variable
         $time = new \DateTime();
-        
+        //creating a new order variable
         $order = new Order; 
                //getting the instance of the entity manager and 
                $entityManager = $this->getDoctrine()->getManager();
                //tells the entity manager to manage the product
-        
+        //for every items in the cart do : 
         foreach($items as $key => $item){
-            
+                //getting the product 
                 $product = $item["product"];
+                //pushing the product in the products array
                 array_push($products, $product);
+                //pushing
                 array_push($quantity , $item["quantity"]);
+                //getting the product id 
                 $id = $product->getId();
+                //setting the user as the order's customer
                 $order->setIdUser($contact) ; 
+                //setting the quantity array in order
                 $order->setQuantity($quantity);    
+                //adding the product in the order
                 $order->addHasProduct($product) ; 
+                //this product is in the order
                 $product->addInOrder($order);
+                //setting the time of the order
                 $order->setDateOfOrder($time);
+                //setting the basic status of the order
                 $order->setStatus("En attente de confirmation");
- 
-                
+                //telling the entity manager to manage the order
                 $entityManager->persist($order);
+                //telling the entity manager to manage the product
                 $entityManager->persist($product);
-                
             }
-
-
-                //inserting the product in the database
-                $entityManager->flush();
-                
+        //updating the product and the order in the database
+        $entityManager->flush();
+        //emptying the cart
         $cartService->removeCart();
-
-
-        $message = (new \Swift_Message('Nouveau Message'))
+        //creating a new message with the following subject
+        $message = (new \Swift_Message('Nouvelle commande'))
         //getting the author's email
         ->setFrom($contact->getEmail())
         //sending to specific mail
@@ -125,12 +127,6 @@ class ShopController extends AbstractController
         //sending the message with the mailer
         $mailer->send($message);
         //redirecting to homepage
-
-
-
         return $this->redirectToRoute("index");
-
-        
     }
-        
 }

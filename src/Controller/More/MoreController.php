@@ -25,10 +25,8 @@ class MoreController extends AbstractController
         $form->handleRequest($request);
         //if the form is submitted without errors
         if ($form->isSubmitted() && $form->isValid()) {
-            //
-            $this->addFlash('succes', 'Votre message a bien été envoyé');
-            //
-            $message = (new \Swift_Message('Nouveau Message'))
+            //creating a new message with the following subject
+            $message = (new \Swift_Message('Nouveau message'))
             //getting the author's email
             ->setFrom($contact->getEmail())
             //sending to specific mail

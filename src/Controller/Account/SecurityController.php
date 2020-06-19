@@ -77,15 +77,18 @@ class SecurityController extends AbstractController
      */
     public function account( Request $request, UserPasswordEncoderInterface $encoder, OrderRepository $orepo)
     {
-        
+        //iniating the error message for the account page
         $error_edit ="";
-        $user = $this->getUser();
         //Gets the actual user
+        $user = $this->getUser();
+        //Getting an instance of the entity manager
         $entityManager = $this->getDoctrine()->getManager();
+        //Getting the id of actual user
         $id = $user->getId();
+        //Getting all of the user's Orders
         $orders = $orepo->OrderOfUser($id);
-        $password = $user->getPassword();
 
+        //if the user changes his first name
         if(!empty($_POST["FN"])){
             $user->setFirstName($_POST['FN']);
             $entityManager->persist($user);
@@ -94,6 +97,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('security_account');
 
         }
+        //if the user changes his last name
         if(!empty($_POST["LN"])){
             $user->setLastName($_POST['LN']);
             $entityManager->persist($user);
@@ -102,6 +106,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('security_account');
 
         }
+        //if the user changes his email
         if(!empty($_POST["E"])){
             $user->setEmail($_POST['E']);
             $entityManager->persist($user);
@@ -110,6 +115,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('security_account');
 
         }
+        //if the user changes his phone number
         if(!empty($_POST["PN"])){
             $user->setPhoneNumber($_POST['PN']);
             $entityManager->persist($user);
@@ -118,6 +124,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('security_account');
 
         }
+        //if the user changes his street
         if(!empty($_POST["S"])){
             $user->setStreet($_POST['S']);
             $entityManager->persist($user);
@@ -126,6 +133,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('security_account');
 
         }
+        //if the user changes his postal code
         if(!empty($_POST["CP"])){
             $user->setPostalCode($_POST['CP']);
             $entityManager->persist($user);
@@ -134,6 +142,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('security_account');
 
         }
+        //if the user changes his country
         if(!empty($_POST["C"])){
             $user->setCountry($_POST['C']);
             $entityManager->persist($user);
@@ -142,47 +151,60 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('security_account');
 
         }
-        
-            
-        
-
-
-        
+        //if the user changes his password
         if(!empty($_POST['CurrentPass'])){
+            //getting the user's password
             $old_pwd = $_POST['CurrentPass'];
+            //getting the new password
             $new_pwd = $_POST['NewPass'];
+            //getting the confirmation password
             $con_pwd = $_POST['ConfirmPass'];
-            $checkPass = $encoder->isPasswordValid($user, $old_pwd);
+            //check if the user's password is correct
+            $checkPass = $encoder->isPasswordValid($user, $old_pwd);            
             if($checkPass == true){
+                //check if the new password and the confirmation password matches
                 if($new_pwd === $con_pwd){
-                    
-                    $user->setPassword($encoder->encodePassword($user , $new_pwd));
-                    //tells the entity manager to manage the user
-                    $entityManager->persist($user);
-                    //basically updating the user infos in the database
-                    $entityManager->flush();
-                    //redirecting the user to the security_update
-                    return $this->redirectToRoute('security_account');
-
+                    if (strlen($new_pwd) <= '7') {
+                        //Sets the error message if the password doesn't contain more than 8 characters
+                        $error_edit = "Votre mot de passe doit contenir au moins 8 caractères.";
+                    }
+                    elseif(!preg_match("#[0-9]+#",$new_pwd)) {
+                        //Sets the error message if the password doesn't contain at least 1 number
+                        $error_edit = "Votre mot de passe doit contenir au moins 1 chiffre.";
+                    }
+                    elseif(!preg_match("#[A-Z]+#",$new_pwd)) {
+                        //Sets the error message if the password doesn't contain at least 1 capital letter
+                        $error_edit = "Votre mot de passe doit contenir au moins 1 majuscule.";
+                    }
+                    elseif(!preg_match("#[a-z]+#",$new_pwd)) {
+                        //Sets the error message if the password doesn't contain at least 1 lowercase letter
+                        $error_edit = "Votre mot de passe doit contenir au moins 1 minuscule.";
+                    } else {
+                        //If the password respects all the rules, setting the user's new password
+                        $user->setPassword($encoder->encodePassword($user , $new_pwd));
+                        //tells the entity manager to manage the user
+                        $entityManager->persist($user);
+                        //basically updating the user infos in the database
+                        $entityManager->flush();
+                        //redirecting the user to the security_update
+                        return $this->redirectToRoute('security_account');
+                    }
                 } else {
+                    //Sets the error message if the new password and the confirmation password doesn't match
                     $error_edit = " Vos mots de passes ne correspondent pas.";
                 }
             } else {
-                $error_edit = " Votre mot de passe actuel est incorrect.";
+               //Sets the error message if the user's password is wrong
+                $error_edit = "Votre mot de passe actuel est incorrect.";
             }
-            $error_edit="";
+            
         }
-               
-
-          
-        
         //rendering the user account's page
         return $this->render('security/account.html.twig', [
-            //giving the account page the form variable and the user id
+            //giving the account page the user's orders
             'orders' => $orders,
+            //giving the error message to the account page
             'error_edit' => $error_edit,
         ]);
     }
-
-    
 }

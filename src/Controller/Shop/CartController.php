@@ -15,8 +15,7 @@ class CartController extends AbstractController
      */
     public function index(CartService $cartService)
     {
-
-
+        //redering the cart page with it's variables
         return $this->render('shop/cart/cart.html.twig', [
             'items' => $cartService->getFullCart(),
             'total' => $cartService->getTotal()
@@ -27,7 +26,7 @@ class CartController extends AbstractController
      */
     public function add($id, $quantity, CartService $cartService)
     {
-
+        //adding a product in the cart, with it's quantity
         $cartService->add($id, $quantity);
         return $this->redirectToRoute("show_products");
     }
@@ -38,7 +37,7 @@ class CartController extends AbstractController
      */
 
     public function remove($id,$url, CartService $cartService){
-        
+        //removing a product from the cart
         $cartService->remove($id);
         return $this->redirectToRoute($url);
     }
