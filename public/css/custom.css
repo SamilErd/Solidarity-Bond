@@ -288,6 +288,10 @@ ul {
   margin: auto;
 }
 
+/**
+* CSS for account
+*/
+
 .containeracc {
   width:85%;
   margin: 0 auto;
@@ -367,6 +371,20 @@ ul {
 }
 
 hr.diviser {
-  border-top: 1px solid gray;
+  border-top: 1px solid #bfbfbf;
 
+}
+
+/**
+* CSS for Carrousel
+*/
+
+.carrou {
+  height: 631px;
+  width: auto;
+  margin: auto;
+}
+
+.carousel-fade {
+  margin-top: -32px;
 }

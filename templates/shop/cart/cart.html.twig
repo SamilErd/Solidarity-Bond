@@ -44,16 +44,14 @@
         </table>
 
         <div class="col">
-            <div class="card card-cart">
-            {% for item in items %}
+            <div class="card card-cart">            
                 <div class="card-block">
                     <p>Montant total de vos articles</p>
-                    <p class="size-font">{{item.product.Price * item.quantity}} €</p>
+                    <p class="size-font">{{ total }} €</p>
                     <hr class="diviser">
                     <a class="btn" href="{{path('show_order')}}" id="button">Passer Commande</a>
                     
                 </div>
-            {% endfor %}
             </div>
 
         </div>
