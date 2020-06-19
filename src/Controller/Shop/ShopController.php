@@ -93,7 +93,7 @@ class ShopController extends AbstractController
                 $order->addHasProduct($product) ; 
                 $product->addInOrder($order);
                 $order->setDateOfOrder($time);
-                
+                $order->setStatus("En attente de confirmation");
  
                 
                 $entityManager->persist($order);
@@ -101,9 +101,7 @@ class ShopController extends AbstractController
                 
             }
 
-            
-        
-            
+
                 //inserting the product in the database
                 $entityManager->flush();
                 

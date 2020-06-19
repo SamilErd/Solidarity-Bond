@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Repository\OrderRepository;
 
 class SecurityController extends AbstractController
 {
@@ -74,16 +75,15 @@ class SecurityController extends AbstractController
     /**
      * @Route("/account", name="security_account")
      */
-    public function account(Request $request, UserPasswordEncoderInterface $encoder)
+    public function account(Request $request, UserPasswordEncoderInterface $encoder, OrderRepository $orepo)
     {
-
-        //This route and function will most probably change in the future
-
 
         //Gets the actual user
         $thisuser = $this->getUser();
-        //Gets the id of the actual user
         $id = $thisuser->getId();
+        $orders = $orepo->OrderOfUser($id);
+        //Gets the id of the actual user
+        
         //creates a form with the user instance
         $form = $this->createForm(RegisterType::class, $thisuser);
         //handles the answer from the account page's form
@@ -108,7 +108,7 @@ class SecurityController extends AbstractController
         return $this->render('security/account.html.twig', [
             //giving the account page the form variable and the user id
             'form' => $form->createView(),
-            'id' => $id,
+            'orders' => $orders,
         ]);
     }
 

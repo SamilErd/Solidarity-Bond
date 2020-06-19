@@ -23,6 +23,7 @@
                 <th scope="col">Prénom</th>
 				<th scope="col">Email</th>
                 <th scope="col">Adresse</th>
+                <th scope="col">Status</th>
                 <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -47,6 +48,7 @@
                 <td>{{order.Iduser.LastName}}</td>
 				<td>{{order.Iduser.Email}}</td>
                 <td>{{order.Iduser.Street}}, {{order.Iduser.PostalCode}}, {{order.Iduser.country}}</td>
+                <td>{{order.status}}</td>
 				<td><a href="#" class="btn" id="button">Voir la commande</td>
                 </tr>
             {% endfor %}

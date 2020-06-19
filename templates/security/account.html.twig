@@ -6,41 +6,37 @@
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Mes informations de compte.</h1>
+			<h1 class="display-4">Mon compte.</h1>
 
 		</div>
 	</div>
-	<div class="bdr-login w-50 mx-auto mb-5">
-		<div class="m-4 text-center">
-        {% if updatemessage is defined%}
-        <h1>{{ updatemessage }}</h1>
-        {% endif %}
-            {{ form_start(form) }}
-			<div class="form">
-				
-				{{ form_errors(form.email) }}
+	<div class="containeracc" >
+		
+			<div class="left-element " >
+			<button class="btn-acc float-right Toright" onclick="ShowInfos()">Mes informations ></button>
+			<button class="btn-acc float-right Toright" onclick="ShowAddress()">Mon addresse ></button>
+			<button class="btn-acc float-right Toright" onclick="ShowOrders()">Mes commandes ></button>
+			</div >
+
+
+
+
+			<div class="right-element" id="infos"> 
+			<h4>Mes informations de compte</h4>
+			<hr class="line" />
+			<h4>Prenom: {{app.user.FirstName}}</h4>
+			<hr class="line" />
+			<h4>Nom: {{app.user.LastName}}</h4>
+			<hr class="line" />
+			<h4>Email: {{app.user.Email}}</h4>
+			<hr class="line" />
+			<h4>Telephone: {{app.user.PhoneNum}}</h4>
+			<hr class="line" />
+			<button class="btn btn-dark " id="btn" onclick="ShowPass()" style="margin-bottom:20px">Modifier mon mot de passe</button>
 			
-				
-				<div class="row">
-					<div class="col-6 mb-3 mt-3">
-						{{ form_widget(form.FirstName, {'attr':
-                        {
-                        'placeholder' : "Nom",
-						'class': 'form_css'
-                        }
-                    }) 
-                }}
-					</div>
-					<div class="col-6 mb-3 mt-3">
-						{{ form_widget(form.LastName, {'attr':
-                        {
-                        'placeholder' : "Prénom",
-						'class' : 'form_css'
-                        }
-                    }) 
-                }}
-					</div>
-					<div class="col-6 mb-3">
+				<div style="display:none" id="pass">
+				{{ form_start(form) }}
+				<div class="col-6 mb-3">
 						{{ form_widget(form.password.first, {'attr':
                         {
                         'placeholder' : "Mot de passe",
@@ -59,63 +55,73 @@
                     }) 
                 }}
 					</div>
-					<div class="col-6 mb-3">
-						{{ form_widget(form.email, {'attr':
-                    {
-                    'placeholder' : "Email",
-					'class' : 'form_css'
-                    }
-                }) 
-            }}
-					</div>
-					<div class="col-6 mb-3 mt-3">
-						{{ form_widget(form.phoneNum, {'attr':
-                            {
-                            'placeholder' : "Téléphone",
-							'class' : 'form_css'
-                            }
-                        }) 
-                    }}
-					</div>
+				{{ form_end(form, {'render_rest': false}) }}
+				<a href="#" class="btn btn-dark " id="btn">Mettre à jour</a>
+				<button class="btn btn-dark " id="btn" onclick="ShowPass()">Annuler</button>
 				</div>
-				<div class="row row-cols-1">
-					<div class="col-6 mb-3">
-							{{ form_widget(form.street, {'attr':
-						{
-						'placeholder' : "Addresse",
-						'class' : 'form_css'
-						
-						}
-					}) 
-				}}
-					</div>
-					<div class="col-6 mb-3">
-							{{ form_widget(form.postalcode, {'attr':
-						{
-						'placeholder' : "Code Postal",
-						'class' : 'form_css'
-						}
-					}) 
-				}}
-						</div>
-						<div class="col-6 mb-3">
-							{{ form_widget(form.country, {'attr':
-						{
-						'placeholder' : "Pays",
-						'class' : 'form_css'
-						}
-					}) 
-				}}
-						</div>
-					</div>
-					<button type="submit" id="button" class="btn btn-lg mt-4">
-						Mettre à jour
-					</button>
-				
 			</div>
 
-			{{ form_end(form) }}
-		</div>
-	</div>
 
+			<div class="right-element" style="display:none" id="orders">
+				<div class="container">
+					<table class="table">
+					<thead class="thead-dark">
+						<tr>
+						<th scope="col">#</th>
+						<th scope="col">Produits</th>
+						<th scope="col">Quantité</th>
+						<th scope="col">Status</th>
+						<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for order in orders %}
+						<tr>
+						<th>{{order.id}}</th>
+						<th>
+						{% for product in order.HasProduct %}
+						{{product.ProductName}}
+							{% if product.id < order.HasProduct|length %},{% else %}.{% endif %}
+						{% endfor %}
+						</th>
+						<th>
+						{% for key, quantity in order.quantity %}
+							{{quantity}}
+							{% if key < (quantity|length - 1) %},{% else %}.{% endif %}
+						{% endfor %}
+						
+						</th>
+						
+						<td>{{order.status}}</td>
+						<td><a href="#" class="btn" id="button">Voir la commande</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+					</table>
+				</div>	
+			</div>
+			<div class="right-element" style="display:none" id="address"> 
+			<h4>Mon addresse</h4>
+			<hr class="line" />
+			<h4>Rue: {{app.user.Street}}</h4>
+			<hr class="line" />
+			<h4>Code Postal: {{app.user.PostalCode}}</h4>
+			<hr class="line" />
+			<h4>Pays: {{app.user.Country}}</h4>
+			<hr class="line" />
+			
+
+
+
+
+			</div>
+
+
+
+
+
+
+	</div>
+		
+<script src="{{asset('js/account.js')}}"></script>
 {% endblock %}
