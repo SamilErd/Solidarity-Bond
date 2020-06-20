@@ -20,7 +20,7 @@ class ShopController extends AbstractController
 
 
     /**
-     * @Route("/products", name="show_products")
+     * @Route("/shop", name="show_products")
      */
     public function show_products(ProductRepository $prepo)
     {
@@ -36,7 +36,7 @@ class ShopController extends AbstractController
     
 
     /**
-     * @Route("/product_{id}", name="show_product")
+     * @Route("/shop/product_{id}", name="show_product")
      */
     public function show_product($id, ProductRepository $prepo)
     {
@@ -48,7 +48,7 @@ class ShopController extends AbstractController
         ]);
     }
     /**
-     * @Route("/show_order", name="show_order")
+     * @Route("/shop/show_order", name="show_order")
      */
     public function show_order(CartService $cartService)
     {
@@ -60,7 +60,7 @@ class ShopController extends AbstractController
     }
 
     /**
-     * @Route("/order_product", name="order_product")
+     * @Route("/shop/order_product", name="order_product")
      */
     public function order_product( ProductRepository $prepo, \Swift_Mailer $mailer, CartService $cartService)
     {

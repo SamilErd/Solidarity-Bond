@@ -41,5 +41,7 @@ security:
         
          - { path: ^/admin, roles: ROLE_FABLAB }
          - { path: ^/shop/, roles: ROLE_USER }
+         - { path: ^/login, roles: IS_ANONYMOUS}
+         - { path: ^/register, roles: IS_ANONYMOUS}
          
         # - { path: ^/profile, roles: ROLE_USER }
