@@ -27,7 +27,7 @@ class ShopController extends AbstractController
         //Getting all products from database
         $products = $prepo->findAll();
         //rendering the product page
-        return $this->render('shop/products.html.twig', [
+        return $this->render('shop/product/products.html.twig', [
             //giving all the products of the database to the page
             "products" => $products,
         ]);
@@ -103,7 +103,7 @@ class ShopController extends AbstractController
 
 
         //rendering the specific product's page
-        return $this->render('shop/product.html.twig', [
+        return $this->render('shop/product/product.html.twig', [
             "product" => $product,
         ]);
     }
@@ -113,7 +113,7 @@ class ShopController extends AbstractController
     public function show_order(CartService $cartService)
     {
         //redering the order panel with the users cart
-        return $this->render('shop/order.html.twig', [
+        return $this->render('shop/order/order.html.twig', [
             'items' => $cartService->getFullCart(),
             'total' => $cartService->getTotal()
         ]);

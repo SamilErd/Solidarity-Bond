@@ -105,20 +105,19 @@
 </div>
     <script type="text/javascript">
         function add_cart(){
-        var Stock = {{product.Stock}};
-        var url = window.location.href ;
-        var quantity = document.getElementById('stock-select').value;    
-        if( quantity >= 1 && quantity <= 10 ) {
-            var uri = "{{ app.request.uri }}" ;
-            var url = '{{ path("cart_add", {'id': 'id', 'quantity':'quantity'}) }}'; 
-            url = url.replace("id", {{product.id}});
-            url = url.replace("quantity", quantity);
-            window.location.replace(url);
+            var Stock = {{product.Stock}};
+            var url = window.location.href ;
+            var quantity = document.getElementById('stock-select').value;    
+            if( quantity >= 1 && quantity <= Stock ) {
+                var uri = "{{ app.request.uri }}" ;
+                var url = '{{ path("cart_add", {'id': 'id', 'quantity':'quantity'}) }}'; 
+                url = url.replace("id", {{product.id}});
+                url = url.replace("quantity", quantity);
+                window.location.replace(url);
 
-        } else {
-            alert("Veuillez selectionnez une valeur correcte.");
-        }
-        
+            } else {
+                alert("Veuillez selectionnez une valeur correcte.");
+            }        
         }
     </script>    
 
