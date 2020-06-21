@@ -31,7 +31,7 @@
                         <p class="card-text">Prix : {{product.Price}} €</p>
                         <p class="card-text">Stock : {{product.Stock}} restant</p>
                         <a href="{{path('admin_more_page', {'id': product.id } )}}" class="btn" id="button">J'en ai produit</a>
-                        <a href="{{path('admin_sold_page', {'id': product.id } )}}" class="btn" id="button">J'en ai vendu</a>
+                        <a href="{{path('show_product', {'id': product.id } )}}" class="btn" id="button">Page produit</a>
                     </div>
                 </div>
 

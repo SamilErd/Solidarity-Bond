@@ -8,7 +8,16 @@
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4 text-center">{{product.ProductName}}</h1>
+			<h1 class="display-4 text-center" id="N">{{product.ProductName}}</h1>
+            {% if is_granted('ROLE_FABLAB')%}
+            <form id="NI" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post">
+            <input class="form_css_acc" value = "{{product.ProductName}}" type="text"  name="NI" />
+            </form>
+            <div class="acc-edit text-right ">
+            <button class="acc-edit-btn" onclick="ShowName();">
+            <i  class="fa fa-edit " ></i>
+            </button></div>
+            {% endif %}
         </div>
     </div>     
 
@@ -18,24 +27,64 @@
             <div class="col">
 
                 <img class="image-product" src="../images/products/{{product.Image}}">
-
+                {% if is_granted('ROLE_FABLAB')%}
+				<form id="II" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post">
+                <input type="file" name="II">
+                <input type="submit" value="Mettre à jour">
+				</form>
+				<div class="acc-edit text-right ">
+				<button class="acc-edit-btn" onclick="ShowImage();">
+				<i  class="fa fa-edit " ></i>
+				</button></div>
+                {% endif %}
             </div>
 
             <div class="col" >
 
-                <h4 class="mr-7 mb-7">Prix: {{product.Price}} €</h4>
-                
+                <h4 class="mr-7 mb-7">Prix: </h4>
+				<h5  id="P">{{product.Price}}</h5>
+                {% if is_granted('ROLE_FABLAB')%}
+				<form id="PI" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post">
+				<input class="form_css_acc" value = "{{product.Price}}" type="text"  name="PI" />
+				</form>
+                <h4 class="mr-7 mb-7"> €</h4>
+				<div class="acc-edit text-right ">
+				<button class="acc-edit-btn" onclick="ShowPrice();">
+				<i  class="fa fa-edit " ></i>
+				</button></div>
+                {% endif %}
+
                 <br><br>
 
-                <h4 class="mb-7">Stock: </h4>
-                <h5>{{product.Stock}} unités restant</h5>
-
+                <h4 class="mr-7 mb-7">Stock: </h4>
+				<h5  id="S">{{product.Stock}}</h5>
+                {% if is_granted('ROLE_FABLAB')%}
+				<form id="SI" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post">
+				<input class="form_css_acc" value = "{{product.Stock}}" type="text"  name="SI" />
+				</form>
+                <h4 class="mr-7 mb-7"> unités restants</h4>
+				<div class="acc-edit text-right ">
+				<button class="acc-edit-btn" onclick="ShowStock();">
+				<i  class="fa fa-edit " ></i>
+				</button></div>
+                {% endif %}
                 <br><br>
                 
                 <h4 class="mb-7">Description:</h4>
-                <h5>{{product.Description}}</h5>
-
+				<h5  id="D">{{product.Description}}</h5>
+                {% if is_granted('ROLE_FABLAB')%}
+				<form id="DI" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post">
+				<input class="form_css_acc" value = "{{product.Description}}" type="text"  name="DI" />
+				</form>
+				<div class="acc-edit text-right ">
+				<button class="acc-edit-btn" onclick="ShowDescription();">
+				<i  class="fa fa-edit " ></i>
+				</button></div>
+                {% endif %}
                 <br>
+                {% if is_granted('ROLE_FABLAB')%}
+                {% else %}
+                    
                 <h4 class="mb-3">Combien voulez-vous en ajouter ?</h4>
                
                 <select class="form_css_option" name="StockOptions" id="stock-select">
@@ -48,7 +97,7 @@
                 
                 {# <a class="btn mt-4" href="{{path('show_order')}}" onclick="add_card()" id="button">Ajouter au panier</a> #}
                 <button id="button" class="btn mt-4" onclick="add_cart()">Ajouter au panier</button>
-                
+                {% endif %}
             </div>
         </div>
         
@@ -83,5 +132,6 @@
 
 
 
+<script src="{{asset('js/product.js')}}"></script>
 {% endblock %}
 
