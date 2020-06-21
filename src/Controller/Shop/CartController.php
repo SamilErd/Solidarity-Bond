@@ -26,6 +26,12 @@ class CartController extends AbstractController
      */
     public function add($id, $quantity, CartService $cartService)
     {
+
+        $securityContext = $this->container->get('security.authorization_checker');
+        if ($securityContext->isGranted('IS_ANONYMOUS')) {
+            return $this->redirectToRoute("security_login");
+        }
+
         //adding a product in the cart, with it's quantity
         $cartService->add($id, $quantity);
         return $this->redirectToRoute("show_products");
