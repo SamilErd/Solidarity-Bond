@@ -6,7 +6,7 @@
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Mon compte.</h1>
+			<h1 class="display-4">Mon compte</h1>
 
 		</div>
 	</div>
@@ -27,20 +27,18 @@
 					<p>{{ error_edit }}</p>
 					{% endif %}
 				</div>
-				<h4>Mes informations de compte</h4>
-				<hr class="line" />
+				<h4><strong>Mes informations de compte</strong></h4>
+				<hr class="line">
 
-				<h4 class="acc-edit">Prenom:</h4>
+				<h4 class="acc-edit">Prenom:  </h4>
 				<h4 class="acc-edit" id="FN">{{app.user.FirstName}}</h4>
 				<form id="FNI" style="display:none" action="{{path('security_account')}}" method="post">
-				<input class="form_css_acc" value ="{{app.user.FirstName}}" type="text"  name="FN" />
+					<input class=" form_css_acc" value ="{{app.user.FirstName}}" type="text" name="FN" />
 				</form>
 				<div class="acc-edit text-right ">
-				<button class="acc-edit-btn" onclick="FNEdit();">
-				<i  class="fa fa-edit " ></i>
-				</button></div>
-
-				<hr class="line" />
+					<button class="btn acc-edit-btn" onclick="FNEdit();"><i  class="fa fa-edit " ></i></button>
+				</div>
+				<hr class="diviser">
 
 				<h4 class="acc-edit">Nom:</h4>
 				<h4 class="acc-edit" id="LN">{{app.user.LastName}}</h4>
@@ -48,11 +46,11 @@
 				<input class="form_css_acc" value = "{{app.user.LastName}}" type="text"  name="LN" />
 				</form>
 				<div class="acc-edit text-right ">
-				<button class="acc-edit-btn" onclick="LNEdit();">
+				<button class="btn acc-edit-btn" onclick="LNEdit();">
 				<i  class="fa fa-edit " ></i>
 				</button></div>
 
-				<hr class="line" />
+				<hr class="diviser" />
 
 				<h4 class="acc-edit">Email:</h4>
 				<h4 class="acc-edit" id="E">{{app.user.email}}</h4>
@@ -60,11 +58,11 @@
 				<input class="form_css_acc" value = "{{app.user.email}}" type="text"  name="E" />
 				</form>
 				<div class="acc-edit text-right ">
-				<button class="acc-edit-btn" onclick="EEdit();">
+				<button class="btn acc-edit-btn" onclick="EEdit();">
 				<i  class="fa fa-edit " ></i>
 				</button></div>
 
-				<hr class="line" />
+				<hr class="diviser" />
 
 				<h4 class="acc-edit">Telephone:</h4>
 				<h4 class="acc-edit" id="PN">{{app.user.phoneNum}}</h4>
@@ -72,11 +70,11 @@
 				<input class="form_css_acc" value = "{{app.user.phoneNum}}" type="text"  name="PN" />
 				</form>
 				<div class="acc-edit text-right ">
-				<button class="acc-edit-btn" onclick="PNEdit();">
+				<button class="btn acc-edit-btn" onclick="PNEdit();">
 				<i  class="fa fa-edit " ></i>
 				</button></div>
 
-				<hr class="line" />
+				<hr class="diviser" />
 
 				<button class="btn btn-dark " id="edit" onclick="ShowPass()" style="margin-bottom:20px">Modifier mon mot de passe</button>
 			</div>	
@@ -119,7 +117,7 @@
 						<th>
 						{% for key, quantity in order.quantity %}
 							{{quantity}}
-							{% if key < (quantity|length - 1) %},{% else %}.{% endif %}
+							{% if key < (quantity|length - 1) %}{% else %}.{% endif %}
 						{% endfor %}
 						
 						</th>
@@ -134,9 +132,9 @@
 			</div>
 
 			<div class="right-element" style="display:none" id="address"> 
-			<h4>Mon addresse</h4>
+			<h4><strong>Mon adresse</strong></h4>
 
-			<hr class="line" />
+			<hr class="diviser" />
 
 			<h4 class="acc-edit">Rue:</h4>
 			<h4 class="acc-edit" id="S">{{app.user.street}}</h4>
@@ -144,11 +142,11 @@
 			<input class="form_css_acc" value = "{{app.user.street}}" type="text"  name="S" />
 			</form>
 			<div class="acc-edit text-right ">
-			<button class="acc-edit-btn" onclick="SEdit();">
+			<button class="btn acc-edit-btn" onclick="SEdit();">
 			<i  class="fa fa-edit " ></i>
 			</button></div>
 
-			<hr class="line" />
+			<hr class="diviser" />
 
 			<h4 class="acc-edit">Code Postal:</h4>
 			<h4 class="acc-edit" id="CP">{{app.user.postalCode}}</h4>
@@ -156,11 +154,11 @@
 			<input class="form_css_acc" value = "{{app.user.postalCode}}" type="text"  name="CP" />
 			</form>
 			<div class="acc-edit text-right ">
-			<button class="acc-edit-btn" onclick="CPEdit();">
+			<button class="btn acc-edit-btn" onclick="CPEdit();">
 			<i  class="fa fa-edit " ></i>
 			</button></div>
 
-				<hr class="line" />
+				<hr class="diviser" />
 
 			<h4 class="acc-edit">Pays:</h4>
 			<h4 class="acc-edit" id="C">{{app.user.country}}</h4>
@@ -168,11 +166,12 @@
 			<input class="form_css_acc" value = "{{app.user.country}}" type="text"  name="C" />
 			</form>
 			<div class="acc-edit text-right ">
-			<button class="acc-edit-btn" onclick="CEdit();">
+			<button class="btn acc-edit-btn" onclick="CEdit();">
 			<i  class="fa fa-edit " ></i>
 			</button></div>
 
-			<hr class="line" />
+			<hr class="diviser" />
+
 			</div>
 
 

@@ -71,10 +71,10 @@ function ShowPass() {
     var x = document.getElementById("FN");
     var y = document.getElementById("FNI");
     if (x.style.display === "none") {
-        x.style.display = "block";  
+        x.style.display = "inline";  
         y.style.display = "none";  
     } else {
-        y.style.display = "block";
+        y.style.display = "inline";
         x.style.display = "none";  
     } 
  }
@@ -82,10 +82,10 @@ function ShowPass() {
     var x = document.getElementById("LN");
     var y = document.getElementById("LNI");
     if (x.style.display === "none") {
-        x.style.display = "block";  
+        x.style.display = "inline";  
         y.style.display = "none";  
     } else {
-        y.style.display = "block";
+        y.style.display = "inline";
         x.style.display = "none";  
     } 
  }
@@ -93,10 +93,10 @@ function ShowPass() {
     var x = document.getElementById("E");
     var y = document.getElementById("EI");
     if (x.style.display === "none") {
-        x.style.display = "block";  
+        x.style.display = "inline";  
         y.style.display = "none";  
     } else {
-        y.style.display = "block";
+        y.style.display = "inline";
         x.style.display = "none";  
     } 
  }
@@ -105,10 +105,10 @@ function ShowPass() {
     var x = document.getElementById("PN");
     var y = document.getElementById("PNI");
     if (x.style.display === "none") {
-        x.style.display = "block";  
+        x.style.display = "inline";  
         y.style.display = "none";  
     } else {
-        y.style.display = "block";
+        y.style.display = "inline";
         x.style.display = "none";  
     } 
  }
@@ -117,10 +117,10 @@ function ShowPass() {
     var x = document.getElementById("S");
     var y = document.getElementById("SI");
     if (x.style.display === "none") {
-        x.style.display = "block";  
+        x.style.display = "inline";  
         y.style.display = "none";  
     } else {
-        y.style.display = "block";
+        y.style.display = "inline";
         x.style.display = "none";  
     } 
  }
@@ -129,10 +129,10 @@ function ShowPass() {
     var x = document.getElementById("CP");
     var y = document.getElementById("CPI");
     if (x.style.display === "none") {
-        x.style.display = "block";  
+        x.style.display = "inline";  
         y.style.display = "none";  
     } else {
-        y.style.display = "block";
+        y.style.display = "inline";
         x.style.display = "none";  
     } 
  }
@@ -141,10 +141,10 @@ function ShowPass() {
     var x = document.getElementById("C");
     var y = document.getElementById("CI");
     if (x.style.display === "none") {
-        x.style.display = "block";  
+        x.style.display = "inline";  
         y.style.display = "none";  
     } else {
-        y.style.display = "block";
+        y.style.display = "inline";
         x.style.display = "none";  
     } 
  }
