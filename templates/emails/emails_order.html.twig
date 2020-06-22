@@ -154,22 +154,20 @@
                   </th>
                   <th>
                   
-                  {% for product in products %}
+                  {% for key,product in products %}
                     <tr>
                       <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                         <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;color:#cc6600;">Product: {{product.ProductName}}</div>
                       </td>
                     </tr>
                     
-                    {% for i, qtt in quantity %} 
-                      <tr>
-                      
-                        <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                        
-                          <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;color:#cc6600;">Quantity: {{qtt}}</div>
-                        </td>
-                      </tr>
-                    {% endfor %}
+                    <tr>
+                    
+                      <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                      
+                        <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;color:#cc6600;">Quantity: {{quantity[key]}}</div>
+                      </td>
+                    </tr>
                   {% endfor %}
                 </table>
               </div>

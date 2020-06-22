@@ -49,7 +49,7 @@
 				<td>{{order.Iduser.Email}}</td>
                 <td>{{order.Iduser.Street}}, {{order.Iduser.PostalCode}}, {{order.Iduser.country}}</td>
                 <td>{{order.status}}</td>
-				<td><a href="#" class="btn" id="button">Voir la commande</td>
+				<td><a href="{{path('order_detail',{'id' : order.id})}}" class="btn" id="button">Voir la commande</td>
                 </tr>
             {% endfor %}
             </tbody>

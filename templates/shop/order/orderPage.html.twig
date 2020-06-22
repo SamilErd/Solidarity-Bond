@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interface Fab-Lab
+{% endblock %}
+
+    {% block stylesheets %}{% endblock %}
+
+{% block body %}
+<div id="all">
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">Commande numéro {{order.id}}</h1>
+        </div>
+    </div>     
+
+    <div style="text-align: center">
+
+
+
+    <h4>Détail de votre commande</h4>
+    <div style="width:75%; margin: 0 auto">
+        <table class="table">
+            <thead>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th></th>
+            </thead>            
+            <tbody>            
+                {% set Total = 0 %}
+                {% for key, product in order.hasProduct %}
+                <tr>
+                    
+                    <th>{{product.ProductName}}</th>
+                    <th>{{product.Price}}</th>
+                    <th>{{order.quantity[key] }}</th>
+                    <th>{{product.Price * order.quantity[key]}}</th>
+                    {% set Total = Total + product.Price * order.quantity[key] %}
+                </tr> 
+                {% endfor %}
+                    
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total : </td>
+                    <td> {{ Total }} €</td>
+                    <td>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+
+                {% if is_granted('ROLE_FABLAB')%}
+                <a class="btn btn-dark" href="" id="btn"  >
+                J'ai envoyé cette commande
+                </a>
+                {% endif %}
+
+</div>
+
+
+        
+
+
+        
+    
+{% endblock %}

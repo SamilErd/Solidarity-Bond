@@ -40,23 +40,21 @@
                     <li class="nav-item">
                     <a class="nav-link" href="{{path('contact')}}">Contact</a>
                     </li class="nav-item">
-                    <li>
-                    {% if is_granted('ROLE_FABLAB')%}
-                        <a class="nav-link btn btn-dark" href="{{path('admin')}}" id="btn"  >
-                            Administration FABLAB
-                        </a>
-                    {% endif %}
-                    </li>
-                </ul>
-                <ul class="navbar-nav navbar-right"
 
+                </ul>
+                <ul class="navbar-nav navbar-right">
                     <li class="nav-item dropdown">
-                        <div class="dropdown">
+                        <div class="dropdown dropleft">
                             <button class="btn btn-dark dropdown-toggle nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {% if app.user %}{{app.user.firstname}}{% else %}Mon compte{% endif %}                    
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a href="{% if app.user %}{{path('security_account')}}{% else %}{{path('security_account')}}{% endif %}" class="dropdown-item">{% if app.user %}Mon Profil{% else %}S'inscrire{% endif %}</a>
+                                {% if is_granted('ROLE_FABLAB')%}
+                                <a class="dropdown-item btn btn-dark" href="{{path('admin')}}" id="btn"  >
+                                    Administration FABLAB
+                                </a>
+                                {% endif %}
+                                <a href="{% if app.user %}{{path('security_account')}}{% else %}{{path('security_register')}}{% endif %}" class="dropdown-item">{% if app.user %}Mon Profil{% else %}S'inscrire{% endif %}</a>
                                 <a href="{% if app.user %}{{path('security_logout')}}{% else %}{{path('security_login')}}{% endif %}" class="dropdown-item">{% if app.user %}Déconnexion{% else %}Connexion{% endif %}</a>
                             </div>
                         </div>
