@@ -18,7 +18,6 @@
                 <tr>
                 <th scope="col">#</th>
 				<th scope="col">Produits</th>
-				<th scope="col">Quantité</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
 				<th scope="col">Email</th>
@@ -32,18 +31,11 @@
                 <tr>
                 <th>{{order.id}}</th>
 				<th>
-				{% for product in order.HasProduct %}
-				{{product.ProductName}}
+				{% for key,product in order.HasProduct %}
+				{{product.ProductName}}({{order.quantity[key]}})
 					{% if product.id < order.HasProduct|length %},{% else %}.{% endif %}
 				{% endfor %}
 				</th>
-				<th>
-                {% for key, quantity in order.quantity %}
-                    {{quantity}}
-					{% if key < (quantity|length - 1) %},{% else %}.{% endif %}
-				{% endfor %}
-				
-                </th>
                 <td>{{order.Iduser.FirstName}}</td>
                 <td>{{order.Iduser.LastName}}</td>
 				<td>{{order.Iduser.Email}}</td>
