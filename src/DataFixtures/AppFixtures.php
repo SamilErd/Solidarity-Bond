@@ -50,7 +50,7 @@ class AppFixtures extends Fixture
                 $user->setLastName("Erdogan"); 
                 $user->setPhoneNum("+33 7 83 65 06 61");
                 $user->setRoles(["ROLE_USER"]);                   
-                $user->setEmail("samil.erdohan@viacesi.fr");            
+                $user->setEmail("samil.erdogan@viacesi.fr");            
                 $user->setStreet("1 rue de l'été");                
                 $user->setPostalCode("68110");                
                 $user->setCountry("France");

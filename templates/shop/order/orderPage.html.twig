@@ -15,10 +15,12 @@
 
     <div style="text-align: center">
 
+    <h4>Status de la commande:<h4>
+    <h5>{{order.status}}<h5>
+    <br></br>
 
-
-    <h4>Détail de votre commande</h4>
-    <div style="width:75%; margin: 0 auto">
+    <h4>Détail de la commande</h4>
+    <div class="mb-5" style="width:75%; margin: 0 auto">
         <table class="table">
             <thead>
                 <th>Produit</th>
@@ -54,7 +56,10 @@
 
 
                 {% if is_granted('ROLE_FABLAB')%}
-                <a class="btn btn-dark" href="" id="btn"  >
+                <a class="btn btn-dark" href="{{path('order_prepare', {'id' : order.id}) }}" id="btn"  >
+                Je vais préparer cette commande
+                </a>
+                <a class="btn btn-dark" href="{{path('order_sent', {'id' : order.id}) }}" id="btn"  >
                 J'ai envoyé cette commande
                 </a>
                 {% endif %}

@@ -11,7 +11,7 @@
 			<h1 class="display-4 text-center" id="N">{{product.ProductName}}</h1>
             {% if is_granted('ROLE_FABLAB')%}
             <form id="NI" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post">
-            <input class="form_css_acc" value = "{{product.ProductName}}" type="text"  name="NI" />
+            <input value = "{{product.ProductName}}" type="text"  name="NI" />
             </form>
             <div class="acc-edit text-right ">
             <button class="acc-edit-btn" onclick="ShowName();">
@@ -45,7 +45,7 @@
 				<h5  id="P">{{product.Price}}</h5>
                 {% if is_granted('ROLE_FABLAB')%}
 				<form id="PI" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post">
-				<input class="form_css_acc" value = "{{product.Price}}" type="text"  name="PI" />
+				<input value = "{{product.Price}}" type="text"  name="PI" />
 				</form>
                 <h4 class="mr-7 mb-7"> €</h4>
 				<div class="acc-edit text-right ">
@@ -60,12 +60,12 @@
 				<h5  id="S">{{product.Stock}}</h5>
                 {% if is_granted('ROLE_FABLAB')%}
 				<form id="SI" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post">
-				<input class="form_css_acc" value = "{{product.Stock}}" type="text"  name="SI" />
+				<input placeholder = "Combien de stock voulez vous rajouter ?" type="text"  name="SI" />
 				</form>
                 <h4 class="mr-7 mb-7"> unités restants</h4>
 				<div class="acc-edit text-right ">
 				<button class="acc-edit-btn" onclick="ShowStock();">
-				<i  class="fa fa-edit " ></i>
+				<i  class="fa fa-plus " ></i>
 				</button></div>
                 {% endif %}
                 <br><br>
@@ -74,7 +74,7 @@
 				<h5  id="D">{{product.Description}}</h5>
                 {% if is_granted('ROLE_FABLAB')%}
 				<form id="DI" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post">
-				<input class="form_css_acc" value = "{{product.Description}}" type="text"  name="DI" />
+				<input value = "{{product.Description}}" type="text"  name="DI" />
 				</form>
 				<div class="acc-edit text-right ">
 				<button class="acc-edit-btn" onclick="ShowDescription();">
