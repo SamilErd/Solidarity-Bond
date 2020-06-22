@@ -79,27 +79,31 @@ class ShopController extends AbstractController
         }
 
 
-        
-         /*   if(!empty($_POST["DI"])){
-                $target_dir = "uploads/";
-                $file = $target_dir . basename($_FILES["II"]["name"]);
-                
-                $uploadOk = 1;
-                $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+       
+       if(isset($_FILES["II"])){
 
-                $fileName = md5(uniqid()).'.'.$imageFileType;
-                // Check if image file is a actual image or fake image
-                if(isset($_POST["submit"])) {
-                $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-                if($check !== false) {
-                    dd( "File is an image - " . $check["mime"] . ".");
-                    $uploadOk = 1;
-                } else {
-                    dd("File is not an image.");
-                    $uploadOk = 0;
-                }
+            $ext_error = false;
+            $extensions = array('jpg','jpeg','png','JPG','JPEG','PNG');
+            $fileExtension = explode(".", $_FILES["II"]["name"])[1];
+            if(!in_array($fileExtension, $extensions)){
+                $ext_error = true;
+            } else {
+                $fileName = md5(uniqid()).'.'.$fileExtension;
+                move_uploaded_file($_FILES["II"]["tmp_name"], 'images/products/'.$fileName);
+                unlink('images/products/'.$product->getImage());
+                $product->setImage($fileName);
+                $entityManager->persist($product);
+            //basically updating the user infos in the database
+            $entityManager->flush();
+
             }
-        }*/
+            //Setting a new unique name for the image
+            
+            
+            
+                
+            
+        }
 
 
 

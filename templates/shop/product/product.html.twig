@@ -28,7 +28,7 @@
 
                 <img class="image-product" src="../images/products/{{product.Image}}">
                 {% if is_granted('ROLE_FABLAB')%}
-				<form id="II" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post">
+				<form id="II" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post" enctype="multipart/form-data">
                 <input type="file" name="II">
                 <input type="submit" value="Mettre à jour">
 				</form>
@@ -44,7 +44,7 @@
                 <h4 class="mr-7 mb-7">Prix: </h4>
 				<h5  id="P">{{product.Price}}</h5>
                 {% if is_granted('ROLE_FABLAB')%}
-				<form id="PI" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post">
+				<form id="PI" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post" >
 				<input value = "{{product.Price}}" type="text"  name="PI" />
 				</form>
                 <h4 class="mr-7 mb-7"> €</h4>
