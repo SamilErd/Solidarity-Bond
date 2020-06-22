@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\ProductRepository;
+use App\Repository\OrderRepository;
 use App\Entity\Product;
 
 
@@ -74,20 +75,6 @@ class ProductController extends AbstractController
 
 
     /**
-     * @Route("/admin_more_page_{id}", name="admin_more_page")
-     */
-    public function admin_more_page($id, ProductRepository $prepo)
-    {
-        //getting the specific id's product
-        $product = $prepo->find($id);
-        //rendering the product more stock page
-        return $this->render('admin/products/more_product.html.twig', [
-            //giving the page the product variable
-            "product" => $product,
-        ]);
-    }
-
-    /**
      * @Route("/admin_more", name="admin_more")
      */
     public function admin_more(ProductRepository $prepo)
@@ -116,18 +103,58 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/admin_sold_page_{id}", name="admin_sold_page")
+     * @Route("/order_{id}_sent", name="order_sent")
      */
-    public function admin_sold_page($id, ProductRepository $prepo)
+    public function order_sent($id, OrderRepository $orepo)
     {
-        //selecting the specific id's product
-        $product = $prepo->find($id);
+        //selecting the specific id's order
+        $order = $orepo->find($id);
+        //getting the instance of the entity manager and 
+        $entityManager = $this->getDoctrine()->getManager();
+        foreach ($order->getHasProduct() as $key => $product){
+            $quantity = $order->getQuantity()[$key];
+            $product->setStock($product->getStock() - $quantity);
+            //tells the entity manager to manage the product
+            $entityManager->persist($product);
+            //updating the product in the database
+            $entityManager->flush();
+        }
+
+        //setting the new order status
+        $order->setStatus("Expédié");
+        //tells the entity manager to manage the product
+        $entityManager->persist($order);
+        //updating the product in the database
+        $entityManager->flush();
         //rendering the update product's stock page
-        return $this->render('admin/products/sold_product.html.twig', [
+        return $this->redirectToRoute('order_detail', [
             //giving the page the product variable
-            "product" => $product,
+            "id" => $id,
         ]);
     }
+    /**
+     * @Route("/order_{id}_prepare", name="order_prepare")
+     */
+    public function order_prepare($id, OrderRepository $orepo)
+    {
+
+        //selecting the specific id's order
+        $order = $orepo->find($id);
+        //setting the new order status
+        $order->setStatus("En préparation");
+        //getting the instance of the entity manager and 
+        $entityManager = $this->getDoctrine()->getManager();
+        //tells the entity manager to manage the product
+        $entityManager->persist($order);
+        //updating the product in the database
+        $entityManager->flush();
+        //rendering the update product's stock page
+        return $this->redirectToRoute('order_detail', [
+            //giving the page the product variable
+            "id" => $id,
+        ]);
+    }
+
     /**
      * @Route("/admin_sold", name="admin_sold")
      */

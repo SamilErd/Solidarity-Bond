@@ -62,7 +62,9 @@ class ShopController extends AbstractController
             return $this->redirectToRoute('show_product', ['id' => $id]);
         }
         if(!empty($_POST["SI"])){
-            $product->setStock($_POST['SI']);
+            $stock = $product->getStock();
+            $newStock = $stock + $_POST['SI'];
+            $product->setStock($newStock);
             $entityManager->persist($product);
             //basically updating the user infos in the database
             $entityManager->flush();
@@ -75,6 +77,7 @@ class ShopController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('show_product', ['id' => $id]);
         }
+
 
         
          /*   if(!empty($_POST["DI"])){
