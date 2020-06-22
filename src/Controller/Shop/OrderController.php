@@ -96,7 +96,21 @@ class OrderController extends AbstractController
         //sending the message with the mailer
         $mailer->send($message);
         //redirecting to homepage
-        return $this->redirectToRoute("index");
+        return $this->redirectToRoute("confirmed_order", [
+            'id' => $order->getId(),
+        ]);
+    }
+    /**
+     * @Route("/confirmed_{id}", name="confirmed_order")
+     */
+    public function confirmed_order($id, OrderRepository $orepo)
+    {
+        //geting the specific order with the given id
+        $order = $orepo->find($id);
+        //redering the order detail page
+        return $this->render('shop/order/confirm.html.twig', [
+            'order' => $order,
+        ]);
     }
 
     /**
