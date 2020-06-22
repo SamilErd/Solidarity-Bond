@@ -23,6 +23,12 @@
 
 
     <div class="container">
+        
+        {% if error is defined %}
+        <h5 class="alert alert-danger text-center">Veuillez choisir un format d'image.</h5>
+        
+        {% endif %}
+        
         <div class="row">
             <div class="col">
 
