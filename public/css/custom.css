@@ -344,6 +344,19 @@ ul {
   width:100%
 }
 
+.acc-edit{
+  display: contents;
+}
+
+.form_css_acc {
+  width: 15%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid;
+  color: #999999;
+}
+
 /**
 * CSS for cart
 */
@@ -386,12 +399,5 @@ hr.diviser {
 }
 
 .carousel-fade {
-  margin-top: -32px;
-}
-
-
-
-.acc-edit{
-  display:inline;
-  
+  margin-top: -25px;
 }
