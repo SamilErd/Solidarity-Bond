@@ -50,12 +50,12 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 {% if is_granted('ROLE_FABLAB')%}
-                                <a class="dropdown-item btn btn-dark" href="{{path('admin')}}" id="btn"  >
+                                <a class="dropdown-item btn btn-dark" href="{{path('admin')}}" id="button-drop"  >
                                     Administration FABLAB
                                 </a>
                                 {% endif %}
-                                <a href="{% if app.user %}{{path('security_account')}}{% else %}{{path('security_register')}}{% endif %}" class="dropdown-item">{% if app.user %}Mon Profil{% else %}S'inscrire{% endif %}</a>
-                                <a href="{% if app.user %}{{path('security_logout')}}{% else %}{{path('security_login')}}{% endif %}" class="dropdown-item">{% if app.user %}Déconnexion{% else %}Connexion{% endif %}</a>
+                                <a id="button-drop" href="{% if app.user %}{{path('security_account')}}{% else %}{{path('security_register')}}{% endif %}" class="dropdown-item">{% if app.user %}Mon Profil{% else %}S'inscrire{% endif %}</a>
+                                <a id="button-drop" href="{% if app.user %}{{path('security_logout')}}{% else %}{{path('security_login')}}{% endif %}" class="dropdown-item">{% if app.user %}Déconnexion{% else %}Connexion{% endif %}</a>
                             </div>
                         </div>
                     </li>
@@ -150,10 +150,10 @@
 
         <div class="row text-center py-3" id="copyright">
             <div class="col-lg">
-                <a href="{{path('about_fablab')}}" id="text_color">En savoir plus</a>
+                <a href="{{path('about_fablab')}}" id="text_color">En savoir plus sur notre FabLab</a>
             </div>
             <div class="footer-copyright col-lg" >© 2020 Copyright:
-                <a href="https://solidaritybond-stras.yj.fr/" id="text_color"> solidaritybond-stras.yj.fr</a>
+                <a href="https://solidaritybond-stras.yj.fr/" id="text_color"> solidarity-bond.fr</a>
             </div>
             <div class="col-lg">
                 <a href="{{path('privacy_policy')}}" id="text_color">Politique de confidentialité</a>

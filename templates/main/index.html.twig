@@ -14,7 +14,7 @@
 
 	{# Alerte pour message envoyé #}
 
-<div class="container">
+<div class="container w-50 mx-auto">
 
 		<div class="row">
 		{% for message in app.flashes('succes') %}
@@ -26,6 +26,18 @@
 			</div>
    		{% endfor %}
 		</div>
+
+<div class="container mt-3">
+		<h1>Présentation du projet</h1>
+		<br><br>
+		<p>
+                        Solidarity Bond est un projet qui a pour objectif de mettre en place un dispositif pour venir en aide aux personnes ayant besoins de protection.<br>
+                        Solidarity Bond imprime des visières de protections que cela soit pour des professionnels de la santé, des entreprises, des commerces ou encore des particuliers.
+						 Il y a également un outil permettant d'ouvrir des portes ou d'autre actions nécessitant de toucher des surfaces.
+                <br><br>
+                        Les visières et les outils sont imprimé au sein du FabLab de notre École d'ingénieur le CESI avec l'aide de notre FabLab Manager.</p>
+                <br><br>
+</div>
 	
 	<div id="carouselCaptions" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
 		<div class="carousel-inner justify-content-center">
@@ -41,6 +53,18 @@
 			<img src="/images/Visieres complet.jpg" class="d-block carrou" alt="Photo Visières assembler">
 			
 			</div>
+			<div class="carousel-item">
+			<img src="/images/Tools_COVID-19-1.png" class="d-block carrou" alt="Photo Outils-1">
+			
+			</div>
+			<div class="carousel-item">
+			<img src="/images/Tools_COVID-19-2.png" class="d-block carrou" alt="Photo Outils-2">
+			
+			</div>
+			<div class="carousel-item">
+			<img src="/images/Tools_COVID-19-3.png" class="d-block carrou" alt="Photo Outils-3">
+			
+			</div>
 		</div>
 		<a class="carousel-control-prev" href="#carouselCaptions" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -53,8 +77,28 @@
 	</div>
 </div>
 
-<div class="container">
+{# <div class="container mt-5 w-50 mx-auto">
+	<div class="row">
+		<h1 class="col-12">Présentation des objets</h1>
+		<br><br><br>
+		<div class="row col-6">
+			<p></p>
+		</div>
+	</div>
+</div> #}
 
+<div class="container mt-5 w-50 mx-auto">
+
+	<h1>Recommandation du gouvernement</h1>
+	<br><br>
+	<img src="images/bienporter_son_masque.png" class="img-fluid" alt="gouvernement_image">
+	<br>
+	<blockquote class="blockquote mb-5">
+		<p>Les visières sont un moyen supplémentaire de protection face aux virus transmis par les gouttelettes. Néanmoins, elles n’ont pas pour vocation de remplacer les masques pour le grand public. Les visières sont essentiellement utilisées en milieu hospitalier, où les soignants côtoient de nombreux malades. Le gouvernement, en lien avec les producteurs nationaux, travaille à la fabrication massive de masques grand public lavables, répondant à des normes strictes afin de pouvoir équiper toute la population.
+		<br><br>
+		De plus, pour rappel, le port de masque (et de visière) ne dispense pas d’une application rigoureuse des gestes barrières, de l’hygiène des mains et du respect de la distanciation sociale. </p>
+		<footer class="blockquote-footer text-right"><a href="https://www.gouvernement.fr/info-coronavirus/masques-grand-public"><cite title="Info covid-19 gouvernement">Info COVID-19 | Gouvernement.fr</cite></a></footer>
+	</blockquote>
 </div>
 
 {% endblock %}

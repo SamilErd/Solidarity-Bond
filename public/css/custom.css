@@ -92,6 +92,14 @@
   }
 
 /**
+* CSS for navbar dropdown
+*/
+
+#button-drop:hover {
+  background-color: #cccccc;
+}
+
+/**
 * CSS for alert
 */
 
@@ -237,6 +245,32 @@ ul {
   border-color: #27251f;
   border-radius: 3%;
   border-width: 2px;
+}
+
+.form_css_pro {
+  width: 25%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid;
+  color: #999999;
+}
+
+.form_css_pro-add {
+  width: 65%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid;
+  color: #999999;
+}
+
+.form_css_pro-description {
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid;
+  color: #999999;
 }
 
 /**

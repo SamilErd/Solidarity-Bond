@@ -30,7 +30,7 @@ class MoreController extends AbstractController
             //getting the author's email
             ->setFrom($contact->getEmail())
             //sending to specific mail
-            ->setTo('contact@solidaritybond-stras.yj.fr')
+            ->setTo('contact@solidarity-bond.fr')
             //sending reply to author's email
             ->setReplyTo($contact->getEmail())
             //setting the content of the mail with the selected template
