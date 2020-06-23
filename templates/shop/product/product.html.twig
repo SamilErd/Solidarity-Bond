@@ -36,16 +36,17 @@
 
                 <img class="image-product" src="../images/products/{{product.Image}}">
                 {% if is_granted('ROLE_FABLAB')%}
-				<form id="II" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post" enctype="multipart/form-data">
-                <input class="form_css_pro" type="file" name="II">
-
-                <input class="form_css_pro" type="submit" value="Mettre à jour">
-
-				</form>
-				<div class="acc-edit text-right ">
+                <div class="acc-edit text-right ">
 				<button class="btn acc-edit-btn" onclick="ShowImage();">
 				<i  class="fa fa-edit " ></i>
 				</button></div>
+				<form id="II" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post" enctype="multipart/form-data">
+                <input class="form_css" type="file" name="II">
+
+                <input class="form_css_pro" type="submit" value="Mettre à jour" style="display:block">
+
+				</form>
+
                 {% endif %}
             </div>
 
