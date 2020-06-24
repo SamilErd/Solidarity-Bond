@@ -27,10 +27,28 @@ class ProductController extends AbstractController
         //Getting all products from database
         $products = $prepo->findAll();
         //rendering the product page
-        return $this->render('admin/products.html.twig', [
+        return $this->render('Shop/product/products.html.twig', [
             //giving all the products of the database to the page
             "products" => $products,
         ]);
+    }
+
+    /**
+     * @Route("/delete_product_{id}", name="delete_product")
+     */
+    public function delete_product($id, ProductRepository $prepo)
+    {
+        //Getting the product from the database
+        $product = $prepo->find($id);
+        //getting the instance of the entity manager and 
+        $entityManager = $this->getDoctrine()->getManager();
+        //tells the entity manager to remove the product
+        $entityManager->remove($product);
+        //updating the database
+        $entityManager->flush();
+        
+        //rendirecting to products
+        return $this->redirectToRoute('admin_products');
     }
 
     /**

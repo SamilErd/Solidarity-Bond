@@ -15,6 +15,16 @@
     <div class="container"
         <form>
         {{ form_start(form) }}
+
+        {% if form_errors(form.firstname) or form_errors(form.lastname) or form_errors(form.email) or form_errors(form.phone) or form_errors(form) %}
+				<div class="alert alert-danger text-center" >
+				{{ form_errors(form.firstname) }}
+				{{ form_errors(form.lastname) }}
+				{{ form_errors(form.email) }}
+				{{ form_errors(form.phone) }}
+				{{ form_errors(form) }}
+				</div>
+			{% endif %}
             <div class="form-row">
             {{ form_errors(form) }}
                 <div class="form-group col-md-8">
@@ -30,6 +40,7 @@
                 {{ form_widget(form.email, {'attr':{'class' : 'form_css_contact', 'placeholder':'Adresse Email'}}) }}
                 </div>
                 <div class="form-group col-md-8">
+                <p>format +33 x xx xx xx xx ou 0x xx xx xx xx</p>
                 {{ form_widget(form.phone, {'attr':{'class': 'form_css_contact', 'placeholder':'Numéro de téléphone'}}) }}
                 </div>
             </div>
