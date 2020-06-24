@@ -14,7 +14,7 @@ body {
 */
 
   .form_css {
-      width: 75%;
+      width: 60%;
       padding: 12px 20px;
       box-sizing: border-box;
       border: none;
@@ -34,13 +34,14 @@ body {
 
   .btn_form_css {
     margin-bottom: 10px;
-    background-color : #27251f;
+    background-color : #ec4848;
     color: white;
     width: auto;
   }
 
   .btn_form_css:hover {
-    color: #cccccc;
+    color: white;
+    background-color: #e71818;
   }
 
   .btn-center {
@@ -52,29 +53,31 @@ body {
   }
 
   #text_color:hover{
-    color: #cccccc;
+    color: #ec4848;
   }
 
   #button-contact {
     margin-bottom: 10px;
-    background-color : #27251f;
+    background-color : #ec4848;
     color: white;
     width: auto;
     margin-left: 45%;
   }
 
   #button-contact:hover {
-    color: #cccccc;
+    color: white;
+    background-color: #e71818;
   }
 
   #button {
     margin-bottom: 10px;
-    background-color : #27251f;
+    background-color : #ec4848;
     color: white;
     width: auto;
   }
   #button:hover {
-    color: #cccccc;
+    color: white;
+    background-color: #e71818;
   }
 
 /**
@@ -480,4 +483,20 @@ hr.diviser {
   padding: 5px 75px;
   background: #e6e6e6;
   transition: 0.6s;
+}
+
+/**
+* CSS for edit icon
+*/
+
+.fa-edit .fa-plus {
+  color: #3f444a;
+}
+
+.fa-edit:hover {
+  color: #ec4848;
+}
+
+.fa-plus:hover {
+  color: #ec4848;
 }

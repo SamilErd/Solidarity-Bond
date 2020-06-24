@@ -77,12 +77,13 @@
                 <h4 class="acc-edit mr-7 mb-7"> unités restants</h4>
 				<div class="acc-edit text-right ">
 				<button class="btn acc-edit-btn" onclick="ShowStock();">
-				<i  class="fa fa-plus " ></i>
+				<i  class="fa fa-plus" ></i>
 				</button></div>
                 {% endif %}
                 <br><br>
                 
                 <h4 class=" acc-edit mb-7">Description:</h4>
+                <br>
 				<h5 class="acc-edit" id="D">{{product.Description}}</h5>
                 {% if is_granted('ROLE_FABLAB')%}
 
@@ -98,7 +99,7 @@
                 <br>
                 {% if is_granted('ROLE_FABLAB')%}
 
-                <a href="{{path('delete_product', {'id': product.id } )}}" class="btn" id="button">Supprimer le produit</a>    
+                <a href="{{path('delete_product', {'id': product.id } )}}" class="btn mt-5" id="button">Supprimer le produit</a>    
 
                 {% else %}
                     
@@ -113,7 +114,7 @@
                 <br>
                 
                 {# <a class="btn mt-4" href="{{path('show_order')}}" onclick="add_card()" id="button">Ajouter au panier</a> #}
-                <button id="button" class="btn mt-4" onclick="add_cart()">Ajouter au panier</button>
+                <button id="button" class="btn mt-3" onclick="add_cart()">Ajouter au panier</button>
                 {% endif %}
             </div>
         </div>

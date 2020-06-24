@@ -27,7 +27,7 @@ class RegisterType extends AbstractType
                     new Regex([
                         'pattern' => '/^[a-z-]+$/i',
                         'htmlPattern' => '^[a-zA-Z-]+$',
-                        'message' => "votre prénom n'est pas valide."
+                        'message' => "Votre prénom n'est pas valide."
                   ]),
             ]])
             ->add('LastName', TextType::class,[
@@ -36,7 +36,7 @@ class RegisterType extends AbstractType
                     new Regex([
                         'pattern' => '/^[a-z-]+$/i',
                         'htmlPattern' => '^[a-zA-Z-]+$',
-                        'message' => "votre nom n'est pas valide."
+                        'message' => "Votre nom n'est pas valide."
                   ]),
             ]])
             ->add('phoneNum', TextType::class,[
@@ -45,7 +45,7 @@ class RegisterType extends AbstractType
                     new Regex([
                         'pattern' => '/^(0|\+33 )[1-9]([-. ]?[0-9]{2} ){3}([-. ]?[0-9]{2})$/i',
                         'htmlPattern' => '^(0|\+33 )[1-9]([-. ]?[0-9]{2} ){3}([-. ]?[0-9]{2})$',
-                        'message' => "votre numéro de téléphone n'est pas valide."
+                        'message' => "Votre numéro de téléphone n'est pas valide."
                   ]),
             ]])
             ->add('password', RepeatedType::class, [
@@ -70,7 +70,7 @@ class RegisterType extends AbstractType
                     new Regex([
                         'pattern' => '/^[0-9]{5,5}$/i',
                         'htmlPattern' => '^[0-9]{5,5}$',
-                        'message' => "votre code postal n'est pas valide."
+                        'message' => "Votre code postal n'est pas valide."
                   ]),
             ]])
             ->add('country', ChoiceType::class, [
