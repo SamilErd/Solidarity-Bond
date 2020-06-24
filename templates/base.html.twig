@@ -31,8 +31,10 @@
 
             <div class="collapse navbar-collapse" id="navbarsExample05">
                 <ul class="navbar-nav mr-auto">
+                    {% if is_granted('ROLE_FABLAB')%}
+                    {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{path('show_products')}}">Boutique</a>
+                    <a class="nav-link" href="{{path('show_products')}}">Boutique</a>
                     </li>
                     {% endif %}
                     <li class="nav-item">
