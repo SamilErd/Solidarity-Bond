@@ -5,7 +5,6 @@
 */
 
 body {
-  font-family: 'Roboto';
   background-color: #fff;
 }
 
@@ -461,19 +460,21 @@ hr.diviser {
   padding: 15px 75px;
 }
 
-.navbar-brand {
+.navbar-B {
   color: #ec4848;
   font-size: 30px;
 }
 
-.navbar-brand:hover {
+.navbar-B:hover {
   color: #ec4848;
+  text-decoration: none;
 }
 
-.nav-item .nav-link {
+.nav-I .nav-L {
   color: #3f444a;
   font-size: 20px;
 }
+
 
 .nav-item:hover .nav-link:hover {
   color: #ec4848;
