@@ -13,24 +13,32 @@
         </div>
     </div>     
 
+    {% if is_granted('ROLE_FABLAB')%}
+    <div style="text-align:center">
+    <a href="{{path('admin_new_product')}}" class="btn" id="button">Ajouter un produit</a>
+    </div>
+    {% endif %}
     <div class="container">
     <div class="row">
 
             {% for product in products %}
-            <div class="col">
-                    <div class="card mt-3 mb-5 ">
-                        <img class="card-img-top" src="../images/products/{{product.Image}}" alt="Photo Produit" style="width:300px;height:300px;margin: 0 auto;">
-                        <div class="card-block">
-                            <h2 class="card-title-shop">{{product.ProductName}}</h2>
-                            <p class="card-text-shop d-inline-block text-truncate">{{product.Description}}</p>
-                            <p class="price card-text" >{{product.price}} €</p>
-                            <a href="{{path('show_product', {'id': product.id })}}" id="button" class="btn stretched-link">En savoir plus</a>
-                        </div>
+
+        <div class="col">
+                <div class="card mt-3 mb-5">
+                    <img class="card-img-top cards-img" data-src="holder.js/100px180/" alt="100%x180" src="../images/products/{{product.Image}}" data-holder-rendered="true">
+                    <div class="card-block">
+                        <h4 class="card-title-shop">{{product.ProductName}}</h4>
+                        <p class="card-text-shop">{{product.Description}}</p>
+                        <p class="card-text">Prix : {{product.Price}} €</p>
+                        <p class="card-text">Stock : {{product.Stock}} restant</p>
+                        <a href="{{path('show_product', {'id': product.id } )}}" class="btn stretched-link" id="button">Page produit</a>
                     </div>
-            </div>
+                </div>
+
+        </div>
             {% endfor %}
 
-    </div>
+     </div>
     </div>
 
 {% endblock %}

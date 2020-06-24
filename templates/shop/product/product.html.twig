@@ -43,7 +43,7 @@
 				<form id="II" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post" enctype="multipart/form-data">
                 <input class="form_css" type="file" name="II">
 
-                <input class="form_css_pro" type="submit" value="Mettre à jour" style="display:block">
+                <input class="btn btn-dark" type="submit" value="Mettre à jour" style="display:block; width:75%; margin-top: 5px">
 
 				</form>
 
@@ -97,6 +97,9 @@
                 {% endif %}
                 <br>
                 {% if is_granted('ROLE_FABLAB')%}
+
+                <a href="{{path('delete_product', {'id': product.id } )}}" class="btn" id="button">Supprimer le produit</a>    
+
                 {% else %}
                     
                 <h4 class="mb-3">Combien voulez-vous en ajouter ?</h4>

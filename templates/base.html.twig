@@ -31,9 +31,12 @@
                     <li class="nav-item ">
                     <a class="nav-link" href="{{path('index')}}">Accueil<span class="sr-only">(current)</span></a>
                     </li>
+                    {% if is_granted('ROLE_FABLAB')%}
+                    {% else %}
                     <li class="nav-item">
                     <a class="nav-link" href="{{path('show_products')}}">Boutique</a>
                     </li>
+                    {% endif %}
                     <li class="nav-item">
                     <a class="nav-link" href="{{path('about_group')}}">À Propos</a>
                     </li>
