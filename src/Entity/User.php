@@ -9,12 +9,13 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(
  *  fields={"Email"},
- *  message= " l'email que vous averz utilisé est déja utilisée."
+ *  message= " l'adresse email que vous avez rentrée est déja utilisée."
  * )
  */
 class User implements UserInterface
@@ -28,18 +29,22 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * 
      */
     private $FirstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $LastName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email."
+     *     message = "Votre addresse email n'est pas valide."
      * )
      */
     private $Email;
@@ -47,14 +52,12 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Assert\Length(
-     * min=8,
-     * minMessage = "Votre mot de passe doit avoir au moins 8 caractères.")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $phoneNum;
 

@@ -87,32 +87,61 @@ class SecurityController extends AbstractController
         $id = $user->getId();
         //Getting all of the user's Orders
         $orders = $orepo->OrderOfUser($id);
-
+        //setting the name regex
+        $nameregex = '/^[a-z-]+$/i';
+        //setting the phone regex
+        $phoneregex = '/^(0|\+33 )[1-9]([-. ]?[0-9]{2} ){3}([-. ]?[0-9]{2})$/i';
+        //setting the password regex
+        $passwordregex = '/^(?=.*[0-9])(?=.*[A-Z]).{8,}$/';
+        //setting the postal code regex
+        $cpregex = '/^[0-9]{5,5}$/i';
         //if the user changes his first name
         if(!empty($_POST["FN"])){
-            $user->setFirstName($_POST['FN']);
-            $entityManager->persist($user);
-            //basically updating the user infos in the database
-            $entityManager->flush();
-            return $this->redirectToRoute('security_account');
+            $FN = $_POST['FN'];
+            preg_match($nameregex, $FN, $matches);
+            if(!empty($matches)){
+                $user->setFirstName($FN);
+                $entityManager->persist($user);
+                //basically updating the user infos in the database
+                $entityManager->flush();
+                return $this->redirectToRoute('security_account');
+            } else {
+                $error_edit = "Votre prénom n'est pas valide.";
 
+            }
+
+            
         }
         //if the user changes his last name
         if(!empty($_POST["LN"])){
-            $user->setLastName($_POST['LN']);
-            $entityManager->persist($user);
-            //basically updating the user infos in the database
-            $entityManager->flush();
-            return $this->redirectToRoute('security_account');
+            $LN = $_POST['LN'];
+            preg_match($nameregex, $LN, $matches);
+            if(!empty($matches)){
+                $user->setLastName($LN);
+                $entityManager->persist($user);
+                //basically updating the user infos in the database
+                $entityManager->flush();
+                return $this->redirectToRoute('security_account');
+            } else {
+                $error_edit = "Votre nom n'est pas valide.";
+
+            }
 
         }
         //if the user changes his email
         if(!empty($_POST["E"])){
-            $user->setEmail($_POST['E']);
-            $entityManager->persist($user);
-            //basically updating the user infos in the database
-            $entityManager->flush();
-            return $this->redirectToRoute('security_account');
+            $E = $_POST['E'];
+
+            if (!filter_var($E, FILTER_VALIDATE_EMAIL)) {
+                $error_edit = "Votre email n'est pas valide.";
+              } else {
+                $user->setEmail($E);
+                $entityManager->persist($user);
+                //basically updating the user infos in the database
+                $entityManager->flush();
+                return $this->redirectToRoute('security_account');
+              }
+            
 
         }
         //if the user changes his phone number
@@ -135,12 +164,17 @@ class SecurityController extends AbstractController
         }
         //if the user changes his postal code
         if(!empty($_POST["CP"])){
-            $user->setPostalCode($_POST['CP']);
-            $entityManager->persist($user);
-            //basically updating the user infos in the database
-            $entityManager->flush();
-            return $this->redirectToRoute('security_account');
-
+            $CP = $_POST['CP'];
+            preg_match($cpregex, $CP, $matches);
+            if(!empty($matches)){
+                $user->setPostalCode($CP);
+                $entityManager->persist($user);
+                //basically updating the user infos in the database
+                $entityManager->flush();
+                return $this->redirectToRoute('security_account');
+            } else {
+                $error_edit = "Votre code postal n'est pas valide.";
+            }
         }
         //if the user changes his country
         if(!empty($_POST["C"])){
@@ -164,22 +198,10 @@ class SecurityController extends AbstractController
             if($checkPass == true){
                 //check if the new password and the confirmation password matches
                 if($new_pwd === $con_pwd){
-                    if (strlen($new_pwd) <= '7') {
-                        //Sets the error message if the password doesn't contain more than 8 characters
-                        $error_edit = "Votre mot de passe doit contenir au moins 8 caractères.";
-                    }
-                    elseif(!preg_match("#[0-9]+#",$new_pwd)) {
+                        if(!preg_match($passwordregex,$new_pwd)) {
                         //Sets the error message if the password doesn't contain at least 1 number
-                        $error_edit = "Votre mot de passe doit contenir au moins 1 chiffre.";
-                    }
-                    elseif(!preg_match("#[A-Z]+#",$new_pwd)) {
-                        //Sets the error message if the password doesn't contain at least 1 capital letter
-                        $error_edit = "Votre mot de passe doit contenir au moins 1 majuscule.";
-                    }
-                    elseif(!preg_match("#[a-z]+#",$new_pwd)) {
-                        //Sets the error message if the password doesn't contain at least 1 lowercase letter
-                        $error_edit = "Votre mot de passe doit contenir au moins 1 minuscule.";
-                    } else {
+                        $error_edit = "Votre mot de passe doit contenir au moins 8 caractères, 1 majuscule, 1 minuscule, et 1 chiffre.";
+                        } else {
                         //If the password respects all the rules, setting the user's new password
                         $user->setPassword($encoder->encodePassword($user , $new_pwd));
                         //tells the entity manager to manage the user
@@ -188,16 +210,15 @@ class SecurityController extends AbstractController
                         $entityManager->flush();
                         //redirecting the user to the security_update
                         return $this->redirectToRoute('security_account');
-                    }
+                        }
+                    } else {
+                        //Sets the error message if the new password and the confirmation password doesn't match
+                        $error_edit = " Vos nouveaux mots de passes ne correspondent pas.";
+                        }
                 } else {
-                    //Sets the error message if the new password and the confirmation password doesn't match
-                    $error_edit = " Vos mots de passes ne correspondent pas.";
-                }
-            } else {
                //Sets the error message if the user's password is wrong
                 $error_edit = "Votre mot de passe actuel est incorrect.";
-            }
-            
+                }
         }
         //rendering the user account's page
         return $this->render('security/account.html.twig', [

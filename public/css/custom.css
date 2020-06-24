@@ -327,9 +327,8 @@ ul {
 */
 
 .containeracc {
-  width:85%;
-  margin: 0 auto;
-  height: 30px;
+  width:75%;
+  display:block;
 }
 
 .left-element {
