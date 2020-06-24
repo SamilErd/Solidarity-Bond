@@ -15,17 +15,13 @@
 	<p>{{ error_edit }}</p>
 	</div>
 	{% endif %}
-	<div class="containeracc" >
-		
+
+		<div style="min-height : 500px">
 			<div class="left-element " >
 			<button class="btn-acc float-right Toright" onclick="ShowInfos()">Mes informations ></button>
 			<button class="btn-acc float-right Toright" onclick="ShowAddress()">Mon addresse ></button>
 			<button class="btn-acc float-right Toright" onclick="ShowOrders()">Mes commandes ></button>
 			</div >
-
-
-
-				
 
 			<div class="right-element" id="infos"> 
 				
@@ -172,13 +168,14 @@
 			<div class="acc-edit text-right ">
 			<button class="btn acc-edit-btn" onclick="CEdit();">
 			<i  class="fa fa-edit " ></i>
-			</button></div>
+			</button>
+			
+			</div>
 
 			<hr class="diviser" />
 
 			</div>
-
-	</div>
+		</div>
 		
 <script src="{{asset('js/account.js')}}"></script>
 {% endblock %}
