@@ -6,10 +6,7 @@
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Solidarity-Bond | Connexion</h1>
-			<p class="lead">
-				Bienvenue sur Solidarity-Bond ! Veuillez vous connecter.
-			</p>
+			<h1 class="display-4">Connexion</h1>
 		</div>
 	</div>
 
@@ -26,10 +23,10 @@
 			<div class="container">
 			<div class="row">
 				<form action=" {{ path('security_login') }}" class="form-signin w-50 mx-auto" method="post">
-					<input placeholder="Email" required name="_username" type="text" class="form_css form-control mb-3 col-md-8 offset-md-2" ></input>
-					<input placeholder="Password" required name="_password" type="password" class="form_css form-control mb-4 col-md-8 offset-md-2"></input>
+					<input placeholder="Email" required name="_username" type="text" class="form_css mb-3 col-md-8 offset-md-2" ></input>
+					<input placeholder="Mot de passe" required name="_password" type="password" class="form_css mb-4 col-md-8 offset-md-2"></input>
 
-					<button type="submit" class="btn btn-dark btn-lg mt-4 mb-3">
+					<button type="submit" class="btn btn_form_css btn-lg mt-4 mb-3">
 						Se connecter
 					</button>
 

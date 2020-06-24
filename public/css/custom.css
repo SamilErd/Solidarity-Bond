@@ -4,6 +4,10 @@
 *For : Projet Solidarity-Bond
 */
 
+body {
+  font-family: 'Roboto';
+  background-color: #fff;
+}
 
 /**
 * CSS for form
@@ -434,4 +438,40 @@ hr.diviser {
 
 .carousel-fade {
   margin-top: -25px;
+}
+
+/**
+* CSS for Navbar
+*/
+
+
+.navbar {
+  width: 100%;
+  background-color: #fff;
+  transition: 0.6s;
+  padding: 15px 75px;
+}
+
+.navbar-brand {
+  color: #ec4848;
+  font-size: 30px;
+}
+
+.navbar-brand:hover {
+  color: #ec4848;
+}
+
+.nav-item .nav-link {
+  color: #3f444a;
+  font-size: 20px;
+}
+
+.nav-item:hover .nav-link:hover {
+  color: #ec4848;
+}
+
+.nav-sticky {
+  padding: 5px 75px;
+  background: #e6e6e6;
+  transition: 0.6s;
 }
