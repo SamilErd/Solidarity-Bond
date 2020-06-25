@@ -34,7 +34,7 @@ class SecurityController extends AbstractController
         //if the form is submitted without errors
         if ($form->isSubmitted() && $form->isValid()) {
             //setting the default role to any users
-            /*$user->setRoles(["ROLE_USER"]);
+            $user->setRoles(["ROLE_USER"]);
             //encoding the user's password with the algorithm set in security.yml in config/packages
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
             //getting the instance of the entity manager
@@ -42,9 +42,9 @@ class SecurityController extends AbstractController
             //telling the entity manager to manage the user 
             $entityManager->persist($user);
             //basically inserting the user in the database
-            $entityManager->flush();*/
+            $entityManager->flush();
             //creating a new mail
-            $mailservice->sendToken($user);
+            /*$mailservice->sendToken($user);
             $message = (new \Swift_Message('Nouvel utilisateur crée.'))
             //getting the author's email
             ->setFrom($user->getEmail())
@@ -58,12 +58,12 @@ class SecurityController extends AbstractController
                 'user' => $user
             ]), 'text/html');
             //sending the message with the mailer
-            $mailer->send($message);
+            $mailer->send($message);*/
 
             //redirecting to homepage
             //after creting the user, redirecting onto the login page
             return $this->redirectToRoute('security_login', [
-                $msg = "un mail vous a été envoyé, veuillez confirmer votre compte pour vous y connecter."
+                //$msg = "un mail vous a été envoyé, veuillez confirmer votre compte pour vous y connecter."
             ]);
         }
         //rendering the register page
