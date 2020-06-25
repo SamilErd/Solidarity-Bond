@@ -65,7 +65,7 @@
                     </li>
                     <li class="nav-item" >
                     {% if num != 0 %}
-                        <a class="nav-link" href="{{ path('cart_index') }}" style="margin-left:10px;"><i class="fa fa-shopping-cart fa-1x" ></i><span class="dot sec counter counter-lg"></span></a>
+                        <a class="nav-link" href="{{ path('cart_index') }}" style="margin-left:10px;"><i class="fa fa-shopping-cart fa-1x" ></i><span class="dot sec counter counter-lg">{{ num }}</span></a>
                         
                     {% else %}
                         <a class="nav-link" href="{{ path('cart_index') }}" style="margin-left:10px;"><i class="fa fa-shopping-cart fa-1x" ></i></a>
@@ -119,8 +119,11 @@
             <div class="footer-copyright col-lg" >© 2020 Copyright:
                 <a href="https://solidarity-bond.fr/" id="text_color"> solidarity-bond.fr</a>
             </div>
-            <div class="col-lg">
-                <a href="{{path('privacy_policy')}}" id="text_color">Politique de confidentialité</a>
+            <div class="col-lg ">
+                <div class="row">
+                    <a class="col-12 mb-2" href="{{path('legal_notice')}}" id="text_color">Mentions Légales</a>
+                    <a class="col-12 mb-2" href="{{path('privacy_policy')}}" id="text_color">Politique de Confidentialité</a>
+                </div>
             </div>
         </div>
         </div>

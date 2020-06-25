@@ -83,7 +83,7 @@
                 <br><br>
                 
                 <h4 class=" acc-edit mb-7">Description:</h4>
-                <br>
+                <br><br>
 				<h5 class="acc-edit" id="D">{{product.Description}}</h5>
                 {% if is_granted('ROLE_FABLAB')%}
 
@@ -96,13 +96,18 @@
 				<i  class="fa fa-edit " ></i>
 				</button></div>
                 {% endif %}
+                <br><br>
+                <div class="text-prod">
+                    <p>
+                        <em>Pour toute demande de grosse production, veuilliez nous contacter via <a href="{{path('contact')}}">ce formulaire.</a></em>
+                    </p>
+                <div>
                 <br>
                 {% if is_granted('ROLE_FABLAB')%}
 
                 <a href="{{path('delete_product', {'id': product.id } )}}" class="btn mt-5" id="button">Supprimer le produit</a>    
 
                 {% else %}
-                    
                 <h4 class="mb-3">Combien voulez-vous en ajouter ?</h4>
                
                 <select class="form_css_option" name="StockOptions" id="stock-select">
@@ -111,7 +116,7 @@
                         <option value= {{ i }}> {{ i }}</option>
                     {% endfor %}
                 </select>
-                <br>
+                <br><br>
                 
                 {# <a class="btn mt-4" href="{{path('show_order')}}" onclick="add_card()" id="button">Ajouter au panier</a> #}
                 <button id="button" class="btn mt-3" onclick="add_cart()">Ajouter au panier</button>

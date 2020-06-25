@@ -240,6 +240,10 @@ ul {
   list-style-type: none;
 }
 
+.text-prod {
+  color: #3f444a;
+}
+
 /**
 * CSS for product page
 */
@@ -525,4 +529,16 @@ hr.diviser {
   top: -10px !important;
 }
 
+.counter {
+  position: relative;
+  padding-bottom: 2px;
+  padding-right: 4px;
+  padding-left: 4px ;
+  left: auto;
+  z-index: 2;
+  font-size: 11px;
+  color: #fff;
+  background-color: #fe1212;
+  border-radius: 10em;
 
+}
