@@ -21,17 +21,20 @@ class OrderController extends AbstractController
      */
     public function show_order(CartService $cartService)
     {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         //redering the order panel with the users cart
         return $this->render('shop/order/order.html.twig', [
             'items' => $cartService->getFullCart(),
-            'total' => $cartService->getTotal()
+            'total' => $cartService->getTotal(),
+            'num' => $num
         ]);
     }
 
     /**
      * @Route("/shop/order_product", name="order_product")
      */
-    public function order_product( ProductRepository $prepo, \Swift_Mailer $mailer, CartService $cartService)
+    public function order_product( ProductRepository $prepo, \Swift_Mailer $mailer)
     {
         //getting the cart from the cartService
         $items = $cartService->getFullCart();
@@ -103,26 +106,32 @@ class OrderController extends AbstractController
     /**
      * @Route("/confirmed_{id}", name="confirmed_order")
      */
-    public function confirmed_order($id, OrderRepository $orepo)
+    public function confirmed_order($id, OrderRepository $orepo, CartService $cartService)
     {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         //geting the specific order with the given id
         $order = $orepo->find($id);
         //redering the order detail page
         return $this->render('shop/order/confirm.html.twig', [
             'order' => $order,
+            'num' => $num
         ]);
     }
 
     /**
      * @Route("/order_{id}", name="order_detail")
      */
-    public function order_detail($id, OrderRepository $orepo)
+    public function order_detail($id, OrderRepository $orepo, CartService $cartService)
     {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         //geting the specific order with the given id
         $order = $orepo->find($id);
         //redering the order detail page
         return $this->render('shop/order/orderPage.html.twig', [
             'order' => $order,
+            'num' => $num
         ]);
     }
 

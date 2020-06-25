@@ -51,6 +51,11 @@ class CartService {
         
         return $cartWData;
     }
+    public function getCartItemNum() : int {
+        $cart = $this->session->get('cart', []);
+        $itemsnum = count($cart);
+        return $itemsnum;
+    }
         
     public function getTotal() : float{
         $total = 0;
@@ -60,6 +65,8 @@ class CartService {
             }
         return $total;
     }
+
+
     public function removeCart(){
         $this->session->set('cart', []);
     }

@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\ProductRepository;
 use App\Repository\OrderRepository;
 use App\Entity\Product;
+use App\Service\Cart\CartService;
 
 
 
@@ -22,14 +23,17 @@ class ProductController extends AbstractController
     /**
      * @Route("/admin_products", name="admin_products")
      */
-    public function admin_products(ProductRepository $prepo)
+    public function admin_products(ProductRepository $prepo, CartService $cartService)
     {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         //Getting all products from database
         $products = $prepo->findAll();
         //rendering the product page
         return $this->render('Shop/product/products.html.twig', [
             //giving all the products of the database to the page
             "products" => $products,
+            'num' => $num
         ]);
     }
 
@@ -54,8 +58,10 @@ class ProductController extends AbstractController
     /**
      * @Route("/admin_new_product", name="admin_new_product")
      */
-    public function admin_new_product(Request $request)
+    public function admin_new_product(Request $request, CartService $cartService)
     {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         //creating an instance of the product entity
         $product = new Product() ;
         //creating a form with the product instance and the NewProductType template
@@ -87,7 +93,8 @@ class ProductController extends AbstractController
         //rendering the product creating page
         return $this->render('admin/products/new_product.html.twig', [
             //giving this page the form value
-            'formnp' => $formnp->createView()
+            'formnp' => $formnp->createView(),
+            'num' => $num
         ]);
     }
 
@@ -125,6 +132,7 @@ class ProductController extends AbstractController
      */
     public function order_sent($id, OrderRepository $orepo)
     {
+        
         //selecting the specific id's order
         $order = $orepo->find($id);
         //getting the instance of the entity manager and 
@@ -155,7 +163,7 @@ class ProductController extends AbstractController
      */
     public function order_prepare($id, OrderRepository $orepo)
     {
-
+        
         //selecting the specific id's order
         $order = $orepo->find($id);
         //setting the new order status
@@ -205,9 +213,13 @@ class ProductController extends AbstractController
     /**
      * @Route("/admin_product_{id}", name="admin_product")
      */
-    public function admin_product($id)
+    public function admin_product($id, CartService $cartService)
     {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         //rendering the specific product's page [WHICH HASNT BEEN MADE FOR THE MOMENT]
-        return $this->render('admin/product.html.twig');
+        return $this->render('admin/product.html.twig', [
+        'num' => $num
+        ]);
     }
 }

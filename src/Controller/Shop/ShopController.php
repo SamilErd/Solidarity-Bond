@@ -22,14 +22,17 @@ class ShopController extends AbstractController
     /**
      * @Route("/shop", name="show_products")
      */
-    public function show_products(ProductRepository $prepo)
+    public function show_products(ProductRepository $prepo, CartService $cartService)
     {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         //Getting all products from database
         $products = $prepo->findAll();
         //rendering the product page
         return $this->render('shop/product/products.html.twig', [
             //giving all the products of the database to the page
             "products" => $products,
+            'num' => $num
         ]);
     }
 
@@ -38,9 +41,10 @@ class ShopController extends AbstractController
     /**
      * @Route("/shop/product_{id}", name="show_product")
      */
-    public function show_product($id, ProductRepository $prepo)
+    public function show_product($id, ProductRepository $prepo, CartService $cartService)
     {
-
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         
         //finding the specific product in the database
         $product = $prepo->find($id);
@@ -126,6 +130,7 @@ class ShopController extends AbstractController
         //rendering the specific product's page
         return $this->render('shop/product/product.html.twig', [
             "product" => $product,
+            'num' => $num
             
         ]);
     }
