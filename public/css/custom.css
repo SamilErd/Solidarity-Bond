@@ -502,3 +502,27 @@ hr.diviser {
 .fa-plus:hover {
   color: #ec4848;
 }
+
+/**
+* CSS notifcation icon cart
+*/
+
+.dot {
+  height: 15px;
+  width: 15px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.sec{
+  position: relative;
+  right: 10px;
+  top:-15px;
+}
+
+.counter.counter-lg {
+  top: -10px !important;
+}
+
+

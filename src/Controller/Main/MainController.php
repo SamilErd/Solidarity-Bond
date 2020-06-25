@@ -25,4 +25,12 @@ class MainController extends AbstractController
         //rendering the privacy policy
         return $this->render('legal/privacy.html.twig');
     }
+
+    /**
+     * @Route("/legal" name="legal_notice")
+     */
+    public function legal(){
+        //rendering the legal notice
+        return $this->render('legal/legal_notice.html.twig');
+    }
 }

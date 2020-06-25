@@ -63,7 +63,12 @@
                         </div>
                     </li>
                     <li class="nav-item" >
-                        <a class="nav-link" href="{{ path('cart_index') }}" style="margin-left:10px;"><i class="fa fa-shopping-cart fa-1x" ></i></a>
+                    {% if is_granted('ROLE_FABLAB') %}
+                        <a class="nav-link" href="{{ path('cart_index') }}" style="margin-left:10px;"><i class="fa fa-shopping-cart fa-1x" ></i><span class="dot sec counter counter-lg"></span></a>
+                    
+                    {% else %}
+                        <a class="nav-link" href="{{ path('cart_index') }}" style="margin-left:10px;"><i class=" fa fa-shopping-cart fa-1x" ></i><span class="dot sec counter counter-lg"></span></a>
+                    {% endif %}
                     </li>     
                 </ul>
             </div>
