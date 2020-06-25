@@ -6,6 +6,7 @@
 
 body {
   background-color: #fff;
+  text-align: justify;
 }
 
 /**
@@ -232,7 +233,6 @@ main {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    
     margin: 0 auto;
     }
 
@@ -463,6 +463,7 @@ hr.diviser {
 .navbar-B {
   color: #ec4848;
   font-size: 30px;
+  letter-spacing: 1px;
 }
 
 .navbar-B:hover {
@@ -470,7 +471,7 @@ hr.diviser {
   text-decoration: none;
 }
 
-.nav-I .nav-L {
+.nav-item .nav-link {
   color: #3f444a;
   font-size: 20px;
 }
