@@ -15,10 +15,13 @@ class CartController extends AbstractController
      */
     public function index(CartService $cartService)
     {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         //redering the cart page with it's variables
         return $this->render('shop/cart/cart.html.twig', [
             'items' => $cartService->getFullCart(),
-            'total' => $cartService->getTotal()
+            'total' => $cartService->getTotal(),
+            'num' => $num
         ]);
     }
     /**

@@ -15,6 +15,7 @@
     <!--Custom style sheet-->
     <link rel="stylesheet" href={{ asset('css/custom.css')}}>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block stylesheets %}{% endblock %}
 </head>
 
@@ -23,10 +24,10 @@
 
          <nav class="navbar navbar-expand-lg navbar-light fixed-top"> 
 
-            <a class="navbar-B" href="/">Solidarity-Bond</a>
+            <a class="navbar-B" href="/" >Solidarity-Bond</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation" > 
-                <span class="navbar-toggler-icon" ></span>
+                <span class="navbar-toggler-icon text-nowrap" ></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarsExample05">
@@ -63,11 +64,11 @@
                         </div>
                     </li>
                     <li class="nav-item" >
-                    {% if is_granted('ROLE_FABLAB') %}
+                    {% if num != 0 %}
                         <a class="nav-link" href="{{ path('cart_index') }}" style="margin-left:10px;"><i class="fa fa-shopping-cart fa-1x" ></i><span class="dot sec counter counter-lg"></span></a>
-                    
+                        
                     {% else %}
-                        <a class="nav-link" href="{{ path('cart_index') }}" style="margin-left:10px;"><i class=" fa fa-shopping-cart fa-1x" ></i><span class="dot sec counter counter-lg"></span></a>
+                        <a class="nav-link" href="{{ path('cart_index') }}" style="margin-left:10px;"><i class="fa fa-shopping-cart fa-1x" ></i></a>
                     {% endif %}
                     </li>     
                 </ul>

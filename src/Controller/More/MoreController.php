@@ -8,6 +8,7 @@ use App\Entity\Contact;
 use App\Notification\ContactNotification;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\Cart\CartService;
 
 class MoreController extends AbstractController
 {
@@ -15,8 +16,10 @@ class MoreController extends AbstractController
      * @Route("/contact", name="contact")
      */
 
-    public function contact(Request $request, \Swift_Mailer $mailer)
+    public function contact(Request $request, \Swift_Mailer $mailer, CartService $cartService)
     {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         //creatin a Contact Entity instance
         $contact = new Contact();
         //creating the form with the contact instance using the ContactType template
@@ -47,7 +50,8 @@ class MoreController extends AbstractController
         //rendering the contact page
         return $this->render('more/contact.html.twig', [
             //giving the contact page the contact form variable
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'num' => $num
         ]);
     }
 
@@ -55,16 +59,24 @@ class MoreController extends AbstractController
     /**
      * @Route("/about_fablab", name="about_fablab")
      */
-    public function aboutfablab(){
+    public function aboutfablab(CartService $cartService){
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         //rendering the infos about fablab page
-        return $this->render('more/about_fablab.html.twig');
+        return $this->render('more/about_fablab.html.twig', [
+            'num' => $num
+        ]);
     }
 
     /**
      * @Route("/about_group", name="about_group")
      */
-    public function aboutgroup(){
+    public function aboutgroup(CartService $cartService){
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         //rendering the infos about the students page
-        return $this->render('more/about_group.html.twig');
+        return $this->render('more/about_group.html.twig', [
+            'num' => $num
+        ]);
     }
 }

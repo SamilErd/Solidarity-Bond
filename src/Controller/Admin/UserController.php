@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\UserRepository;
+use App\Service\Cart\CartService;
 
 
 
@@ -17,14 +18,16 @@ class UserController extends AbstractController
     /**
      * @Route("/admin_users", name="admin_users")
      */
-    public function admin_users(UserRepository $urepo)
+    public function admin_users(UserRepository $urepo, CartService $cartService)
     {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         $users = $urepo->findAll();
-
-
+        
         //rendering the admin page for the administrator
         return $this->render('admin/users.html.twig', [
-            "users" => $users 
+            "users" => $users ,
+            'num' => $num
         ]);
     }
 

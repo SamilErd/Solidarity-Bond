@@ -86,6 +86,12 @@ class User implements UserInterface
      */
     private $Country;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Token::class, mappedBy="id_user", cascade={"persist", "remove"})
+     */
+    private $token;
+
+
     public function __construct()
     {
         $this->Orders = new ArrayCollection();
@@ -266,6 +272,25 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getToken(): ?Token
+    {
+        return $this->token;
+    }
+
+    public function setToken(?Token $token): self
+    {
+        $this->token = $token;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newId_user = null === $token ? null : $this;
+        if ($token->getIdUser() !== $newId_user) {
+            $token->setIdUser($newId_user);
+        }
+
+        return $this;
+    }
+
 
 
 }
