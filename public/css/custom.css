@@ -542,3 +542,39 @@ hr.diviser {
   border-radius: 10em;
 
 }
+
+/**
+* CSS for about fablab
+*/
+
+.container-fade {
+  position: relative;
+}
+
+.image-fade {
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1; 
+  width: 445px;
+  margin-bottom: 9px;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 20px;
+  padding: 15px;
+  text-align: center;
+}
+
+.ov {
+  margin-bottom: 10px;
+}
+
+.container-fade:hover .overlay {
+  opacity: 1;
+} 
