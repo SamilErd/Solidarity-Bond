@@ -26,9 +26,15 @@
                 <div class="card mt-3 mb-5">
                     <img class="image-product-card" data-src="holder.js/100px180/" alt="100%x180" src="../images/products/{{product.Image}}" data-holder-rendered="true">
                     <div class="card-block">
+                        <div style="height :70px;">
+                        <hr></hr>
                         <h4 class="card-title-shop">{{product.ProductName}}</h4>
+                        </div>
+                        <hr></hr>
                         <p class="card-text-shop">{{product.Description}}</p>
+                        <hr></hr>
                         <p class="card-text mt-2">Prix : {{product.Price}} €</p>
+                        <hr></hr>
                         <p class="card-text">Stock : {{product.Stock}} restant</p>
                         <a href="{{path('show_product', {'id': product.id } )}}" class="btn stretched-link" id="button">Page produit</a>
                     </div>
