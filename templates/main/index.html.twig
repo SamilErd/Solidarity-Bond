@@ -86,7 +86,12 @@
 		</div>
 	</div>
 </div> #}
-
+<div class="container mt-5 w-50 mx-auto">
+	<h1>
+		Décès en France a la date du <span id="date"></span>
+	</h1>
+	<p><span id="deaths"></span></p>
+</div>
 <div class="container mt-5 w-50 mx-auto">
 
 	<h1>Recommandation du gouvernement</h1>
@@ -101,4 +106,26 @@
 	</blockquote>
 </div>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+		var settings = {
+			"async": true,
+			"crossDomain": true,
+			"url": "https://coronavirusapi-france.now.sh/FranceLiveGlobalData",
+			"method": "GET",
+
+		}
+
+		$.ajax(settings).done(function (response) {
+			var date = response.FranceGlobalLiveData[0].date;			  
+			var deaths = response.FranceGlobalLiveData[0].deces + response.FranceGlobalLiveData[0].decesEhpad;
+			document.getElementById("date").innerHTML=date;
+			document.getElementById("deaths").innerHTML=deaths;
+			console.log(response);
+		});
+
+		
+</script>
 {% endblock %}
