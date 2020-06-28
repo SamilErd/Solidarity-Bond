@@ -575,6 +575,11 @@ hr.diviser {
   margin-bottom: 10px;
 }
 
+.icon-language {
+  width: 30px;
+  height: 30px;
+}
+
 .contain-fade:hover .overlay {
   opacity: 1;
 } 

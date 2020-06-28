@@ -26,14 +26,14 @@
 				<form action=" {{ path('security_login') }}" class="form-signin w-50 mx-auto" method="post">
 					<input placeholder="{% trans %}Adresse Email{% endtrans %}" required name="_username" type="text" class="form_css mb-3 col-md-8 offset-md-2" ></input>
 					<input placeholder="{% trans %}Mot de passe{% endtrans %}" required name="_password" type="password" class="form_css mb-4 col-md-8 offset-md-2"></input>
-
+					<br>
 					<button type="submit" class="btn btn_form_css btn-lg mt-4 mb-3">
 						{% trans %}Se connecter{% endtrans %}
 					</button>
 
 					<div class="mt-4">
 						<span class="meta">{% trans %}Vous n'avez pas encore de compte ?{% endtrans %}</span>
-						<br/>
+						<br>
 						<a href="{{path('security_register')}}" id="text">{% trans %}Inscrivez-vous{% endtrans %}</a>
 					</div>
 				</form>
