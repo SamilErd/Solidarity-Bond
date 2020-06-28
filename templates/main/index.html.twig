@@ -86,15 +86,83 @@
 		</div>
 	</div>
 </div> #}
-<div class="container mt-5 w-50 mx-auto">
-	<h1>
-		Décès en France a la date du <span id="date"></span>
-	</h1>
-	<p><span id="deaths"></span></p>
-</div>
-<div class="container mt-5 w-50 mx-auto">
 
-	<h1>Recommandation du gouvernement</h1>
+<div style="text-align:center; margin-top; 50px">
+	<h3>
+		Point Coronavirus à la date du <span id="date"></span>
+	</h3>
+
+	<button class="world-btn" onclick="">Monde</button>
+	<button class="france-btn" onclick="">France</button>
+</div>
+
+
+
+	<div class=" mt-5 w-50 mx-auto world-anim" id="world" style="float:left; ">
+	<div class="index-div-left">
+	<hr></hr>
+	<h5> Nombre de cas depuis le debut <h5>
+	<h5 class="mt-5"><span id="total-cases"></span><h5>
+	</div>
+	<div class="index-div-right">
+	<hr></hr>
+	<h5> Nombre de cas guéris depuis le debut <h5>
+	<h5 class="mt-5"><span id="total-recovered"></span><h5>
+	</div>
+	
+	<div class="index-div-left">
+	<hr></hr>
+	<h5> Nombre de cas morts depuis le debut <h5>
+	<h5 class="mt-5"><span id="total-deaths"></span><h5>
+	</div>
+	<div class="index-div-right">
+	<hr></hr>
+	<h5> Nombre de nouveaux cas aujourd'hui <h5>
+	<h5 class="mt-5"><span id="today-cases"></span><h5>
+	</div>
+	<div class="index-div-left">
+	<hr></hr>
+	<h5> Nombre de nouveaux cas morts aujourd'hui <h5>
+	<h5 class="mt-5"><span id="today-deaths"></span><h5>
+	</div>
+	<div class="index-div-right">
+	<hr></hr>
+	<h5> Nombre de pays touchés depuis le debut<h5>
+	<h5 class="mt-5"><span id="countries"></span><h5>
+	</div>
+</div>
+
+
+<div class=" mt-5 w-50 mx-auto france-anim" id="france" style="float:right">
+	<div class="index-div-left">
+	<hr></hr>
+	<h5> Nombre de cas depuis le debut <h5>
+	<h5 class="mt-5"><span id="total-casesfr"></span><h5>
+	</div>
+
+	<div class="index-div-right">
+	<hr></hr>
+	<h5> Nombre de cas morts depuis le debut <h5>
+	<h5 class="mt-5"><span id="total-deathsfr"></span><h5>
+	</div>
+	<div class="index-div-left">
+	<hr></hr>
+	<h5> Nombre de nouveaux cas aujourd'hui <h5>
+	<h5 class="mt-5"><span id="today-casesfr"></span><h5>
+	</div>
+	<div class="index-div-right">
+	<hr></hr>
+	<h5> Nombre de nouveaux cas morts aujourd'hui <h5>
+	<h5 class="mt-5"><span id="today-deathsfr"></span><h5>
+	</div>
+
+</div>
+<br><br><br><br>
+
+
+<div class=" w-50 mx-auto" style="margin-top:600px">
+
+	<h4>Recommendation du gouvernement</h4>
 	<br><br>
 	<img src="images/bienporter_son_masque.png" class="img-fluid" alt="gouvernement_image">
 	<br>
@@ -108,24 +176,92 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script >
+
+$(document).ready(function(){
+		$('#world').css("transform","translate(50%,0)");
+		$('#france').css("transform","translate(50%,0)");
+		$("#france").fadeOut("slow");
+		$("#world").fadeIn("slow");
+    $(".france-btn").click(function(){
+		$('#world').css("transform","translate(-50%,0)");
+		$('#france').css("transform","translate(-50%,0)");
+		$("#world").fadeOut("slow");
+		$("#france").fadeIn("slow");
+	
+	});
+	$(".world-btn").click(function(){
+		$('#world').css("transform","translate(50%,0)");
+		$('#france').css("transform","translate(50%,0)");
+		$("#france").fadeOut("slow");
+		$("#world").fadeIn("slow");
+ 	 });
+});
+
+
+</script>
 <script>
 
 		var settings = {
 			"async": true,
 			"crossDomain": true,
-			"url": "https://coronavirusapi-france.now.sh/FranceLiveGlobalData",
+			"url": "https://api.thevirustracker.com/free-api?global=stats",
 			"method": "GET",
 
 		}
 
 		$.ajax(settings).done(function (response) {
-			var date = response.FranceGlobalLiveData[0].date;			  
-			var deaths = response.FranceGlobalLiveData[0].deces + response.FranceGlobalLiveData[0].decesEhpad;
-			document.getElementById("date").innerHTML=date;
-			document.getElementById("deaths").innerHTML=deaths;
-			console.log(response);
+			var today = new Date();
+			var dd = String(today.getDate()).padStart(2, '0');
+			var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+			var yyyy = today.getFullYear();
+			today = mm + '/' + dd + '/' + yyyy;
+			var totalcases = Object.values(response)[0][0].total_cases
+			var totaldeaths = Object.values(response)[0][0].total_deaths;
+			var countries = Object.values(response)[0][0].total_affected_countries;
+			var totalrecovered = Object.values(response)[0][0].total_recovered;
+			var todaycases = Object.values(response)[0][0].total_new_cases_today;
+			var todaydeaths = Object.values(response)[0][0].total_new_deaths_today;
+			document.getElementById("date").innerHTML=today;
+			document.getElementById("total-deaths").innerHTML=totaldeaths;
+			document.getElementById("total-cases").innerHTML=totalcases;
+			document.getElementById("total-recovered").innerHTML=totalrecovered;
+			document.getElementById("today-cases").innerHTML=todaycases;
+			document.getElementById("today-deaths").innerHTML=todaydeaths;
+			document.getElementById("countries").innerHTML=countries;
+			
+			
+			
+		});
+		var settings2 = {
+			"async": true,
+			"crossDomain": true,
+			"url": "https://api.thevirustracker.com/free-api?countryTimeline=FR",
+			"method": "GET",
+
+		}
+
+		$.ajax(settings2).done(function (response2) {
+			var today = new Date();
+			var FRTL = response2.timelineitems[0];
+			var lastday = FRTL[Object.keys(FRTL)[Object.keys(FRTL).length - 2]];
+			
+			var totalcasesfr = lastday.total_cases;
+			var totaldeathsfr = lastday.total_deaths;
+			var todaycasesfr = lastday.new_daily_cases;
+			var todaydeathsfr = lastday.new_daily_deaths;
+			
+			
+			console.log(lastday);
+			document.getElementById("total-deathsfr").innerHTML=totaldeathsfr;
+			document.getElementById("total-casesfr").innerHTML=totalcasesfr;
+
+			document.getElementById("today-casesfr").innerHTML=todaycasesfr;
+			document.getElementById("today-deathsfr").innerHTML=todaydeathsfr;
+			
 		});
 
 		
 </script>
+
 {% endblock %}

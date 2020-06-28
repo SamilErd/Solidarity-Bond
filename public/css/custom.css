@@ -578,3 +578,28 @@ hr.diviser {
 .container-fade:hover .overlay {
   opacity: 1;
 } 
+
+.index-div-left{
+  width:50%; 
+  height:200px;
+  float:left;
+  text-align: center;
+}
+
+.index-div-right{
+  width:50%; 
+  height:200px;
+  float:right;
+  text-align: center;
+}
+
+.france-anim{
+  
+  transition: transform 0.5s ease;
+
+}
+.world-anim{
+  
+  transition: transform 0.5s ease;
+
+}
