@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Boutique
+{% block title %}{% trans %}Boutique{% endtrans %}
 {% endblock %}
 
     {% block stylesheets %}{% endblock %}
@@ -8,13 +8,13 @@
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Boutique</h1>
+			<h1 class="display-4">{% trans %}Boutique{% endtrans %}</h1>
         </div>
     </div>     
 
     {% if is_granted('ROLE_FABLAB')%}
     <div style="text-align:center">
-    <a href="{{path('admin_new_product')}}" class="btn" id="button">Ajouter un produit</a>
+    <a href="{{path('admin_new_product')}}" class="btn" id="button">{% trans %}Ajouter un produit{% endtrans %}</a>
     </div>
     {% endif %}
     <div class="container">
@@ -33,10 +33,10 @@
                         <hr></hr>
                         <p class="card-text-shop">{{product.Description}}</p>
                         <hr></hr>
-                        <p class="card-text mt-2">Prix : {{product.Price}} €</p>
+                        <p class="card-text mt-2">{% trans %}Prix{% endtrans %} : {{product.Price}} €</p>
                         <hr></hr>
-                        <p class="card-text">Stock : {{product.Stock}} restant</p>
-                        <a href="{{path('show_product', {'id': product.id } )}}" class="btn stretched-link" id="button">Page produit</a>
+                        <p class="card-text">{% trans %}Stock{% endtrans %} : {{product.Stock}} {% trans %}restant{% endtrans %}</p>
+                        <a href="{{path('show_product', {'id': product.id } )}}" class="btn stretched-link" id="button">{% trans %}Page produit{% endtrans %}</a>
                     </div>
                 </div>
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Interface Fab-Lab
+{% block title %}{% trans %}Interface FabLab{% endtrans %}
 {% endblock %}
 
     {% block stylesheets %}{% endblock %}
@@ -9,31 +9,31 @@
 <div id="all">
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Vous voulez commander {{items | length}} produits.</h1>
+			<h1 class="display-4">{% trans %}Vous voulez commander{% endtrans %} {{items | length}} {% trans %}produits{% endtrans %}.</h1>
         </div>
     </div>     
 
     <div style="text-align: center">
 
-    <h4>Est-ce que vos informations sont correctes?</h4>
+    <h4>{% trans %}Est-ce que vos informations sont correctes ?{% endtrans %}</h4>
     
     <p>{{app.user.FirstName}} {{app.user.LastName}} </p>
     <p>{{app.user.Email}}.</p>
     <p>{{app.user.Street}}.</p>
     <p>{{app.user.PostalCode}}, {{app.user.Country}}.</p>
-    <a href="{{path('security_account')}}" id="button" class="btn">Modifier mes informations</a>
+    <a href="{{path('security_account')}}" id="button" class="btn">{% trans %}Modifier mes informations{% endtrans %}</a>
     <br></br>
     <hr style="height:1px;border:none;color:#333;background-color:#333; width:60%" />
     <br></br>
 
-    <h4>Récapitulatif de votre commande</h4>
+    <h4>{% trans %}Récapitulatif de votre commande{% endtrans %}</h4>
     <div style="width:75%; margin: 0 auto">
                     <table class="table">
                             <thead>
-                                <th>Produit</th>
-                                <th>Prix</th>
-                                <th>Quantité</th>
-                                <th>Total</th>
+                                <th>{% trans %}Produits{% endtrans %}</th>
+                                <th>{% trans %}Prix{% endtrans %}</th>
+                                <th>{% trans %}Quantité{% endtrans %}</th>
+                                <th>{% trans %}Total{% endtrans %}</th>
                                 <th></th>
                             </thead>
                         <tbody>
@@ -53,7 +53,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="3" class="text-right">Total : </td>
+                                <td colspan="3" class="text-right">{% trans %}Total{% endtrans %} : </td>
                                 <td>{{total}}€</td>
                                 <td>
                                     
@@ -62,7 +62,7 @@
                         </tfoot>
                     </table>
     </div>
-    <button href="" id="button" class="btn" onclick="Popup()">Commander</button>
+    <button href="" id="button" class="btn" onclick="Popup()">{% trans %}Commander{% endtrans %}</button>
     </div>
 </div>
     <script type="text/javascript">
@@ -97,8 +97,8 @@
         <h2 id="text"></h2>
         <h3 id="price"></h2>
         <div class="confirm_buttons">
-            <a href="{{path('order_product')}}" id="button" class="btn" >Confirmer</a>
-            <button id="button" class="btn" onclick="hide_confirm()">Annuler</button>
+            <a href="{{path('order_product')}}" id="button" class="btn" >{% trans %}Confirmer{% endtrans %}</a>
+            <button id="button" class="btn" onclick="hide_confirm()">{% trans %}Annuler{% endtrans %}</button>
         </div>
     </div>
         

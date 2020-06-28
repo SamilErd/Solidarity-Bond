@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon compte
+{% block title %}{% trans %}Mon compte{% endtrans %}
 {% endblock %}
 
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Mon compte</h1>
+			<h1 class="display-4">{% trans %}Mon compte{% endtrans %}</h1>
 
 		</div>
 	</div>
@@ -18,17 +18,17 @@
 
 		<div style="min-height : 500px">
 			<div class="left-element " >
-			<button class="btn-acc float-right Toright" onclick="ShowInfos()">Mes informations ></button>
-			<button class="btn-acc float-right Toright" onclick="ShowAddress()">Mon addresse ></button>
-			<button class="btn-acc float-right Toright" onclick="ShowOrders()">Mes commandes ></button>
+			<button class="btn-acc float-right Toright" onclick="ShowInfos()">{% trans %}Mes informations{% endtrans %} ></button>
+			<button class="btn-acc float-right Toright" onclick="ShowAddress()">{% trans %}Mon adresse{% endtrans %} ></button>
+			<button class="btn-acc float-right Toright" onclick="ShowOrders()">{% trans %}Mes commandes{% endtrans %} ></button>
 			</div >
 
 			<div class="right-element" id="infos"> 
 				
-				<h4><strong>Mes informations de compte</strong></h4>
+				<h4><strong>{% trans %}Mes informations de compte{% endtrans %}</strong></h4>
 				<hr class="line">
 
-				<h4 class="acc-edit">Prenom:  </h4>
+				<h4 class="acc-edit">{% trans %}Prénom{% endtrans %}:  </h4>
 				<h4 class="acc-edit" id="FN">{{app.user.FirstName}}</h4>
 				<form id="FNI" style="display:none" action="{{path('security_account')}}" method="post">
 					<input class=" form_css_acc" value ="{{app.user.FirstName}}" type="text" name="FN" />
@@ -40,7 +40,7 @@
 				
 				<hr class="diviser">
 
-				<h4 class="acc-edit">Nom:</h4>
+				<h4 class="acc-edit">{% trans %}Nom{% endtrans %}:</h4>
 				<h4 class="acc-edit" id="LN">{{app.user.LastName}}</h4>
 				<form id="LNI" style="display:none" action="{{path('security_account')}}" method="post">
 				<input class="form_css_acc" value = "{{app.user.LastName}}" type="text"  name="LN" />
@@ -52,7 +52,7 @@
 
 				<hr class="diviser" />
 
-				<h4 class="acc-edit">Email:</h4>
+				<h4 class="acc-edit">{% trans %}Adresse Email{% endtrans %}:</h4>
 				<h4 class="acc-edit" id="E">{{app.user.email}}</h4>
 				<form id="EI" style="display:none" action="{{path('security_account')}}" method="post">
 				<input class="form_css_acc" value = "{{app.user.email}}" type="text"  name="E" />
@@ -64,7 +64,7 @@
 
 				<hr class="diviser" />
 
-				<h4 class="acc-edit">Telephone:</h4>
+				<h4 class="acc-edit">{% trans %}Numéro de téléphone{% endtrans %}:</h4>
 				<h4 class="acc-edit" id="PN">{{app.user.phoneNum}}</h4>
 				<form id="PNI" style="display:none" action="{{path('security_account')}}" method="post">
 				<input class="form_css_acc" value = "{{app.user.phoneNum}}" type="text"  name="PN" />
@@ -76,7 +76,7 @@
 
 				<hr class="diviser" />
 
-				<button class="btn btn_form_css" id="edit" onclick="ShowPass()" style="margin-bottom:20px">Modifier mon mot de passe</button>
+				<button class="btn btn_form_css" id="edit" onclick="ShowPass()" style="margin-bottom:20px">{% trans %}Modifier mon mot de passe{% endtrans %}</button>
 			</div>	
 
 			<div class="right-element" style="display:none; " id="pass">
@@ -85,8 +85,8 @@
 					<input class="form_css" placeholder = "Mot de passe actuel" type="password" name="CurrentPass" style="margin-bottom: 15px"/>
 					<input class="form_css" placeholder = "Nouveau mot de passe" type="password" name="NewPass" style="margin-bottom: 15px"/>
 					<input class="form_css" placeholder = "Confirmez votre mot de passe" type="password" name="ConfirmPass" style="margin-bottom: 15px" />
-					<button type="submit" class="btn btn-dark " id="btn" style="display:block ; width: 200px; margin-bottom: 10px">Mettre à jour</button>
-					<button class="btn btn-dark " id="btn" onclick="ShowPass()" style="display:block; width: 200px">Annuler</button>
+					<button type="submit" class="btn btn-dark " id="btn" style="display:block ; width: 200px; margin-bottom: 10px">{% trans %}Mettre à jour{% endtrans %}</button>
+					<button class="btn btn-dark " id="btn" onclick="ShowPass()" style="display:block; width: 200px">{% trans %}Annuler{% endtrans %}</button>
 					</form>
 				</div>
 			</div>
@@ -98,9 +98,9 @@
 					<thead >
 						<tr>
 						<th scope="col">#</th>
-						<th scope="col">Produits</th>
-						<th scope="col">Status</th>
-						<th scope="col">Action</th>
+						<th scope="col">{% trans %}Produits{% endtrans %}</th>
+						<th scope="col">{% trans %}Status{% endtrans %}</th>
+						<th scope="col">{% trans %}Action{% endtrans %}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -123,7 +123,7 @@
 
 						
 						<td>{{order.status}}</td>
-						<td><a href="{{path('order_detail',{'id' : order.id})}}" class="btn" id="button">Voir la commande</td>
+						<td><a href="{{path('order_detail',{'id' : order.id})}}" class="btn" id="button">{% trans %}Voir la commande{% endtrans %}</td>
 						</tr>
 					{% endfor %}
 					</tbody>
@@ -132,11 +132,11 @@
 			</div>
 
 			<div class="right-element" style="display:none" id="address"> 
-			<h4><strong>Mon adresse</strong></h4>
+			<h4><strong>{% trans %}Mon adresse{% endtrans %}</strong></h4>
 
 			<hr class="diviser" />
 
-			<h4 class="acc-edit">Rue:</h4>
+			<h4 class="acc-edit">{% trans %}Rue{% endtrans %}:</h4>
 			<h4 class="acc-edit" id="S">{{app.user.street}}</h4>
 			<form id="SI" style="display:none" action="{{path('security_account')}}" method="post">
 			<input class="form_css_acc" value = "{{app.user.street}}" type="text"  name="S" />
@@ -148,7 +148,7 @@
 
 			<hr class="diviser" />
 
-			<h4 class="acc-edit">Code Postal:</h4>
+			<h4 class="acc-edit">{% trans %}Code Postal{% endtrans %}:</h4>
 			<h4 class="acc-edit" id="CP">{{app.user.postalCode}}</h4>
 			<form id="CPI" style="display:none" action="{{path('security_account')}}" method="post">
 			<input class="form_css_acc" value = "{{app.user.postalCode}}" type="text"  name="CP" />
@@ -160,7 +160,7 @@
 
 				<hr class="diviser" />
 
-			<h4 class="acc-edit">Pays:</h4>
+			<h4 class="acc-edit">{% trans %}Pays{% endtrans %}:</h4>
 			<h4 class="acc-edit" id="C">{{app.user.country}}</h4>
 			<form id="CI" style="display:none" action="{{path('security_account')}}" method="post">
 			<input class="form_css_acc" value = "{{app.user.country}}" type="text"  name="C" />

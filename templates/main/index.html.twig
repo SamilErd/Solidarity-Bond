@@ -1,18 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page d'accueil
+{% block title %}{% trans %}Page d'accueil{% endtrans %}
 {% endblock %}
 
 {% block body %}
 <div>
 	<div class="jumbotron jumbotron-fluid jumb-top-m ">
-		<div class="container-fluid">
+		<div class="container">
 			<h1 class="display-4">Solidarity-Bond</h1>
-			<p class="lead">Bienvenue sur le site de Solidarity-Bond de Strasbourg, un projet mis en place par des étudiants du CESI Strasbourg dans le but de vendre des visières et outils pour les commerçants et particuliers !</p>
+			<p class="lead">{% trans %}Bienvenue sur le site de Solidarity-Bond de Strasbourg, un projet mis en place par des étudiants du CESI Strasbourg dans le but de vendre des visières et outils pour les commerçants et particuliers !{% endtrans %}</p>
 		</div>
 	</div>
 </div>
-	{# Alerte pour message envoyé #}
 
 <div class="container w-50 mx-auto">
 
@@ -28,14 +27,14 @@
 		</div>
 
 <div class="container mt-3">
-		<h1>Présentation du projet</h1>
+		<h1>{% trans %}Présentation du projet{% endtrans %}</h1>
 		<br><br>
 		<p>
-                        Solidarity Bond est un projet qui a pour objectif de mettre en place un dispositif pour venir en aide aux personnes ayant besoins de protection.<br>
-                        Solidarity Bond imprime des visières de protections que cela soit pour des professionnels de la santé, des entreprises, des commerces ou encore des particuliers.
-						 Il y a également un outil permettant d'ouvrir des portes ou d'autre actions nécessitant de toucher des surfaces.
+                        {% trans %}Solidarity Bond est un projet qui a pour objectif de mettre en place un dispositif pour venir en aide aux personnes ayant besoins de protection.{% endtrans %}<br>
+                        {% trans %}Solidarity Bond imprime des visières de protections que cela soit pour des professionnels de la santé, des entreprises, des commerces ou encore des particuliers.
+						 Il y a également un outil permettant d'ouvrir des portes ou d'autre actions nécessitant de toucher des surfaces.{% endtrans %}
                 <br><br>
-                        Les visières et les outils sont imprimé au sein du FabLab de notre École d'ingénieur le CESI avec l'aide de notre FabLab Manager.</p>
+                        {% trans %}Les visières et les outils sont imprimé au sein du FabLab de notre École d'ingénieur le CESI avec l'aide de notre FabLab Manager.{% endtrans %}</p>
                 <br><br>
 </div>
 	
@@ -162,14 +161,14 @@
 
 <div class=" w-50 mx-auto" style="margin-top:600px">
 
-	<h4>Recommendation du gouvernement</h4>
+	<h1>{% trans %}Recommandation du gouvernement{% endtrans %}</h1>
 	<br><br>
 	<img src="images/bienporter_son_masque.png" class="img-fluid" alt="gouvernement_image">
 	<br>
 	<blockquote class="blockquote mb-5">
-		<p>Les visières sont un moyen supplémentaire de protection face aux virus transmis par les gouttelettes. Néanmoins, elles n’ont pas pour vocation de remplacer les masques pour le grand public. Les visières sont essentiellement utilisées en milieu hospitalier, où les soignants côtoient de nombreux malades. Le gouvernement, en lien avec les producteurs nationaux, travaille à la fabrication massive de masques grand public lavables, répondant à des normes strictes afin de pouvoir équiper toute la population.
+		<p>{% trans %}Les visières sont un moyen supplémentaire de protection face aux virus transmis par les gouttelettes. Néanmoins, elles n’ont pas pour vocation de remplacer les masques pour le grand public. Les visières sont essentiellement utilisées en milieu hospitalier, où les soignants côtoient de nombreux malades. Le gouvernement, en lien avec les producteurs nationaux, travaille à la fabrication massive de masques grand public lavables, répondant à des normes strictes afin de pouvoir équiper toute la population.{% endtrans %}
 		<br><br>
-		De plus, pour rappel, le port de masque (et de visière) ne dispense pas d’une application rigoureuse des gestes barrières, de l’hygiène des mains et du respect de la distanciation sociale. </p>
+		{% trans %}De plus, pour rappel, le port de masque (et de visière) ne dispense pas d’une application rigoureuse des gestes barrières, de l’hygiène des mains et du respect de la distanciation sociale.{% endtrans %} </p>
 		<footer class="blockquote-footer text-right"><a href="https://www.gouvernement.fr/info-coronavirus/masques-grand-public"><cite title="Info covid-19 gouvernement">Info COVID-19 | Gouvernement.fr</cite></a></footer>
 	</blockquote>
 </div>

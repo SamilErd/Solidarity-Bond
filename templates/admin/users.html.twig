@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Interface Fab-Lab
+{% block title %}{% trans %}Interface FabLab{% endtrans %}
 {% endblock %}
 
     {% block stylesheets %}{% endblock %}
@@ -8,7 +8,7 @@
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Vous pouvez consulter les utilisateurs ici</h1>
+			<h1 class="display-4">{% trans %}Vous pouvez consulter les utilisateurs ici{% endtrans %}</h1>
         </div>
     </div> 
             
@@ -17,11 +17,11 @@
             <thead class="thead-dark">
                 <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Prénom</th>
-                <th scope="col">Adresse Email</th>
-                <th scope="col">Numéro de Téléphone</th>
-                <th scope="col">Adresse</th>
+                <th scope="col">{% trans %}Nom{% endtrans %}</th>
+                <th scope="col">{% trans %}Prénom{% endtrans %}</th>
+                <th scope="col">{% trans %}Adresse Email{% endtrans %}</th>
+                <th scope="col">{% trans %}Numéro de téléphone{% endtrans %}</th>
+                <th scope="col">{% trans %}Adresse{% endtrans %}</th>
                 </tr>
             </thead>
             <tbody>

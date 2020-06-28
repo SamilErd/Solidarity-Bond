@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Interface Fab-Lab
+{% block title %}{% trans %}Interface FabLab{% endtrans %}
 {% endblock %}
     {% block stylesheets %}{% endblock %}
 
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Bienvenue sur l'interface FAB-LAB</h1>
+			<h1 class="display-4">{% trans %}Bienvenue sur l'interface FabLab{% endtrans %}</h1>
 		</div>
 	</div>
 
@@ -21,7 +21,7 @@
             <a class="stretched-link" href="{{path('admin_orders')}}"></a>
             <img class="card-img-top" src="/images/cart.png" alt="Image Cart">
             <div class="card-body">
-                <h5 class="card-title">Gestion des commandes</h5>
+                <h5 class="card-title">{% trans %}Gestion des commandes{% endtrans %}</h5>
             </div>
         </div>
 
@@ -29,7 +29,7 @@
             <a class="stretched-link" href="{{path('admin_products')}}"></a>
             <img class="card-img-top" src="/images/visiere.jpg" alt="Image visieres">
             <div class="card-body">
-                <h5 class="card-title">Gestion de la production</h5>
+                <h5 class="card-title">{% trans %}Gestion de la production{% endtrans %}</h5>
             </div>
         </div>
 
@@ -37,7 +37,7 @@
             <a class="stretched-link" href="{{path('admin_users')}}"></a>
             <img class="card-img-top" src="/images/users.png" alt="Image users">
             <div class="card-body">
-                <h5 class="card-title">Gestion des utilisateurs</h5>
+                <h5 class="card-title">{% trans %}Gestion des utilisateurs{% endtrans %}</h5>
             </div>
         </div>
     </div>

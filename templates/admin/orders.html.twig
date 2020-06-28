@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Interface Fab-Lab
+{% block title %}{% trans %}Interface FabLab{% endtrans %}
 {% endblock %}
 
     {% block stylesheets %}{% endblock %}
@@ -8,7 +8,7 @@
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Vous pouvez consulter les commandes ici</h1>
+			<h1 class="display-4">{% trans %}Vous pouvez consulter les commandes ici{% endtrans %}</h1>
         </div>
     </div> 
             
@@ -17,13 +17,13 @@
             <thead class="thead-dark">
                 <tr>
                 <th scope="col">#</th>
-				<th scope="col">Produits</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Prénom</th>
-				<th scope="col">Email</th>
-                <th scope="col">Adresse</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
+				<th scope="col">{% trans %}Produits{% endtrans %}</th>
+                <th scope="col">{% trans %}Nom{% endtrans %}</th>
+                <th scope="col">{% trans %}Prénom{% endtrans %}</th>
+				<th scope="col">{% trans %}Adresse Email{% endtrans %}</th>
+                <th scope="col">{% trans %}Adresse{% endtrans %}</th>
+                <th scope="col">{% trans %}Status{% endtrans %}</th>
+                <th scope="col">{% trans %}Action{% endtrans %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,7 +41,7 @@
 				<td>{{order.Iduser.Email}}</td>
                 <td>{{order.Iduser.Street}}, {{order.Iduser.PostalCode}}, {{order.Iduser.country}}</td>
                 <td>{{order.status}}</td>
-				<td><a href="{{path('order_detail',{'id' : order.id})}}" class="btn" id="button">Voir la commande</td>
+				<td><a href="{{path('order_detail',{'id' : order.id})}}" class="btn" id="button">{% trans %}Voir la commande{% endtrans %}</td>
                 </tr>
             {% endfor %}
             </tbody>

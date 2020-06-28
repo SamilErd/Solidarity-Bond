@@ -1,87 +1,87 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}À propos du FabLab
+{% block title %}{% trans %} À propos du FabLab{% endtrans %}
 {% endblock %}
 
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Le FAB-LAB CESI</h1>
+			<h1 class="display-4">{% trans %}Le FabLab CESI{% endtrans %}</h1>
 		</div>
 	</div>
 
         <div class="w-50 mx-auto">
                 <div class="container">
                         <div class="row">
-                                <h1 class="col-12 mb-5" >À Propos</h1>
+                                <h1 class="col-12 mb-5" >{% trans %}À Propos{% endtrans %}</h1>
                                 <br><br><br>
                                 <p class="col-6">
-                                        Le FabLab du CESI Strasbourg met à disposition des entreprises, élèves, associations et particuliers un artilier de farication numérique ou "Fabrication Laboratory".
+                                        {% trans %}Le FabLab du CESI Strasbourg met à disposition des entreprises, élèves, associations et particuliers un artilier de farication numérique ou "Fabrication Laboratory".{% endtrans %}
                                 <br><br>
-                                        Cet outils permet l'acquisition de nombreuses compétences par l'exploration de nouvelles méthodes de travail et d'équipement de pointe. Ce dispositif favorise le patage des connaissances et la recherche en groupe.    
+                                        {% trans %}Cet outils permet l'acquisition de nombreuses compétences par l'exploration de nouvelles méthodes de travail et d'équipement de pointe. Ce dispositif favorise le partage des connaissances et la recherche en groupe.{% endtrans %}    
                                 
                                 </p>
-                                <div class="col-xl-6 container-fade">
+                                <div class="col-xl-6 contain-fade">
                                         <img id="photo" class="img-fluid float-right image-fade" src="/images/FabLab.jpg" alt="FabLab">
                                         <div class="overlay">FabLab</div>
                                 </div>
                 </div>
                         <div class="row">
-                                <h1 class="col-12 mb-5 mt-5">Association</h1>
+                                <h1 class="col-12 mb-5 mt-5">{% trans %}Association{% endtrans %}</h1>
                                 <br><br><br>
                                 <div class="col-6 ">
                                         <p>
-                                                Au sein de l'école l'association FabEX (Fabrication, Electronique et eXpérimentation) nous propose différents service:
+                                                {% trans %}Au sein de l'école l'association FabEX (Fabrication, Electronique et eXpérimentation) nous propose différents service:{% endtrans %}
                                                 <ul>
-                                                        <li>Un accompagnement au prototypage avec des impressions 3D et la découpe laser</li>
-                                                        <li>La conception de pièces mécaniques</li>
-                                                        <li>La modélisation 3D</li>
-                                                        <li>La création de stickers</li>
-                                                        <li>Et sans oublier les discussions</li>
+                                                        <li>{% trans %}Un accompagnement au prototypage avec des impressions 3D et la découpe laser{% endtrans %}</li>
+                                                        <li>{% trans %}La conception de pièces mécaniques{% endtrans %}</li>
+                                                        <li>{% trans %}La modélisation 3D{% endtrans %}</li>
+                                                        <li>{% trans %}La création de stickers{% endtrans %}</li>
+                                                        <li>{% trans %}Et sans oublier les discussions{% endtrans %}</li>
                                                 </ul>
                                         </p>
                                 </div>
-                                <div class="col-xl-6 container-fade">
+                                <div class="col-xl-6 contain-fade">
                                         <img id="photo" class="img-fluid float-right image-fade" src="/images/FabEX.jpg" alt="FabEX">
                                         <div class="overlay ov">CNC</div>
                                 </div>
                         </div>
                         <div class="row">
-                                <h1 class="col-12 mb-5 mt-5">Les Équipements</h1>
+                                <h1 class="col-12 mb-5 mt-5">{% trans %}Les Équipements{% endtrans %}</h1>
                                 <br><br><br>
                                 <p class="col-6">
-                                        Notre FabLab possède de nombreux postes de travail et d'équipements divers et varié.
+                                        {% trans %}Notre FabLab possède de nombreux postes de travail et d'équipements divers et varié.{% endtrans %}
                                 <br><br>
-                                        Il y a un poste de travail pour les machines à commandes numériques (l'impression 3D et découpe vinyle), un pour l'électronique et l'électricité, un pour l'informatique et le multimédia ou encore de la robotique et rélaité augmenté/modélisation.
+                                        {% trans %}Il y a un poste de travail pour les machines à commandes numériques (l'impression 3D et découpe vinyle), un pour l'électronique et l'électricité, un pour l'informatique et le multimédia ou encore de la robotique et réalité augmenté/modélisation.{% endtrans %}
                                 <br><br>
-                                        En équipements le FabLab possède trois imprimantes 3D, une découpeuse laser, une fraiseuce CNC, un plotter vinyle, du matériel de réalité virtuelle et bien évidement du matériel électronique.
+                                        {% trans %}En équipements le FabLab possède trois imprimantes 3D, une découpeuse laser, une fraiseuse CNC, un plotter vinyle, du matériel de réalité virtuelle et bien évidement du matériel électronique.{% endtrans %}
                                 </p>
                                 
-                                <div class="col-xl-6 container-fade">
+                                <div class="col-xl-6 contain-fade">
                                         <img id="photo" class="img-fluid float-right image-fade" src="/images/Imprimante.jpg" alt="Imprimente3S">
                                         <div class="overlay">Ultimaker S3</div>
                                 </div>
                         </div>
                         <div class="row">
-                                <h1 class="col-12 mb-5 mt-5">Notre FabLab Manager</h1>
+                                <h1 class="col-12 mb-5 mt-5">{% trans %}Notre FabLab Manager{% endtrans %}</h1>
                                 <br><br><br>
                                 <p class="col-6">
-                                        Notre FabLab Manager ce nomme Benoît DESTENAY.
+                                        {% trans %}Notre FabLab Manager ce nomme Benoît DESTENAY.{% endtrans %}
                                 <br><br>
-                                        Vous pouvez le contacter via l'adresse suite: <a href="mailto:bdestenay@cesi.fr">bdestenay@cesi.fr</a>
+                                        {% trans %}Vous pouvez le contacter via l'adresse suite:{% endtrans %} <a href="mailto:bdestenay@cesi.fr">bdestenay@cesi.fr</a>
                                 </p>
                                 
-                                <div class="col-xl-6 container-fade">
+                                <div class="col-xl-6 contain-fade">
                                         <img id="photo" class="img-fluid float-right image-fade" src="/images/Benoit1.jpg" alt="Benoit-FabLabManager">
                                         <div class="overlay">Destenay Benoit</div>
                                 </div>
                         </div>
 
                         <div class="row">
-                                <h1 class="col-12 mb-5 mt-5">Adresse</h1>
+                                <h1 class="col-12 mb-5 mt-5">{% trans %}Adresse{% endtrans %}</h1>
                                 <br><br><br>
                                 <p class="col-6">
-                                        Notre FabLab se situe au:
+                                        {% trans %}Notre FabLab se situe au:{% endtrans %}
                                         <br><br>
                                         Campus CESI - Parc des Tanneries
                                         <br>

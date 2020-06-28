@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscrivez-vous
+{% block title %}{% trans %}Inscrivez-vous{% endtrans %}
 {% endblock %}
 
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Inscrivez-vous</h1>
+			<h1 class="display-4">{% trans %}Inscrivez-vous{% endtrans %}</h1>
 		</div>
 	</div>
 	<div class="bdr-login w-50 mx-auto mb-5">
@@ -39,7 +39,7 @@
 						{{ form_widget(form.FirstName, {'attr':
                         {
 						'class' : 'form_css',
-                        'placeholder' : "Prénom"
+                        'placeholder' : 'Prénom'|trans
                         }
                     }) 
                 }}
@@ -48,7 +48,7 @@
 						{{ form_widget(form.LastName, {'attr':
                         {
 						'class' : 'form_css',
-                        'placeholder' : "Nom"
+                        'placeholder' : 'Nom'|trans
                         }
                     }) 
                 }}
@@ -57,7 +57,7 @@
 						{{ form_widget(form.password.first, {'attr':
                         {
 						'class' : 'form_css',
-                        'placeholder' : "Mot de passe"
+                        'placeholder' : 'Mot de passe'|trans
                         }
                     	}) 
                 	}}
@@ -66,7 +66,7 @@
 						{{ form_widget(form.password.second, {'attr':
                         {
 						'class' : 'form_css',
-                        'placeholder' : "Confirmez le mot de passe"
+                        'placeholder' : 'Confirmez le mot de passe'|trans
                         }
                     }) 
                 }}
@@ -75,7 +75,7 @@
 						{{ form_widget(form.email, {'attr':
                     {
 					'class' : 'form_css',
-                    'placeholder' : "Email"
+                    'placeholder' : 'Adresse Email'|trans
                     }
                 }) 
             }}
@@ -84,7 +84,7 @@
 						{{ form_widget(form.phoneNum, {'attr':
                             {
 							'class' : 'form_css',
-                            'placeholder' : "Téléphone | +33 x xx xx xx xx"
+                            'placeholder' : 'Téléphone | +33 x xx xx xx xx'|trans
                             }
                         }) 
                     }}
@@ -96,7 +96,7 @@
 							{{ form_widget(form.street, {'attr':
 						{
 						'class' : 'form_css',
-						'placeholder' : "Adresse"
+						'placeholder' : 'Adresse'|trans
 						}
 					}) 
 				}}
@@ -105,7 +105,7 @@
 							{{ form_widget(form.postalcode, {'attr':
 						{
 						'class' : 'form_css',
-						'placeholder' : "Code Postal"
+						'placeholder' : 'Code Postal'|trans
 						}
 					}) 
 				}}
@@ -114,7 +114,7 @@
 							{{ form_widget(form.country, {'attr':
 						{
 						'class' : 'form_css',
-						'placeholder' : "Pays"
+						'placeholder' :'Pays'|trans
 						}
 					}) 
 				}}
@@ -123,15 +123,15 @@
 				</div>
 
 				<button type="submit" class="btn btn_form_css btn-lg mt-4">
-					S'inscrire
+					{% trans %}S'inscrire{% endtrans %}
 				</button>
 			</div>
 
 			<div class="mt-4">
-				<span class="meta">Vos comptes avez déja un compte ?
+				<span class="meta">{% trans %}Vos comptes avez déja un compte ?{% endtrans %}
 				</span>
 				<br/>
-				<a href="{{path('security_login')}}"  id="text">Connectez-vous</a>
+				<a href="{{path('security_login')}}"  id="text">{% trans %}Connectez-vous{% endtrans %}</a>
 			</div>
 			
 			{{ form_end(form) }}

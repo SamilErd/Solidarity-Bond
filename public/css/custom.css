@@ -547,7 +547,7 @@ hr.diviser {
 * CSS for about fablab
 */
 
-.container-fade {
+.contain-fade {
   position: relative;
 }
 
@@ -575,7 +575,7 @@ hr.diviser {
   margin-bottom: 10px;
 }
 
-.container-fade:hover .overlay {
+.contain-fade:hover .overlay {
   opacity: 1;
 } 
 
