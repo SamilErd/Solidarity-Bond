@@ -39,8 +39,8 @@ class ContactType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                     new Regex([
-                        'pattern' => '/^(0|\+33 )[1-9]([-. ]?[0-9]{2} ){3}([-. ]?[0-9]{2})$/i',
-                        'htmlPattern' => '^(0|\+33 )[1-9]([-. ]?[0-9]{2} ){3}([-. ]?[0-9]{2})$',
+                        'pattern' => '/^(0|\+33)[1-9]([-.]?[0-9]{2}){3}([-.]?[0-9]{2})$/i',
+                        'htmlPattern' => '^(0|\+33)[1-9]([-.]?[0-9]{2}){3}([-.]?[0-9]{2})$',
                         'message' => "Votre numéro de téléphone n'est pas valide."
                   ]),
             ]])

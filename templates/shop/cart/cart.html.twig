@@ -7,7 +7,7 @@
 
     <div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Votre panier</h1>
+			<h1 class="display-4">{% trans %}Votre panier{% endtrans %}</h1>
 		</div>
 	</div>
 
@@ -19,9 +19,9 @@
         <table class="col table table-cart">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">Produit</th>
-                <th scope="col">Prix</th>
-                <th scope="col">Quantité</th>
+                <th scope="col">{% trans %}Produits{% endtrans %}</th>
+                <th scope="col">{% trans %}Prix{% endtrans %}</th>
+                <th scope="col">{% trans %}Quantité{% endtrans %}</th>
                 <th></th>
             </tr>
             </thead>
@@ -47,10 +47,10 @@
             <div class="card card-cart">
             
                 <div class="card-block">
-                    <p>Montant total de vos articles</p>
+                    <p>{% trans %}Montant total de vos articles{% endtrans %}</p>
                     <p class="size-font">{{ total }} €</p>
                     <hr class="diviser">
-                    <a class="btn" href="{{path('show_order')}}" id="button">Passer Commande</a>
+                    <a class="btn" href="{{path('show_order')}}" id="button">{% trans %}Passer Commande{% endtrans %}</a>
                     
                 </div>
             
@@ -61,7 +61,7 @@
 
     {% else %}
 
-    <h4 class="text-center">Votre panier est vide !</h4>
+    <h4 class="text-center">{% trans %}Votre panier est vide{% endtrans %} !</h4>
 
     {% endif %}
 </div>

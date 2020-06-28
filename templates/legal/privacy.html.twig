@@ -1,180 +1,180 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Politique de confidentialité
+{% block title %}{% trans %}Politique de confidentialité{% endtrans %}
 {% endblock %}
 
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Politique de Confidentialité</h1>
+			<h1 class="display-4">{% trans %}Politique de Confidentialité{% endtrans %}</h1>
 		</div>
 	</div>
 
 	<div class="w-50 mx-auto">
 		<br>
-		<h3>ARTICLE 1: Préambule</h3>
+		<h3>{% trans %}ARTICLE 1: Préambule{% endtrans %}</h3>
 		<br>
 		<p>
-		Cette politique de confidentialité s'applique au site: Solidarity-Bond.
+		{% trans %}Cette politique de confidentialité s'applique au site: Solidarity-Bond.{% endtrans %}
 		<br>
-		La présente politique de confidentialité a pour but d'exposer aux utilisateurs du site:
+		{% trans %}La présente politique de confidentialité a pour but d'exposer aux utilisateurs du site:{% endtrans %}
 		<ul>
-			<li class="mb-2">La manière dont sont collectées et traitées leurs données à caractère personnel. Doivent être considérées comme données personnelles toutes les données étant susceptibles d'identifier un utilisateur. Il s'agit notamment du prénom et du nom, de l'âge, de l'adresse postale, l'adresse mail, la localisation de l'utilisateur ou encore son adresse IP.</li>
-			<li class="mb-2">Quels sont les droits des utilisateurs concernant ces données.</li>
-			<li class="mb-2">Qui est responsable du traitement des données à caractère personnel collectées et traitées.</li>
-			<li class="mb-2">A qui ces données sont transmises</li>
-			<li class="mb-2">Eventuellement, la politique du site en matière de fichiers "cookies".</li>
+			<li class="mb-2">{% trans %}La manière dont sont collectées et traitées leurs données à caractère personnel. Doivent être considérées comme données personnelles toutes les données étant susceptibles d'identifier un utilisateur. Il s'agit notamment du prénom et du nom, de l'âge, de l'adresse postale, l'adresse mail, la localisation de l'utilisateur ou encore son adresse IP.{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Quels sont les droits des utilisateurs concernant ces données.{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Qui est responsable du traitement des données à caractère personnel collectées et traitées.{% endtrans %}</li>
+			<li class="mb-2">{% trans %}A qui ces données sont transmises{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Eventuellement, la politique du site en matière de fichiers "cookies".{% endtrans %}</li>
 		</ul>
 		<br>
-		Cette politique de confidentialité complète les mentions légales et les Conditions Générales d'Utilisation que les utilisateurs peuvent consulter à l'adresse ci-après: https://solidarity-bond.fr
+		{% trans %}Cette politique de confidentialité complète les mentions légales et les Conditions Générales d'Utilisation que les utilisateurs peuvent consulter à l'adresse ci-après:{% endtrans %} https://solidarity-bond.fr
 		</p>
 		<br>
 
-		<h3>ARTICLE 2: Principe généraux en matière de collecte et de traitement de données</h3>
+		<h3>{% trans %}ARTICLE 2: Principe généraux en matière de collecte et de traitement de données{% endtrans %}</h3>
 		<br>
 		<p>
-		Conformément aux dispositions de l'article 5 du Règlement européen 2016/679, la collecte et le traitement des données des utilisateurs du site respectent les principes suivants:
+		{% trans %}Conformément aux dispositions de l'article 5 du Règlement européen 2016/679, la collecte et le traitement des données des utilisateurs du site respectent les principes suivants:{% endtrans %}
 		<ul>
-			<li class="mb-2">Licéité, loyauté et transparence: les données ne peuvent être collectées et traitées qu'avec le consentement de l'utilisateur propriétaire des données. A chaque fois que des données à caractère personnel seront collectées, il sera indiqué à l'utilisateur que ses données sont collectées, et pour quelles raisons ses données sont collectées.</li>
-			<li class="mb-2">Finalités limitées: la collecte et le traitement des données sont exécutés pour répondre à un ou plusieurs objectifs déterminés dans les présentes conditions générales d'utilisation.</li>
-			<li class="mb-2">Minimisation de la collecte et du traitement des données: seules les données nécessaires à la bonne exécution des objectifs poursuivis par le site sont collectées.</li>
-			<li class="mb-2">Conservation des données réduites dans le temps: les données sont conservées pour une durée limitée, dont l'utilisateur est informé. Lorsque cette information ne peut pas être communiquée, l'utilisateur est informé des critères utilisés pour déterminer la durée de conservation.</li>
-			<li class="mb-2">Intégrité et confidentialité des données collectées et traitées: le responsable du traitement des données s'engage à garantir l'intégrité et la confidentialité des données collectées.<br><br></li>
+			<li class="mb-2">{% trans %}Licéité, loyauté et transparence: les données ne peuvent être collectées et traitées qu'avec le consentement de l'utilisateur propriétaire des données. A chaque fois que des données à caractère personnel seront collectées, il sera indiqué à l'utilisateur que ses données sont collectées, et pour quelles raisons ses données sont collectées.{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Finalités limitées: la collecte et le traitement des données sont exécutés pour répondre à un ou plusieurs objectifs déterminés dans les présentes conditions générales d'utilisation.{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Minimisation de la collecte et du traitement des données: seules les données nécessaires à la bonne exécution des objectifs poursuivis par le site sont collectées.{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Conservation des données réduites dans le temps: les données sont conservées pour une durée limitée, dont l'utilisateur est informé. Lorsque cette information ne peut pas être communiquée, l'utilisateur est informé des critères utilisés pour déterminer la durée de conservation.{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Intégrité et confidentialité des données collectées et traitées: le responsable du traitement des données s'engage à garantir l'intégrité et la confidentialité des données collectées.{% endtrans %}<br><br></li>
 		</ul>
-		Afin d'être licites, et ce conformément aux exigences de l'article 6 du règlement européen 2016/679, la collecte et le traitement des données à caractère personnel ne pourront intervenir que s'ils respectent au moins l'une des conditions ci-après énumérées:
+		{% trans %}Afin d'être licites, et ce conformément aux exigences de l'article 6 du règlement européen 2016/679, la collecte et le traitement des données à caractère personnel ne pourront intervenir que s'ils respectent au moins l'une des conditions ci-après énumérées:{% endtrans %}
 		<ul>
-			<li class="mb-2">L'utilisateur a expressément consenti au traitement.</li>
-			<li class="mb-2">Le traitement est nécessaire à la bonne exécution d'un contrat.</li>
-			<li class="mb-2">Le traitement répond à une obligation légale.</li>
-			<li class="mb-2">Le traitement s'explique par une nécessité liée à la sauvegarde des intérêts vitaux de la personne concernée ou d'une autre personne physique.</li>
-			<li class="mb-2">Le traitement peut s'expliquer par une nécessité liée à l'exécution d'une mission d'intérêt public ou qui relève de l'exercice de l'autorité publique.</li>
-			<li class="mb-2">Le traitement et la collecte des données à caractère personnel sont nécessaires aux fins des intérêts légitimes et privés poursuivis par le responsable du traitement ou par un tiers.</li>
+			<li class="mb-2">{% trans %}L'utilisateur a expressément consenti au traitement.{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Le traitement est nécessaire à la bonne exécution d'un contrat.{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Le traitement répond à une obligation légale.{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Le traitement s'explique par une nécessité liée à la sauvegarde des intérêts vitaux de la personne concernée ou d'une autre personne physique.{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Le traitement peut s'expliquer par une nécessité liée à l'exécution d'une mission d'intérêt public ou qui relève de l'exercice de l'autorité publique.{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Le traitement et la collecte des données à caractère personnel sont nécessaires aux fins des intérêts légitimes et privés poursuivis par le responsable du traitement ou par un tiers.{% endtrans %}</li>
 		</ul></p>
 		<br>
 
-		<h3>ARTICLE 3: Données à caractère personnel collectés et traitées dans le cadre de la navigation sur le site</h3>
+		<h3>{% trans %}ARTICLE 3: Données à caractère personnel collectés et traitées dans le cadre de la navigation sur le site{% endtrans %}</h3>
 		<p>
 		<br>
-		<strong>A. </strong>DONNÉES COLLECTÉES ET TRAITÉES ET MODE DE COLLECTE
+		<strong>A. </strong>{% trans %}DONNÉES COLLECTÉES ET TRAITÉES ET MODE DE COLLECTE{% endtrans %}
 		<br>
-		Les données à caractère personnel collectées sur le site Solidarity-Bond sont les suivantes:
+		{% trans %}Les données à caractère personnel collectées sur le site Solidarity-Bond sont les suivantes:{% endtrans %}
 		<ul>
-			<li class="mb-2">Nom</li>
-			<li class="mb-2">Prénom</li>
-			<li class="mb-2">Adresse</li>
-			<li class="mb-2">Adresse Email</li>
-			<li class="mb-2">Numéro de téléphone</li>
+			<li class="mb-2">{% trans %}Nom{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Prénom{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Adresse{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Adresse Email{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Numéro de téléphone{% endtrans %}</li>
 		</ul>
-		Ces données sont collectées lorsque l'utilisateur effectue l'une des opérations suivantes sur le site:
+		{% trans %}Ces données sont collectées lorsque l'utilisateur effectue l'une des opérations suivantes sur le site:{% endtrans %}
 		<ul>
-			<li class="mb-2">Lorsque l'utilisateur s'inscrit</li>
-			<li class="mb-2">Lorsque l’utilisateur achète un produit</li>
+			<li class="mb-2">{% trans %}Lorsque l'utilisateur s'inscrit{% endtrans %}</li>
+			<li class="mb-2">{% trans %}Lorsque l’utilisateur achète un produit{% endtrans %}</li>
 		</ul>
-		Par ailleurs, lors d'un paiement sur le site, il sera conservé dans les systèmes informatiques de l'éditeur du site une preuve de la transaction comprenant le bon de commande et la facture. 
+		{% trans %}Par ailleurs, lors d'un paiement sur le site, il sera conservé dans les systèmes informatiques de l'éditeur du site une preuve de la transaction comprenant le bon de commande et la facture. 
 		Le responsable du traitement conservera dans ses systèmes informatiques du site et dans des conditions raisonnables de sécurité l'ensemble des données collectées pour une durée de: La durée du projet soit 2 mois maximum.
 		La collecte et le traitement des données répondent aux finalités suivantes:
-		Les données tels que le numéro de téléphone ou adresse email permettent de vous contacter. Les données tels que l'adresse postal ainsi que le nom et prénom pour vous envoyez le produit si celui-ci est envoyé.
+		Les données tels que le numéro de téléphone ou adresse email permettent de vous contacter. Les données tels que l'adresse postal ainsi que le nom et prénom pour vous envoyez le produit si celui-ci est envoyé.{% endtrans %}
 		<br><br>
 		
-		<strong>B.</strong> TRANSMISSION DES DONNÉES A DES TIERS
+		<strong>B.</strong> {% trans %}TRANSMISSION DES DONNÉES A DES TIERS{% endtrans %}
 		<br>
-		Les données à caractère personnel collectées par le site ne sont transmises à aucun tiers, et ne sont traitées que par l'éditeur du site.
+		{% trans %}Les données à caractère personnel collectées par le site ne sont transmises à aucun tiers, et ne sont traitées que par l'éditeur du site.{% endtrans %}
 		<br><br>
 
-		<strong>C.</strong> HÉBERGEMENT DES DONNÉES
+		<strong>C.</strong> {% trans %}HÉBERGEMENT DES DONNÉES{% endtrans %}
 		<br>
-		Le site Solidarity-Bond est hébergé par: Infomaniak Network SA, dont le siège est situé à l'adresse ci-après: Rue Eugène-Marziano 25, 1227 Genève - Suisse
+		{% trans %}Le site Solidarity-Bond est hébergé par: Infomaniak Network SA, dont le siège est situé à l'adresse ci-après:{% endtrans %} Rue Eugène-Marziano 25, 1227 Genève - Suisse
 		<br>
-		L'hébergeur peut être contacté au numéro de téléphone suivant: +41 (0)22 820 35 44
+		{% trans %}L'hébergeur peut être contacté au numéro de téléphone suivant:{% endtrans %} +41 (0)22 820 35 44
 		<br>
-		Les données collectées et traitées par le site sont transférées vers le(s) pays suivant(s): Suisse.
+		{% trans %}Les données collectées et traitées par le site sont transférées vers le(s) pays suivant(s):{% endtrans %} Suisse.
 		</p>
 		<br>
 		
-		<h3>ARTICLE 4: Responsable du traitement des données</h3>
+		<h3>{% trans %}ARTICLE 4: Responsable du traitement des données{% endtrans %}</h3>
 		<p>
 		<br>
-		<strong>A. </strong>LE RESPONSABLE DU TRAITEMENT DES DONNÉES
+		<strong>A. </strong>{% trans %}LE RESPONSABLE DU TRAITEMENT DES DONNÉES{% endtrans %}
 		<br>
-		Le responsable du traitement des données à caractère personnel est: 
+		{% trans %}Le responsable du traitement des données à caractère personnel est:{% endtrans %} 
 		<ul>
 			<li>Samil ERDOGAN</li>
 			<li>Alexis VARELA</li>
 			<li>Victor BERNARD</li>
 		</ul>
-		Il peut être contacté de la manière suivante:
-		Via les adresses email suivantes:
+		{% trans %}Il peut être contacté de la manière suivante:
+		Via les adresses email suivantes:{% endtrans %}
 		<ul>
 			<li class="mb-2">samil.erdogan@viacesi.fr</li>
 			<li class="mb-2">alexis.varela@viacesi.fr</li>
 			<li class="mb-2">victor.bernard@viacesi.fr</li>
 		</ul>
 
-		Le responsable du traitement des données est chargé de déterminer les finalités et les moyens mis au service du traitement des données à caractère personnel.
+		{% trans %}Le responsable du traitement des données est chargé de déterminer les finalités et les moyens mis au service du traitement des données à caractère personnel.{% endtrans %}
 		<br><br>
 		
-		<strong>B. </strong>OBLIGATIONS DU RESPONSABLE DU TRAITEMENT DES DONNÉES
+		<strong>B. </strong>{% trans %}OBLIGATIONS DU RESPONSABLE DU TRAITEMENT DES DONNÉES{% endtrans %}
 		<br>
-		Le responsable du traitement s'engage à protéger les données à caractère personnel collectées, à ne pas les transmettre à des tiers sans que l'utilisateur n'en ait été informé et à respecter les finalités pour lesquelles ces données ont été collectées.
+		{% trans %}Le responsable du traitement s'engage à protéger les données à caractère personnel collectées, à ne pas les transmettre à des tiers sans que l'utilisateur n'en ait été informé et à respecter les finalités pour lesquelles ces données ont été collectées.
 		Le site dispose d'un certificat SSL afin de garantir que les informations et le transfert des données transitant par le site sont sécurisés.
 		Un certificat SSL ("Secure Socket Layer" Certificate) a pour but de sécuriser les données échangées entre l'utilisateur et le site. 
 		De plus, le responsable du traitement des données s'engage à notifier l'utilisateur en cas de rectification ou de suppression des données, à moins que cela n'entraîne pour lui des formalités, coûts et démarches disproportionnés.
-		Dans le cas où l'intégrité, la confidentialité ou la sécurité des données à caractère personnel de l'utilisateur est compromise, le responsable du traitement s'engage à informer l'utilisateur par tout moyen.
+		Dans le cas où l'intégrité, la confidentialité ou la sécurité des données à caractère personnel de l'utilisateur est compromise, le responsable du traitement s'engage à informer l'utilisateur par tout moyen.{% endtrans %}
 		</p>
 		<br>
 		
-		<h3>ARTICLE 5: Droits de l'utilisateur </h3>
+		<h3>{% trans %}ARTICLE 5: Droits de l'utilisateur{% endtrans %} </h3>
 		<p>
 		<br>
-		Conformément à la réglementation concernant le traitement des données à caractère personnel, l'utilisateur possède les droits ci-après énumérés.
+		{% trans %}Conformément à la réglementation concernant le traitement des données à caractère personnel, l'utilisateur possède les droits ci-après énumérés.
 		Afin que le responsable du traitement des données fasse droit à sa demande, l'utilisateur est tenu de lui communiquer: ses prénom et nom ainsi que son adresse e-mail, et si cela est pertinent, son numéro de compte ou d'espace personnel ou d'abonné.
-		Le responsable du traitement des données est tenu de répondre à l'utilisateur dans un délai de 30 (trente) jours maximum.
+		Le responsable du traitement des données est tenu de répondre à l'utilisateur dans un délai de 30 (trente) jours maximum.{% endtrans %}
 		<br><br>
-		<strong>A.</strong> PRÉSENTATION DES DROITS DE L'UTILISATEUR EN MATIÈRE DE COLLECTE ET TRAITEMENT DE DONNÉES
+		<strong>A.</strong> {% trans %}PRÉSENTATION DES DROITS DE L'UTILISATEUR EN MATIÈRE DE COLLECTE ET TRAITEMENT DE DONNÉES{% endtrans %}
 		<br>
-		<em>a. Droit d'accès, de rectification et droit à l'effacement</em><br>
-		L'utilisateur peut prendre connaissance, mettre à jour, modifier ou demander la suppression des données le concernant, en respectant la procédure ci-après énoncée:
+		<em>a. {% trans %}Droit d'accès, de rectification et droit à l'effacement{% endtrans %}</em><br>
+		{% trans %}L'utilisateur peut prendre connaissance, mettre à jour, modifier ou demander la suppression des données le concernant, en respectant la procédure ci-après énoncée:
 		L'utilisateur peut modifier ses informations directement dans l'interface conçu pour cette effet dans l'espace "Profil" ou nous envoyer un mail à l'adresse: contact@solidarity-bond.fr
 		S'il en possède un, l'utilisateur a le droit de demander la suppression de son espace personnel en suivant la procédure suivante:
-		L'utilisateur doit nous envoyer un mail décrivant ca demande de suppression et ces données seront immédiatement supprimé.
+		L'utilisateur doit nous envoyer un mail décrivant ca demande de suppression et ces données seront immédiatement supprimé.{% endtrans %}
 		<br><br>
-		<em>b. Droit à la portabilité des données</em><br>
-		L'utilisateur a le droit de demander la portabilité de ses données personnelles, détenues par le site, vers un autre site, en se conformant à la procédure ci-après:
-		L'utilisateur doit nous envoyer un mail décrivant ca demande de portabilité et celle ci sera traité en conséquence.
+		<em>b. {% trans %}Droit à la portabilité des données{% endtrans %}</em><br>
+		{% trans %}L'utilisateur a le droit de demander la portabilité de ses données personnelles, détenues par le site, vers un autre site, en se conformant à la procédure ci-après:
+		L'utilisateur doit nous envoyer un mail décrivant ca demande de portabilité et celle ci sera traité en conséquence.{% endtrans %}
 		<br><br>
-		<em>c. Droit à la limitation et à l'opposition du traitement des données</em><br>
-		L'utilisateur a le droit de demander la limitation ou de s'opposer au traitement de ses données par le site, sans que le site ne puisse refuser, sauf à démontrer l'existence de motifs légitimes et impérieux, pouvant prévaloir sur les intérêts et les droits et libertés de l'utilisateur.
+		<em>c. {% trans %}Droit à la limitation et à l'opposition du traitement des données{% endtrans %}</em><br>
+		{% trans %}L'utilisateur a le droit de demander la limitation ou de s'opposer au traitement de ses données par le site, sans que le site ne puisse refuser, sauf à démontrer l'existence de motifs légitimes et impérieux, pouvant prévaloir sur les intérêts et les droits et libertés de l'utilisateur.
 		Afin de demander la limitation du traitement de ses données ou de formuler une opposition au traitement de ses données, l'utilisateur doit suivre la procédure suivante:
-		L'utilisateur doit nous envoyer un mail décrivant ca demande de limitation et celle ci sera traité en conséquence.
+		L'utilisateur doit nous envoyer un mail décrivant ca demande de limitation et celle ci sera traité en conséquence.{% endtrans %}
 		<br><br>
-		<em>d. Droit de ne pas faire l'objet d'une décision fondée exclusivement sur un procédé automatisé</em><br>
-		Conformément aux dispositions du règlement 2016/679, l'utilisateur a le droit de ne pas faire l'objet d'une décision fondée exclusivement sur un procédé automatisé si la décision produit des effets juridiques le concernant, ou l'affecte de manière significative de façon similaire.
+		<em>d. {% trans %}Droit de ne pas faire l'objet d'une décision fondée exclusivement sur un procédé automatisé{% endtrans %}</em><br>
+		{% trans %}Conformément aux dispositions du règlement 2016/679, l'utilisateur a le droit de ne pas faire l'objet d'une décision fondée exclusivement sur un procédé automatisé si la décision produit des effets juridiques le concernant, ou l'affecte de manière significative de façon similaire.{% endtrans %}
 		<br><br>
-		<em>e. Droit de déterminer le sort des données après la mort</em><br>
-		Il est rappelé à l'utilisateur qu'il peut organiser quel doit être le devenir de ses données collectées et traitées s'il décède, conformément à la loi n°2016-1321 du 7 octobre 2016.
+		<em>e. {% trans %}Droit de déterminer le sort des données après la mort{% endtrans %}</em><br>
+		{% trans %}Il est rappelé à l'utilisateur qu'il peut organiser quel doit être le devenir de ses données collectées et traitées s'il décède, conformément à la loi n°2016-1321 du 7 octobre 2016.{% endtrans %}
 		<br><br>
-		<em>f. Droit de saisir l'autorité de contrôle compétente</em><br>
-		Dans le cas où le responsable du traitement des données décide de ne pas répondre à la demande de l'utilisateur, et que l'utilisateur souhaite contester cette décision, ou, s'il pense qu'il est porté atteinte à l'un des droits énumérés ci-dessus, il est en droit de saisir la CNIL (Commission Nationale de l'Informatique et des Libertés, https://www.cnil.fr) ou tout juge compétent. <br><br>
-		<strong>B. </strong>DONNÉES PERSONNELLES DES PERSONNES MINEURES
+		<em>f. {% trans %}Droit de saisir l'autorité de contrôle compétente{% endtrans %}</em><br>
+		{% trans %}Dans le cas où le responsable du traitement des données décide de ne pas répondre à la demande de l'utilisateur, et que l'utilisateur souhaite contester cette décision, ou, s'il pense qu'il est porté atteinte à l'un des droits énumérés ci-dessus, il est en droit de saisir la CNIL (Commission Nationale de l'Informatique et des Libertés, https://www.cnil.fr) ou tout juge compétent.{% endtrans %} <br><br>
+		<strong>B. </strong>{% trans %}DONNÉES PERSONNELLES DES PERSONNES MINEURES{% endtrans %}
 		<br>
-		Conformément aux dispositions de l'article 8 du règlement européen 2016/679 et à la loi Informatique et Libertés, seuls les mineurs âgés de 15 ans ou plus peuvent consentir au traitement de leurs données personnelles.
+		{% trans %}Conformément aux dispositions de l'article 8 du règlement européen 2016/679 et à la loi Informatique et Libertés, seuls les mineurs âgés de 15 ans ou plus peuvent consentir au traitement de leurs données personnelles.
 		Si l'utilisateur est un mineur de moins de 15 ans, l'accord d'un représentant légal sera requis afin que des données à caractère personnel puissent être collectées et traitées.
-		L'éditeur du site se réserve le droit de vérifier par tout moyen que l'utilisateur est âgé de plus de 15 ans, ou qu'il aura obtenu l'accord d'un représentant légal avant de naviguer sur le site.
+		L'éditeur du site se réserve le droit de vérifier par tout moyen que l'utilisateur est âgé de plus de 15 ans, ou qu'il aura obtenu l'accord d'un représentant légal avant de naviguer sur le site.{% endtrans %}
 		</p>
 		<br>
 
-		<h3>ARTICLE 6: Utilisation des fichiers "Cookies"</h3>
+		<h3>{% trans %}ARTICLE 6: Utilisation des fichiers "Cookies"{% endtrans %}</h3>
 		<br>
 		<p>
-		Le site a éventuellement recours aux techniques de "cookies".
+		{% trans %}Le site a éventuellement recours aux techniques de "cookies".
 		Un "cookie" est un fichier de petite taille (moins de 4 ko), stocké par le site sur le disque dur de l'utilisateur, contenant des informations relatives aux habitudes de navigation de l'utilisateur.
 		Ces fichiers lui permettent de traiter des statistiques et des informations sur le trafic, de faciliter la navigation et d'améliorer le service pour le confort de l'utilisateur.
 		Pour l'utilisation de fichiers "cookies" impliquant la sauvegarde et l'analyse de données à caractère personnel, le consentement de l'utilisateur est nécessairement demandé.
-		Ce consentement de l'utilisateur est considéré comme valide pour une durée de 13 (treize) mois maximum. A l'issue de cette période, le site demandera à nouveau l'autorisation de l'utilisateur pour enregistrer des fichiers "cookies" sur son disque dur.
+		Ce consentement de l'utilisateur est considéré comme valide pour une durée de 13 (treize) mois maximum. A l'issue de cette période, le site demandera à nouveau l'autorisation de l'utilisateur pour enregistrer des fichiers "cookies" sur son disque dur.{% endtrans %}
 		<br><br>
-		<em>a. Opposition de l'utilisateur à l'utilisation de fichiers "cookies" par le site</em>
-		Il est porté à la connaissance de l'utilisateur qu'il peut s'opposer à l'enregistrement de ces fichiers "cookies" en configurant son logiciel de navigation.
-		Pour information, l'utilisateur peut trouver aux adresses suivantes les démarches à suivre afin de configurer son logiciel de navigation pour s'opposer à l'enregistrement des fichiers "cookies":
+		<em>a. {% trans %}Opposition de l'utilisateur à l'utilisation de fichiers "cookies" par le site{% endtrans %}</em>
+		{% trans %}Il est porté à la connaissance de l'utilisateur qu'il peut s'opposer à l'enregistrement de ces fichiers "cookies" en configurant son logiciel de navigation.
+		Pour information, l'utilisateur peut trouver aux adresses suivantes les démarches à suivre afin de configurer son logiciel de navigation pour s'opposer à l'enregistrement des fichiers "cookies":{% endtrans %}
 		<ul>
 			<li class="mb-2"><strong>Chrome</strong>: https://support.google.com/accounts/answer/61416?hl=fr</li>
 			<li class="mb-2"><strong>Firefox</strong>: https://support.mozilla.org/fr/kb/enable-and-disable-cookies-website-preferences</li>
@@ -183,19 +183,19 @@
 			<li class="mb-2"><strong>Opera</strong>: http://www.opera.com/help/tutorials/security/cookies/</li>
 		</ul>
 
-		Dans le cas où l'utilisateur décide de désactiver les fichiers "cookies", il pourra poursuivre sa navigation sur le site. Toutefois, tout dysfonctionnement du site provoqué par cette manipulation ne pourrait être considéré comme étant du fait de l'éditeur du site.
+		{% trans %}Dans le cas où l'utilisateur décide de désactiver les fichiers "cookies", il pourra poursuivre sa navigation sur le site. Toutefois, tout dysfonctionnement du site provoqué par cette manipulation ne pourrait être considéré comme étant du fait de l'éditeur du site.{% endtrans %}
 		</p>
 		<br>
 		
-		<h3>ARTICLE 7: Conditions de modification de la politique de confidentialité</h3>
+		<h3>{% trans %}ARTICLE 7: Conditions de modification de la politique de confidentialité{% endtrans %}</h3>
 		<br>
 		<p>
-		La présente politique de confidentialité peut être consultée à tout moment à l'adresse ci-après indiquée:
+		{% trans %}La présente politique de confidentialité peut être consultée à tout moment à l'adresse ci-après indiquée:{% endtrans %}
 		<br>
 		https://solidarity-bond.fr/legal
-		L'éditeur du site se réserve le droit de la modifier afin de garantir sa conformité avec le droit en vigueur.
+		{% trans %}L'éditeur du site se réserve le droit de la modifier afin de garantir sa conformité avec le droit en vigueur.
 		Par conséquent, l'utilisateur est invité à venir consulter régulièrement cette politique de confidentialité afin de se tenir informé des derniers changements qui lui seront apportés.
-		Il est porté à la connaissance de l'utilisateur que la dernière mise à jour de la présente politique de confidentialité est intervenue le: 25/06/2020.
+		Il est porté à la connaissance de l'utilisateur que la dernière mise à jour de la présente politique de confidentialité est intervenue le: 25/06/2020.{% endtrans %}
 		<br><br><br>
 		</p>
 

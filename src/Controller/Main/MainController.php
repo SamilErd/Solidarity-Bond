@@ -46,4 +46,15 @@ class MainController extends AbstractController
             'num' => $num
         ]);
     }
+
+    /**
+     * @Route("/change-locale/{locale}", name="change_locale")
+     */
+    public function changeLocale($locale, Request $request) {
+        //We store the requested language in the session
+        $request->getSession()->set('_locale', $locale);
+
+        //We return to the previous page
+        return $this->redirect($request->headers->get('referer'));
+    }
 }

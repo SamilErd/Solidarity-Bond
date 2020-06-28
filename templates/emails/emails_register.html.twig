@@ -116,32 +116,32 @@
                   </tr>
                   <tr>
                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <div style="font-family:helvetica;font-size:20px;line-height:1;text-align:left;color:#F45E43;">Vous avez un nouveau message</div>
+                      <div style="font-family:helvetica;font-size:20px;line-height:1;text-align:left;color:#F45E43;">{% trans %}Vous avez un nouveau message{% endtrans %}</div>
                     </td>
                   </tr>
                   <tr>
                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;color:#cc6600;">Nom: {{user.LastName}}</div>
+                      <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;color:#cc6600;">{% trans %}Nom{% endtrans %}: {{user.LastName}}</div>
                     </td>
                   </tr>
                   <tr>
                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;color:#cc6600;">Prénom: {{user.FirstName}}</div>
+                      <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;color:#cc6600;">{% trans %}Prénom{% endtrans %}: {{user.FirstName}}</div>
                     </td>
                   </tr>
                   <tr>
                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;color:#cc6600;">Email: {{user.Email}}</div>
+                      <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;color:#cc6600;">{% trans %}Adresse Email{% endtrans %}: {{user.Email}}</div>
                     </td>
                   </tr>
                   <tr>
                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;color:#cc6600;">Phone: {{user.phoneNum}}</div>
+                      <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;color:#cc6600;">{% trans %}Numéro de téléphone{% endtrans %}: {{user.phoneNum}}</div>
                     </td>
                   </tr>
                   <tr>
                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;color:#cc6600;">Adresse: {{user.Street | nl2br}}, {{user.postalCode | nl2br}}, {{user.country | nl2br}}</div>
+                      <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;color:#cc6600;">{% trans %}Adresse{% endtrans %}: {{user.Street | nl2br}}, {{user.postalCode | nl2br}}, {{user.country | nl2br}}</div>
                     </td>
                   </tr>
                   

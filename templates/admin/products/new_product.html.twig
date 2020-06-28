@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Interface Fab-Lab
+{% block title %}{% trans %}Interface FabLab{% endtrans %}
 {% endblock %}
 
     {% block stylesheets %}{% endblock %}
@@ -9,7 +9,7 @@
 
 <div class="jumbotron jumbotron-fluid">
 	<div class="container">
-				<h1 class="display-4">Ajouter un produit</h1>
+				<h1 class="display-4">{% trans %}Ajouter un produit{% endtrans %}</h1>
 			</div>
 </div>
 
@@ -23,7 +23,7 @@
 							{{ form_widget(formnp.ProductName, {'attr':
 							{
 							'class' : 'form_css_contact',
-							'placeholder' : "Nom du produit"
+							'placeholder' : 'Nom du produit'|trans
 							}
 							}) 
 						}}
@@ -32,7 +32,7 @@
 							{{ form_widget(formnp.Description, {'attr':
 							{
 							'class' : 'form_css_contact',
-							'placeholder' : "Description"
+							'placeholder' : 'Description'|trans
 							}
 							}) 
 						}}
@@ -41,7 +41,7 @@
 							{{ form_widget(formnp.Price, {'attr':
 							{
 							'class' : 'form_css_contact',
-							'placeholder' : "Prix"
+							'placeholder' : 'Prix'|trans
 							}
 							}) 
 						}}
@@ -51,7 +51,7 @@
 							{{ form_widget(formnp.Stock, {'attr':
 							{
 							'class' : 'form_css_contact',
-							'placeholder' : "Stock"
+							'placeholder' : 'Stock'|trans
 							}
 							}) 
 						}}
@@ -60,7 +60,7 @@
 							{{ form_widget(formnp.Image, {'attr':
 							{
 							'class' : 'form_css_contact mt-2',
-							'placeholder' : "Choisissez votre image"
+							'placeholder' : 'Choisissez votre image'|trans
 							}
 							}) 
 						}}

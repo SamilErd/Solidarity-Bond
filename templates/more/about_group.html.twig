@@ -1,30 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}À propos de nous
+{% block title %}{% trans %}À propos de nous{% endtrans %}
 {% endblock %}
 
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">À propos</h1>
+			<h1 class="display-4">{% trans %}À propos{% endtrans %}</h1>
 		</div>
 	</div>
 
         <div class="w-50 mx-auto">
 
         <div class="container">
-                <h1>À Propos du Projet</h1>
+                <h1>{% trans %}À Propos du Projet{% endtrans %}</h1>
                 <br><br>
                 <p>
-                        Solidarity Bond - Strasbourg est un groupe de trois étudiants basé en France dans la région Grand Est. Le groupe a été crée dans le cadre d'un projet de substitution pour remplacer notre stage annulé suite à la pandémie de COVID-19.
+                        {% trans %}Solidarity Bond - Strasbourg est un groupe de trois étudiants basé en France dans la région Grand Est. Le groupe a été crée dans le cadre d'un projet de substitution pour remplacer notre stage annulé suite à la pandémie de COVID-19.{% endtrans %}
                 <br><br>
-                        Ce projet a pour objectif de mettre en place un dispositif pour venir en aide aux personnes ayant besoins de protection.<br>
-                        Solidarity Bond - Strasbourg imprime des visières de protections que cela soit pour des professionnels de la santé, des entreprises, des commerces ou encore des particuliers.
+                        {% trans %}Ce projet a pour objectif de mettre en place un dispositif pour venir en aide aux personnes ayant besoins de protection.{% endtrans %}<br>
+                        {% trans %}Solidarity Bond - Strasbourg imprime des visières de protections que cela soit pour des professionnels de la santé, des entreprises, des commerces ou encore des particuliers.{% endtrans %}
                 <br><br>
-                        Les visières sont imprimé au sein du FabLab de notre École d'ingénieur le CESI avec l'aide de notre FabLab Manager.</p>
+                        {% trans %}Les visières sont imprimé au sein du FabLab de notre École d'ingénieur le CESI avec l'aide de notre FabLab Manager.{% endtrans %}</p>
                 <br><br>
 
-                <h1 >À Propos du Groupe</h1>
+                <h1 >{% trans %}À Propos du Groupe{% endtrans %}</h1>
                 <br><br>
 
                 <div class="card-deck mb-5">
