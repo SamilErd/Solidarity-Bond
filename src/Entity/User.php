@@ -91,6 +91,11 @@ class User implements UserInterface
      */
     private $token;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Token::class, mappedBy="id_user", cascade={"persist", "remove"})
+     */
+    private $tokenpass;
+
 
     public function __construct()
     {
@@ -279,6 +284,23 @@ class User implements UserInterface
     }
 
     public function setToken(?Token $token): self
+    {
+        $this->token = $token;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newId_user = null === $token ? null : $this;
+        if ($token->getIdUser() !== $newId_user) {
+            $token->setIdUser($newId_user);
+        }
+
+        return $this;
+    }
+    public function getTokenPass(): ?Token
+    {
+        return $this->token;
+    }
+
+    public function setTokenPass(?Token $token): self
     {
         $this->token = $token;
 

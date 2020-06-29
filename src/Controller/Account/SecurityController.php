@@ -16,6 +16,7 @@ use App\Service\MailService;
 use App\Repository\OrderRepository;
 use App\Service\Cart\CartService;
 use App\Repository\TokenRepository;
+use App\Repository\UserRepository;
 
 class SecurityController extends AbstractController
 {
@@ -108,6 +109,54 @@ class SecurityController extends AbstractController
             'num' => $num
         ]);
     }
+    /**
+     * @Route("/password_forgot", name="security_password_forgot")
+     */
+    public function password_forgot(AuthenticationUtils $authenticationUtils, CartService $cartService, UserRepository $urepo)
+    {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
+        $error ="";
+        $msg = "";
+        if(!empty($_POST["email"])){
+            $email = $_POST['email'];
+            $user = $urepo->findOneByEmail($email);
+            if($user != null){
+                //creating a new time variable
+                $time = new \DateTime();
+                $token = new Token();
+                $token->setToken(rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '='));
+                //setting the token's user
+                $token->setIdUser($user);
+                //setting the token's creation time
+                $token->setCreatedAt($time);
+                //setting the token's user
+                $user->setTokenPass($token);
+                //getting the instance of the entity manager
+                $entityManager = $this->getDoctrine()->getManager();
+                //telling the entity manager to manage the user 
+                $entityManager->persist($user);
+                //telling the entity manager to manage the token 
+                $entityManager->persist($token);
+                //basically inserting the user in the database
+                $entityManager->flush();
+                //setting the message for the next page
+                $msg = "Une email vous a été envoyé dans votre boite mail avec un lien vous permettant de reinitialiser votre mot de passe";
+            } else {
+                $error = "Votre adresse email n'éxiste pas.";
+            }
+
+        }
+        //rendering the login page if failed
+        return $this->render('security/passforgot.html.twig', [
+            //giving the login page the error to show it
+            'error' => $error,
+            //giving the msg variable
+            'msg' => $msg,
+            //giving the login page the error to show it
+            'num' => $num
+        ]);
+    }
 
     /**
      * @Route("/logout", name="security_logout")
@@ -117,9 +166,8 @@ class SecurityController extends AbstractController
     /**
      * @Route("/validate_mail/{token}", name="validate_mail")
      */
-    public function token($token, TokenRepository $trepo, CartService $cartService) {
-        //getting the number of cart items
-        $num = $cartService->getCartItemNum();
+    public function token($token, TokenRepository $trepo) {
+
         //getting the email's token
         $token = $trepo->getToken($token);
         //getting the entity manager
@@ -128,10 +176,67 @@ class SecurityController extends AbstractController
         $entityManager->remove($token);
         //basically inserting the user in the database
         $entityManager->flush();
-        //rendering the login page if failed
+        //rendering the login page 
         return $this->redirectToRoute("security_login");
     }
+    /**
+     * @Route("/password_reset/{token}", name="security_password_reset")
+     */
+    public function tokenpass($token, TokenRepository $trepo, CartService $cartService, UserPasswordEncoderInterface $encoder) {
+        //if the user changes his password
+        $error ="";
+        $msg ="";
+        //setting the password regex
+        $passwordregex = '/^(?=.*[0-9])(?=.*[A-Z]).{8,}$/';
+        $token = $trepo->getToken($token);
+        if(!empty($_POST['NewPass'])){
+            //getting the new password
+            $new_pwd = $_POST['NewPass'];
+            //getting the confirmation password
+            $con_pwd = $_POST['ConfirmPass'];      
+           //getting the entity manager
+            $entityManager = $this->getDoctrine()->getManager();
+            if($new_pwd === $con_pwd){
+                    if(!preg_match($passwordregex,$new_pwd)) {
+                    //Sets the error message if the password doesn't contain at least 1 number
+                    $error = "Votre mot de passe doit contenir au moins 8 caractères, 1 majuscule, 1 minuscule, et 1 chiffre.";
+                    } else {
+                    
 
+                    $user = $token->getIdUser();
+                    //If the password respects all the rules, setting the user's new password
+                    $user->setPassword($encoder->encodePassword($user , $new_pwd));
+                    //tells the entity manager to manage the user
+                    $entityManager->persist($user);                    
+                    //telling the entity manager to remove the token 
+                    $entityManager->remove($token);
+                    //basically updating the database
+                    $entityManager->flush();
+                    //redirecting the user to the security_update
+                    $msg = "Votre mot de passe a été modifié avec succès.";
+                    }
+                } else {
+                    //Sets the error message if the new password and the confirmation password doesn't match
+                    $error = " Vos nouveaux mots de passes ne correspondent pas.";
+                }
+            } 
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
+
+        //rendering the reset password page
+        return $this->render('security/passchange.html.twig', [
+            //giving error message
+            'error' => $error,
+            //giving the message
+            'msg' => $msg,
+
+            //giving the login page the error to show it
+            'num' => $num,
+            'token' => $token
+        ]);
+    }
+
+    
 
 
     /**
