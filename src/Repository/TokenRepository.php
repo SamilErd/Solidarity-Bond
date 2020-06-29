@@ -47,4 +47,16 @@ class TokenRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getToken($token): ?Token
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.Token = :token')
+            ->setParameter('token', $token)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
+    
 }

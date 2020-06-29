@@ -18,7 +18,7 @@ class Token
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="token", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="token")
      */
     private $id_user;
 

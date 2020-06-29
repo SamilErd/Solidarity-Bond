@@ -3,6 +3,7 @@
 namespace App\Controller\Account;
 
 use App\Entity\User;
+use App\Entity\Token;
 use App\Form\RegisterType;
 use App\Form\EditUserType;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +15,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Service\MailService;
 use App\Repository\OrderRepository;
 use App\Service\Cart\CartService;
+use App\Repository\TokenRepository;
 
 class SecurityController extends AbstractController
 {
@@ -25,8 +27,12 @@ class SecurityController extends AbstractController
     {
         //getting the number of cart items
         $num = $cartService->getCartItemNum();
-        //Creating a User instance
+        //Creating a new User 
         $user = new User();
+        //Creating a new Token 
+        $token = new Token();
+        //creating a new time variable
+        $time = new \DateTime();
         //Creating a form with the form created in RegisterType linked to user entity
         $form = $this->createForm(RegisterType::class, $user);
         //handling the form's response
@@ -37,10 +43,20 @@ class SecurityController extends AbstractController
             $user->setRoles(["ROLE_USER"]);
             //encoding the user's password with the algorithm set in security.yml in config/packages
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
+            //setting the token settings
+            $token->setToken(rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '='));
+            //setting the token's user
+            $token->setIdUser($user);
+            //setting the token's creation time
+            $token->setCreatedAt($time);
+            //setting the token's user
+            $user->setToken($token);
             //getting the instance of the entity manager
             $entityManager = $this->getDoctrine()->getManager();
             //telling the entity manager to manage the user 
             $entityManager->persist($user);
+            //telling the entity manager to manage the token 
+            $entityManager->persist($token);
             //basically inserting the user in the database
             $entityManager->flush();
             //creating a new mail
@@ -93,11 +109,29 @@ class SecurityController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/logout", name="security_logout")
      */
     public function logout() {}
+
+    /**
+     * @Route("/validate_mail/{token}", name="validate_mail")
+     */
+    public function token($token, TokenRepository $trepo, CartService $cartService) {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
+        //getting the email's token
+        $token = $trepo->getToken($token);
+        //getting the entity manager
+        $entityManager = $this->getDoctrine()->getManager();
+        //telling the entity manager to manage the token 
+        $entityManager->remove($token);
+        //basically inserting the user in the database
+        $entityManager->flush();
+        //rendering the login page if failed
+        return $this->redirectToRoute("security_login");
+    }
+
 
 
     /**
