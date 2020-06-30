@@ -24,7 +24,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/register", name="security_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $encoder, \Swift_Mailer $mailer , MailService $mailservice, CartService $cartService)
+    public function register(Request $request, UserPasswordEncoderInterface $encoder, MailService $mailservice, CartService $cartService)
     {
         //getting the number of cart items
         $num = $cartService->getCartItemNum();
@@ -61,21 +61,8 @@ class SecurityController extends AbstractController
             //basically inserting the user in the database
             $entityManager->flush();
             //creating a new mail
-            /*$mailservice->sendToken($user);
-            $message = (new \Swift_Message('Nouvel utilisateur crée.'))
-            //getting the author's email
-            ->setFrom($user->getEmail())
-            //sending to specific mail
-            ->setTo('contact@solidarity-bond.fr')
-            //sending reply to author's email
-            ->setReplyTo($user->getEmail())
-            //setting the content of the mail with the selected template
-            ->setBody($this->renderView('emails/emails_register.html.twig',[
-                //setting the mail's contact info with contact variable
-                'user' => $user
-            ]), 'text/html');
-            //sending the message with the mailer
-            $mailer->send($message);*/
+            $mailservice->sendToken($user, $token);
+            
 
             //redirecting to homepage
             //after creting the user, redirecting onto the login page
@@ -112,7 +99,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/password_forgot", name="security_password_forgot")
      */
-    public function password_forgot(AuthenticationUtils $authenticationUtils, CartService $cartService, UserRepository $urepo)
+    public function password_forgot(AuthenticationUtils $authenticationUtils, MailService $mailservice, CartService $cartService, UserRepository $urepo)
     {
         //getting the number of cart items
         $num = $cartService->getCartItemNum();
@@ -140,10 +127,12 @@ class SecurityController extends AbstractController
                 $entityManager->persist($token);
                 //basically inserting the user in the database
                 $entityManager->flush();
+                //creating a new mail
+                $mailservice->sendTokenPass($user, $token);
                 //setting the message for the next page
                 $msg = "Une email vous a été envoyé dans votre boite mail avec un lien vous permettant de reinitialiser votre mot de passe";
             } else {
-                $error = "Votre adresse email n'éxiste pas.";
+                $error = "Votre adresse email n'éxiste pas sur notre site web.";
             }
 
         }
