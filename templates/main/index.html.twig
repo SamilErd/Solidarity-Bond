@@ -85,20 +85,17 @@
 		</div>
 	</div>
 </div> #}
-<div class="container-fluid bordure">
+
+
+<div class="container-fluid " style="text-align:center; margin-top; 50px">
 	<div class="container w-50 mx-auto mt-5">
 		<h1 class="mb-5">{% trans %}Point Coronavirus à la date du{% endtrans %} <span id="date"></span></h1>
-	
-		<button class="btn" id="button" onclick="">{% trans %}Monde{% endtrans %}</button>
-		<button class="btn" id="button" onclick="">{% trans %}France{% endtrans %}</button>
+		<h3>(source : <a href="http://thevirustracker.com">thevirustracker.com)</a></h3>
+		<button class="world-btn btn"  id="button" onclick="">{% trans %}Monde{% endtrans %}</button>
+		<button class="france-btn btn" id="button" onclick="">{% trans %}France{% endtrans %}</button>
 	</div>
+</div>
 
-<div style="text-align:center; margin-top; 50px">
-	<h3>
-		Point Coronavirus à la date du <span id="date"></span>
-
-	</h3>
-	<h5>(source : <a href="http://thevirustracker.com">thevirustracker.com)</a></h5>
 
 	<div class=" mt-5 w-50 mx-auto world-anim" id="world" style="float:left; ">
 		<div class="index-div-left">
@@ -134,11 +131,6 @@
 		<h5 class="mt-5"><span id="countries"></span><h5>
 		<hr class="mt-5"></hr>
 		</div>
-	<h5>(source : thevirustracker.com)</h5>
-	<div class="index-div-left">
-	<hr></hr>
-	<h5> Nombre de cas depuis le debut <h5>
-	<h5 class="mt-5"><span id="total-cases"></span><h5>
 	</div>
 
 	<div class=" mt-5 w-50 mx-auto france-anim" id="france" style="float:right">
@@ -165,7 +157,6 @@
 		</div>
 
 	</div>
-</div>
 <br><br><br><br>
 
 
