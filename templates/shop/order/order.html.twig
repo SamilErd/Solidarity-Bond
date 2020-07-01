@@ -72,8 +72,8 @@
         function Popup(){
             var sure = document.getElementById('sure');
             var all = document.getElementById('all');
-            document.getElementById("text").innerHTML = "Etes-vous sur de vouloir commander "+ {{ items | length}} +" produits ? " ;
-            document.getElementById("price").innerHTML = "Cela fera "+{{ total}} + "€. " ;
+            document.getElementById("text").innerHTML = '{% trans %}Etes-vous sur de vouloir commander{% endtrans %} ' + {{ items | length}} +" {% trans %}produits{% endtrans %} ? " ;
+            document.getElementById("price").innerHTML = "{% trans %}Cela fera{% endtrans %} "+{{ total}} + "€. " ;
             sure.style.display = "block";
             all.style.pointerEvents = "none";
         }
@@ -97,7 +97,7 @@
         <h2 id="text"></h2>
         <h3 id="price"></h2>
         <div class="confirm_buttons">
-            <a href="{{path('order_product')}}" id="button" class="btn" >{% trans %}Confirmer{% endtrans %}</a>
+            <a href="{{path('payment')}}" id="button" class="btn" >{% trans %}Procéder au paiement{% endtrans %}</a>
             <button id="button" class="btn" onclick="hide_confirm()">{% trans %}Annuler{% endtrans %}</button>
         </div>
     </div>

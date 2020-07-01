@@ -7,6 +7,7 @@
 body {
   background-color: #fff;
   text-align: justify;
+  font-family: 'Roboto', sans-serif;
 }
 
 /**
@@ -83,13 +84,13 @@ body {
 /**
 * CSS for index
 */
-  .example-wrapper {
+  .case-wrapper {
     margin: 1em auto;
     max-width: 800px;
     width: 95%;
     font: 18px / 1.5 sans-serif;
   }
-  .example-wrapper code {
+  .case-wrapper code {
     background: #F5F5F5;
     padding: 2px 6px;
   }
@@ -582,10 +583,14 @@ hr.diviser {
 
 .contain-fade:hover .overlay {
   opacity: 1;
-} 
+}
+
+/**
+* CSS for API COVID
+*/
 
 .index-div-left{
-  width:50%; 
+  width:50%;
   height:200px;
   float:left;
   text-align: center;
@@ -599,12 +604,87 @@ hr.diviser {
 }
 
 .france-anim{
-  
   transition: transform 0.5s ease;
-
 }
 .world-anim{
-  
   transition: transform 0.5s ease;
+}
 
+.bordure {
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 2px;
+  height: 900px;
+  margin-top: 5px;
+}
+
+/**
+* CSS for form payment
+*/
+
+.case.case-box {
+  padding: 90px 90px;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 700px;
+}
+
+.fieldset {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.field {
+  border-radius: 20px;
+  width: 100%;
+  margin-top: 6px;
+  height: 38px;
+  max-height: 38px;
+  width: 700px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  padding: 10px 20px;
+  text-align: left;
+}
+
+.color-strip {
+  font-weight: 600;
+}
+
+.color-strip::placeholder{
+  font-weight: 600;
+  color: #3F444A;
+}
+
+.color-strip:focus::placeholder {
+  color: #767676;
+}
+
+.third-width {
+  width: calc(33% - (5px / 3));
+}
+
+.button-pay {
+  margin-top: 20px;
+  background-color : #ec4848;
+  color: white;
+  width: 100%;
+  border-radius: 20px;
+  /* margin-left: calc(50% - (90px / 2 )); */
+}
+.button-pay:hover {
+  color: white;
+  background-color: #e71818;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: -10px;
 }

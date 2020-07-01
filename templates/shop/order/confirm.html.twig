@@ -17,7 +17,9 @@
 
         <h3 class="alert alert-success">{% trans %}Votre commande de {% endtrans %}
         {% for key,product in order.hasProduct %}
+
         {{order.quantity[key]}} {{product.ProductName}},
+        
         {% endfor %} 
         
         {% trans %}à bien été réceptionné{% endtrans %}<i class="fa fa-check ml-3"></i></h3>

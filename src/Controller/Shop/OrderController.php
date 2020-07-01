@@ -12,6 +12,7 @@ use App\Repository\OrderRepository;
 use App\Entity\Product;
 use App\Entity\Order;
 use App\Service\Cart\CartService;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class OrderController extends AbstractController
 {
@@ -34,13 +35,15 @@ class OrderController extends AbstractController
     /**
      * @Route("/shop/order_product", name="order_product")
      */
-    public function order_product( ProductRepository $prepo, \Swift_Mailer $mailer)
+    public function order_product( ProductRepository $prepo, \Swift_Mailer $mailer, CartService $cartService, TranslatorInterface $translator)
     {
         //getting the cart from the cartService
         $items = $cartService->getFullCart();
         //initiating the arrays
         $products = [];
         $quantity = [];
+        $translated = $translator->trans('En attente de confirmation');
+        $translate = $translator->trans('Nouvelle commande');
         //getting the user infos as contact
         $contact = $this->getUser();
         //creating a new time variable
@@ -71,7 +74,7 @@ class OrderController extends AbstractController
                 //setting the time of the order
                 $order->setDateOfOrder($time);
                 //setting the basic status of the order
-                $order->setStatus("En attente de confirmation");
+                $order->setStatus($translated);
                 //telling the entity manager to manage the order
                 $entityManager->persist($order);
                 //telling the entity manager to manage the product
@@ -82,7 +85,7 @@ class OrderController extends AbstractController
         //emptying the cart
         $cartService->removeCart();
         //creating a new message with the following subject
-        $message = (new \Swift_Message('Nouvelle commande'))
+        $message = (new \Swift_Message($translate))
         //getting the author's email
         ->setFrom($contact->getEmail())
         //sending to specific mail

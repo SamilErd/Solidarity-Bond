@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Service\MailService;
 use App\Repository\OrderRepository;
 use App\Service\Cart\CartService;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SecurityController extends AbstractController
 {
@@ -103,8 +104,15 @@ class SecurityController extends AbstractController
     /**
      * @Route("/account/", name="security_account")
      */
-    public function account( Request $request, UserPasswordEncoderInterface $encoder, OrderRepository $orepo, CartService $cartService)
+    public function account( Request $request, UserPasswordEncoderInterface $encoder, OrderRepository $orepo, CartService $cartService, TranslatorInterface $translator)
     {
+        $translatedFirstName = $translator->trans('Votre prénom n\'est pas valide.');
+        $translatedLastName = $translator->trans('Votre nom n\'est pas valide.');
+        $translatedEmail = $translator->trans('Votre email n\'est pas valide.');
+        $translatedPostalCode = $translator->trans('Votre code postal n\'est pas valide.');
+        $translatedPassword = $translator->trans('Votre mot de passe doit contenir au moins 8 caractères, 1 majuscule, 1 minuscule, et 1 chiffre.');
+        $translatedNewPassword = $translator->trans('Vos nouveaux mots de passes ne correspondent pas.');
+        $translatedActualPassword = $translator->trans('Votre mot de passe actuel est incorrect.');
         //getting the number of cart items
         $num = $cartService->getCartItemNum();
         //iniating the error message for the account page
@@ -136,7 +144,7 @@ class SecurityController extends AbstractController
                 $entityManager->flush();
                 return $this->redirectToRoute('security_account');
             } else {
-                $error_edit = "Votre prénom n'est pas valide.";
+                $error_edit = $translatedLastName;
 
             }
 
@@ -153,7 +161,7 @@ class SecurityController extends AbstractController
                 $entityManager->flush();
                 return $this->redirectToRoute('security_account');
             } else {
-                $error_edit = "Votre nom n'est pas valide.";
+                $error_edit = $translatedLastName;
 
             }
 
@@ -163,7 +171,7 @@ class SecurityController extends AbstractController
             $E = $_POST['E'];
 
             if (!filter_var($E, FILTER_VALIDATE_EMAIL)) {
-                $error_edit = "Votre email n'est pas valide.";
+                $error_edit = $translatedEmail;
               } else {
                 $user->setEmail($E);
                 $entityManager->persist($user);
@@ -203,7 +211,7 @@ class SecurityController extends AbstractController
                 $entityManager->flush();
                 return $this->redirectToRoute('security_account');
             } else {
-                $error_edit = "Votre code postal n'est pas valide.";
+                $error_edit = $translatedPostalCode;
             }
         }
         //if the user changes his country
@@ -230,7 +238,7 @@ class SecurityController extends AbstractController
                 if($new_pwd === $con_pwd){
                         if(!preg_match($passwordregex,$new_pwd)) {
                         //Sets the error message if the password doesn't contain at least 1 number
-                        $error_edit = "Votre mot de passe doit contenir au moins 8 caractères, 1 majuscule, 1 minuscule, et 1 chiffre.";
+                        $error_edit = $translatedPassword;
                         } else {
                         //If the password respects all the rules, setting the user's new password
                         $user->setPassword($encoder->encodePassword($user , $new_pwd));
@@ -243,11 +251,11 @@ class SecurityController extends AbstractController
                         }
                     } else {
                         //Sets the error message if the new password and the confirmation password doesn't match
-                        $error_edit = " Vos nouveaux mots de passes ne correspondent pas.";
+                        $error_edit = $translatedNewPassword;
                         }
                 } else {
                //Sets the error message if the user's password is wrong
-                $error_edit = "Votre mot de passe actuel est incorrect.";
+                $error_edit = $translatedActualPassword;
                 }
         }
         //rendering the user account's page

@@ -85,76 +85,75 @@
 		</div>
 	</div>
 </div> #}
-
-<div style="text-align:center; margin-top; 50px">
-	<h3>
-		Point Coronavirus à la date du <span id="date"></span>
-	</h3>
-
-	<button class="world-btn" onclick="">Monde</button>
-	<button class="france-btn" onclick="">France</button>
-</div>
-
+<div class="container-fluid bordure">
+	<div class="container w-50 mx-auto mt-5">
+		<h1 class="mb-5">{% trans %}Point Coronavirus à la date du{% endtrans %} <span id="date"></span></h1>
+	
+		<button class="btn" id="button" onclick="">{% trans %}Monde{% endtrans %}</button>
+		<button class="btn" id="button" onclick="">{% trans %}France{% endtrans %}</button>
+	</div>
 
 
 	<div class=" mt-5 w-50 mx-auto world-anim" id="world" style="float:left; ">
-	<div class="index-div-left">
-	<hr></hr>
-	<h5> Nombre de cas depuis le debut <h5>
-	<h5 class="mt-5"><span id="total-cases"></span><h5>
-	</div>
-	<div class="index-div-right">
-	<hr></hr>
-	<h5> Nombre de cas guéris depuis le debut <h5>
-	<h5 class="mt-5"><span id="total-recovered"></span><h5>
-	</div>
-	
-	<div class="index-div-left">
-	<hr></hr>
-	<h5> Nombre de cas morts depuis le debut <h5>
-	<h5 class="mt-5"><span id="total-deaths"></span><h5>
-	</div>
-	<div class="index-div-right">
-	<hr></hr>
-	<h5> Nombre de nouveaux cas aujourd'hui <h5>
-	<h5 class="mt-5"><span id="today-cases"></span><h5>
-	</div>
-	<div class="index-div-left">
-	<hr></hr>
-	<h5> Nombre de nouveaux cas morts aujourd'hui <h5>
-	<h5 class="mt-5"><span id="today-deaths"></span><h5>
-	</div>
-	<div class="index-div-right">
-	<hr></hr>
-	<h5> Nombre de pays touchés depuis le debut<h5>
-	<h5 class="mt-5"><span id="countries"></span><h5>
-	</div>
-</div>
-
-
-<div class=" mt-5 w-50 mx-auto france-anim" id="france" style="float:right">
-	<div class="index-div-left">
-	<hr></hr>
-	<h5> Nombre de cas depuis le debut <h5>
-	<h5 class="mt-5"><span id="total-casesfr"></span><h5>
+		<div class="index-div-left">
+		<hr></hr>
+		<h5> {% trans %}Nombre de cas depuis le debut{% endtrans %} <h5>
+		<h5 class="mt-5"><span id="total-cases"></span><h5>
+		</div>
+		<div class="index-div-right">
+		<hr></hr>
+		<h5> {% trans %}Nombre de cas guéris depuis le debut{% endtrans %} <h5>
+		<h5 class="mt-5"><span id="total-recovered"></span><h5>
+		</div>
+		
+		<div class="index-div-left">
+		<hr></hr>
+		<h5> {% trans %}Nombre de cas morts depuis le debut{% endtrans %} <h5>
+		<h5 class="mt-5"><span id="total-deaths"></span><h5>
+		</div>
+		<div class="index-div-right">
+		<hr></hr>
+		<h5> {% trans %}Nombre de nouveaux cas aujourd'hui{% endtrans %} <h5>
+		<h5 class="mt-5"><span id="today-cases"></span><h5>
+		</div>
+		<div class="index-div-left">
+		<hr></hr>
+		<h5> {% trans %}Nombre de nouveaux cas morts aujourd'hui{% endtrans %} <h5>
+		<h5 class="mt-5"><span id="today-deaths"></span><h5>
+		<hr class="mt-5"></hr>
+		</div>
+		<div class="index-div-right">
+		<hr></hr>
+		<h5> {% trans %}Nombre de pays touchés depuis le debut{% endtrans %} <h5>
+		<h5 class="mt-5"><span id="countries"></span><h5>
+		<hr class="mt-5"></hr>
+		</div>
 	</div>
 
-	<div class="index-div-right">
-	<hr></hr>
-	<h5> Nombre de cas morts depuis le debut <h5>
-	<h5 class="mt-5"><span id="total-deathsfr"></span><h5>
-	</div>
-	<div class="index-div-left">
-	<hr></hr>
-	<h5> Nombre de nouveaux cas aujourd'hui <h5>
-	<h5 class="mt-5"><span id="today-casesfr"></span><h5>
-	</div>
-	<div class="index-div-right">
-	<hr></hr>
-	<h5> Nombre de nouveaux cas morts aujourd'hui <h5>
-	<h5 class="mt-5"><span id="today-deathsfr"></span><h5>
-	</div>
+	<div class=" mt-5 w-50 mx-auto france-anim" id="france" style="float:right">
+		<div class="index-div-left">
+		<hr></hr>
+		<h5> {% trans %}Nombre de cas depuis le debut{% endtrans %} <h5>
+		<h5 class="mt-5"><span id="total-casesfr"></span><h5>
+		</div>
 
+		<div class="index-div-right">
+		<hr></hr>
+		<h5> {% trans %}Nombre de cas morts depuis le debut{% endtrans %} <h5>
+		<h5 class="mt-5"><span id="total-deathsfr"></span><h5>
+		</div>
+		<div class="index-div-left">
+		<hr></hr>
+		<h5> {% trans %}Nombre de nouveaux cas aujourd'hui{% endtrans %} <h5>
+		<h5 class="mt-5"><span id="today-casesfr"></span><h5>
+		</div>
+		<div class="index-div-right">
+		<hr></hr>
+		<h5> {% trans %}Nombre de nouveaux cas morts aujourd'hui{% endtrans %} <h5>
+		<h5 class="mt-5"><span id="today-deathsfr"></span><h5>
+		</div>
+
+	</div>
 </div>
 <br><br><br><br>
 

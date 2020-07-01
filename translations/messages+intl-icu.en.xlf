@@ -993,6 +993,122 @@
         <source>Produit</source>
         <target>Product</target>
       </trans-unit>
+      <trans-unit id="SH2dB8V" resname="Point Coronavirus à la date du">
+        <source>Point Coronavirus à la date du</source>
+        <target>Point Coronavirus as of</target>
+      </trans-unit>
+      <trans-unit id="ywVFGTe" resname="Monde">
+        <source>Monde</source>
+        <target>World</target>
+      </trans-unit>
+      <trans-unit id="ehyk73U" resname="France">
+        <source>France</source>
+        <target>France</target>
+      </trans-unit>
+      <trans-unit id="oiZOGNd" resname="Nombre de cas depuis le debut">
+        <source>Nombre de cas depuis le debut</source>
+        <target>Number of cases since inception</target>
+      </trans-unit>
+      <trans-unit id="b9Yotgv" resname="Nombre de cas guéris depuis le debut">
+        <source>Nombre de cas guéris depuis le debut</source>
+        <target>Number of cases cured since the beginning</target>
+      </trans-unit>
+      <trans-unit id="xvaTXE." resname="Nombre de cas morts depuis le debut">
+        <source>Nombre de cas morts depuis le debut</source>
+        <target>Number of dead cases since the beginning</target>
+      </trans-unit>
+      <trans-unit id="PEF6T0R" resname="Nombre de nouveaux cas aujourd'hui">
+        <source>Nombre de nouveaux cas aujourd'hui</source>
+        <target>Number of new cases today</target>
+      </trans-unit>
+      <trans-unit id="giFx49Q" resname="Nombre de nouveaux cas morts aujourd'hui">
+        <source>Nombre de nouveaux cas morts aujourd'hui</source>
+        <target>Number of new dead cases today</target>
+      </trans-unit>
+      <trans-unit id="Px3kFTU" resname="Nombre de pays touchés depuis le debut">
+        <source>Nombre de pays touchés depuis le debut</source>
+        <target>Number of countries affected since the beginning</target>
+      </trans-unit>
+      <trans-unit id="emC_gcL" resname="Expédié">
+        <source>Expédié</source>
+        <target>Shipped</target>
+      </trans-unit>
+      <trans-unit id="uNQ9zYJ" resname="En préparation">
+        <source>En préparation</source>
+        <target>In preparation for</target>
+      </trans-unit>
+      <trans-unit id="hiuhRgf" resname="En attente de confirmation">
+        <source>En attente de confirmation</source>
+        <target>Awaiting confirmation</target>
+      </trans-unit>
+      <trans-unit id="6W0D8SS" resname="Nouvelle commande">
+        <source>Nouvelle commande</source>
+        <target>New order</target>
+      </trans-unit>
+      <trans-unit id="zyHu519" resname="Votre prénom n'est pas valide.">
+        <source>Votre prénom n'est pas valide.</source>
+        <target>Your first name is not valid.</target>
+      </trans-unit>
+      <trans-unit id="8wb2upv" resname="Votre nom n'est pas valide.">
+        <source>Votre nom n'est pas valide.</source>
+        <target>Your last name is not valid.</target>
+      </trans-unit>
+      <trans-unit id="YiSESc1" resname="Votre email n'est pas valide.">
+        <source>Votre email n'est pas valide.</source>
+        <target>Your email is not valid.</target>
+      </trans-unit>
+      <trans-unit id="QeAwAk3" resname="Votre code postal n'est pas valide.">
+        <source>Votre code postal n'est pas valide.</source>
+        <target>Your postal code is invalid.</target>
+      </trans-unit>
+      <trans-unit id="f9ZWY7T" resname="Votre mot de passe doit contenir au moins 8 caractères, 1 majuscule, 1 minuscule, et 1 chiffre.">
+        <source>Votre mot de passe doit contenir au moins 8 caractères, 1 majuscule, 1 minuscule, et 1 chiffre.</source>
+        <target>Your password must contain at least 8 characters, 1 upper case, 1 lower case, and 1 number.</target>
+      </trans-unit>
+      <trans-unit id="46IcSnS" resname="Vos nouveaux mots de passes ne correspondent pas.">
+        <source>Vos nouveaux mots de passes ne correspondent pas.</source>
+        <target>Your new passwords don't match.</target>
+      </trans-unit>
+      <trans-unit id="YkhqthZ" resname="Votre mot de passe actuel est incorrect.">
+        <source>Votre mot de passe actuel est incorrect.</source>
+        <target>Your current password is incorrect.</target>
+      </trans-unit>
+      <trans-unit id="WKckMkQ" resname="Nouveau message">
+        <source>Nouveau message</source>
+        <target>New message</target>
+      </trans-unit>
+      <trans-unit id="XZ6eROG" resname="Paiement">
+        <source>Paiement</source>
+        <target>Payment</target>
+      </trans-unit>
+      <trans-unit id="f792h4k" resname="Etes-vous sur de vouloir commander">
+        <source>Etes-vous sur de vouloir commander</source>
+        <target>Are you sure you want to order</target>
+      </trans-unit>
+      <trans-unit id="lYkdPP6" resname="Cela fera">
+        <source>Cela fera</source>
+        <target>This will make</target>
+      </trans-unit>
+      <trans-unit id=".aZZrNC" resname="Payer">
+        <source>Payer</source>
+        <target>Pay</target>
+      </trans-unit>
+      <trans-unit id="IZnavPs" resname="Procéder au paiement">
+        <source>Procéder au paiement</source>
+        <target>Proceed to payment</target>
+      </trans-unit>
+      <trans-unit id="RLZ8r7." resname="Information de Paiement">
+        <source>Information de Paiement</source>
+        <target>Payment Information</target>
+      </trans-unit>
+      <trans-unit id="QRaJaa5" resname="Titulaire de la carte">
+        <source>Titulaire de la carte</source>
+        <target>Cardholder</target>
+      </trans-unit>
+      <trans-unit id="vnBxYSs" resname="Code postal">
+        <source>Code postal</source>
+        <target>Postal Code</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

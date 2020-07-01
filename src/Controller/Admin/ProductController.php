@@ -12,6 +12,7 @@ use App\Repository\ProductRepository;
 use App\Repository\OrderRepository;
 use App\Entity\Product;
 use App\Service\Cart\CartService;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 
 
@@ -130,7 +131,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/order_{id}_sent", name="order_sent")
      */
-    public function order_sent($id, OrderRepository $orepo)
+    public function order_sent($id, OrderRepository $orepo, TranslatorInterface $translator)
     {
         
         //selecting the specific id's order
@@ -146,8 +147,10 @@ class ProductController extends AbstractController
             $entityManager->flush();
         }
 
+        $translated = $translator->trans('Expédié');
+
         //setting the new order status
-        $order->setStatus("Expédié");
+        $order->setStatus($translated);
         //tells the entity manager to manage the product
         $entityManager->persist($order);
         //updating the product in the database
@@ -161,13 +164,15 @@ class ProductController extends AbstractController
     /**
      * @Route("/order_{id}_prepare", name="order_prepare")
      */
-    public function order_prepare($id, OrderRepository $orepo)
+    public function order_prepare($id, OrderRepository $orepo, TranslatorInterface $translator)
     {
         
+        $translated = $translator->trans('En préparation');
+
         //selecting the specific id's order
         $order = $orepo->find($id);
         //setting the new order status
-        $order->setStatus("En préparation");
+        $order->setStatus($translated);
         //getting the instance of the entity manager and 
         $entityManager = $this->getDoctrine()->getManager();
         //tells the entity manager to manage the product

@@ -9,6 +9,7 @@ use App\Notification\ContactNotification;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\Cart\CartService;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class MoreController extends AbstractController
 {
@@ -16,12 +17,13 @@ class MoreController extends AbstractController
      * @Route("/contact", name="contact")
      */
 
-    public function contact(Request $request, \Swift_Mailer $mailer, CartService $cartService)
+    public function contact(Request $request, \Swift_Mailer $mailer, CartService $cartService, TranslatorInterface $translator)
     {
         //getting the number of cart items
         $num = $cartService->getCartItemNum();
         //creatin a Contact Entity instance
         $contact = new Contact();
+        $translated = $translator->trans('Nouveau message');
         //creating the form with the contact instance using the ContactType template
         $form = $this->createForm(ContactType::class, $contact);
         //handling the form's answer
@@ -29,7 +31,7 @@ class MoreController extends AbstractController
         //if the form is submitted without errors
         if ($form->isSubmitted() && $form->isValid()) {
             //creating a new message with the following subject
-            $message = (new \Swift_Message('Nouveau message'))
+            $message = (new \Swift_Message($translated))
             //getting the author's email
             ->setFrom($contact->getEmail())
             //sending to specific mail
