@@ -113,13 +113,7 @@
 							{% if product.id < order.HasProduct|length %},{% else %}.{% endif %}
 						{% endfor %}
 						</th>
-						<th>
-						{% for key, quantity in order.quantity %}
-							{{quantity}}
-							{% if key < (quantity|length - 1) %}{% else %}.{% endif %}
-						{% endfor %}
 						
-						</th>
 
 						
 						<td>{{order.status}}</td>

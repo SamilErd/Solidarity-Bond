@@ -6,7 +6,8 @@ let stripe = Stripe('pk_test_51GzL7lEJkHBBWUtVK0Tyb1K7ycRtUGMy6vCm9rLaDcVTHu5FmE
 let elements = stripe.elements();
 
 // Définit la redirection en cas de succès du paiement
-let redirect = "confirmed_order";
+let redirect = 'shop/order_product';
+
 
 // Récupère l'élément qui contiendra le nom du titulaire de la carte
 let cardName = document.getElementById('card-name');

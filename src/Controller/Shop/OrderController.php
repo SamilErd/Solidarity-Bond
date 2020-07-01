@@ -50,9 +50,9 @@ class OrderController extends AbstractController
         $time = new \DateTime();
         //creating a new order variable
         $order = new Order; 
-               //getting the instance of the entity manager and 
-               $entityManager = $this->getDoctrine()->getManager();
-               //tells the entity manager to manage the product
+        //getting the instance of the entity manager and 
+        $entityManager = $this->getDoctrine()->getManager();
+        //tells the entity manager to manage the product
         //for every items in the cart do : 
         foreach($items as $key => $item){
                 //getting the product 
@@ -74,7 +74,7 @@ class OrderController extends AbstractController
                 //setting the time of the order
                 $order->setDateOfOrder($time);
                 //setting the basic status of the order
-                $order->setStatus($translated);
+                $order->setStatus("En attente de confirmation");
                 //telling the entity manager to manage the order
                 $entityManager->persist($order);
                 //telling the entity manager to manage the product
@@ -127,6 +127,7 @@ class OrderController extends AbstractController
      */
     public function order_detail($id, OrderRepository $orepo, CartService $cartService)
     {
+        dd("detail");
         //getting the number of cart items
         $num = $cartService->getCartItemNum();
         //geting the specific order with the given id

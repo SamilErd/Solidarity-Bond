@@ -17,6 +17,7 @@ use App\Repository\OrderRepository;
 use App\Service\Cart\CartService;
 use App\Repository\TokenRepository;
 use App\Repository\UserRepository;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SecurityController extends AbstractController
 {
