@@ -127,7 +127,6 @@ class OrderController extends AbstractController
      */
     public function order_detail($id, OrderRepository $orepo, CartService $cartService)
     {
-        dd("detail");
         //getting the number of cart items
         $num = $cartService->getCartItemNum();
         //geting the specific order with the given id

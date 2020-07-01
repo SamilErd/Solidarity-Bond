@@ -39,4 +39,20 @@ class UserController extends AbstractController
         dd($user->getToken());
     }
 
+    /**
+     * @Route("/user_delete_{id}", name="user_delete")
+     */
+    public function user_delete(UserRepository $urepo, $id, CartService $cartService)
+    {   
+        
+        $user = $urepo->find($id);
+        //getting the instance of the entity manager
+        $entityManager = $this->getDoctrine()->getManager();
+        //telling the entity manager to remove the user 
+        $entityManager->remove($user);
+        //basically updating the database
+        $entityManager->flush();
+        //rendering the user management page for the administrator
+        return $this->redirectToRoute('admin_users');
+    }
 }
