@@ -97,68 +97,68 @@
 </div>
 
 
-	<div class=" mt-5 w-50 mx-auto world-anim" id="world" style="float:left; ">
-		<div class="index-div-left">
-		<hr></hr>
+<div class=" mt-5 w-50 mx-auto world-anim" id="world" style="float:left; ">
+	<div class="index-div-left">
+		<hr class="mb-5"></hr>
 		<h5> {% trans %}Nombre de cas depuis le debut{% endtrans %} <h5>
 		<h5 class="mt-5"><span id="total-cases"></span><h5>
-		</div>
-		<div class="index-div-right">
-		<hr></hr>
+	</div>
+	<div class="index-div-right">
+		<hr class="mb-5"></hr>
 		<h5> {% trans %}Nombre de cas guéris depuis le debut{% endtrans %} <h5>
 		<h5 class="mt-5"><span id="total-recovered"></span><h5>
-		</div>
-		
-		<div class="index-div-left">
-		<hr></hr>
+	</div>
+	<div class="index-div-left">
+		<hr  class="mb-5"></hr>
 		<h5> {% trans %}Nombre de cas morts depuis le debut{% endtrans %} <h5>
 		<h5 class="mt-5"><span id="total-deaths"></span><h5>
-		</div>
-		<div class="index-div-right">
-		<hr></hr>
+		<hr class="mt-5"></hr>
+	</div>
+	<div class="index-div-right">
+		<hr  class="mb-5"></hr>
 		<h5> {% trans %}Nombre de nouveaux cas aujourd'hui{% endtrans %} <h5>
 		<h5 class="mt-5"><span id="today-cases"></span><h5>
-		</div>
-		<div class="index-div-left">
-		<hr></hr>
+		<hr  class="mt-5"></hr>
+	</div>
+	<div class="index-div-left mt-5">
 		<h5> {% trans %}Nombre de nouveaux cas morts aujourd'hui{% endtrans %} <h5>
 		<h5 class="mt-5"><span id="today-deaths"></span><h5>
 		<hr class="mt-5"></hr>
-		</div>
-		<div class="index-div-right">
-		<hr></hr>
+	</div>
+	<div class="index-div-right mt-5">
 		<h5> {% trans %}Nombre de pays touchés depuis le debut{% endtrans %} <h5>
 		<h5 class="mt-5"><span id="countries"></span><h5>
 		<hr class="mt-5"></hr>
-		</div>
 	</div>
+</div>
 
-	<div class=" mt-5 w-50 mx-auto france-anim" id="france" style="float:right">
-		<div class="index-div-left">
-		<hr></hr>
+<div class=" mt-5 w-50 mx-auto france-anim" id="france" style="float:right">
+	<div class="index-div-left">
+		<hr class="mb-5"></hr>
 		<h5> {% trans %}Nombre de cas depuis le debut{% endtrans %} <h5>
 		<h5 class="mt-5"><span id="total-casesfr"></span><h5>
-		</div>
-
-		<div class="index-div-right">
-		<hr></hr>
+		<hr class="mt-5"></hr>
+	</div>
+	<div class="index-div-right">
+		<hr class="mb-5"></hr>
 		<h5> {% trans %}Nombre de cas morts depuis le debut{% endtrans %} <h5>
 		<h5 class="mt-5"><span id="total-deathsfr"></span><h5>
-		</div>
-		<div class="index-div-left">
-		<hr></hr>
+		<hr class="mt-5"></hr>
+	</div>
+
+	<div class="index-div-left mt-5">
 		<h5> {% trans %}Nombre de nouveaux cas aujourd'hui{% endtrans %} <h5>
 		<h5 class="mt-5"><span id="today-casesfr"></span><h5>
-		</div>
-		<div class="index-div-right">
-		<hr></hr>
+		<hr class="mt-5"></hr>	
+	</div>
+	<div class="index-div-right mt-5">
 		<h5> {% trans %}Nombre de nouveaux cas morts aujourd'hui{% endtrans %} <h5>
 		<h5 class="mt-5"><span id="today-deathsfr"></span><h5>
-		</div>
-
+		<hr class="mt-5"></hr>
 	</div>
-<br><br><br><br>
+</div>
 
+<br><br><br><br>
 
 <div class=" w-50 mx-auto" style="margin-top:600px">
 
@@ -173,19 +173,22 @@
 		<footer class="blockquote-footer text-right"><a href="https://www.gouvernement.fr/info-coronavirus/masques-grand-public"><cite title="Info covid-19 gouvernement">Info COVID-19 | Gouvernement.fr</cite></a></footer>
 	</blockquote>
 
-	<p>Questions sur le Coronavirus</p>
-	<div>
-		<p>These are some of the genereic questions regarding the coronavirus outbreak around the globe.</p>
-			<h5>Does the coronavirus spread from person to person?</h5>
-			<p>Unfortunately, it does. This typically happens by means of droplets of bodily fluid that is dispersed into the atmosphere when a an individual sneezes or coughs.
-			Sharing droplets by means of handshakes or sharing a drink where bodily fluids are transfered to somebody can increase the chance of infection.
-			Always try to wash your hands this can can be the most importnant thing you can do in helping you not get infected with the Coronavirus.</p>
-			<h5>What’s the incubation period for the Coronavirus?</h5>
-			<p>An incubation period is the time it takes for the Coronavirus to take ahold of someone and that person to start showing symptoms. With the coronavirus, it usually takes one to 14 days.</p>
-			<h5>Is there a vaccine available for the Coronavirus?</h5>
-			<p>At the moment there is not a vaccine available but scientist are working around the clock to create one the usual turnout is 1.5 to 2 years from start.</p>
-			<h5>Is there a treatment for Coronavirus?</h5>
-			<p>At the moment the best treatment is what you would usually take if you had the flu. Keep a good high intake of fluids and sugars to help fight the virus in the body.</p>      
+	<h2 class="mb-5">{% trans %}Questions sur le Coronavirus{% endtrans %}</h2>
+	<div class="mb-5">
+		<p>{% trans %}Ce sont là quelques-unes des questions génériques concernant l'épidémie de coronavirus dans le monde.{% endtrans %}</p>
+			<h4>{% trans %}Le coronavirus se propage-t-il d'une personne à l'autre ?{% endtrans %}</h4>
+			<p>{% trans %}Malheureusement, c'est le cas. Cela se produit généralement au moyen de gouttelettes de liquide corporel qui sont dispersées dans l'atmosphère lorsqu'un individu éternue ou tousse.
+			Partager des gouttelettes au moyen de poignées de main ou partager une boisson où des fluides corporels sont transférés à quelqu'un peut augmenter le risque d'infection.
+			Essayez toujours de vous laver les mains, c'est la chose la plus importante que vous puissiez faire pour éviter d'être infecté par le coronavirus.{% endtrans %}</p>
+			
+			<h4>{% trans %}Quelle est la période d'incubation du Coronavirus ?{% endtrans %}</h4>
+			<p>{% trans %}Une période d'incubation est le temps qu'il faut au coronavirus pour s'emparer d'une personne et que celle-ci commence à présenter des symptômes. Avec le coronavirus, cela prend généralement entre un et 14 jours.{% endtrans %}</p>
+			
+			<h4>{% trans %}Y a-t-il un vaccin disponible pour le Coronavirus ?{% endtrans %}</h4>
+			<p>{% trans %}Pour l'instant, il n'y a pas de vaccin disponible, mais les scientifiques travaillent 24 heures sur 24 pour en créer un - le délai habituel est de 1,5 à 2 ans.{% endtrans %}</p>
+			
+			<h4>{% trans %}Existe-t-il un traitement contre les coronavirus ?{% endtrans %}</h4>
+			<p>{% trans %}Pour l'instant, le meilleur traitement est celui que vous prendriez habituellement si vous aviez la grippe. Conservez une bonne quantité de liquides et de sucres pour aider à combattre le virus dans l'organisme.{% endtrans %}</p>      
     </div>
 </div>
 

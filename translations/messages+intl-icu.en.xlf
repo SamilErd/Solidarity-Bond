@@ -1109,6 +1109,90 @@
         <source>Code postal</source>
         <target>Postal Code</target>
       </trans-unit>
+      <trans-unit id="vbUyWVh" resname="Réinitialisez votre mot de passe.">
+        <source>Réinitialisez votre mot de passe.</source>
+        <target>Reset your password.</target>
+      </trans-unit>
+      <trans-unit id="0wkmKSN" resname="Votre inscription sur Solidarity-bond.fr">
+        <source>Votre inscription sur Solidarity-bond.fr</source>
+        <target>Your registration on Solidarity-bond.fr</target>
+      </trans-unit>
+      <trans-unit id="YSHyAf3" resname="Bienvenue">
+        <source>Bienvenue</source>
+        <target>Welcome</target>
+      </trans-unit>
+      <trans-unit id="cXL5Skw" resname=", pour compléter votre inscription, veuillez cliquer sur le lien ci-dessous, cela permettra de verifier votre addresse email.">
+        <source>, pour compléter votre inscription, veuillez cliquer sur le lien ci-dessous, cela permettra de verifier votre addresse email.</source>
+        <target>, to complete your registration, please click on the link below, this will verify your email address.</target>
+      </trans-unit>
+      <trans-unit id="AKBeZZq" resname="Questions sur le Coronavirus">
+        <source>Questions sur le Coronavirus</source>
+        <target>Questions about Coronavirus</target>
+      </trans-unit>
+      <trans-unit id="pIbDIUh" resname="Ce sont là quelques-unes des questions génériques concernant l'épidémie de coronavirus dans le monde.">
+        <source>Ce sont là quelques-unes des questions génériques concernant l'épidémie de coronavirus dans le monde.</source>
+        <target>These are some of the genereic questions regarding the coronavirus outbreak around the globe.</target>
+      </trans-unit>
+      <trans-unit id="19n_Qbl" resname="Le coronavirus se propage-t-il d'une personne à l'autre ?">
+        <source>Le coronavirus se propage-t-il d'une personne à l'autre ?</source>
+        <target>Does the coronavirus spread from person to person ?</target>
+      </trans-unit>
+      <trans-unit id="DrIoylc" resname="Quelle est la période d'incubation du Coronavirus ?">
+        <source>Quelle est la période d'incubation du Coronavirus ?</source>
+        <target>What’s the incubation period for the Coronavirus ?</target>
+      </trans-unit>
+      <trans-unit id="BJNP7BS" resname="Une période d'incubation est le temps qu'il faut au coronavirus pour s'emparer d'une personne et que celle-ci commence à présenter des symptômes. Avec le coronavirus, cela prend généralement entre un et 14 jours.">
+        <source>Une période d'incubation est le temps qu'il faut au coronavirus pour s'emparer d'une personne et que celle-ci commence à présenter des symptômes. Avec le coronavirus, cela prend généralement entre un et 14 jours.</source>
+        <target>An incubation period is the time it takes for the Coronavirus to take ahold of someone and that person to start showing symptoms. With the coronavirus, it usually takes one to 14 days.</target>
+      </trans-unit>
+      <trans-unit id="fnxrKrt" resname="Y a-t-il un vaccin disponible pour le Coronavirus ?">
+        <source>Y a-t-il un vaccin disponible pour le Coronavirus ?</source>
+        <target>Is there a vaccine available for the Coronavirus ?</target>
+      </trans-unit>
+      <trans-unit id="1hmZL6Z" resname="Pour l'instant, il n'y a pas de vaccin disponible, mais les scientifiques travaillent 24 heures sur 24 pour en créer un - le délai habituel est de 1,5 à 2 ans.">
+        <source>Pour l'instant, il n'y a pas de vaccin disponible, mais les scientifiques travaillent 24 heures sur 24 pour en créer un - le délai habituel est de 1,5 à 2 ans.</source>
+        <target>At the moment there is not a vaccine available but scientist are working around the clock to create one the usual turnout is 1.5 to 2 years from start.</target>
+      </trans-unit>
+      <trans-unit id="WC1wgrb" resname="Existe-t-il un traitement contre les coronavirus ?">
+        <source>Existe-t-il un traitement contre les coronavirus ?</source>
+        <target>Is there a treatment for Coronavirus ?</target>
+      </trans-unit>
+      <trans-unit id="KsLLR26" resname="Pour l'instant, le meilleur traitement est celui que vous prendriez habituellement si vous aviez la grippe. Conservez une bonne quantité de liquides et de sucres pour aider à combattre le virus dans l'organisme.">
+        <source>Pour l'instant, le meilleur traitement est celui que vous prendriez habituellement si vous aviez la grippe. Conservez une bonne quantité de liquides et de sucres pour aider à combattre le virus dans l'organisme.</source>
+        <target>At the moment the best treatment is what you would usually take if you had the flu. Keep a good high intake of fluids and sugars to help fight the virus in the body.</target>
+      </trans-unit>
+      <trans-unit id="RULWH19" resname="Mot de passe oublié">
+        <source>Mot de passe oublié</source>
+        <target>Forgot your password</target>
+      </trans-unit>
+      <trans-unit id="LpkJGx4" resname="Réinitialiser le mot de passe">
+        <source>Réinitialiser le mot de passe</source>
+        <target>Reset password</target>
+      </trans-unit>
+      <trans-unit id="o9ZcpWl" resname="Nouveau mot de passe">
+        <source>Nouveau mot de passe</source>
+        <target>New password</target>
+      </trans-unit>
+      <trans-unit id="RviMkTC" resname="Entrez votre nouveau mot de passe">
+        <source>Entrez votre nouveau mot de passe</source>
+        <target>Enter your new password</target>
+      </trans-unit>
+      <trans-unit id="rJGXbIC" resname="Réinitialisez voter mot de passe">
+        <source>Réinitialisez voter mot de passe</source>
+        <target>Reset your password</target>
+      </trans-unit>
+      <trans-unit id="eHNzj.O" resname="Entrez votre addresse email">
+        <source>Entrez votre addresse email</source>
+        <target>Enter your email address</target>
+      </trans-unit>
+      <trans-unit id="TX4GLln" resname="Malheureusement, c'est le cas. Cela se produit généralement au moyen de gouttelettes de liquide corporel qui sont dispersées dans l'atmosphère lorsqu'un individu éternue ou tousse.&#10;&#9;&#9;&#9;Partager des gouttelettes au moyen de poignées de main ou partager une boisson où des fluides corporels sont transférés à quelqu'un peut augmenter le risque d'infection.&#10;&#9;&#9;&#9;Essayez toujours de vous laver les mains, c'est la chose la plus importante que vous puissiez faire pour éviter d'être infecté par le coronavirus.">
+        <source>Malheureusement, c'est le cas. Cela se produit généralement au moyen de gouttelettes de liquide corporel qui sont dispersées dans l'atmosphère lorsqu'un individu éternue ou tousse.
+			Partager des gouttelettes au moyen de poignées de main ou partager une boisson où des fluides corporels sont transférés à quelqu'un peut augmenter le risque d'infection.
+			Essayez toujours de vous laver les mains, c'est la chose la plus importante que vous puissiez faire pour éviter d'être infecté par le coronavirus.</source>
+        <target>Unfortunately, it does. This typically happens by means of droplets of bodily fluid that is dispersed into the atmosphere when a an individual sneezes or coughs.
+			Sharing droplets by means of handshakes or sharing a drink where bodily fluids are transfered to somebody can increase the chance of infection.
+			Always try to wash your hands this can can be the most importnant thing you can do in helping you not get infected with the Coronavirus.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
