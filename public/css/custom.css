@@ -4,6 +4,12 @@
 *For : Projet Solidarity-Bond
 */
 
+html, body {
+  width: auto !important;
+  overflow-x: hidden !important;
+  }
+  
+
 body {
   background-color: #fff;
   text-align: justify;

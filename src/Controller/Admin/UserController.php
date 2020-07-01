@@ -30,5 +30,13 @@ class UserController extends AbstractController
             'num' => $num
         ]);
     }
+    
+    /**
+     * @Route("/test/{id}", name="test")
+     */
+    public function test($id, UserRepository $urepo) {
+        $user = $urepo->find($id);        
+        dd($user->getToken());
+    }
 
 }

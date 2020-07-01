@@ -76,13 +76,13 @@
 
 <body>
   <div style="">
-    <div style="font-family:helvetica;font-size:20px;line-height:1;text-align:center;color:#F45E43;">{% trans %}Votre inscription sur Solidarity-bond.fr{% endtrans %}</div>
+    <div style="font-family:helvetica;font-size:20px;line-height:1;text-align:center;color:#F45E43;">{% trans %}Réinitialisez votre mot de passe.{% endtrans %}</div>
     <br><br>
     <hr style="color:#F45E43; width: 100%"></hr>
     <br><br>
-    <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;">{% trans %}Bienvenue {% endtrans %} {{user.FirstName}} {{user.LastName}} {% trans %} , pour compléter votre inscription, veuillez cliquer sur le lien ci-dessous, cela permettra de verifier votre addresse email.{% endtrans %}</div>
+    <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;">Bonjour {{user.FirstName}} {{user.LastName}}, vous avez fait une demande de réinitialisation de votre mot de passe, si cétais bien vous, veuillez cliquer sur le lien ci-dessous pour le reinitialiser.</div>
     <br><br>
-    <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;"><a href="127.0.0.1:8000/validate_mail/{{token.Token}}">127.0.0.1:8000/validate_mail/{{token.Token}}</a></div>
+    <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;"><a href="127.0.0.1:8000/password_reset/{{token.Token}}">127.0.0.1:8000/password_reset/{{token.Token}}</a></div>
     <br><br>
     <br><br>         
     <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;">l'équipe Solidarity-Bond.</div>     

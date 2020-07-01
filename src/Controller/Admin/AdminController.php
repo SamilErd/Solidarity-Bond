@@ -41,4 +41,6 @@ class AdminController extends AbstractController
             'num' => $num
         ]);
     }
+
+
 }

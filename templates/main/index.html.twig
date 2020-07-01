@@ -13,7 +13,7 @@
 	</div>
 </div>
 
-<div class="container w-50 mx-auto">
+<div class=" w-50 mx-auto">
 
 		<div class="row">
 		{% for message in app.flashes('succes') %}
@@ -26,7 +26,7 @@
    		{% endfor %}
 		</div>
 
-<div class="container mt-3">
+<div class="contain mt-3">
 		<h1>{% trans %}Présentation du projet{% endtrans %}</h1>
 		<br><br>
 		<p>
@@ -214,7 +214,8 @@ $(document).ready(function(){
 			var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 			var yyyy = today.getFullYear();
 			today = mm + '/' + dd + '/' + yyyy;
-			var totalcases = Object.values(response)[0][0].total_cases
+			var totalcases = Object.values(response)[0][0].total_cases;
+			console.log(typeof totalcases);
 			var totaldeaths = Object.values(response)[0][0].total_deaths;
 			var countries = Object.values(response)[0][0].total_affected_countries;
 			var totalrecovered = Object.values(response)[0][0].total_recovered;
@@ -248,9 +249,6 @@ $(document).ready(function(){
 			var totaldeathsfr = lastday.total_deaths;
 			var todaycasesfr = lastday.new_daily_cases;
 			var todaydeathsfr = lastday.new_daily_deaths;
-			
-			
-			console.log(lastday);
 			document.getElementById("total-deathsfr").innerHTML=totaldeathsfr;
 			document.getElementById("total-casesfr").innerHTML=totalcasesfr;
 

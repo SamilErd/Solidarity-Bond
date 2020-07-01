@@ -3,6 +3,7 @@
 namespace App\Controller\Account;
 
 use App\Entity\User;
+use App\Entity\Token;
 use App\Form\RegisterType;
 use App\Form\EditUserType;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Service\MailService;
 use App\Repository\OrderRepository;
 use App\Service\Cart\CartService;
-use Symfony\Contracts\Translation\TranslatorInterface;
+use App\Repository\TokenRepository;
+use App\Repository\UserRepository;
 
 class SecurityController extends AbstractController
 {
@@ -22,12 +24,16 @@ class SecurityController extends AbstractController
     /**
      * @Route("/register", name="security_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $encoder, \Swift_Mailer $mailer , MailService $mailservice, CartService $cartService)
+    public function register(Request $request, UserPasswordEncoderInterface $encoder, MailService $mailservice, CartService $cartService)
     {
         //getting the number of cart items
         $num = $cartService->getCartItemNum();
-        //Creating a User instance
+        //Creating a new User 
         $user = new User();
+        //Creating a new Token 
+        $token = new Token();
+        //creating a new time variable
+        $time = new \DateTime();
         //Creating a form with the form created in RegisterType linked to user entity
         $form = $this->createForm(RegisterType::class, $user);
         //handling the form's response
@@ -38,28 +44,25 @@ class SecurityController extends AbstractController
             $user->setRoles(["ROLE_USER"]);
             //encoding the user's password with the algorithm set in security.yml in config/packages
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
+            //setting the token settings
+            $token->setToken(rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '='));
+            //setting the token's user
+            $token->setIdUser($user);
+            //setting the token's creation time
+            $token->setCreatedAt($time);
+            //setting the token's user
+            $user->setToken($token);
             //getting the instance of the entity manager
             $entityManager = $this->getDoctrine()->getManager();
             //telling the entity manager to manage the user 
             $entityManager->persist($user);
+            //telling the entity manager to manage the token 
+            $entityManager->persist($token);
             //basically inserting the user in the database
             $entityManager->flush();
             //creating a new mail
-            /*$mailservice->sendToken($user);
-            $message = (new \Swift_Message('Nouvel utilisateur crée.'))
-            //getting the author's email
-            ->setFrom($user->getEmail())
-            //sending to specific mail
-            ->setTo('contact@solidarity-bond.fr')
-            //sending reply to author's email
-            ->setReplyTo($user->getEmail())
-            //setting the content of the mail with the selected template
-            ->setBody($this->renderView('emails/emails_register.html.twig',[
-                //setting the mail's contact info with contact variable
-                'user' => $user
-            ]), 'text/html');
-            //sending the message with the mailer
-            $mailer->send($message);*/
+            $mailservice->sendToken($user, $token);
+            
 
             //redirecting to homepage
             //after creting the user, redirecting onto the login page
@@ -93,12 +96,136 @@ class SecurityController extends AbstractController
             'num' => $num
         ]);
     }
+    /**
+     * @Route("/password_forgot", name="security_password_forgot")
+     */
+    public function password_forgot(AuthenticationUtils $authenticationUtils, MailService $mailservice, CartService $cartService, UserRepository $urepo)
+    {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
+        $error ="";
+        $msg = "";
+        if(!empty($_POST["email"])){
+            $email = $_POST['email'];
+            $user = $urepo->findOneByEmail($email);
+            if($user != null){
+                //creating a new time variable
+                $time = new \DateTime();
+                $token = new Token();
+                $token->setToken(rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '='));
+                //setting the token's user
+                $token->setIdUser($user);
+                //setting the token's creation time
+                $token->setCreatedAt($time);
+                //setting the token's user
+                $user->setTokenPass($token);
+                //getting the instance of the entity manager
+                $entityManager = $this->getDoctrine()->getManager();
+                //telling the entity manager to manage the user 
+                $entityManager->persist($user);
+                //telling the entity manager to manage the token 
+                $entityManager->persist($token);
+                //basically inserting the user in the database
+                $entityManager->flush();
+                //creating a new mail
+                $mailservice->sendTokenPass($user, $token);
+                //setting the message for the next page
+                $msg = "Une email vous a été envoyé dans votre boite mail avec un lien vous permettant de reinitialiser votre mot de passe";
+            } else {
+                $error = "Votre adresse email n'éxiste pas sur notre site web.";
+            }
 
+        }
+        //rendering the login page if failed
+        return $this->render('security/passforgot.html.twig', [
+            //giving the login page the error to show it
+            'error' => $error,
+            //giving the msg variable
+            'msg' => $msg,
+            //giving the login page the error to show it
+            'num' => $num
+        ]);
+    }
 
     /**
      * @Route("/logout", name="security_logout")
      */
     public function logout() {}
+
+    /**
+     * @Route("/validate_mail/{token}", name="validate_mail")
+     */
+    public function token($token, TokenRepository $trepo) {
+
+        //getting the email's token
+        $token = $trepo->getToken($token);
+        //getting the entity manager
+        $entityManager = $this->getDoctrine()->getManager();
+        //telling the entity manager to manage the token 
+        $entityManager->remove($token);
+        //basically inserting the user in the database
+        $entityManager->flush();
+        //rendering the login page 
+        return $this->redirectToRoute("security_login");
+    }
+    /**
+     * @Route("/password_reset/{token}", name="security_password_reset")
+     */
+    public function tokenpass($token, TokenRepository $trepo, CartService $cartService, UserPasswordEncoderInterface $encoder) {
+        //if the user changes his password
+        $error ="";
+        $msg ="";
+        //setting the password regex
+        $passwordregex = '/^(?=.*[0-9])(?=.*[A-Z]).{8,}$/';
+        $token = $trepo->getToken($token);
+        if(!empty($_POST['NewPass'])){
+            //getting the new password
+            $new_pwd = $_POST['NewPass'];
+            //getting the confirmation password
+            $con_pwd = $_POST['ConfirmPass'];      
+           //getting the entity manager
+            $entityManager = $this->getDoctrine()->getManager();
+            if($new_pwd === $con_pwd){
+                    if(!preg_match($passwordregex,$new_pwd)) {
+                    //Sets the error message if the password doesn't contain at least 1 number
+                    $error = "Votre mot de passe doit contenir au moins 8 caractères, 1 majuscule, 1 minuscule, et 1 chiffre.";
+                    } else {
+                    
+
+                    $user = $token->getIdUser();
+                    //If the password respects all the rules, setting the user's new password
+                    $user->setPassword($encoder->encodePassword($user , $new_pwd));
+                    //tells the entity manager to manage the user
+                    $entityManager->persist($user);                    
+                    //telling the entity manager to remove the token 
+                    $entityManager->remove($token);
+                    //basically updating the database
+                    $entityManager->flush();
+                    //redirecting the user to the security_update
+                    $msg = "Votre mot de passe a été modifié avec succès.";
+                    }
+                } else {
+                    //Sets the error message if the new password and the confirmation password doesn't match
+                    $error = " Vos nouveaux mots de passes ne correspondent pas.";
+                }
+            } 
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
+
+        //rendering the reset password page
+        return $this->render('security/passchange.html.twig', [
+            //giving error message
+            'error' => $error,
+            //giving the message
+            'msg' => $msg,
+
+            //giving the login page the error to show it
+            'num' => $num,
+            'token' => $token
+        ]);
+    }
+
+    
 
 
     /**
