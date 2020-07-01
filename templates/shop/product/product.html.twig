@@ -111,14 +111,12 @@
                 <h4 class="mb-3">{% trans %}Combien voulez-vous en ajouter ?{% endtrans %}</h4>
                
                 <select class="form_css_option" name="StockOptions" id="stock-select">
-                    <option value="">--{% trans %}Choissez une option{% endtrans %}--</option>
                     {% for i in range(1, product.Stock) %}
                         <option value= {{ i }}> {{ i }}</option>
                     {% endfor %}
                 </select>
                 <br><br>
                 
-                {# <a class="btn mt-4" href="{{path('show_order')}}" onclick="add_card()" id="button">Ajouter au panier</a> #}
                 <button id="button" class="btn mt-3" onclick="add_cart()">{% trans %}Ajouter au panier{% endtrans %}</button>
                 {% endif %}
             </div>
