@@ -114,10 +114,8 @@ class SecurityController extends AbstractController
             if($user != null){
                 //creating a new time variable
                 $time = new \DateTime();
-                $token = new Token();
+                $token = $user->getTokenPass();
                 $token->setToken(rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '='));
-                //setting the token's user
-                $token->setIdUser($user);
                 //setting the token's creation time
                 $token->setCreatedAt($time);
                 //setting the token's user
