@@ -11,23 +11,24 @@
 	</div>
 
 
-		<div class="m-4 text-center">
-			{% if error %}
-				<div class="alert alert-danger">
-					{{error.messageKey}}
-				</div>
-			{% endif %}
-			
+	<div class="text-center">
+		{% if error %}
+			<div class="alert alert-danger">
+				{{error.messageKey}}
+			</div>
+		{% endif %}
+		
 
-			<h4 class="mt-5">{% trans %}Connectez-vous{% endtrans %}</h4>
-			<div class="container">
-			<div class="row">
+		<h4 class="mt-5 mb-5">{% trans %}Connectez-vous{% endtrans %}</h4>
+		<div class="container login-form">
 
-				<form action=" {{ path('security_login') }}" class="form-signin w-50 mx-auto" method="post">
-					<input placeholder="{% trans %}Adresse Email{% endtrans %}" required name="_username" type="text" class="form_css mb-3 " ></input>
-					<input placeholder="{% trans %}Mot de passe{% endtrans %}" required name="_password" type="password" class="form_css mb-4 "></input>
-					<a href="{{path('security_password_forgot')}}" >{% trans %}Mot de passe oublié{% endtrans %}</a>
-					<br></br>
+				<form action=" {{ path('security_login') }}" class="form-signin" method="post">
+					<input placeholder="{% trans %}Adresse Email{% endtrans %}" required name="_username" type="text" class="form_css mb-3" ></input>
+					<br>
+					<input placeholder="{% trans %}Mot de passe{% endtrans %}" required name="_password" type="password" class="form_css mb-4"></input>
+					<br>
+					<a class="sizeForgotPassword" href="{{path('security_password_forgot')}}" >{% trans %}Mot de passe oublié{% endtrans %} ?</a>
+					<br>
 					<button type="submit" class="btn btn_form_css btn-lg mt-4 mb-3">
 						{% trans %}Se connecter{% endtrans %}
 					</button>
@@ -38,6 +39,7 @@
 						<a href="{{path('security_register')}}" id="text">{% trans %}Inscrivez-vous{% endtrans %}</a>
 					</div>
 				</form>
+		</div>
+	</div>
 
-			</div>
-</div></div>{% endblock %}
+{% endblock %}

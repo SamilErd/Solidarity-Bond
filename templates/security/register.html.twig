@@ -9,7 +9,7 @@
 			<h1 class="display-4">{% trans %}Inscrivez-vous{% endtrans %}</h1>
 		</div>
 	</div>
-	<div class="bdr-login w-50 mx-auto mb-5">
+	<div class="bdr-login mx-auto mb-5">
 		<div class="m-4 text-center">
 			{{ form_start(form) }}
 
@@ -35,7 +35,7 @@
 			<div class="form">
 				<div class="container">
 				<div class="row">
-					<div class="col-6 mb-3 mt-3">
+					<div class="col-xl-6 col-md-12 mb-3 mt-3">
 						{{ form_widget(form.FirstName, {'attr':
                         {
 						'class' : 'form_css',
@@ -44,7 +44,7 @@
                     }) 
                 }}
 					</div>
-					<div class="col-6 mb-3 mt-3">
+					<div class="col-xl-6 col-md-12 mb-3 mt-3">
 						{{ form_widget(form.LastName, {'attr':
                         {
 						'class' : 'form_css',
@@ -53,7 +53,7 @@
                     }) 
                 }}
 					</div>
-					<div class="col-6 mb-3">
+					<div class="col-xl-6 col-md-12 mb-3">
 						{{ form_widget(form.password.first, {'attr':
                         {
 						'class' : 'form_css',
@@ -62,7 +62,7 @@
                     	}) 
                 	}}
 					</div>
-					<div class="col-6 mb-3">
+					<div class="col-xl-6 col-md-12 mb-3">
 						{{ form_widget(form.password.second, {'attr':
                         {
 						'class' : 'form_css',
@@ -71,7 +71,7 @@
                     }) 
                 }}
 					</div>
-					<div class="col-6 mb-3">
+					<div class="col-xl-6 col-md-12 mb-3">
 						{{ form_widget(form.email, {'attr':
                     {
 					'class' : 'form_css',
@@ -80,7 +80,7 @@
                 }) 
             }}
 					</div>
-					<div class="col-6 mb-3">
+					<div class="col-xl-6 col-md-12 mb-3">
 						{{ form_widget(form.phoneNum, {'attr':
                             {
 							'class' : 'form_css',
@@ -92,7 +92,7 @@
 				</div>
 
 				<div class="row row-cols-1">
-					<div class="col-6 mb-3">
+					<div class="col-xl-6 col-md-12 mb-3">
 							{{ form_widget(form.street, {'attr':
 						{
 						'class' : 'form_css',
@@ -101,7 +101,7 @@
 					}) 
 				}}
 					</div>
-					<div class="col-6 mb-3">
+					<div class="col-xl-6 col-md-12 mb-3">
 							{{ form_widget(form.postalcode, {'attr':
 						{
 						'class' : 'form_css',
@@ -110,7 +110,7 @@
 					}) 
 				}}
 					</div>
-					<div class="col-6 mb-3">
+					<div class="col-xl-6 col-md-12 mb-3">
 							{{ form_widget(form.country, {'attr':
 						{
 						'class' : 'form_css',

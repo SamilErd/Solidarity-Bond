@@ -1193,6 +1193,30 @@
 			Sharing droplets by means of handshakes or sharing a drink where bodily fluids are transfered to somebody can increase the chance of infection.
 			Always try to wash your hands this can can be the most importnant thing you can do in helping you not get infected with the Coronavirus.</target>
       </trans-unit>
+      <trans-unit id="_Uk779C" resname="Une email vous a été envoyé dans votre boite mail avec un lien vous permettant de reinitialiser votre mot de passe">
+        <source>Une email vous a été envoyé dans votre boite mail avec un lien vous permettant de reinitialiser votre mot de passe</source>
+        <target>An email has been sent to your mailbox with a link to reset your password.</target>
+      </trans-unit>
+      <trans-unit id="N03xYMK" resname="Votre adresse email n'éxiste pas sur notre site web.">
+        <source>Votre adresse email n'éxiste pas sur notre site web.</source>
+        <target>Your email address does not exist on our website.</target>
+      </trans-unit>
+      <trans-unit id="anS7yXr" resname="Votre mot de passe a été modifié avec succès.">
+        <source>Votre mot de passe a été modifié avec succès.</source>
+        <target>Your password has been changed successfully.</target>
+      </trans-unit>
+      <trans-unit id=".4BZ3Gd" resname="Actions">
+        <source>Actions</source>
+        <target>Actions</target>
+      </trans-unit>
+      <trans-unit id="gjkoJ.b" resname="Solidarity-Bond">
+        <source>Solidarity-Bond</source>
+        <target>Solidarity-Bond</target>
+      </trans-unit>
+      <trans-unit id="ceO7LVo" resname="Solidarity-bond">
+        <source>Solidarity-bond</source>
+        <target>Solidarity-bond</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

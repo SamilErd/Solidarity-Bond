@@ -100,11 +100,13 @@ class SecurityController extends AbstractController
     /**
      * @Route("/password_forgot", name="security_password_forgot")
      */
-    public function password_forgot(AuthenticationUtils $authenticationUtils, MailService $mailservice, CartService $cartService, UserRepository $urepo)
+    public function password_forgot(AuthenticationUtils $authenticationUtils, MailService $mailservice, CartService $cartService, UserRepository $urepo, TranslatorInterface $translator)
     {
         //getting the number of cart items
         $num = $cartService->getCartItemNum();
         $error ="";
+        $translatedmsg = $translator->trans('Une email vous a été envoyé dans votre boite mail avec un lien vous permettant de reinitialiser votre mot de passe');
+        $translatederror = $translator->trans('Votre adresse email n\'éxiste pas sur notre site web.');
         $msg = "";
         if(!empty($_POST["email"])){
             $email = $_POST['email'];
@@ -131,9 +133,9 @@ class SecurityController extends AbstractController
                 //creating a new mail
                 $mailservice->sendTokenPass($user, $token);
                 //setting the message for the next page
-                $msg = "Une email vous a été envoyé dans votre boite mail avec un lien vous permettant de reinitialiser votre mot de passe";
+                $msg = $translatedmsg;
             } else {
-                $error = "Votre adresse email n'éxiste pas sur notre site web.";
+                $error = $translatederror;
             }
 
         }
@@ -172,10 +174,13 @@ class SecurityController extends AbstractController
     /**
      * @Route("/password_reset/{token}", name="security_password_reset")
      */
-    public function tokenpass($token, TokenRepository $trepo, CartService $cartService, UserPasswordEncoderInterface $encoder) {
+    public function tokenpass($token, TokenRepository $trepo, CartService $cartService, UserPasswordEncoderInterface $encoder, TranslatorInterface $translator) {
         //if the user changes his password
         $error ="";
         $msg ="";
+        $translatederrorPassword = $translator->trans('Votre mot de passe doit contenir au moins 8 caractères, 1 majuscule, 1 minuscule, et 1 chiffre.');
+        $translatedmsgPassword= $translator->trans('Votre mot de passe a été modifié avec succès.');
+        $translatederrorPassword2 = $translator->trans('Vos nouveaux mots de passes ne correspondent pas.');
         //setting the password regex
         $passwordregex = '/^(?=.*[0-9])(?=.*[A-Z]).{8,}$/';
         $token = $trepo->getToken($token);
@@ -189,7 +194,7 @@ class SecurityController extends AbstractController
             if($new_pwd === $con_pwd){
                     if(!preg_match($passwordregex,$new_pwd)) {
                     //Sets the error message if the password doesn't contain at least 1 number
-                    $error = "Votre mot de passe doit contenir au moins 8 caractères, 1 majuscule, 1 minuscule, et 1 chiffre.";
+                    $error = $translatederrorPassword;
                     } else {
                     
 
@@ -203,11 +208,11 @@ class SecurityController extends AbstractController
                     //basically updating the database
                     $entityManager->flush();
                     //redirecting the user to the security_update
-                    $msg = "Votre mot de passe a été modifié avec succès.";
+                    $msg = $translatedmsgPassword;
                     }
                 } else {
                     //Sets the error message if the new password and the confirmation password doesn't match
-                    $error = " Vos nouveaux mots de passes ne correspondent pas.";
+                    $error = $translatederrorPassword2;
                 }
             } 
         //getting the number of cart items
