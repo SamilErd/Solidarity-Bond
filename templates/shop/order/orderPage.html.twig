@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Interface FabLab{% endtrans %}
+{% endblock %}
+
+    {% block stylesheets %}{% endblock %}
+
+{% block body %}
+<div id="all">
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">{% trans %}Commande numéro{% endtrans %} {{order.id}}</h1>
+        </div>
+    </div>     
+
+    <div style="text-align: center">
+
+    <h4>{% trans %}Status de la commande{% endtrans %}:<h4>
+    <h5>{{order.status}}<h5>
+    <br></br>
+
+    <h4>{% trans %}Détail de la commande{% endtrans %}</h4>
+    <div class="mb-5" style="width:75%; margin: 0 auto">
+        <table class="table">
+            <thead>
+                <th>{% trans %}Produits{% endtrans %}</th>
+                <th>{% trans %}Prix{% endtrans %}</th>
+                <th>{% trans %}Quantité{% endtrans %}</th>
+                <th>{% trans %}Total{% endtrans %}</th>
+                <th></th>
+            </thead>            
+            <tbody>            
+                {% set Total = 0 %}
+                {% for key, product in order.hasProduct %}
+                <tr>
+                    
+                    <th>{{product.ProductName}}</th>
+                    <th>{{product.Price}}</th>
+                    <th>{{order.quantity[key] }}</th>
+                    <th>{{product.Price * order.quantity[key]}}</th>
+                    {% set Total = Total + product.Price * order.quantity[key] %}
+                </tr> 
+                {% endfor %}
+                    
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">{% trans %}Total{% endtrans %} : </td>
+                    <td> {{ Total }} €</td>
+                    <td>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+
+                {% if is_granted('ROLE_FABLAB')%}
+                <a class="btn" href="{{path('order_prepare', {'id' : order.id}) }}" id="button"  >
+                {% trans %}Je vais préparer cette commande{% endtrans %}
+                </a>
+                <a class="btn" href="{{path('order_sent', {'id' : order.id}) }}" id="button"  >
+                {% trans %}J'ai envoyé cette commande{% endtrans %}
+                </a>
+                {% endif %}
+
+</div>
+
+
+        
+
+
+        
+    
+{% endblock %}

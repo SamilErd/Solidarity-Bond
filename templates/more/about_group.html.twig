@@ -1,52 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}À propos de nous
+{% block title %}{% trans %}À propos de nous{% endtrans %}
 {% endblock %}
 
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">À propos</h1>
-                        <p class="lead">Voici quelques informations supplémentaire</p>
+			<h1 class="display-4">{% trans %}À propos{% endtrans %}</h1>
 		</div>
 	</div>
 
-        <div class="w-50 mx-auto">
+        <div class="width-responsive mx-auto">
 
         <div class="container">
-                <h1>À Propos du Projet</h1>
+                <h1>{% trans %}À Propos du Projet{% endtrans %}</h1>
                 <br><br>
                 <p>
-                        Solidarity Bond - Strasbourg est un groupe de trois étudiants basé en France dans la région Grand Est. Le groupe a été crée dans le cadre d'un projet de substitution pour remplacer notre stage annulé suite à la pandémie de COVID-19.
+                        {% trans %}Solidarity Bond - Strasbourg est un groupe de trois étudiants basé en France dans la région Grand Est. Le groupe a été crée dans le cadre d'un projet de substitution pour remplacer notre stage annulé suite à la pandémie de COVID-19.{% endtrans %}
                 <br><br>
-                        Ce projet a pour objectif de mettre en place un dispositif pour venir en aide aux personnes ayant besoins de protection.<br>
-                        Solidarity Bond - Strasbourg imprime des visières de protections que cela soit pour des professionnels de la santé, des entreprises, des commerces ou encore des particuliers.
+                        {% trans %}Ce projet a pour objectif de mettre en place un dispositif pour venir en aide aux personnes ayant besoins de protection.{% endtrans %}<br>
+                        {% trans %}Solidarity Bond - Strasbourg imprime des visières de protections que cela soit pour des professionnels de la santé, des entreprises, des commerces ou encore des particuliers.{% endtrans %}
                 <br><br>
-                        Les visières sont imprimé au sein du FabLab de notre École d'ingénieur le CESI avec l'aide de notre FabLab Manager.
+                        {% trans %}Les visières sont imprimé au sein du FabLab de notre École d'ingénieur le CESI avec l'aide de notre FabLab Manager.{% endtrans %}</p>
                 <br><br>
 
-                <div class="row justify-content-around">
-                        <h1 class="col-12 mb-5">À Propos du Groupe</h1>
-                        <br><br>
-                        <p class="col-12 mb-5">Comme dis plus haut le groupe est composé de trois étudiants.</p>
-                        <div class="polaroid col-xl-3">
-                                <img class="img-fluid" src="/images/Samil.jpg" alt="Samil" style="width:100%">
-                                <div class="container" id="polaroid">
-                                        <p>Erdogan Samil</p>
-                                </div>
+                <h1 >{% trans %}À Propos du Groupe{% endtrans %}</h1>
+                <br><br>
+
+                <div class="card-deck mb-5">
+
+                        <div class="card">
+                        <img class="card-img-top" src="/images/Samil.jpg" alt="Samil">
+                        <div class="card-body">
+                                <h5 class="card-title">Erdogan Samil</h5>
+                                <a href="https://www.linkedin.com/in/samil-erdogan/"><i class="fa fa-linkedin"></i></a>
                         </div>
-                        <div class="polaroid col-xl-3">
-                                <img class="img-fluid" src="/images/Alexis.jpg" alt="Alexis" style="width:100%">
-                                <div class="container" id="polaroid">
-                                        <p>Varela Alexis</p>
-                                </div>
                         </div>
-                        <div class="polaroid col-xl-3">
-                                <img class="img-fluid" src="/images/FabLab.jpg" alt="Victor" style="width:100%">
-                                <div class="container" id="polaroid">
-                                        <p>Bernard Victor</p>
-                                </div>
+
+                        <div class="card">
+                        <img class="card-img-top" src="/images/Alexis.jpg" alt="Alexis">
+                        <div class="card-body">
+                                <h5 class="card-title">Varela Alexis</h5>
+                                <a href="https://www.linkedin.com/in/alexis-varela/"><i class="fa fa-linkedin"></i></a>
                         </div>
+                        </div>
+
+                        <div class="card">
+                        <img class="card-img-top" src="/images/Victor.jpg" alt="Victor">
+                        <div class="card-body">
+                                <h5 class="card-title">Bernard Victor</h5>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                        </div>
+                </div>
+
                 </div>
         </div>
         </div>

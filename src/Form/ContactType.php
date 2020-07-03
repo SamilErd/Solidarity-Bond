@@ -10,16 +10,40 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', TextType::class)
-            ->add('lastname', TextType::class)
-            ->add('phone', TextType::class)
+            ->add('firstname', TextType::class,[
+                'constraints' => [
+                    new NotBlank(),
+                    new Regex([
+                        'pattern' => '/^[a-z-]+$/i',
+                        'htmlPattern' => '^[a-zA-Z-]+$',
+                        'message' => "Votre prénom n'est pas valide."
+                ]),
+            ]])
+            ->add('lastname', TextType::class,[
+                'constraints' => [
+                    new NotBlank(),
+                    new Regex([
+                        'pattern' => '/^[a-z-]+$/i',
+                        'htmlPattern' => '^[a-zA-Z-]+$',
+                        'message' => "Votre nom n'est pas valide."
+                  ]),
+            ]])
+            ->add('phone', TextType::class,[
+                'constraints' => [
+                    new NotBlank(),
+                    new Regex([
+                        'pattern' => '/^(0|\+33)[1-9]([-.]?[0-9]{2}){3}([-.]?[0-9]{2})$/i',
+                        'htmlPattern' => '^(0|\+33)[1-9]([-.]?[0-9]{2}){3}([-.]?[0-9]{2})$',
+                        'message' => "Votre numéro de téléphone n'est pas valide."
+                  ]),
+            ]])
             ->add('email', EmailType::class)
             ->add('message', TextareaType::class)
             ;

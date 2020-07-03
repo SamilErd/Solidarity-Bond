@@ -18,6 +18,7 @@ security:
             security: false
         main:
             anonymous: true
+            user_checker: App\Security\UserChecker
 
             provider: in_database
 
@@ -40,6 +41,7 @@ security:
     access_control:
         
          - { path: ^/admin, roles: ROLE_FABLAB }
-         - { path: ^/shop/checkout, roles: ROLE_USER }
+         - { path: ^/login, roles: IS_ANONYMOUS}
+         - { path: ^/register, roles: IS_ANONYMOUS}
          
         # - { path: ^/profile, roles: ROLE_USER }

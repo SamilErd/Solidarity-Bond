@@ -9,7 +9,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\ProductRepository;
+use App\Repository\OrderRepository;
 use App\Entity\Product;
+use App\Service\Cart\CartService;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 
 
@@ -21,22 +24,45 @@ class ProductController extends AbstractController
     /**
      * @Route("/admin_products", name="admin_products")
      */
-    public function admin_products(ProductRepository $prepo)
+    public function admin_products(ProductRepository $prepo, CartService $cartService)
     {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         //Getting all products from database
         $products = $prepo->findAll();
         //rendering the product page
-        return $this->render('admin/products.html.twig', [
+        return $this->render('Shop/product/products.html.twig', [
             //giving all the products of the database to the page
             "products" => $products,
+            'num' => $num
         ]);
+    }
+
+    /**
+     * @Route("/delete_product_{id}", name="delete_product")
+     */
+    public function delete_product($id, ProductRepository $prepo)
+    {
+        //Getting the product from the database
+        $product = $prepo->find($id);
+        //getting the instance of the entity manager and 
+        $entityManager = $this->getDoctrine()->getManager();
+        //tells the entity manager to remove the product
+        $entityManager->remove($product);
+        //updating the database
+        $entityManager->flush();
+        
+        //rendirecting to products
+        return $this->redirectToRoute('admin_products');
     }
 
     /**
      * @Route("/admin_new_product", name="admin_new_product")
      */
-    public function admin_new_product(Request $request)
+    public function admin_new_product(Request $request, CartService $cartService)
     {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         //creating an instance of the product entity
         $product = new Product() ;
         //creating a form with the product instance and the NewProductType template
@@ -68,24 +94,11 @@ class ProductController extends AbstractController
         //rendering the product creating page
         return $this->render('admin/products/new_product.html.twig', [
             //giving this page the form value
-            'formnp' => $formnp->createView()
+            'formnp' => $formnp->createView(),
+            'num' => $num
         ]);
     }
 
-
-    /**
-     * @Route("/admin_more_page_{id}", name="admin_more_page")
-     */
-    public function admin_more_page($id, ProductRepository $prepo)
-    {
-        //getting the specific id's product
-        $product = $prepo->find($id);
-        //rendering the product more stock page
-        return $this->render('admin/products/more_product.html.twig', [
-            //giving the page the product variable
-            "product" => $product,
-        ]);
-    }
 
     /**
      * @Route("/admin_more", name="admin_more")
@@ -116,18 +129,63 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/admin_sold_page_{id}", name="admin_sold_page")
+     * @Route("/order_{id}_sent", name="order_sent")
      */
-    public function admin_sold_page($id, ProductRepository $prepo)
+    public function order_sent($id, OrderRepository $orepo, TranslatorInterface $translator)
     {
-        //selecting the specific id's product
-        $product = $prepo->find($id);
+        
+        //selecting the specific id's order
+        $order = $orepo->find($id);
+        //getting the instance of the entity manager and 
+        $entityManager = $this->getDoctrine()->getManager();
+        foreach ($order->getHasProduct() as $key => $product){
+            $quantity = $order->getQuantity()[$key];
+            $product->setStock($product->getStock() - $quantity);
+            //tells the entity manager to manage the product
+            $entityManager->persist($product);
+            //updating the product in the database
+            $entityManager->flush();
+        }
+
+        $translated = $translator->trans('Expédié');
+
+        //setting the new order status
+        $order->setStatus($translated);
+        //tells the entity manager to manage the product
+        $entityManager->persist($order);
+        //updating the product in the database
+        $entityManager->flush();
         //rendering the update product's stock page
-        return $this->render('admin/products/sold_product.html.twig', [
+        return $this->redirectToRoute('order_detail', [
             //giving the page the product variable
-            "product" => $product,
+            "id" => $id,
         ]);
     }
+    /**
+     * @Route("/order_{id}_prepare", name="order_prepare")
+     */
+    public function order_prepare($id, OrderRepository $orepo, TranslatorInterface $translator)
+    {
+        
+        $translated = $translator->trans('En préparation');
+
+        //selecting the specific id's order
+        $order = $orepo->find($id);
+        //setting the new order status
+        $order->setStatus($translated);
+        //getting the instance of the entity manager and 
+        $entityManager = $this->getDoctrine()->getManager();
+        //tells the entity manager to manage the product
+        $entityManager->persist($order);
+        //updating the product in the database
+        $entityManager->flush();
+        //rendering the update product's stock page
+        return $this->redirectToRoute('order_detail', [
+            //giving the page the product variable
+            "id" => $id,
+        ]);
+    }
+
     /**
      * @Route("/admin_sold", name="admin_sold")
      */
@@ -160,9 +218,13 @@ class ProductController extends AbstractController
     /**
      * @Route("/admin_product_{id}", name="admin_product")
      */
-    public function admin_product($id)
+    public function admin_product($id, CartService $cartService)
     {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
         //rendering the specific product's page [WHICH HASNT BEEN MADE FOR THE MOMENT]
-        return $this->render('admin/product.html.twig');
+        return $this->render('admin/product.html.twig', [
+        'num' => $num
+        ]);
     }
 }

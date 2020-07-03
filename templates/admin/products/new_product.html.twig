@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Interface Fab-Lab
+{% block title %}{% trans %}Interface FabLab{% endtrans %}
 {% endblock %}
 
     {% block stylesheets %}{% endblock %}
@@ -9,7 +9,7 @@
 
 <div class="jumbotron jumbotron-fluid">
 	<div class="container">
-				<h1 class="display-4">Ajouter un produit</h1>
+				<h1 class="display-4">{% trans %}Ajouter un produit{% endtrans %}</h1>
 			</div>
 </div>
 
@@ -19,48 +19,48 @@
 				
 					{{ form_errors(formnp) }}
 					<div class="row">
-						<div class="col-6 mb-3 mt-3">
+						<div class="col-md-8 mb-3 mt-3">
 							{{ form_widget(formnp.ProductName, {'attr':
 							{
-							'class' : 'form_css',
-							'placeholder' : "Nom du produit"
+							'class' : 'form_css_contact',
+							'placeholder' : 'Nom du produit'|trans
 							}
 							}) 
 						}}
 						</div>
-						<div class="col-6 mb-3 mt-3">
+						<div class="col-md-8 mb-3 mt-3">
 							{{ form_widget(formnp.Description, {'attr':
 							{
-							'class' : 'form_css',
-							'placeholder' : "Description"
+							'class' : 'form_css_contact',
+							'placeholder' : 'Description'|trans
 							}
 							}) 
 						}}
 						</div>
-						<div class="col-6 mb-3">
+						<div class="col-md-8 mb-3">
 							{{ form_widget(formnp.Price, {'attr':
 							{
-							'class' : 'form_css',
-							'placeholder' : "Prix"
+							'class' : 'form_css_contact',
+							'placeholder' : 'Prix'|trans
 							}
 							}) 
 						}}
 						
 						</div>
-						<div class="col-6 mb-3">
+						<div class="col-md-8 mb-3">
 							{{ form_widget(formnp.Stock, {'attr':
 							{
-							'class' : 'form_css',
-							'placeholder' : "Stock"
+							'class' : 'form_css_contact',
+							'placeholder' : 'Stock'|trans
 							}
 							}) 
 						}}
 						</div>
-						<div class="col-6 mb-3" >
+						<div class="col-md-8 mb-3" >
 							{{ form_widget(formnp.Image, {'attr':
 							{
-							'class' : 'form_css mt-2',
-							'placeholder' : "Choisissez votre image"
+							'class' : 'form_css_contact mt-2',
+							'placeholder' : 'Choisissez votre image'|trans
 							}
 							}) 
 						}}
@@ -68,7 +68,7 @@
 						<div class="col-12 mb-3 btn-center" >
 							{{ form_widget(formnp.Ajouter, {'attr':
 							{
-							'class' : 'btn_form_css mt-5',
+							'class' : 'btn btn-lg btn_form_css mt-5',
 							}
 							}) 
 						}}

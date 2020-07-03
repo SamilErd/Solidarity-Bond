@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Interface FabLab{% endtrans %}
+{% endblock %}
+
+    {% block stylesheets %}{% endblock %}
+
+{% block body %}
+
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">{% trans %}Commande réceptionné{% endtrans %}</h1>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h3 class="alert alert-success">{% trans %}Votre commande de {% endtrans %}
+        {% for key,product in order.hasProduct %}
+
+        {{order.quantity[key]}} {{product.ProductName}},
+        
+        {% endfor %} 
+        
+        {% trans %}à bien été réceptionné{% endtrans %}<i class="fa fa-check ml-3"></i></h3>
+        <br><br>
+        <h5>{% trans %}Vous pourez retrouver votre commande dans l'onglet{% endtrans %} <a href="{{path('security_account')}}" id="text">{% trans %}Mes commandes{% endtrans %}</a></h5>
+
+    </div>
+
+{% endblock %}

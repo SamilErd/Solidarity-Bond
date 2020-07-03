@@ -1,121 +1,175 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon compte
+{% block title %}{% trans %}Mon compte{% endtrans %}
 {% endblock %}
 
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Mes informations de compte.</h1>
+			<h1 class="display-4">{% trans %}Mon compte{% endtrans %}</h1>
 
 		</div>
 	</div>
-	<div class="bdr-login w-50 mx-auto mb-5">
-		<div class="m-4 text-center">
-        {% if updatemessage is defined%}
-        <h1>{{ updatemessage }}</h1>
-        {% endif %}
-            {{ form_start(form) }}
-			<div class="form">
+	{% if error_edit is not empty %}
+	<div class="alert alert-danger text-center"  style="width:75%; margin: 20px auto;">
+	<p>{{ error_edit }}</p>
+	</div>
+	{% endif %}
+
+		<div style="min-height : 500px">
+			<div class="left-element " >
+			<button class="btn-acc float-right Toright" onclick="ShowInfos()">{% trans %}Mes informations{% endtrans %} ></button>
+			<button class="btn-acc float-right Toright" onclick="ShowAddress()">{% trans %}Mon adresse{% endtrans %} ></button>
+			<button class="btn-acc float-right Toright" onclick="ShowOrders()">{% trans %}Mes commandes{% endtrans %} ></button>
+			</div >
+
+			<div class="right-element" id="infos"> 
 				
-				{{ form_errors(form.email) }}
-			
-				
-				<div class="row">
-					<div class="col-6 mb-3 mt-3">
-						{{ form_widget(form.FirstName, {'attr':
-                        {
-                        'placeholder' : "Nom",
-						'class': 'form_css'
-                        }
-                    }) 
-                }}
-					</div>
-					<div class="col-6 mb-3 mt-3">
-						{{ form_widget(form.LastName, {'attr':
-                        {
-                        'placeholder' : "Prénom",
-						'class' : 'form_css'
-                        }
-                    }) 
-                }}
-					</div>
-					<div class="col-6 mb-3">
-						{{ form_widget(form.password.first, {'attr':
-                        {
-                        'placeholder' : "Mot de passe",
-						'class' : 'form_css'
-                        }
-                    	}) 
-                	}}
-					{{ form_errors(form.password.first) }}
-					</div>
-					<div class="col-6 mb-3">
-						{{ form_widget(form.password.second, {'attr':
-                        {
-                        'placeholder' : "Confirmez le mot de passe",
-						'class' : 'form_css'
-                        }
-                    }) 
-                }}
-					</div>
-					<div class="col-6 mb-3">
-						{{ form_widget(form.email, {'attr':
-                    {
-                    'placeholder' : "Email",
-					'class' : 'form_css'
-                    }
-                }) 
-            }}
-					</div>
-					<div class="col-6 mb-3 mt-3">
-						{{ form_widget(form.phoneNum, {'attr':
-                            {
-                            'placeholder' : "Téléphone",
-							'class' : 'form_css'
-                            }
-                        }) 
-                    }}
-					</div>
+				<h4><strong>{% trans %}Mes informations de compte{% endtrans %}</strong></h4>
+				<hr class="line">
+
+				<h4 class="acc-edit">{% trans %}Prénom{% endtrans %}:  </h4>
+				<h4 class="acc-edit" id="FN">{{app.user.FirstName}}</h4>
+				<form id="FNI" style="display:none" action="{{path('security_account')}}" method="post">
+					<input class=" form_css_acc" value ="{{app.user.FirstName}}" type="text" name="FN" />
+				</form>
+				<div class="acc-edit text-right ">
+					<button class="btn acc-edit-btn" onclick="FNEdit();"><i  class="fa fa-edit " ></i></button>
 				</div>
-				<div class="row row-cols-1">
-					<div class="col-6 mb-3">
-							{{ form_widget(form.street, {'attr':
-						{
-						'placeholder' : "Addresse",
-						'class' : 'form_css'
-						
-						}
-					}) 
-				}}
-					</div>
-					<div class="col-6 mb-3">
-							{{ form_widget(form.postalcode, {'attr':
-						{
-						'placeholder' : "Code Postal",
-						'class' : 'form_css'
-						}
-					}) 
-				}}
-						</div>
-						<div class="col-6 mb-3">
-							{{ form_widget(form.country, {'attr':
-						{
-						'placeholder' : "Pays",
-						'class' : 'form_css'
-						}
-					}) 
-				}}
-						</div>
-					</div>
-					<button type="submit" class="btn btn-dark btn-lg mt-4">
-						Mettre à jour
-					</button>
+
 				
+				<hr class="diviser">
+
+				<h4 class="acc-edit">{% trans %}Nom{% endtrans %}:</h4>
+				<h4 class="acc-edit" id="LN">{{app.user.LastName}}</h4>
+				<form id="LNI" style="display:none" action="{{path('security_account')}}" method="post">
+				<input class="form_css_acc" value = "{{app.user.LastName}}" type="text"  name="LN" />
+				</form>
+				<div class="acc-edit text-right ">
+				<button class="btn acc-edit-btn" onclick="LNEdit();">
+				<i  class="fa fa-edit " ></i>
+				</button></div>
+
+				<hr class="diviser" />
+
+				<h4 class="acc-edit">{% trans %}Adresse Email{% endtrans %}:</h4>
+				<h4 class="acc-edit" id="E">{{app.user.email}}</h4>
+				<form id="EI" style="display:none" action="{{path('security_account')}}" method="post">
+				<input class="form_css_acc" value = "{{app.user.email}}" type="text"  name="E" />
+				</form>
+				<div class="acc-edit text-right ">
+				<button class="btn acc-edit-btn" onclick="EEdit();">
+				<i  class="fa fa-edit " ></i>
+				</button></div>
+
+				<hr class="diviser" />
+
+				<h4 class="acc-edit">{% trans %}Numéro de téléphone{% endtrans %}:</h4>
+				<h4 class="acc-edit" id="PN">{{app.user.phoneNum}}</h4>
+				<form id="PNI" style="display:none" action="{{path('security_account')}}" method="post">
+				<input class="form_css_acc" value = "{{app.user.phoneNum}}" type="text"  name="PN" />
+				</form>
+				<div class="acc-edit text-right ">
+				<button class="btn acc-edit-btn" onclick="PNEdit();">
+				<i  class="fa fa-edit " ></i>
+				</button></div>
+
+				<hr class="diviser" />
+
+				<button class="btn btn_form_css" id="edit" onclick="ShowPass()" style="margin-bottom:20px">{% trans %}Modifier mon mot de passe{% endtrans %}</button>
+			</div>	
+
+			<div class="right-element" style="display:none; " id="pass">
+				<div >
+					<form action="{{path('security_account')}}" method="post" >
+					<input class="form_css" placeholder = "Mot de passe actuel" type="password" name="CurrentPass" style="margin-bottom: 15px"/>
+					<input class="form_css" placeholder = "Nouveau mot de passe" type="password" name="NewPass" style="margin-bottom: 15px"/>
+					<input class="form_css" placeholder = "Confirmez votre mot de passe" type="password" name="ConfirmPass" style="margin-bottom: 15px" />
+					<button type="submit" class="btn btn-dark " id="btn" style="display:block ; width: 200px; margin-bottom: 10px">{% trans %}Mettre à jour{% endtrans %}</button>
+					<button class="btn btn-dark " id="btn" onclick="ShowPass()" style="display:block; width: 200px">{% trans %}Annuler{% endtrans %}</button>
+					</form>
+				</div>
 			</div>
 
-			{{ form_end(form) }}
-		</div>
-	</div>
 
+			<div class="right-element" style="display:none" id="orders">
+				<div class="container">
+					<table class="table">
+					<thead >
+						<tr>
+						<th scope="col">#</th>
+						<th scope="col">{% trans %}Produits{% endtrans %}</th>
+						<th scope="col">{% trans %}Status{% endtrans %}</th>
+						<th scope="col">{% trans %}Action{% endtrans %}</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for order in orders %}
+						<tr>
+						<th>{{order.id}}</th>
+						<th>
+						{% for key,product in order.HasProduct %}
+						{{product.ProductName}}({{order.quantity[key]}})
+							{% if product.id < order.HasProduct|length %},{% else %}.{% endif %}
+						{% endfor %}
+						</th>
+						
+
+						
+						<td>{{order.status}}</td>
+						<td><a href="{{path('order_detail',{'id' : order.id})}}" class="btn" id="button">{% trans %}Voir la commande{% endtrans %}</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+					</table>
+				</div>	
+			</div>
+
+			<div class="right-element" style="display:none" id="address"> 
+			<h4><strong>{% trans %}Mon adresse{% endtrans %}</strong></h4>
+
+			<hr class="diviser" />
+
+			<h4 class="acc-edit">{% trans %}Rue{% endtrans %}:</h4>
+			<h4 class="acc-edit" id="S">{{app.user.street}}</h4>
+			<form id="SI" style="display:none" action="{{path('security_account')}}" method="post">
+			<input class="form_css_acc" value = "{{app.user.street}}" type="text"  name="S" />
+			</form>
+			<div class="acc-edit text-right ">
+			<button class="btn acc-edit-btn" onclick="SEdit();">
+			<i  class="fa fa-edit " ></i>
+			</button></div>
+
+			<hr class="diviser" />
+
+			<h4 class="acc-edit">{% trans %}Code Postal{% endtrans %}:</h4>
+			<h4 class="acc-edit" id="CP">{{app.user.postalCode}}</h4>
+			<form id="CPI" style="display:none" action="{{path('security_account')}}" method="post">
+			<input class="form_css_acc" value = "{{app.user.postalCode}}" type="text"  name="CP" />
+			</form>
+			<div class="acc-edit text-right ">
+			<button class="btn acc-edit-btn" onclick="CPEdit();">
+			<i  class="fa fa-edit " ></i>
+			</button></div>
+
+				<hr class="diviser" />
+
+			<h4 class="acc-edit">{% trans %}Pays{% endtrans %}:</h4>
+			<h4 class="acc-edit" id="C">{{app.user.country}}</h4>
+			<form id="CI" style="display:none" action="{{path('security_account')}}" method="post">
+			<input class="form_css_acc" value = "{{app.user.country}}" type="text"  name="C" />
+			</form>
+			<div class="acc-edit text-right ">
+			<button class="btn acc-edit-btn" onclick="CEdit();">
+			<i  class="fa fa-edit " ></i>
+			</button>
+			
+			</div>
+
+			<hr class="diviser" />
+
+			</div>
+		</div>
+		
+<script src="{{asset('js/account.js')}}"></script>
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Interface Fab-Lab
+{% block title %}{% trans %}Interface FabLab{% endtrans %}
 {% endblock %}
 
     {% block stylesheets %}{% endblock %}
@@ -8,11 +8,47 @@
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Gestion des commandes</h1>
-
-		</div>
-	</div>
-
+			<h1 class="display-4">{% trans %}Vous pouvez consulter les commandes ici{% endtrans %}</h1>
+        </div>
+    </div> 
+            
+        <div class="container table-responsive">
+            <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">#</th>
+				<th scope="col">{% trans %}Produits{% endtrans %}</th>
+                <th scope="col">{% trans %}Nom{% endtrans %}</th>
+                <th scope="col">{% trans %}Prénom{% endtrans %}</th>
+				<th scope="col">{% trans %}Adresse Email{% endtrans %}</th>
+                <th scope="col">{% trans %}Adresse{% endtrans %}</th>
+                <th scope="col">{% trans %}Status{% endtrans %}</th>
+                <th scope="col">{% trans %}Action{% endtrans %}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+                <tr>
+                <th>{{order.id}}</th>
+				<th>
+				{% for key,product in order.HasProduct %}
+				{{product.ProductName}}({{order.quantity[key]}})
+					{% if product.id < order.HasProduct|length %},{% else %}.{% endif %}
+				{% endfor %}
+				</th>
+                <td>{{order.Iduser.FirstName}}</td>
+                <td>{{order.Iduser.LastName}}</td>
+				<td>{{order.Iduser.Email}}</td>
+                <td>{{order.Iduser.Street}}, {{order.Iduser.PostalCode}}, {{order.Iduser.country}}</td>
+                <td>{{order.status}}</td>
+				<td><a href="{{path('order_detail',{'id' : order.id})}}" class="btn" id="button">{% trans %}Voir la commande{% endtrans %}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+        </div>
+            
+                  
 
 
 

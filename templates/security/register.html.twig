@@ -1,79 +1,90 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscrivez-vous
+{% block title %}{% trans %}Inscrivez-vous{% endtrans %}
 {% endblock %}
 
 {% block body %}
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Inscrivez vous pour pouvoir commander.</h1>
-
+			<h1 class="display-4">{% trans %}Inscrivez-vous{% endtrans %}</h1>
 		</div>
 	</div>
-	<div class="bdr-login w-50 mx-auto mb-5">
+	<div class="bdr-login mx-auto mb-5">
 		<div class="m-4 text-center">
-
-			<p class="size-text">Inscrivez-vous</p>
-			
 			{{ form_start(form) }}
+
 			
-			<div class="form">
-				
+			{% if form_errors(form.FirstName) or form_errors(form.LastName) or form_errors(form.password.first) or form_errors(form.email) or form_errors(form.phoneNum) or form_errors(form.postalcode) or form_errors(form) %}
+				<div class="alert alert-danger text-center" >
+				{{ form_errors(form.FirstName) }}
+				{{ form_errors(form.LastName) }}
 				{{ form_errors(form.email) }}
+				{{ form_errors(form.password.first) }}
+				{{ form_errors(form.password.second) }}
+				{{ form_errors(form.phoneNum) }}
+				{{ form_errors(form.postalcode) }}
+				{{ form_errors(form) }}
+				</div>
+			{% endif %}
+
 			
+			
+
+			
+			<h4>Inscrivez-vous</h4>
+			<div class="form">
 				<div class="container">
 				<div class="row">
-					<div class="col-6 mb-3 mt-3">
+					<div class="col-xl-6 col-md-12 mb-3 mt-3">
 						{{ form_widget(form.FirstName, {'attr':
                         {
 						'class' : 'form_css',
-                        'placeholder' : "Nom"
+                        'placeholder' : 'Prénom'|trans
                         }
                     }) 
                 }}
 					</div>
-					<div class="col-6 mb-3 mt-3">
+					<div class="col-xl-6 col-md-12 mb-3 mt-3">
 						{{ form_widget(form.LastName, {'attr':
                         {
 						'class' : 'form_css',
-                        'placeholder' : "Prénom"
+                        'placeholder' : 'Nom'|trans
                         }
                     }) 
                 }}
 					</div>
-					<div class="col-6 mb-3">
+					<div class="col-xl-6 col-md-12 mb-3">
 						{{ form_widget(form.password.first, {'attr':
                         {
 						'class' : 'form_css',
-                        'placeholder' : "Mot de passe"
+                        'placeholder' : 'Mot de passe'|trans
                         }
                     	}) 
                 	}}
-					{{ form_errors(form.password.first) }}
 					</div>
-					<div class="col-6 mb-3">
+					<div class="col-xl-6 col-md-12 mb-3">
 						{{ form_widget(form.password.second, {'attr':
                         {
 						'class' : 'form_css',
-                        'placeholder' : "Confirmez le mot de passe"
+                        'placeholder' : 'Confirmez le mot de passe'|trans
                         }
                     }) 
                 }}
 					</div>
-					<div class="col-6 mb-3">
+					<div class="col-xl-6 col-md-12 mb-3">
 						{{ form_widget(form.email, {'attr':
                     {
 					'class' : 'form_css',
-                    'placeholder' : "Email"
+                    'placeholder' : 'Adresse Email'|trans
                     }
                 }) 
             }}
 					</div>
-					<div class="col-6 mb-3">
+					<div class="col-xl-6 col-md-12 mb-3">
 						{{ form_widget(form.phoneNum, {'attr':
                             {
 							'class' : 'form_css',
-                            'placeholder' : "Téléphone"
+                            'placeholder' : 'Téléphone | +33 x xx xx xx xx'|trans
                             }
                         }) 
                     }}
@@ -81,29 +92,29 @@
 				</div>
 
 				<div class="row row-cols-1">
-					<div class="col-6 mb-3">
+					<div class="col-xl-6 col-md-12 mb-3">
 							{{ form_widget(form.street, {'attr':
 						{
 						'class' : 'form_css',
-						'placeholder' : "Addresse"
+						'placeholder' : 'Adresse'|trans
 						}
 					}) 
 				}}
 					</div>
-					<div class="col-6 mb-3">
+					<div class="col-xl-6 col-md-12 mb-3">
 							{{ form_widget(form.postalcode, {'attr':
 						{
 						'class' : 'form_css',
-						'placeholder' : "Code Postal"
+						'placeholder' : 'Code Postal'|trans
 						}
 					}) 
 				}}
 					</div>
-					<div class="col-6 mb-3">
+					<div class="col-xl-6 col-md-12 mb-3">
 							{{ form_widget(form.country, {'attr':
 						{
 						'class' : 'form_css',
-						'placeholder' : "Pays"
+						'placeholder' :'Pays'|trans
 						}
 					}) 
 				}}
@@ -111,16 +122,16 @@
 				</div>
 				</div>
 
-				<button type="submit" class="btn btn-dark btn-lg mt-4">
-					S'inscrire
+				<button type="submit" class="btn btn_form_css btn-lg mt-4">
+					{% trans %}S'inscrire{% endtrans %}
 				</button>
 			</div>
 
 			<div class="mt-4">
-				<span class="meta">Vos comptes avez déja un compte ?
+				<span class="meta">{% trans %}Vos comptes avez déja un compte ?{% endtrans %}
 				</span>
 				<br/>
-				<a href="{{path('security_login')}}"  id="text">Connectez-vous</a>
+				<a href="{{path('security_login')}}"  id="text">{% trans %}Connectez-vous{% endtrans %}</a>
 			</div>
 			
 			{{ form_end(form) }}

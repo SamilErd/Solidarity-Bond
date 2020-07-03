@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page d'accueil
+{% block title %}{% trans %}Page d'accueil{% endtrans %}
 {% endblock %}
 
 {% block body %}
-
-	<div class="jumbotron jumbotron-fluid">
+<div>
+	<div class="jumbotron jumbotron-fluid jumb-top-m ">
 		<div class="container">
 			<h1 class="display-4">Solidarity-Bond</h1>
-			<p class="lead">Bienvenue sur le site de Solidarity-Bond, un projet mis en place par des étudiants du CESI Strasbourg dans le but de vendre des visières à bas prix !</p>
+			<p class="lead policy-width">{% trans %}Bienvenue sur le site de Solidarity-Bond de Strasbourg, un projet mis en place par des étudiants du CESI Strasbourg dans le but de vendre des visières et outils pour les commerçants et particuliers !{% endtrans %}</p>
 		</div>
 	</div>
+</div>
 
-	{# Alerte pour message envoyé #}
+<div class="width-responsive mx-auto">
 
-	<div class="container">
 		<div class="row">
 		{% for message in app.flashes('succes') %}
 			<div class="alert alert-success alert-dismissible fade show" role="alert" id="notification">
@@ -25,8 +25,271 @@
 			</div>
    		{% endfor %}
 		</div>
+
+	<div class="container mt-3">
+			<h1 class="h1-respons">{% trans %}Présentation du projet{% endtrans %}</h1>
+			<br><br>
+			<p>
+							{% trans %}Solidarity Bond est un projet qui a pour objectif de mettre en place un dispositif pour venir en aide aux personnes ayant besoins de protection.{% endtrans %}<br>
+							{% trans %}Solidarity Bond imprime des visières de protections que cela soit pour des professionnels de la santé, des entreprises, des commerces ou encore des particuliers.
+							Il y a également un outil permettant d'ouvrir des portes ou d'autre actions nécessitant de toucher des surfaces.{% endtrans %}
+					<br><br>
+							{% trans %}Les visières et les outils sont imprimé au sein du FabLab de notre École d'ingénieur le CESI avec l'aide de notre FabLab Manager.{% endtrans %}</p>
+					<br><br>
+	</div>
+	
+	<div id="carouselCaptions" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
+		<div class="carousel-inner justify-content-center">
+			<div class="carousel-item active">
+			<img src="/images/Visieres impri run.jpg" class="d-block carrou" alt="Photo Visières sur imprimante">
+			
+			</div>
+			<div class="carousel-item">
+			<img src="/images/Visieres impri.jpg" class="d-block carrou" alt="Photo Visières">
+			
+			</div>
+			<div class="carousel-item">
+			<img src="/images/Visieres complet.jpg" class="d-block carrou" alt="Photo Visières assembler">
+			
+			</div>
+			<div class="carousel-item">
+			<img src="/images/Tools_COVID-19-1.png" class="d-block carrou" alt="Photo Outils-1">
+			
+			</div>
+			<div class="carousel-item">
+			<img src="/images/Tools_COVID-19-2.png" class="d-block carrou" alt="Photo Outils-2">
+			
+			</div>
+			<div class="carousel-item">
+			<img src="/images/Tools_COVID-19-3.png" class="d-block carrou" alt="Photo Outils-3">
+			
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselCaptions" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselCaptions" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+</div>
+
+{# <div class="container mt-5 width-responsive mx-auto">
+	<div class="row">
+		<h1 class="col-12">Présentation des objets</h1>
+		<br><br><br>
+		<div class="row col-6">
+			<p></p>
+		</div>
+	</div>
+</div> #}
+
+
+<div class="container-fluid " style="margin-top; 50px">
+	<div class="container width-responsive mx-auto mt-5">
+		<h1 class="mb-1 h1-respons">{% trans %}Point Coronavirus à la date du{% endtrans %} <span id="date"></span></h1>
+		<h3 class="mb-3">(source : <a href="http://thevirustracker.com">thevirustracker.com)</a></h3>
+		<button class="world-btn btn"  id="button" onclick="">{% trans %}Monde{% endtrans %}</button>
+		<button class="france-btn btn" id="button" onclick="">{% trans %}France{% endtrans %}</button>
+	</div>
+</div>
+
+	<div class="world-anim mx-auto w-50" id="world" style="float:left;">
+		<div class="row">
+			<div class="card col-xl-6 col-md-8 mt-4 mr-3">
+				<div class="card-body">
+					<h5 class="card-title">{% trans %}Nombre de cas depuis le debut{% endtrans %}</h5>
+					<h5 class="card-text"><span id="total-cases"></span></h5> 
+				</div>
+			</div>
+			<div class="card col-xl-6 col-md-8 mt-4 ml-3">
+				<div class="card-body">
+					<h5 class="card-title">{% trans %}Nombre de cas guéris depuis le debut{% endtrans %}</h5>
+					<h5 class="card-text"><span id="total-recovered"></span></h5> 
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="card col-xl-6 col-md-8 mt-4 mr-3">
+				<div class="card-body">
+					<h5 class="card-title">{% trans %}Nombre de cas morts depuis le debut{% endtrans %}</h5>
+					<h5 class="card-text"><span id="total-deaths"></span></h5> 
+				</div>
+			</div>
+			<div class="card col-xl-6 col-md-8 mt-4 ml-3">
+				<div class="card-body">
+					<h5 class="card-title">{% trans %}Nombre de nouveaux cas aujourd'hui{% endtrans %}</h5>
+					<h5 class="card-text"><span id="today-cases"></span></h5> 
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="card col-xl-6 col-md-8 mt-4 mr-3">
+				<div class="card-body">
+					<h5 class="card-title">{% trans %}Nombre de nouveaux cas morts aujourd'hui{% endtrans %}</h5>
+					<h5 class="card-text"><span id="today-deaths"></span></h5> 
+				</div>
+			</div>
+			<div class="card col-xl-6 col-md-8 mt-4 ml-3">
+				<div class="card-body">
+					<h5 class="card-title">{% trans %}Nombre de pays touchés depuis le debut{% endtrans %}</h5>
+					<h5 class="card-text"><span id="countries"></span></h5> 
+				</div>
+			</div>
+		</div>
 	</div>
 
-	
+	<div class="france-anim mx-auto w-50" id="france" style="float:right;">
+		<div class="row">
+			<div class="card col-xl-6 col-md-8 mt-4 mr-3">
+				<div class="card-body">
+					<h5 class="card-title">{% trans %}Nombre de cas depuis le debut{% endtrans %}</h5>
+					<h5 class="card-text"><span id="total-casesfr"></span></h5> 
+				</div>
+			</div>
+			<div class="card col-xl-6 col-md-8 mt-4 ml-3">
+				<div class="card-body">
+					<h5 class="card-title">{% trans %}Nombre de cas morts depuis le debut{% endtrans %}</h5>
+					<h5 class="card-text"><span id="total-deathsfr"></span></h5> 
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="card col-xl-6 col-md-8 mt-4 mr-3">
+				<div class="card-body">
+					<h5 class="card-title">{% trans %}Nombre de nouveaux cas aujourd'hui{% endtrans %}</h5>
+					<h5 class="card-text"><span id="today-casesfr"></span></h5> 
+				</div>
+			</div>
+			<div class="card col-xl-6 col-md-8 mt-4 ml-3">
+				<div class="card-body">
+					<h5 class="card-title">{% trans %}Nombre de nouveaux cas morts aujourd'hui{% endtrans %}</h5>
+					<h5 class="card-text"><span id="today-deathsfr"></span></h5> 
+				</div>
+			</div>
+		</div>
+	</div>
 
-</div>{% endblock %}
+<div class="width-responsive mx-auto" style="margin-top:500px">
+
+	<h1 class="h1-respons">{% trans %}Recommandation du gouvernement{% endtrans %}</h1>
+	<br><br>
+	<img src="images/bienporter_son_masque.png" class="img-fluid" alt="gouvernement_image">
+	<br>
+	<blockquote class="blockquote mb-5">
+		<p>{% trans %}Les visières sont un moyen supplémentaire de protection face aux virus transmis par les gouttelettes. Néanmoins, elles n’ont pas pour vocation de remplacer les masques pour le grand public. Les visières sont essentiellement utilisées en milieu hospitalier, où les soignants côtoient de nombreux malades. Le gouvernement, en lien avec les producteurs nationaux, travaille à la fabrication massive de masques grand public lavables, répondant à des normes strictes afin de pouvoir équiper toute la population.{% endtrans %}
+		<br><br>
+		{% trans %}De plus, pour rappel, le port de masque (et de visière) ne dispense pas d’une application rigoureuse des gestes barrières, de l’hygiène des mains et du respect de la distanciation sociale.{% endtrans %} </p>
+		<footer class="blockquote-footer text-right"><a href="https://www.gouvernement.fr/info-coronavirus/masques-grand-public"><cite title="Info covid-19 gouvernement">Info COVID-19 | Gouvernement.fr</cite></a></footer>
+	</blockquote>
+
+	<h2 class="mb-5 h2-respons">{% trans %}Questions sur le Coronavirus{% endtrans %}</h2>
+	<div class="mb-5">
+		<p>{% trans %}Ce sont là quelques-unes des questions génériques concernant l'épidémie de coronavirus dans le monde.{% endtrans %}</p>
+			<h4>{% trans %}Le coronavirus se propage-t-il d'une personne à l'autre ?{% endtrans %}</h4>
+			<p>{% trans %}Malheureusement, c'est le cas. Cela se produit généralement au moyen de gouttelettes de liquide corporel qui sont dispersées dans l'atmosphère lorsqu'un individu éternue ou tousse.
+			Partager des gouttelettes au moyen de poignées de main ou partager une boisson où des fluides corporels sont transférés à quelqu'un peut augmenter le risque d'infection.
+			Essayez toujours de vous laver les mains, c'est la chose la plus importante que vous puissiez faire pour éviter d'être infecté par le coronavirus.{% endtrans %}</p>
+			
+			<h4>{% trans %}Quelle est la période d'incubation du Coronavirus ?{% endtrans %}</h4>
+			<p>{% trans %}Une période d'incubation est le temps qu'il faut au coronavirus pour s'emparer d'une personne et que celle-ci commence à présenter des symptômes. Avec le coronavirus, cela prend généralement entre un et 14 jours.{% endtrans %}</p>
+			
+			<h4>{% trans %}Y a-t-il un vaccin disponible pour le Coronavirus ?{% endtrans %}</h4>
+			<p>{% trans %}Pour l'instant, il n'y a pas de vaccin disponible, mais les scientifiques travaillent 24 heures sur 24 pour en créer un - le délai habituel est de 1,5 à 2 ans.{% endtrans %}</p>
+			
+			<h4>{% trans %}Existe-t-il un traitement contre les coronavirus ?{% endtrans %}</h4>
+			<p>{% trans %}Pour l'instant, le meilleur traitement est celui que vous prendriez habituellement si vous aviez la grippe. Conservez une bonne quantité de liquides et de sucres pour aider à combattre le virus dans l'organisme.{% endtrans %}</p>      
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script >
+
+$(document).ready(function(){
+		$('#world').css("transform","translate(50%,0)");
+		$('#france').css("transform","translate(50%,0)");
+		$("#france").fadeOut("slow");
+		$("#world").fadeIn("slow");
+    $(".france-btn").click(function(){
+		$('#world').css("transform","translate(-50%,0)");
+		$('#france').css("transform","translate(-50%,0)");
+		$("#world").fadeOut("slow");
+		$("#france").fadeIn("slow");
+	
+	});
+	$(".world-btn").click(function(){
+		$('#world').css("transform","translate(50%,0)");
+		$('#france').css("transform","translate(50%,0)");
+		$("#france").fadeOut("slow");
+		$("#world").fadeIn("slow");
+ 	 });
+});
+
+
+</script>
+<script>
+
+		var settings = {
+			"async": true,
+			"crossDomain": true,
+			"url": "https://api.thevirustracker.com/free-api?global=stats",
+			"method": "GET",
+
+		}
+
+		$.ajax(settings).done(function (response) {
+			var today = new Date();
+			var dd = String(today.getDate()).padStart(2, '0');
+			var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+			var yyyy = today.getFullYear();
+			today = mm + '/' + dd + '/' + yyyy;
+			var totalcases = Object.values(response)[0][0].total_cases;
+			console.log(typeof totalcases);
+			var totaldeaths = Object.values(response)[0][0].total_deaths;
+			var countries = Object.values(response)[0][0].total_affected_countries;
+			var totalrecovered = Object.values(response)[0][0].total_recovered;
+			var todaycases = Object.values(response)[0][0].total_new_cases_today;
+			var todaydeaths = Object.values(response)[0][0].total_new_deaths_today;
+			document.getElementById("date").innerHTML=today;
+			document.getElementById("total-deaths").innerHTML=totaldeaths;
+			document.getElementById("total-cases").innerHTML=totalcases;
+			document.getElementById("total-recovered").innerHTML=totalrecovered;
+			document.getElementById("today-cases").innerHTML=todaycases;
+			document.getElementById("today-deaths").innerHTML=todaydeaths;
+			document.getElementById("countries").innerHTML=countries;
+			
+			
+			
+		});
+		var settings2 = {
+			"async": true,
+			"crossDomain": true,
+			"url": "https://api.thevirustracker.com/free-api?countryTimeline=FR",
+			"method": "GET",
+
+		}
+
+		$.ajax(settings2).done(function (response2) {
+			var today = new Date();
+			var FRTL = response2.timelineitems[0];
+			var lastday = FRTL[Object.keys(FRTL)[Object.keys(FRTL).length - 2]];
+			
+			var totalcasesfr = lastday.total_cases;
+			var totaldeathsfr = lastday.total_deaths;
+			var todaycasesfr = lastday.new_daily_cases;
+			var todaydeathsfr = lastday.new_daily_deaths;
+			document.getElementById("total-deathsfr").innerHTML=totaldeathsfr;
+			document.getElementById("total-casesfr").innerHTML=totalcasesfr;
+
+			document.getElementById("today-casesfr").innerHTML=todaycasesfr;
+			document.getElementById("today-deathsfr").innerHTML=todaydeathsfr;
+			
+		});
+
+		
+</script>
+
+{% endblock %}

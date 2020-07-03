@@ -1,0 +1,150 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Interface FabLab{% endtrans %}
+{% endblock %}
+
+    {% block stylesheets %}{% endblock %}
+
+{% block body %}
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+
+			<h1 class="acc-edit display-4 text-center" id="N">{{product.ProductName}}</h1>
+            {% if is_granted('ROLE_FABLAB')%}
+            <form id="NI" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post">
+                <input class="form_css_pro" value = "{{product.ProductName}}" type="text"  name="NI" />
+            </form>
+            <div class="acc-edit text-right ">
+                <button class="btn acc-edit-btn" onclick="ShowName();"><i  class="fa fa-edit" ></i></button>
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>     
+
+
+    <div class="container">
+        
+        {% if error is defined %}
+        <h5 class="alert alert-danger text-center">{% trans %}Veuillez choisir un format d'image{% endtrans %}.</h5>
+        
+        {% endif %}
+        
+        <div class="row">
+            <div class="col">
+
+                <img class="image-product" src="../images/products/{{product.Image}}">
+                {% if is_granted('ROLE_FABLAB')%}
+                <div class="acc-edit text-right ">
+				<button class="btn acc-edit-btn" onclick="ShowImage();">
+				<i  class="fa fa-edit " ></i>
+				</button></div>
+				<form id="II" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post" enctype="multipart/form-data">
+                <input class="form_css" type="file" name="II">
+
+                <input class="btn btn-dark" type="submit" value="Mettre à jour" style="display:block; width:75%; margin-top: 5px">
+
+				</form>
+
+                {% endif %}
+            </div>
+
+            <div class="col" >
+
+                <h4 class="acc-edit mr-7 mb-7">{% trans %}Prix{% endtrans %}: </h4>
+				<h5 class="acc-edit" id="P">{{product.Price}}</h5>
+
+                {% if is_granted('ROLE_FABLAB')%}
+				<form id="PI" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post" >
+				    <input class="form_css_pro" value = "{{product.Price}}" type="text"  name="PI" />
+				</form>
+                <h4 class="acc-edit mr-7 mb-7"> €</h4>
+				<div class="acc-edit text-right ">
+				<button class="btn acc-edit-btn" onclick="ShowPrice();">
+				<i  class="fa fa-edit " ></i>
+				</button></div>
+                {% endif %}
+
+                <br><br>
+
+                <h4 class=" acc-edit mr-7 mb-7">{% trans %}Stock{% endtrans %} : </h4>
+				<h5 class="acc-edit" id="S">{{product.Stock}}</h5>
+                {% if is_granted('ROLE_FABLAB')%}
+				<form id="SI" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post">
+				<input class="form_css_pro-add" placeholder = "Combien de stock voulez vous rajouter ?" type="text"  name="SI" />
+				</form>
+                <h4 class="acc-edit mr-7 mb-7"> {% trans %}unités restants{% endtrans %}</h4>
+				<div class="acc-edit text-right ">
+				<button class="btn acc-edit-btn" onclick="ShowStock();">
+				<i  class="fa fa-plus" ></i>
+				</button></div>
+                {% endif %}
+                <br><br>
+                
+                <h4 class=" acc-edit mb-7">{% trans %}Description{% endtrans %}:</h4>
+                <br><br>
+				<h5 class="acc-edit" id="D">{{product.Description}}</h5>
+                {% if is_granted('ROLE_FABLAB')%}
+
+				<form id="DI" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post">
+				    <textarea class="form_css_pro-description" value = "{{product.Description}}" placeholder="{{product.Description}}" type="text"  name="DI"></textarea>
+				</form>
+
+				<div class="acc-edit text-right ">
+				<button class="btn acc-edit-btn" onclick="ShowDescription();">
+				<i  class="fa fa-edit " ></i>
+				</button></div>
+                {% endif %}
+                <br><br>
+                <div class="text-prod">
+                    <p>
+                        <em>{% trans %}Pour toute demande de grande production, veuillez nous contacter via {% endtrans %} <a href="{{path('contact')}}">{% trans %} ce formulaire{% endtrans %}.</a></em>
+                    </p>
+                <div>
+                <br>
+                {% if is_granted('ROLE_FABLAB')%}
+
+                <a href="{{path('delete_product', {'id': product.id } )}}" class="btn mt-5" id="button">{% trans %}Supprimer le produit{% endtrans %}</a>    
+
+                {% else %}
+                <h4 class="mb-3">{% trans %}Combien voulez-vous en ajouter ?{% endtrans %}</h4>
+               
+                <select class="form_css_option" name="StockOptions" id="stock-select">
+                    {% for i in range(1, product.Stock) %}
+                        <option value= {{ i }}> {{ i }}</option>
+                    {% endfor %}
+                </select>
+                <br><br>
+                
+                <button id="button" class="btn mt-3" onclick="add_cart()">{% trans %}Ajouter au panier{% endtrans %}</button>
+                {% endif %}
+            </div>
+        </div>
+        
+
+</div>
+    <script type="text/javascript">
+        function add_cart(){
+            var Stock = {{product.Stock}};
+            var url = window.location.href ;
+            var quantity = document.getElementById('stock-select').value;    
+            if( quantity >= 1 && quantity <= Stock ) {
+                var uri = "{{ app.request.uri }}" ;
+                var url = '{{ path("cart_add", {'id': 'id', 'quantity':'quantity'}) }}'; 
+                url = url.replace("id", {{product.id}});
+                url = url.replace("quantity", quantity);
+                window.location.replace(url);
+
+            } else {
+                alert("{% trans %}Veuillez selectionnez une valeur correcte.{% endtrans %}");
+            }        
+        }
+    </script>    
+
+
+
+
+<script src="{{asset('js/product.js')}}"></script>
+{% endblock %}
+

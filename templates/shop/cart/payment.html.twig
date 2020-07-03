@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Paiement{% endtrans %}
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">{% trans %}Paiement{% endtrans %}</h1>
+		</div>
+	</div>
+
+<div class="container from-group case case-box">
+    <form method="post">
+
+        <h3 class="title">{% trans %}Information de Paiement{% endtrans %}</h3>
+
+        <div class="fieldset">
+
+            <input id="card-name" class="color-strip field mb-3" type ="text" placeholder="{% trans %}Titulaire de la carte{% endtrans %}">
+            
+            <div id="card-number" class="form-control field"></div>
+            <div id="card-expiry" class="form-control field third-width"></div>
+            <div id="card-cvc" class="form-control field third-width"></div>
+
+            <input id="postal-code" class="field third-width color-strip" type="text" placeholder="{% trans %}Code postal{% endtrans %}">
+
+
+            <button class="button-pay btn" id="card-button" type="button" data-secret={{ intent.client_secret }}>{% trans %}Payer{% endtrans %} {{ price }} €</button>
+           
+            <div id="card-errors" role="alert"></div>
+        
+        </div>
+
+        
+
+        
+
+    </form>
+</div>
+
+
+
+{% endblock %}

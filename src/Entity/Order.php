@@ -20,10 +20,6 @@ class Order
      */
     private $id;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Product::class, mappedBy="InOrder")
-     */
-    private $Id_product;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Orders")
@@ -31,19 +27,31 @@ class Order
      */
     private $id_user;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $Quantity;
 
     /**
      * @ORM\Column(type="datetime")
      */
     private $DateOfOrder;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $Quantity = [];
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Product::class)
+     */
+    private $HasProduct;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Status;
+
     public function __construct()
     {
         $this->Id_product = new ArrayCollection();
+        $this->HasProduct = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -59,28 +67,8 @@ class Order
         return $this->Id_product;
     }
 
-    public function addIdProduct(Product $idProduct): self
-    {
-        if (!$this->Id_product->contains($idProduct)) {
-            $this->Id_product[] = $idProduct;
-            $idProduct->setInOrder($this);
-        }
 
-        return $this;
-    }
-
-    public function removeIdProduct(Product $idProduct): self
-    {
-        if ($this->Id_product->contains($idProduct)) {
-            $this->Id_product->removeElement($idProduct);
-            // set the owning side to null (unless already changed)
-            if ($idProduct->getInOrder() === $this) {
-                $idProduct->setInOrder(null);
-            }
-        }
-
-        return $this;
-    }
+    
 
     public function getIdUser(): ?User
     {
@@ -94,17 +82,7 @@ class Order
         return $this;
     }
 
-    public function getQuantity(): ?int
-    {
-        return $this->Quantity;
-    }
-
-    public function setQuantity(int $Quantity): self
-    {
-        $this->Quantity = $Quantity;
-
-        return $this;
-    }
+    
 
     public function getDateOfOrder(): ?\DateTimeInterface
     {
@@ -114,6 +92,56 @@ class Order
     public function setDateOfOrder(\DateTimeInterface $DateOfOrder): self
     {
         $this->DateOfOrder = $DateOfOrder;
+
+        return $this;
+    }
+
+    public function getQuantity(): ?array
+    {
+        return $this->Quantity;
+    }
+
+    public function setQuantity(array $Quantity): self
+    {
+        $this->Quantity = $Quantity;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Product[]
+     */
+    public function getHasProduct(): Collection
+    {
+        return $this->HasProduct;
+    }
+
+    public function addHasProduct(Product $hasProduct): self
+    {
+        if (!$this->HasProduct->contains($hasProduct)) {
+            $this->HasProduct[] = $hasProduct;
+        }
+
+        return $this;
+    }
+
+    public function removeHasProduct(Product $hasProduct): self
+    {
+        if ($this->HasProduct->contains($hasProduct)) {
+            $this->HasProduct->removeElement($hasProduct);
+        }
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->Status;
+    }
+
+    public function setStatus(?string $Status): self
+    {
+        $this->Status = $Status;
 
         return $this;
     }
