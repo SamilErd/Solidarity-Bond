@@ -15,7 +15,7 @@ use App\Service\Cart\CartService;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
-
+use Symfony\Component\Filesystem\Filesystem;
 
 
 class ProductController extends AbstractController
@@ -54,11 +54,15 @@ class ProductController extends AbstractController
         $product = $prepo->find($id);
         //getting the instance of the entity manager and 
         $entityManager = $this->getDoctrine()->getManager();
+        //removing the picture from the project folder
+        $filename = $product->getImage();
+        $filesystem = new Filesystem();
+        $filesystem->remove($this->getParameter('upload_directory_photos')."/".$filename);
         //tells the entity manager to remove the product
         $entityManager->remove($product);
         //updating the database
         $entityManager->flush();
-        
+
         //rendirecting to products
         return $this->redirectToRoute('admin_products');
     }
