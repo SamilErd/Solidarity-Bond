@@ -3,8 +3,10 @@
 {% block title %}{% trans %}Réinitialiser le mot de passe{% endtrans %}
 {% endblock %}
 
+
 {% block body %}
-	<div class="jumbotron jumbotron-fluid">
+{% if token is not null %}
+<div class="jumbotron jumbotron-fluid">
 		<div class="container">
 			<h1 class="display-4">{% trans %}Nouveau mot de passe{% endtrans %}</h1>
 		</div>
@@ -36,4 +38,12 @@
         </div>
     </div>
 </div>
+{% else %}
+<script>
+var url = '{{ path("index") }}'; 
+                window.location.replace(url);
+
+</script>
+	
+{% endif %}
 {% endblock %}

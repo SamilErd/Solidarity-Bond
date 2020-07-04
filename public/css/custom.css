@@ -734,3 +734,30 @@ hr.diviser {
   width: 400px;
 }
 
+/* Really small devices (little phones, 0px and up) */
+@media only screen and (min-width: 0px) { 
+  .navbar-mb {
+   margin-bottom: 160px;
+ }
+ }
+
+/* Small devices (phones, 369px and up) */
+@media only screen and (min-width: 369px) { 
+  .navbar-mb {
+    margin-bottom: 115px;
+  }
+   } 
+
+/* Desktops (Others, 425px and up) */
+@media only screen and (min-width: 425px) { 
+  .navbar-mb {
+    margin-bottom: 75px;
+  }
+   } 
+
+@media only screen and (min-width: 992px) {
+  .navbar-mb {
+    margin-bottom: 78px;
+  }
+}
+
