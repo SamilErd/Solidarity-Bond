@@ -27,6 +27,14 @@ body {
       border-bottom: 2px solid;
       color: #999999;
     }
+  .form_css_phone {
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid;
+    color: #999999;
+    width: 30%;
+  }
 
   .btn_form_css {
     margin-bottom: 10px;
