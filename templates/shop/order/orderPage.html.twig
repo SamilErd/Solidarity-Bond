@@ -57,10 +57,10 @@
 
 
                 {% if is_granted('ROLE_FABLAB')%}
-                <a class="btn" href="{{path('order_prepare', {'id' : order.id}) }}" id="button"  >
+                <a class="btn" href="{{path('order_prepare', {'id' : order.id, _csrf_token: csrf_token('prepare')})}}" id="button"  >
                 {% trans %}Je vais préparer cette commande{% endtrans %}
                 </a>
-                <a class="btn" href="{{path('order_sent', {'id' : order.id}) }}" id="button"  >
+                <a class="btn" href="{{path('order_sent', {'id' : order.id, _csrf_token: csrf_token('sent')})}}" id="button"  >
                 {% trans %}J'ai envoyé cette commande{% endtrans %}
                 </a>
                 {% endif %}

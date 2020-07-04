@@ -83,7 +83,7 @@ class SecurityController extends AbstractController
 
 
     /**
-     * @Route("/post-register/{tid}", name="post_register")
+     * @Route("/mail/post-register/{tid}", name="post_register")
      */
     public function post_register(MailService $mailservice,CartService $cartService, $tid, TokenRepository $trepo)
     {
@@ -92,7 +92,7 @@ class SecurityController extends AbstractController
         $token = $trepo->find($tid);
         //creating a new mail
         $mailservice->sendToken($token->getIdUser(), $token);
-        return $this->render('security/mail_sent.html.twig', [
+        return $this->render('security/mail/mail_sent.html.twig', [
             //giving the login page the variables to show it
             'tid' => $tid,
             'num' => $num,
@@ -115,13 +115,13 @@ class SecurityController extends AbstractController
         ]);
     }
     /**
-     * @Route("/post-validation", name="post_validation")
+     * @Route("/mail/post-validation", name="post_validation")
      */
     public function post_validation(CartService $cartService)
     {
         //getting the number of cart items
         $num = $cartService->getCartItemNum();
-        return $this->render('security/mail_validated.html.twig', [
+        return $this->render('security/mail/mail_validated.html.twig', [
             //giving the login page the variables to show it
             'num' => $num,
         ]);

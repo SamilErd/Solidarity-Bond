@@ -49,6 +49,8 @@ security:
         
          - { path: ^/admin, roles: ROLE_FABLAB }
          - { path: ^/login, roles: IS_ANONYMOUS}
+         - { path: ^/mail, roles: IS_ANONYMOUS}
          - { path: ^/register, roles: IS_ANONYMOUS}
+         - { path: ^/account, roles: IS_AUTHENTICATED_FULLY}
          
         # - { path: ^/profile, roles: ROLE_USER }
