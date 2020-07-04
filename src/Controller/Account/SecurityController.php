@@ -27,6 +27,7 @@ class SecurityController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $encoder, MailService $mailservice, CartService $cartService)
     {
+        
         //getting the number of cart items
         $num = $cartService->getCartItemNum();
         //Creating a new User 
@@ -67,8 +68,9 @@ class SecurityController extends AbstractController
 
             //redirecting to homepage
             //after creting the user, redirecting onto the login page
-            return $this->redirectToRoute('security_login', [
-                //$msg = "un mail vous a été envoyé, veuillez confirmer votre compte pour vous y connecter."
+            
+            return $this->redirectToRoute('post_register', [
+                'tid' => $token->getId()
             ]);
         }
         //rendering the register page
@@ -79,11 +81,57 @@ class SecurityController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/post-register/{tid}", name="post_register")
+     */
+    public function post_register(MailService $mailservice,CartService $cartService, $tid, TokenRepository $trepo)
+    {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
+        $token = $trepo->find($tid);
+        //creating a new mail
+        $mailservice->sendToken($token->getIdUser(), $token);
+        return $this->render('security/mail_sent.html.twig', [
+            //giving the login page the variables to show it
+            'tid' => $tid,
+            'num' => $num,
+
+        ]);
+    }
+    /**
+     * @Route("/resend_mail/{tid}", name="resend_mail")
+     */
+    public function resend(CartService $cartService, $tid)
+    {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
+
+
+
+
+        return $this->redirectToRoute('post_register', [
+            'tid' => $tid
+        ]);
+    }
+    /**
+     * @Route("/post-validation", name="post_validation")
+     */
+    public function post_validation(CartService $cartService)
+    {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
+        return $this->render('security/mail_validated.html.twig', [
+            //giving the login page the variables to show it
+            'num' => $num,
+        ]);
+    }
     /**
      * @Route("/login", name="security_login")
      */
     public function login(AuthenticationUtils $authenticationUtils, CartService $cartService)
     {
+       
         //getting the number of cart items
         $num = $cartService->getCartItemNum();
         //the function itself implicitely tries the login
@@ -92,9 +140,10 @@ class SecurityController extends AbstractController
 
         //rendering the login page if failed
         return $this->render('security/login.html.twig', [
-            //giving the login page the error to show it
+            //giving the login page the variables to show it
             'error' => $error,
-            'num' => $num
+            'num' => $num,
+
         ]);
     }
     /**
@@ -167,7 +216,7 @@ class SecurityController extends AbstractController
         //basically inserting the user in the database
         $entityManager->flush();
         //rendering the login page 
-        return $this->redirectToRoute("security_login");
+        return $this->redirectToRoute("post_validation");
     }
     /**
      * @Route("/password_reset/{token}", name="security_password_reset")

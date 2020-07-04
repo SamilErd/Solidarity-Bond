@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Connection{% endtrans %}
+{% endblock %}
+
+{% block body %}
+<meta http-equiv="refresh" content="5; url= {{path('security_login')}}">
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">{% trans %}Connexion{% endtrans %}</h1>
+		</div>
+	</div>
+
+
+			<div class="container alert alert-success text-center">
+				<p style="display:inline;">votre compte a été validé, vous allez être redirigé vers la page de connexion dans 5 secondes, ou </p><a href="{{path('security_login')}}" style="display:inline;">cliquez ici</a><p style="display:inline;"> directement</p>
+				<div id="countdown">
+				<div id="countdown-number"></div>
+
+				</div>
+			</div>
+	
+<script>
+var countdownNumberEl = document.getElementById('countdown-number');
+var countdown = 5;
+
+countdownNumberEl.textContent = countdown;
+
+setInterval(function() {
+  countdown = --countdown ;
+
+  countdownNumberEl.textContent = countdown;
+}, 1000);
+</script>
+{% endblock %}
