@@ -14,36 +14,36 @@
 
     {% if is_granted('ROLE_FABLAB')%}
     <div style="text-align:center">
-    <a href="{{path('admin_new_product')}}" class="btn" id="button">{% trans %}Ajouter un produit{% endtrans %}</a>
+        <a href="{{path('admin_new_product')}}" class="btn" id="button">{% trans %}Ajouter un produit{% endtrans %}</a>
     </div>
     {% endif %}
     <div class="container">
-    <div class="row">
+        <div class="row">
 
-            {% for product in products %}
+                {% for product in products %}
 
-        <div class="col zoom">
-                <div class="card mt-3 mb-5">
-                    <img class="image-product-card" data-src="holder.js/100px180/" alt="100%x180" src="../images/products/{{product.Image}}" data-holder-rendered="true">
-                    <div class="card-block">
-                        <div style="height :70px;">
-                        <hr></hr>
-                        <h4 class="card-title-shop">{{product.ProductName}}</h4>
+            <div class="col zoom">
+                    <div class="card mt-3 mb-5">
+                        <img class="image-product-card img-fluid" data-src="holder.js/100px180/" alt="100%x180" src="../images/products/{{product.Image}}" data-holder-rendered="true">
+                        <div class="card-block">
+                            <div style="height :70px;">
+                            <hr></hr>
+                            <h4 class="card-title-shop">{{product.ProductName}}</h4>
+                            </div>
+                            <hr></hr>
+                            <p class="card-text-shop">{{product.Description}}</p>
+                            <hr></hr>
+                            <p class="card-text mt-2">{% trans %}Prix{% endtrans %} : {{product.Price}} €</p>
+                            <hr></hr>
+                            <p class="card-text">{% trans %}Stock{% endtrans %} : {{product.Stock}} {% trans %}restant{% endtrans %}</p>
+                            <a href="{{path('show_product', {'id': product.id } )}}" class="btn stretched-link" id="button">{% trans %}Page produit{% endtrans %}</a>
                         </div>
-                        <hr></hr>
-                        <p class="card-text-shop">{{product.Description}}</p>
-                        <hr></hr>
-                        <p class="card-text mt-2">{% trans %}Prix{% endtrans %} : {{product.Price}} €</p>
-                        <hr></hr>
-                        <p class="card-text">{% trans %}Stock{% endtrans %} : {{product.Stock}} {% trans %}restant{% endtrans %}</p>
-                        <a href="{{path('show_product', {'id': product.id } )}}" class="btn stretched-link" id="button">{% trans %}Page produit{% endtrans %}</a>
                     </div>
-                </div>
+
+            </div>
+                {% endfor %}
 
         </div>
-            {% endfor %}
-
-     </div>
     </div>
 
 {% endblock %}

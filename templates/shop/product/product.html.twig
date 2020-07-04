@@ -32,9 +32,9 @@
         {% endif %}
         
         <div class="row">
-            <div class="col">
+            <div class="col-xl-6 col-md-12">
 
-                <img class="image-product" src="../images/products/{{product.Image}}">
+                <img class="image-product img-fluid mb-3" src="../images/products/{{product.Image}}">
                 {% if is_granted('ROLE_FABLAB')%}
                 <div class="acc-edit text-right ">
 				<button class="btn acc-edit-btn" onclick="ShowImage();">
@@ -50,7 +50,7 @@
                 {% endif %}
             </div>
 
-            <div class="col" >
+            <div class="col-xl-6 col-md-12" >
 
                 <h4 class="acc-edit mr-7 mb-7">{% trans %}Prix{% endtrans %}: </h4>
 				<h5 class="acc-edit" id="P">{{product.Price}}</h5>
@@ -121,9 +121,8 @@
                 {% endif %}
             </div>
         </div>
-        
+    </div>
 
-</div>
     <script type="text/javascript">
         function add_cart(){
             var Stock = {{product.Stock}};

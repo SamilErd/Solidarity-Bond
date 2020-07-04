@@ -208,7 +208,7 @@ main {
 }
 .card-text-shop{
   overflow: hidden;
-  width:300px;
+  width: 100%;
   display: -webkit-box;
   padding: 0px 5px;
   -webkit-line-clamp: 3;
@@ -338,18 +338,17 @@ ul {
 }
 
 .left-element {
-  width: 25%;
   height: 100%;
   float:left;
-  
 }
+
 .right-element {
   height: 100%;
-  width: 70%;
+  width: 100%;
   float:right;
-  text-align: left;
-  
+  text-align: left; 
 }
+
 .btn-acc{
   background-color: white;
   color: black; /* White text */
@@ -360,7 +359,6 @@ ul {
   border: 1px solid gray;
   margin-bottom: 2px;
   outline:none;
-
 }
 
 
@@ -388,7 +386,7 @@ ul {
 }
 
 .form_css_acc {
-  width: 15%;
+  width: 50%;
   padding: 12px 20px;
   box-sizing: border-box;
   border: none;
@@ -405,11 +403,6 @@ ul {
   color: #4f7baf;
 }
 
-.table-cart {
-  margin-left: 8%;
-  max-width:60%;
-  text-align: center;
-}
 
 .card-cart {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -602,29 +595,12 @@ hr.diviser {
 * CSS for form payment
 */
 
-.case.case-box {
-  padding: 90px 90px;
-  margin-top: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 700px;
-}
-
-.fieldset {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
 
 .field {
   border-radius: 20px;
   width: 100%;
-  margin-top: 6px;
-  height: 38px;
   max-height: 38px;
-  width: 700px;
+  margin-top: 6px;
   border-style: solid;
   border-color: black;
   border-width: 1px;
@@ -691,16 +667,31 @@ hr.diviser {
   .h2-respons{
     font-size: 30px;
   }
+  .card-payment {
+    padding: 40px 40px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 90%;
+  }
 }
 /**
 * Responsive for 600px and up
 */
 @media only screen and (min-width: 600px) {
+  .display-4{
+    font-size: 50px;
+  }
   .carrou {
     max-width: 384px;
     height: auto;
   }
   .width-responsive{
+    width: 80%;
+  }
+  .card-payment {
+    padding: 50px 50px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width: 80%;
   }
 }
@@ -711,10 +702,24 @@ hr.diviser {
   .width-responsive{
     width: 70%;
   }
+  .card-payment {
+    padding: 70px 70px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 70%;
+  }
 }
-
+/**
+* Responsive for 992px and up
+*/
 @media only screen and (min-width: 992px) {
   .width-responsive{
+    width: 60%;
+  }
+  .card-payment {
+    padding: 90px 90px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width: 50%;
   }
 }

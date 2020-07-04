@@ -12,32 +12,32 @@
         </div>
     </div> 
             
-        <div class="container">
+        <div class="container width-responsive" style="overflow-x:auto;">
             <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">{% trans %}Nom{% endtrans %}</th>
-                <th scope="col">{% trans %}Prénom{% endtrans %}</th>
-                <th scope="col">{% trans %}Adresse Email{% endtrans %}</th>
-                <th scope="col">{% trans %}Numéro de téléphone{% endtrans %}</th>
-                <th scope="col">{% trans %}Adresse{% endtrans %}</th>
-                <th scope="col">{% trans %}Actions{% endtrans %}</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for user in users %}
-                <tr>
-                <th>{{user.id}}</th>
-                <td>{{user.LastName}}</td>
-                <td>{{user.FirstName}}</td>
-                <td>{{user.Email}}</td>
-                <td>{{user.phoneNum}}</td>
-                <td>{{user.Street}}, {{user.PostalCode}}, {{user.country}}</td>
-                <td><a href="{{path('user_delete',{'id' : user.id})}}">Supprimer</a></td>
-                </tr>
-            {% endfor %}
-            </tbody>
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">{% trans %}Nom{% endtrans %}</th>
+                    <th scope="col">{% trans %}Prénom{% endtrans %}</th>
+                    <th scope="col">{% trans %}Adresse Email{% endtrans %}</th>
+                    <th scope="col">{% trans %}Numéro de téléphone{% endtrans %}</th>
+                    <th scope="col">{% trans %}Adresse{% endtrans %}</th>
+                    <th scope="col">{% trans %}Actions{% endtrans %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                    <th>{{user.id}}</th>
+                    <td>{{user.LastName}}</td>
+                    <td>{{user.FirstName}}</td>
+                    <td>{{user.Email}}</td>
+                    <td>{{user.phoneNum}}</td>
+                    <td>{{user.Street}}, {{user.PostalCode}}, {{user.country}}</td>
+                    <td><a class="btn btn-sm" href="{{path('user_delete',{'id' : user.id})}}"><i class="fas fa-times"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
             </table>
         </div>
             

@@ -48,11 +48,8 @@ function ShowPass() {
          }
          
 }    
-
-
       
  
-
  function ShowOrders() {
     var w = document.getElementById("infos");
     var x = document.getElementById("pass");
