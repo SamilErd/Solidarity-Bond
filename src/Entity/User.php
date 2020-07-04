@@ -87,14 +87,14 @@ class User implements UserInterface
     private $Country;
 
     /**
-     * @ORM\OneToOne(targetEntity=Token::class, mappedBy="id_user", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Token::class, mappedBy="id_user_register", cascade={"persist", "remove"})
      */
-    private $token;
+    private $tokenRegister;
 
     /**
-     * @ORM\OneToOne(targetEntity=Token::class, mappedBy="id_user", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Token::class, mappedBy="id_user_password", cascade={"persist", "remove"})
      */
-    private $tokenpass;
+    private $tokenPassword;
 
 
     public function __construct()
@@ -278,36 +278,36 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getToken(): ?Token
+    public function getTokenRegister(): ?Token
     {
-        return $this->token;
+        return $this->tokenRegister;
     }
 
-    public function setToken(?Token $token): self
+    public function setTokenRegister(?Token $tokenRegister): self
     {
-        $this->token = $token;
+        $this->tokenRegister = $tokenRegister;
 
         // set (or unset) the owning side of the relation if necessary
-        $newId_user = null === $token ? null : $this;
-        if ($token->getIdUser() !== $newId_user) {
-            $token->setIdUser($newId_user);
+        $newId_user = null === $tokenRegister ? null : $this;
+        if ($tokenRegister->getIdUserRegister() !== $newId_user) {
+            $tokenRegister->setIdUserRegister($newId_user);
         }
 
         return $this;
     }
-    public function getTokenPass(): ?Token
+    public function getTokenPassword(): ?Token
     {
-        return $this->token;
+        return $this->tokenPassword;
     }
 
-    public function setTokenPass(?Token $token): self
+    public function setTokenPassword(?Token $tokenPassword): self
     {
-        $this->token = $token;
+        $this->tokenPassword = $tokenPassword;
 
         // set (or unset) the owning side of the relation if necessary
-        $newId_user = null === $token ? null : $this;
-        if ($token->getIdUser() !== $newId_user) {
-            $token->setIdUser($newId_user);
+        $newId_user = null === $tokenPassword ? null : $this;
+        if ($tokenPassword->getIdUserPassword() !== $newId_user) {
+            $tokenPassword->setIdUserPassword($newId_user);
         }
 
         return $this;

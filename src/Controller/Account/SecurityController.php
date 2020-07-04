@@ -48,12 +48,10 @@ class SecurityController extends AbstractController
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
             //setting the token settings
             $token->setToken(rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '='));
-            //setting the token's user
-            $token->setIdUser($user);
             //setting the token's creation time
             $token->setCreatedAt($time);
             //setting the token's user
-            $user->setToken($token);
+            $user->setTokenRegister($token);
             //getting the instance of the entity manager
             $entityManager = $this->getDoctrine()->getManager();
             //telling the entity manager to manage the user 
@@ -91,7 +89,7 @@ class SecurityController extends AbstractController
         $num = $cartService->getCartItemNum();
         $token = $trepo->find($tid);
         //creating a new mail
-        $mailservice->sendToken($token->getIdUser(), $token);
+        $mailservice->sendToken($token->getIdUserRegister(), $token);
         return $this->render('security/mail/mail_sent.html.twig', [
             //giving the login page the variables to show it
             'tid' => $tid,
@@ -163,12 +161,17 @@ class SecurityController extends AbstractController
             if($user != null){
                 //creating a new time variable
                 $time = new \DateTime();
-                $token = $user->getTokenPass();
+                if($user->getTokenPassword() == null){
+                    $token = new Token();
+                } else {
+                    $token = $user->getTokenPassword();
+                }
+                
                 $token->setToken(rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '='));
                 //setting the token's creation time
                 $token->setCreatedAt($time);
                 //setting the token's user
-                $user->setTokenPass($token);
+                $user->setTokenPassword($token);
                 //getting the instance of the entity manager
                 $entityManager = $this->getDoctrine()->getManager();
                 //telling the entity manager to manage the user 
@@ -245,7 +248,7 @@ class SecurityController extends AbstractController
                     } else {
                     
 
-                    $user = $token->getIdUser();
+                    $user = $token->getIdUserPassword();
                     //If the password respects all the rules, setting the user's new password
                     $user->setPassword($encoder->encodePassword($user , $new_pwd));
                     //tells the entity manager to manage the user

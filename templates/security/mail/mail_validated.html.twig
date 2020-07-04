@@ -13,12 +13,8 @@
 
 
 			<div class="container alert alert-success text-center">
-				<p style="display:inline;">votre compte a été validé, vous allez être redirigé vers la page de connexion dans 5 secondes, ou </p><a href="{{path('security_login')}}" style="display:inline;">cliquez ici</a><p style="display:inline;"> directement</p>
-				<div id="countdown">
-				<div id="countdown-number"></div>
-
-				</div>
-			</div>
+				<p style="display:inline;">votre compte a été validé, vous allez être redirigé vers la page de connexion dans </p><div style="display:inline;" id="countdown-number"></div><p style="display:inline;" > secondes, ou </p><a href="{{path('security_login')}}" style="display:inline;">cliquez ici</a><p style="display:inline;"> directement</p>
+				
 	
 <script>
 var countdownNumberEl = document.getElementById('countdown-number');
