@@ -21,7 +21,6 @@ body {
 */
 
   .form_css {
-      width: 60%;
       padding: 12px 20px;
       box-sizing: border-box;
       border: none;
@@ -725,14 +724,40 @@ hr.diviser {
 }
 
 
-.sizeForgotPassword {
-  font-size: 13px;
-  margin-left: 20%;
+
+
+/* Really small devices (little phones, 0px and up) */
+@media only screen and (min-width: 0px) { 
+  .input-form {
+    width: 100%;
+  }
+ }
+
+/* Small devices (phones, 369px and up) */
+@media only screen and (min-width: 369px) { 
+  .input-form {
+    width: 100%;
+  }
+   } 
+
+/* Desktops (Others, 425px and up) */
+@media only screen and (min-width: 425px) { 
+  .input-form {
+    width: 100%;
+  }
+   } 
+
+@media only screen and (min-width: 992px) {
+  .input-form {
+    width: 100%;
+  }
 }
 
-.login-form {
-  width: 400px;
-}
+
+
+
+
+
 
 /* Really small devices (little phones, 0px and up) */
 @media only screen and (min-width: 0px) { 
@@ -760,4 +785,3 @@ hr.diviser {
     margin-bottom: 78px;
   }
 }
-
