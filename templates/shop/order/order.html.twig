@@ -9,13 +9,13 @@
 <div id="all">
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">{% trans %}Vous voulez commander{% endtrans %} {{items | length}} {% trans %}produits{% endtrans %}.</h1>
+			<h1 class="h1-respons">{% trans %}Vous voulez commander{% endtrans %} {{items | length}} {% trans %}produits{% endtrans %}.</h1>
         </div>
     </div>     
 
     <div style="text-align: center">
 
-        <h4>{% trans %}Est-ce que vos informations sont correctes ?{% endtrans %}</h4>
+        <h4 class="h4-respons">{% trans %}Est-ce que vos informations sont correctes ?{% endtrans %}</h4>
         
         <p>{{app.user.FirstName}} {{app.user.LastName}} </p>
         <p>{{app.user.Email}}.</p>
@@ -26,7 +26,7 @@
         <hr style="height:1px;border:none;color:#333;background-color:#333; width:60%" />
         <br></br>
 
-        <h4>{% trans %}Récapitulatif de votre commande{% endtrans %}</h4>
+        <h4 class="h4-respons">{% trans %}Récapitulatif de votre commande{% endtrans %}</h4>
         <div class="container width-responsive "  style="overflow-x:auto;">
                         <table class="table">
                                 <thead>
@@ -94,8 +94,8 @@
 
     </script>
     <div class="confirm_div" id="sure" >
-        <h2 id="text"></h2>
-        <h3 id="price"></h2>
+        <h2 class="h2-respons" id="text"></h2>
+        <h3 class="h3-respons" id="price"></h2>
         <div class="confirm_buttons">
             <a href="{{path('payment')}}" id="button" class="btn" >{% trans %}Procéder au paiement{% endtrans %}</a>
             <button id="button" class="btn" onclick="hide_confirm()">{% trans %}Annuler{% endtrans %}</button>
