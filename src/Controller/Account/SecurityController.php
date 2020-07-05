@@ -42,6 +42,10 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
         //if the form is submitted without errors
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $C = $_POST['C'];
+            $num = $user->getPhoneNum();
+            $user->setPhoneNum($C." ".$num);
             //setting the default role to any users
             $user->setRoles(["ROLE_USER"]);
             //encoding the user's password with the algorithm set in security.yml in config/packages

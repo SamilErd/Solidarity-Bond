@@ -78,10 +78,16 @@
             }}
 					</div>
 					<div class="col-xl-6 col-md-12 mb-3">
+					
+						<select class="form_css_option" name="C" id="ccode-select" onchange="changeCountryCode()" style="width:100px">
+                        <option value= "+33">+33</option>
+						<option value= "+49">+49</option>                    
+                		</select>
+					
 						{{ form_widget(form.phoneNum, {'attr':
                             {
-							'class' : 'form_css',
-                            'placeholder' : 'Téléphone | +33 x xx xx xx xx'|trans
+							'class' : 'form_css_phone',
+                            'placeholder' : 'Téléphone'|trans
                             }
                         }) 
                     }}
@@ -89,7 +95,7 @@
 				</div>
 
 				<div class="row row-cols-1">
-					<div class="col-xl-6 col-md-12 mb-3">
+					<div class="col-xl-6 col-md-12 mb-3" id="phone">
 							{{ form_widget(form.street, {'attr':
 						{
 						'class' : 'form_css',
@@ -122,6 +128,7 @@
 				<button type="submit" class="btn btn_form_css btn-lg mt-4">
 					{% trans %}S'inscrire{% endtrans %}
 				</button>
+				
 			</div>
 
 			<div class="mt-4">
@@ -134,5 +141,62 @@
 			{{ form_end(form) }}
 		</div>
 	</div>
+<script>
+
+
+function changeCountryCode(){
+document.getElementById('register_phoneNum').value = "";
+}
+document.getElementById('register_country').onchange = function changeCountry(){
+document.getElementById('register_postalcode').value = "";
+}
+
+document.getElementById('register_postalcode').addEventListener("keyup", function(){
+	var c = document.getElementById('register_country').value;
+	$('input#register_postalcode').attr('maxLength','5').keypress(limitMe);
+	function limitMe(e) {
+		if (e.keyCode == 5) { return true; }
+		return this.value.length < $(this).attr("maxLength");
+		}
+	})
+
+
+
+document.getElementById('register_phoneNum').addEventListener("keyup", function(){
+	var ccode = document.getElementById('ccode-select').value;
+	if(ccode == "+33"){
+   	txt=this.value;
+   	if (txt.length==1 || txt.length==4 || txt.length==7 || txt.length==10)
+		this.value=this.value+" ";
+	$('input#register_phoneNum').attr('maxLength','13').keypress(limitMe);
+
+	function limitMe(e) {
+		if (e.keyCode == 13) { return true; }
+		return this.value.length < $(this).attr("maxLength");
+	}
+		}
+		})
+	
+
+
+document.getElementById('register_phoneNum').addEventListener("keyup", function(){
+var ccode = document.getElementById('ccode-select').value;
+	if(ccode == "+49"){
+   	txt=this.value;
+   	if (txt.length==3 || txt.length==8)
+		this.value=this.value+" ";
+	$('input#register_phoneNum').attr('maxLength','12').keypress(limitMe);
+
+	function limitMe(e) {
+		if (e.keyCode == 8) { return true; }
+		return this.value.length < $(this).attr("maxLength");
+	}
+		}
+		})
+	
+
+
+
+</script>
 
 {% endblock %}
