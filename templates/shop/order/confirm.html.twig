@@ -9,13 +9,13 @@
 
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">{% trans %}Commande réceptionné{% endtrans %}</h1>
+			<h1 class="h1-respons">{% trans %}Commande réceptionné{% endtrans %}</h1>
         </div>
     </div>
 
     <div class="container">
 
-        <h3 class="alert alert-success">{% trans %}Votre commande de {% endtrans %}
+        <h3 class="alert alert-success h3-respons">{% trans %}Votre commande de {% endtrans %}
         {% for key,product in order.hasProduct %}
 
         {{order.quantity[key]}} {{product.ProductName}},

@@ -1,27 +1,28 @@
 window.onload = () => {
-    // On instancie Stripe et on lui passe notre clé publique
+    // We instantiate Stripe and hand him our public key...
 let stripe = Stripe('pk_test_51GzL7lEJkHBBWUtVK0Tyb1K7ycRtUGMy6vCm9rLaDcVTHu5FmExIg95Eq00rI8I7QtQ9zlEKSRVYqQ7TP8uIw33D00TDpCoWca');
 
-// Initialise les éléments du formulaire
+// Initializes the elements of the form
 let elements = stripe.elements();
 
-// Définit la redirection en cas de succès du paiement
+// Defines the redirection in case of successful payment
 let redirect = 'shop/order_product';
 
 
-// Récupère l'élément qui contiendra le nom du titulaire de la carte
+// Retrieves the element that will contain the cardholder's name
 let cardName = document.getElementById('card-name');
 
 
-// Récupère l'élément qui contiendra le code postal
+// Retrieves the element that will contain the postal code
 let cardPostal = document.getElementById('postal-code');
 
-// Récupère l'élement button
+// Retrieves the button element
 let cardButton = document.getElementById('card-button');
 
-// Récupère l'attribut data-secret du bouton
+// Retrieves the data-secret attribute of the button
 let clientSecret = cardButton.dataset.secret;
 
+//
 var elementStyles = {
     base: {
         fontWeight: 600,
@@ -40,7 +41,7 @@ var elementStyles = {
     empty: 'empty',
   };
 
-// Crée les éléments de carte et les stocke dans la variable card
+// Creates the credit card elements
 
   let cardNumber = elements.create('cardNumber', {
     style: elementStyles,
@@ -62,49 +63,49 @@ var elementStyles = {
 
 
 cardNumber.addEventListener('change', function(event) {
-    // On récupère l'élément qui permet d'afficher les erreurs de saisie
+    // We retrieve the element that displays the input errors
     let displayError = document.getElementById('card-errors');
 
-    // Si il y a une erreur
+    // If there's a mistake
     if (event.error) {
-        // On l'affiche
+        // Let's put it up
         displayError.textContent = event.error.message;
     } else {
-        // Sinon on l'efface
+        // Otherwise it's erased.
         displayError.textContent = '';
     }
 });
 
 cardExpiry.addEventListener('change', function(event) {
-    // On récupère l'élément qui permet d'afficher les erreurs de saisie
+    // We retrieve the element that displays the input errors
     let displayError = document.getElementById('card-errors');
 
-    // Si il y a une erreur
+    // If there's a mistake
     if (event.error) {
-        // On l'affiche
+        // Let's put it up
         displayError.textContent = event.error.message;
     } else {
-        // Sinon on l'efface
+        // Otherwise it's erased.
         displayError.textContent = '';
     }
 });
 
 cardCvc.addEventListener('change', function(event) { 
-    // On récupère l'élément qui permet d'afficher les erreurs de saisie
+    // We retrieve the element that displays the input errors
     let displayError = document.getElementById('card-errors');
 
-    // Si il y a une erreur
+    // If there's a mistake
     if (event.error) {
-        // On l'affiche
+        // Let's put it up
         displayError.textContent = event.error.message;
     } else {
-        // Sinon on l'efface
+        // Otherwise it's erased.
         displayError.textContent = '';
     }
 });
 
 cardButton.addEventListener('click', () => {
-    // On envoie la promesse contenant le code de l'intention, l'objet "card" contenant les informations de carte et le nom du client
+    // We send the promise containing the code of intent, the object containing the card information and the name of the client.
     stripe.handleCardPayment(
         clientSecret, cardNumber, {
             payment_method_data: {
@@ -116,12 +117,12 @@ cardButton.addEventListener('click', () => {
             }
         }
     ).then(function(result) {
-        // Quand on reçoit une réponse
+        // When we get an answer
         if (result.error) {
-            // Si on a une erreur, on l'affiche
+            // If we have an error, we display it.
             document.getElementById("errors").innerText = result.error.message;
         } else {
-            // Sinon on redirige l'utilisateur
+            // Otherwise the user is redirected
             document.location.href = redirect;
         }
     });

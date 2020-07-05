@@ -344,7 +344,7 @@ ul {
 .right-element {
   height: 100%;
   width: 100%;
-  float:right;
+  float: right;
   text-align: left; 
 }
 
@@ -579,6 +579,10 @@ hr.diviser {
   transition: transform 0.5s ease;
 }
 
+.btn-covid {
+  text-align: center;
+}
+
 /**
 * CSS for form payment
 */
@@ -640,9 +644,6 @@ hr.diviser {
     max-width: 180px;
     height: auto;
   }
-  .display-4{
-    font-size: 40px;
-  }
   .width-responsive{
     width: 90%;
   }
@@ -655,6 +656,13 @@ hr.diviser {
   .h2-respons{
     font-size: 30px;
   }
+  .h3-respons{
+    font-size: 25px;
+  }
+  .h4-respons{
+    font-size: 20px;
+  }
+
   .card-payment {
     padding: 40px 40px;
     margin-top: 10px;
@@ -666,9 +674,19 @@ hr.diviser {
 * Responsive for 600px and up
 */
 @media only screen and (min-width: 600px) {
-  .display-4{
-    font-size: 50px;
+  .h1-respons {
+    font-size: 40px;
   }
+  .h2-respons{
+    font-size: 35px;
+  }
+  .h3-respons{
+    font-size: 30px;
+  }
+  .h4-respons{
+    font-size: 25px;
+  }
+
   .carrou {
     max-width: 384px;
     height: auto;
@@ -682,6 +700,9 @@ hr.diviser {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width: 80%;
   }
+  .navbar-toggler {
+    margin-left: -10%;
+   }
 }
 /**
 * Responsive for 768px and up
@@ -720,6 +741,9 @@ hr.diviser {
   .input-form {
     width: 100%;
   }
+  .navbar-toggler {
+    margin-left: -20%;
+   }
  }
 
 /* Small devices (phones, 369px and up) */
@@ -727,14 +751,17 @@ hr.diviser {
   .input-form {
     width: 100%;
   }
-   } 
+  } 
 
 /* Desktops (Others, 425px and up) */
 @media only screen and (min-width: 425px) { 
   .input-form {
     width: 100%;
   }
-   } 
+  .navbar-toggler {
+    margin-left: -15%;
+   }
+  } 
 
 @media only screen and (min-width: 992px) {
   .input-form {
@@ -747,7 +774,7 @@ hr.diviser {
   .navbar-mb {
     margin-bottom: 70px;
   }
-   } 
+} 
 
 @media only screen and (min-width: 992px) {
   .navbar-mb {
@@ -759,12 +786,10 @@ hr.diviser {
 @media only screen and (min-width: 1147px) { 
   .recommendations {
     margin-top: 600px
- }
+  }
  }
  @media only screen and (max-width: 1146px) { 
   .recommendations {
     margin-top: 950px
+  }
  }
- }
-
-
