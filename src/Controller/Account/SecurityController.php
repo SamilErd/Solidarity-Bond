@@ -27,6 +27,7 @@ class SecurityController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $encoder, MailService $mailservice, CartService $cartService)
     {
+        
         //getting the number of cart items
         $num = $cartService->getCartItemNum();
         //Creating a new User 
@@ -41,18 +42,20 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
         //if the form is submitted without errors
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $C = $_POST['C'];
+            $num = $user->getPhoneNum();
+            $user->setPhoneNum($C." ".$num);
             //setting the default role to any users
             $user->setRoles(["ROLE_USER"]);
             //encoding the user's password with the algorithm set in security.yml in config/packages
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
             //setting the token settings
             $token->setToken(rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '='));
-            //setting the token's user
-            $token->setIdUser($user);
             //setting the token's creation time
             $token->setCreatedAt($time);
             //setting the token's user
-            $user->setToken($token);
+            $user->setTokenRegister($token);
             //getting the instance of the entity manager
             $entityManager = $this->getDoctrine()->getManager();
             //telling the entity manager to manage the user 
@@ -67,8 +70,9 @@ class SecurityController extends AbstractController
 
             //redirecting to homepage
             //after creting the user, redirecting onto the login page
-            return $this->redirectToRoute('security_login', [
-                //$msg = "un mail vous a été envoyé, veuillez confirmer votre compte pour vous y connecter."
+            
+            return $this->redirectToRoute('post_register', [
+                'tid' => $token->getId()
             ]);
         }
         //rendering the register page
@@ -79,11 +83,57 @@ class SecurityController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/mail/post-register/{tid}", name="post_register")
+     */
+    public function post_register(MailService $mailservice,CartService $cartService, $tid, TokenRepository $trepo)
+    {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
+        $token = $trepo->find($tid);
+        //creating a new mail
+        $mailservice->sendToken($token->getIdUserRegister(), $token);
+        return $this->render('security/mail/mail_sent.html.twig', [
+            //giving the login page the variables to show it
+            'tid' => $tid,
+            'num' => $num,
+
+        ]);
+    }
+    /**
+     * @Route("/resend_mail/{tid}", name="resend_mail")
+     */
+    public function resend(CartService $cartService, $tid)
+    {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
+
+
+
+
+        return $this->redirectToRoute('post_register', [
+            'tid' => $tid
+        ]);
+    }
+    /**
+     * @Route("/mail/post-validation", name="post_validation")
+     */
+    public function post_validation(CartService $cartService)
+    {
+        //getting the number of cart items
+        $num = $cartService->getCartItemNum();
+        return $this->render('security/mail/mail_validated.html.twig', [
+            //giving the login page the variables to show it
+            'num' => $num,
+        ]);
+    }
     /**
      * @Route("/login", name="security_login")
      */
     public function login(AuthenticationUtils $authenticationUtils, CartService $cartService)
     {
+       
         //getting the number of cart items
         $num = $cartService->getCartItemNum();
         //the function itself implicitely tries the login
@@ -92,9 +142,10 @@ class SecurityController extends AbstractController
 
         //rendering the login page if failed
         return $this->render('security/login.html.twig', [
-            //giving the login page the error to show it
+            //giving the login page the variables to show it
             'error' => $error,
-            'num' => $num
+            'num' => $num,
+
         ]);
     }
     /**
@@ -114,12 +165,17 @@ class SecurityController extends AbstractController
             if($user != null){
                 //creating a new time variable
                 $time = new \DateTime();
-                $token = $user->getTokenPass();
+                if($user->getTokenPassword() == null){
+                    $token = new Token();
+                } else {
+                    $token = $user->getTokenPassword();
+                }
+                
                 $token->setToken(rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '='));
                 //setting the token's creation time
                 $token->setCreatedAt($time);
                 //setting the token's user
-                $user->setTokenPass($token);
+                $user->setTokenPassword($token);
                 //getting the instance of the entity manager
                 $entityManager = $this->getDoctrine()->getManager();
                 //telling the entity manager to manage the user 
@@ -167,7 +223,7 @@ class SecurityController extends AbstractController
         //basically inserting the user in the database
         $entityManager->flush();
         //rendering the login page 
-        return $this->redirectToRoute("security_login");
+        return $this->redirectToRoute("post_validation");
     }
     /**
      * @Route("/password_reset/{token}", name="security_password_reset")
@@ -196,7 +252,7 @@ class SecurityController extends AbstractController
                     } else {
                     
 
-                    $user = $token->getIdUser();
+                    $user = $token->getIdUserPassword();
                     //If the password respects all the rules, setting the user's new password
                     $user->setPassword($encoder->encodePassword($user , $new_pwd));
                     //tells the entity manager to manage the user

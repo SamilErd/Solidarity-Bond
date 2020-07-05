@@ -20,18 +20,16 @@
 </head>
 
 <body onload="checkCookie();">
-    <header style="margin-bottom:90px">      
+    <header class="navbar-mb">      
 
          <nav class="navbar navbar-expand-lg navbar-light fixed-top"> 
-            
-            <a class="navbar-B" href="/" >Solidarity-Bond</a>
-
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation" > 
                 <span class="navbar-toggler-icon text-nowrap" ></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarsExample05">
                 <ul class="navbar-nav mr-auto ml-3">
+                    <a class="navbar-B " href="/" >Solidarity-Bond</a>
                     {% if is_granted('ROLE_FABLAB')%}
                     {% else %}
                     <li class="nav-item">
@@ -155,8 +153,6 @@
           crossorigin="anonymous"></script>
     <script src="{{asset('js/index.js')}}"></script>
     
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="js/paiement.js"></script>
     {% block javascripts %}{% endblock %}
 </body>
 

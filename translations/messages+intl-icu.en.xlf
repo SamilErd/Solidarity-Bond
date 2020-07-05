@@ -783,7 +783,7 @@
       </trans-unit>
       <trans-unit id="GBmQRiq" resname="Mes informations de compte">
         <source>Mes informations de compte</source>
-        <target>_My Account Information</target>
+        <target>My Account Information</target>
       </trans-unit>
       <trans-unit id="nKRkbF." resname="Modifier mon mot de passe">
         <source>Modifier mon mot de passe</source>

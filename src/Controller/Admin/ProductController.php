@@ -13,7 +13,9 @@ use App\Repository\OrderRepository;
 use App\Entity\Product;
 use App\Service\Cart\CartService;
 use Symfony\Contracts\Translation\TranslatorInterface;
-
+use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 
 
 class ProductController extends AbstractController
@@ -41,17 +43,26 @@ class ProductController extends AbstractController
     /**
      * @Route("/delete_product_{id}", name="delete_product")
      */
-    public function delete_product($id, ProductRepository $prepo)
+    public function delete_product($id, ProductRepository $prepo, CsrfTokenManagerInterface $csrfTokenManager, Request $request)
     {
+        $token = new CsrfToken('delete', $request->query->get('_csrf_token'));
+
+        if (!$csrfTokenManager->isTokenValid($token)) {
+            throw $this->createAccessDeniedException('Token CSRF invalide');
+        }
         //Getting the product from the database
         $product = $prepo->find($id);
         //getting the instance of the entity manager and 
         $entityManager = $this->getDoctrine()->getManager();
+        //removing the picture from the project folder
+        $filename = $product->getImage();
+        $filesystem = new Filesystem();
+        $filesystem->remove($this->getParameter('upload_directory_photos')."/".$filename);
         //tells the entity manager to remove the product
         $entityManager->remove($product);
         //updating the database
         $entityManager->flush();
-        
+
         //rendirecting to products
         return $this->redirectToRoute('admin_products');
     }
@@ -99,41 +110,16 @@ class ProductController extends AbstractController
         ]);
     }
 
-
-    /**
-     * @Route("/admin_more", name="admin_more")
-     */
-    public function admin_more(ProductRepository $prepo)
-    {
-        //getting the selected value for the product's stock
-        $morenum = $_POST['morenum'];
-        //selecting the specific product
-        $product = $prepo->find($_POST['id']);
-        //if the selected value is a number(integer)
-        if(is_numeric($morenum)){
-            //getting the actual product's stock
-            $actualStock = $product->getStock();
-            //calculating the new stock status
-            $finalStock = $actualStock + $morenum;
-            //setting the stock with the new stock status
-            $product->setStock($finalStock);
-            //getting the instance of the entity manager and 
-            $entityManager = $this->getDoctrine()->getManager();
-            //tells the entity manager to manage the product
-            $entityManager->persist($product);
-            //updating the product in the database
-            $entityManager->flush();
-        }
-        //redirecting to the products page
-        return $this->redirectToRoute('admin_products');
-    }
-
     /**
      * @Route("/order_{id}_sent", name="order_sent")
      */
-    public function order_sent($id, OrderRepository $orepo, TranslatorInterface $translator)
+    public function order_sent($id, OrderRepository $orepo, TranslatorInterface $translator, CsrfTokenManagerInterface $csrfTokenManager, Request $request)
     {
-        
+        $token = new CsrfToken('sent', $request->query->get('_csrf_token'));
+
+        if (!$csrfTokenManager->isTokenValid($token)) {
+            throw $this->createAccessDeniedException('Token CSRF invalide');
+        }
         //selecting the specific id's order
         $order = $orepo->find($id);
         //getting the instance of the entity manager and 
@@ -164,9 +150,13 @@ class ProductController extends AbstractController
     /**
      * @Route("/order_{id}_prepare", name="order_prepare")
      */
-    public function order_prepare($id, OrderRepository $orepo, TranslatorInterface $translator)
+    public function order_prepare($id, OrderRepository $orepo, TranslatorInterface $translator, CsrfTokenManagerInterface $csrfTokenManager, Request $request)
     {
-        
+        $token = new CsrfToken('prepare', $request->query->get('_csrf_token'));
+
+        if (!$csrfTokenManager->isTokenValid($token)) {
+            throw $this->createAccessDeniedException('Token CSRF invalide');
+        }
         $translated = $translator->trans('En préparation');
 
         //selecting the specific id's order
@@ -185,36 +175,7 @@ class ProductController extends AbstractController
             "id" => $id,
         ]);
     }
-
-    /**
-     * @Route("/admin_sold", name="admin_sold")
-     */
-    public function admin_sold(ProductRepository $prepo)
-    {
-        //getting the selected value for the product's stock
-        $soldnum = $_POST['soldnum'];
-        //selecting the specific product
-        $product = $prepo->find($_POST['id']);
-        //if the selected value is a number(integer)
-        if(is_numeric($soldnum)){
-            //getting the actual product's stock
-            $actualStock = $product->getStock();
-            //calculating the new stock status
-            $finalStock = $actualStock - $soldnum;
-            //setting the stock with the new stock status
-            $product->setStock($finalStock);
-            //getting the instance of the entity manager and 
-            $entityManager = $this->getDoctrine()->getManager();
-            //tells the entity manager to manage the product
-            $entityManager->persist($product);
-            //updating the product in the database
-            $entityManager->flush();
-        }
-        //redirecting to the products page
-        return $this->redirectToRoute('admin_products');
-    }
-
-
+    
     /**
      * @Route("/admin_product_{id}", name="admin_product")
      */

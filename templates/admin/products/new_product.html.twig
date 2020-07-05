@@ -7,59 +7,59 @@
 
 {% block body %}
 
-<div class="jumbotron jumbotron-fluid">
-	<div class="container">
-				<h1 class="display-4">{% trans %}Ajouter un produit{% endtrans %}</h1>
-			</div>
-</div>
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">{% trans %}Ajouter un produit{% endtrans %}</h1>
+		</div>
+	</div>
 
 				{{ form_start(formnp) }}
-			<div class="container">	
+			<div class="container mx-auto text-center">	
 				<div class="form">
 				
 					{{ form_errors(formnp) }}
 					<div class="row">
-						<div class="col-md-8 mb-3 mt-3">
+						<div class="col-12 mb-3 mt-3">
 							{{ form_widget(formnp.ProductName, {'attr':
 							{
-							'class' : 'form_css_contact',
+							'class' : 'form_css',
 							'placeholder' : 'Nom du produit'|trans
 							}
 							}) 
 						}}
 						</div>
-						<div class="col-md-8 mb-3 mt-3">
+						<div class="col-12 mb-3 mt-3">
 							{{ form_widget(formnp.Description, {'attr':
 							{
-							'class' : 'form_css_contact',
+							'class' : 'form_css',
 							'placeholder' : 'Description'|trans
 							}
 							}) 
 						}}
 						</div>
-						<div class="col-md-8 mb-3">
+						<div class="col-12 mb-3">
 							{{ form_widget(formnp.Price, {'attr':
 							{
-							'class' : 'form_css_contact',
+							'class' : 'form_css',
 							'placeholder' : 'Prix'|trans
 							}
 							}) 
 						}}
 						
 						</div>
-						<div class="col-md-8 mb-3">
+						<div class="col-12 mb-3">
 							{{ form_widget(formnp.Stock, {'attr':
 							{
-							'class' : 'form_css_contact',
+							'class' : 'form_css',
 							'placeholder' : 'Stock'|trans
 							}
 							}) 
 						}}
 						</div>
-						<div class="col-md-8 mb-3" >
+						<div class="col-12 mb-3" >
 							{{ form_widget(formnp.Image, {'attr':
 							{
-							'class' : 'form_css_contact mt-2',
+							'class' : 'form_css mt-2',
 							'placeholder' : 'Choisissez votre image'|trans
 							}
 							}) 

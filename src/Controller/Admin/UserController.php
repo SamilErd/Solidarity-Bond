@@ -9,7 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\UserRepository;
 use App\Service\Cart\CartService;
-
+use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 
 class UserController extends AbstractController
@@ -30,21 +31,18 @@ class UserController extends AbstractController
             'num' => $num
         ]);
     }
-    
-    /**
-     * @Route("/test/{id}", name="test")
-     */
-    public function test($id, UserRepository $urepo) {
-        $user = $urepo->find($id);        
-        dd($user->getToken());
-    }
 
     /**
      * @Route("/user_delete_{id}", name="user_delete")
      */
-    public function user_delete(UserRepository $urepo, $id, CartService $cartService)
+    public function user_delete(UserRepository $urepo, $id, CartService $cartService, CsrfTokenManagerInterface $csrfTokenManager, Request $request)
     {   
-        
+        $token = new CsrfToken('delete', $request->query->get('_csrf_token'));
+
+        if (!$csrfTokenManager->isTokenValid($token)) {
+            throw $this->createAccessDeniedException('Token CSRF invalide');
+        }
+
         $user = $urepo->find($id);
         //getting the instance of the entity manager
         $entityManager = $this->getDoctrine()->getManager();

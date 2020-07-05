@@ -32,9 +32,9 @@
         {% endif %}
         
         <div class="row">
-            <div class="col">
+            <div class="col-xl-6 col-md-12">
 
-                <img class="image-product" src="../images/products/{{product.Image}}">
+                <img class="image-product img-fluid mb-3" src="../images/products/{{product.Image}}">
                 {% if is_granted('ROLE_FABLAB')%}
                 <div class="acc-edit text-right ">
 				<button class="btn acc-edit-btn" onclick="ShowImage();">
@@ -50,7 +50,7 @@
                 {% endif %}
             </div>
 
-            <div class="col" >
+            <div class="col-xl-6 col-md-12" >
 
                 <h4 class="acc-edit mr-7 mb-7">{% trans %}Prix{% endtrans %}: </h4>
 				<h5 class="acc-edit" id="P">{{product.Price}}</h5>
@@ -105,7 +105,7 @@
                 <br>
                 {% if is_granted('ROLE_FABLAB')%}
 
-                <a href="{{path('delete_product', {'id': product.id } )}}" class="btn mt-5" id="button">{% trans %}Supprimer le produit{% endtrans %}</a>    
+                <a href="{{path('delete_product', {'id': product.id, _csrf_token: csrf_token('delete')})}}" class="btn mt-5" id="button">{% trans %}Supprimer le produit{% endtrans %}</a>    
 
                 {% else %}
                 <h4 class="mb-3">{% trans %}Combien voulez-vous en ajouter ?{% endtrans %}</h4>
@@ -121,9 +121,8 @@
                 {% endif %}
             </div>
         </div>
-        
+    </div>
 
-</div>
     <script type="text/javascript">
         function add_cart(){
             var Stock = {{product.Stock}};
