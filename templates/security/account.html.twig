@@ -16,7 +16,7 @@
 	{% endif %}
 <div class="container width-responsive">
 	<div class="row">
-			<div class=" col-xl-4 col-md-12">
+			<div class=" col-xl-4 col-md-12" style="width: 70%">
 				<div class="left-element mb-3" >
 					<button class="btn-acc float-right Toright" onclick="ShowInfos()">{% trans %}Mes informations{% endtrans %} ></button>
 					<button class="btn-acc float-right Toright" onclick="ShowAddress()">{% trans %}Mon adresse{% endtrans %} ></button>
@@ -91,7 +91,7 @@
 				</div>
 
 
-				<div class="right-element" id="orders">
+				<div class="right-element" id="orders" style="display:none">
 					<div class="container" style="overflow-x:auto;">
 						<table class="table">
 						<thead >
@@ -124,7 +124,7 @@
 					</div>	
 				</div>
 
-				<div class="right-element" id="address"> 
+				<div class="right-element" id="address" style="display:none"> 
 					<h4><strong>{% trans %}Mon adresse{% endtrans %}</strong></h4>
 
 					<hr class="diviser">

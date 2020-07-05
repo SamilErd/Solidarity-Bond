@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Projects{% endtrans %}
+{% endblock %}
+
+    {% block stylesheets %}{% endblock %}
+
+{% block body %}
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">{% trans %}Projects{% endtrans %}</h1>
+        </div>
+    </div>     
+
+    {% if is_granted('ROLE_FABLAB')%}
+    <div style="text-align:center">
+        <a href="{{path('new_project')}}" class="btn" id="button">{% trans %}Ajouter un projet{% endtrans %}</a>
+    </div>
+    {% endif %}
+    <div class="container">
+    
+                {% for project in projects %}
+                {% set length = project.images | length %}
+                <div class="card-pr mt-3 mb-5"  >
+                    {% for image in project.images %}
+                        <img class="image-product-card img-fluid" data-src="holder.js/100px180/" alt="100%x180" src="../images/project/{{image}}" data-holder-rendered="true">
+                    {% endfor %}
+                    
+                    <div style="">
+                    <hr></hr>
+                    <h4 class="card-title-shop">{{project.name}}</h4>
+                    <hr></hr>
+                    <p class="card-text-shop">{{project.description}}</p>
+                    <hr></hr>
+                    <button class="btn" id="like" onclick="likeButton({{project.id}})"><span id="ll{{project.id}}">{{project.likes | length}}</span> <i id="heart{{project.id}}" class="fa{% if app.user in project.likes %}s{% else %}r{% endif %} fa-heart"></i></button>
+                    <button class="btn" id="comment">{{project.comments | length}} commentaire{% if project.comments | length <= 1 %}{% else %}s{% endif %}
+                    </button>
+                    </div>
+                    <div id="comments">
+
+                    </div>
+
+                </div>
+                {% endfor %}
+    </div>
+{% endblock %}
+{% block javascripts_footer %}
+    {{ parent() }}
+    <script>
+    function likeButton(id) {
+        $.ajax({
+				url: '{{path('like_project')}}', // point to server-side PHP script 
+				method:'POST',
+                data:{id:id},
+                dataType : 'json',
+				beforeSend:function(){
+					$('#demo'+id).html('Loading......');
+				},
+				success:function(data){
+					console.log(data);
+                    $('#ll'+id).html(data.likes);
+                    if(data.liked == true){
+                        $('#heart'+id).removeClass("far fa-heart");
+                        $('#heart'+id).addClass("fas fa-heart");
+                    } else {
+                        $('#heart'+id).removeClass("fas fa-heart");
+                        $('#heart'+id).addClass("far fa-heart");
+                    }
+                }
+				});
+}
+      
+    </script>
+{% endblock %}

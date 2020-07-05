@@ -96,10 +96,28 @@ class User implements UserInterface
      */
     private $tokenPassword;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Project::class, mappedBy="likes")
+     */
+    private $liked;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="id_user", orphanRemoval=true)
+     */
+    private $comments;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Comment::class, mappedBy="likes")
+     */
+    private $likes_comments;
+
 
     public function __construct()
     {
         $this->Orders = new ArrayCollection();
+        $this->liked = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->likes_comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -308,6 +326,93 @@ class User implements UserInterface
         $newId_user = null === $tokenPassword ? null : $this;
         if ($tokenPassword->getIdUserPassword() !== $newId_user) {
             $tokenPassword->setIdUserPassword($newId_user);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Project[]
+     */
+    public function getLiked(): Collection
+    {
+        return $this->liked;
+    }
+
+    public function addLiked(Project $liked): self
+    {
+        if (!$this->liked->contains($liked)) {
+            $this->liked[] = $liked;
+            $liked->addLike($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLiked(Project $liked): self
+    {
+        if ($this->liked->contains($liked)) {
+            $this->liked->removeElement($liked);
+            $liked->removeLike($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getIdUser() === $this) {
+                $comment->setIdUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getLikesComments(): Collection
+    {
+        return $this->likes_comments;
+    }
+
+    public function addLikesComment(Comment $likesComment): self
+    {
+        if (!$this->likes_comments->contains($likesComment)) {
+            $this->likes_comments[] = $likesComment;
+            $likesComment->addLike($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLikesComment(Comment $likesComment): self
+    {
+        if ($this->likes_comments->contains($likesComment)) {
+            $this->likes_comments->removeElement($likesComment);
+            $likesComment->removeLike($this);
         }
 
         return $this;
