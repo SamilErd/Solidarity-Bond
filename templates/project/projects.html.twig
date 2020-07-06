@@ -32,20 +32,24 @@
                     <hr></hr>
                     <p class="card-text-shop">{{project.description}}</p>
                     <hr></hr>
-                    <button class="btn" id="like" onclick="likeButton({{project.id}})"><span id="ll{{project.id}}">{{project.likes | length}}</span> <i id="heart{{project.id}}" class="fa{% if app.user in project.likes %}s{% else %}r{% endif %} fa-heart"></i></button>
-                    <button class="btn" id="comment"><span id="cc{{project.id}}">{{project.comments | length}}</span> commentaire{% if project.comments | length <= 1 %}{% else %}s{% endif %} 
+                    <button class="btn" id="like" onclick="{% if is_granted('IS_AUTHENTICATED_FULLY') %}likeButton({{project.id}}){% else %}login(){% endif %}"><span id="ll{{project.id}}">{{project.likes | length}}</span> <i id="heart{{project.id}}" class="fa{% if app.user in project.likes %}s{% else %}r{% endif %} fa-heart"></i></button>
+                    <button class="btn" id="comment" onclick="comments({{project.id}})"><span id="cc{{project.id}}">{{project.comments | length}}</span> commentaire{% if project.comments | length <= 1 %}{% else %}s{% endif %} 
                     </button>
                     </div>
-                    <div id="comments" style="display:none">
+                    <div id="comments{{project.id}}" style="display:none">
                         <div id="someDiv{{project.id}}">
 
                         </div>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <form id="commentForm" method="post">
 				    <textarea id="textarea{{project.id}}" class="form_css_pro-description"  type="text" placeholder="Postez un commentaire..." name="comment" style="border : solid; width: 50%"></textarea>
                     <input id="id" type="hidden" value="{{project.id}}"/>
-                    <button id="sub" >Poster</button>
+                    <button type="button" id="sub" onclick="{% if is_granted('IS_AUTHENTICATED_FULLY') %}subform({{project.id}}){% else %}login(){% endif %}">Poster</button>
 				    </form>
-                    
+                    {% else %}
+                    <hr></hr>
+                    <p style="display:inline-block">si vous voulez commenter, </p><a href="{{path('security_login')}}"> connectez-vous.</button>   
+                    {% endif %}
                     </div>
 
                 </div>
@@ -55,15 +59,15 @@
 {% block javascripts_footer %}
     {{ parent() }}
     <script>
-    $( "#sub" ).one( 'click', function(){
-        $("#commentForm").submit(function(e) {
-        var id = $("#id").val()
-        e.preventDefault(); // avoid to execute the actual submit of the form.
+    function login(){
+    window.location.href="{{path('security_login')}}"
+    }
+   
+    function subform(id){
         if(!$("#textarea"+id).val()){
         } else {
             var form = $(this);
             var url = form.attr('action');
-            
             $.ajax({
                 type: "POST",
                 url: '{{path('comment_project')}}',
@@ -74,24 +78,20 @@
                 success:function(data){
                     $('#cc'+id).html(data.comments);
                     var added = true;
-                    show_comment(added);
+                    show_comment(added, id);
                     $("#textarea"+id).val("");
                     
                 }
             });
         }
         
-        });
-    });
-    
-        $( "#comment" ).one( 'click', function(){
-            var added = false;
-            show_comment(added);
-        
-    });
-    
-    function show_comment(added){
-            var id = $("#id").val()
+    }
+
+    function comments(id) {
+        var added = false;
+        show_comment(added, id);
+    }
+    function show_comment(added, id){
             $.ajax({
             type: "POST",
             url: '{{path('show_comments')}}',
@@ -105,8 +105,9 @@
                 if(Boolean(added)){
                     $( "#someDiv"+id ).append( "<div><hr></hr><p>"+data.authors[data.authors.length - 1]+"</p><p>"+data.comments[data.comments.length - 1]+"</p></div>" );
                 } else {
-                    $( data.authors ).each(function(key, value) {
-                        $( "#someDiv"+id ).append( "<div><hr></hr><p>"+value+"</p><p>"+data.comments[key]+"</p></div>" );
+                    $( "#someDiv"+id ).empty();
+                    $( data.authors ).each(function(key, value) {                        
+                    $( "#someDiv"+id ).append( "<div><hr></hr><p>"+value+"</p><p>"+data.comments[key]+"</p></div>" );
                          
                     }); 
                 }                 
@@ -114,7 +115,7 @@
                 
                 },
             });
-            $('#comments').css('display', 'block');  
+            $('#comments'+id).css('display', 'block');  
 
     }
 

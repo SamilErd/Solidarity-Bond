@@ -113,7 +113,8 @@ class ProjectController extends AbstractController
         }
         $response = new Response(json_encode(array(
             'comments' => $comments,
-            'authors' => $authors
+            'authors' => $authors,
+            'POST' => $_POST
         )));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
