@@ -32,7 +32,7 @@
                     <hr></hr>
                     <p class="card-text-shop">{{project.description}}</p>
                     <hr></hr>
-                    <button class="btn" id="like" onclick="{% if is_granted('IS_AUTHENTICATED_FULLY') %}likeButton({{project.id}}){% else %}login(){% endif %}"><span id="ll{{project.id}}">{{project.likes | length}}</span> <i id="heart{{project.id}}" class="fa{% if app.user in project.likes %}s{% else %}r{% endif %} fa-heart"></i></button>
+                    <button class="btn" id="like" onclick="{% if is_granted('IS_AUTHENTICATED_FULLY') %}likeButton({{project.id}}){% else %}login(){% endif %}"><span id="ll{{project.id}}">{{project.likes | length}}</span> <i id="heart{{project.id}}" class="fa{% if app.user in project.likes %}s fa-heart text-danger{% else %}r fa-heart{% endif %}"></i></button>
                     <button class="btn" id="comment" onclick="comments({{project.id}})"><span id="cc{{project.id}}">{{project.comments | length}}</span> commentaire{% if project.comments | length <= 1 %}{% else %}s{% endif %} 
                     </button>
                     </div>
@@ -41,6 +41,7 @@
 
                         </div>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <hr></hr>
                     <form id="commentForm" method="post">
 				    <textarea id="textarea{{project.id}}" class="form_css_pro-description"  type="text" placeholder="Postez un commentaire..." name="comment" style="border : solid; width: 50%"></textarea>
                     <input id="id" type="hidden" value="{{project.id}}"/>
@@ -132,9 +133,9 @@
                     $('#ll'+id).html(data.likes);
                     if(data.liked == true){
                         $('#heart'+id).removeClass("far fa-heart");
-                        $('#heart'+id).addClass("fas fa-heart");
+                        $('#heart'+id).addClass("fas fa-heart text-danger");
                     } else {
-                        $('#heart'+id).removeClass("fas fa-heart");
+                        $('#heart'+id).removeClass("fas fa-heart text-danger");
                         $('#heart'+id).addClass("far fa-heart");
                     }
                 }

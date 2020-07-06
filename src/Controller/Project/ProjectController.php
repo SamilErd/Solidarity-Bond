@@ -120,6 +120,7 @@ class ProjectController extends AbstractController
         return $response;
     }
 
+
     /**
      * @Route("/projects/new", name="new_project")
      */

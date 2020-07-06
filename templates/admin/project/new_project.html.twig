@@ -64,43 +64,6 @@
 
 {{ form_end(formnp) }}
 {% endblock %}
-{% block javascripts_footer %}
-    {{ parent() }}
-	<script>
-		/*$(document).ready(function(){
-			$(document).on('change','#new_project_images',function(){
-			var property = document.getElementById('new_project_images').files[0];  
-			var image_name = property.name;
-			var image_extension = image_name.split('.').pop().toLowerCase();
-
-
-			if(jQuery.inArray(image_extension,['jpg','jpeg','png', 'JPG','JPEG','PNG']) == -1){
-				alert("Invalid image file");
-				}
-
-			var form_data = new FormData();                 
-			form_data.append("file",property);
-				$.ajax({
-				url: '{{path('push_images')}}', // point to server-side PHP script 
-				method:'POST',
-				data:form_data,
-				contentType:false,
-				cache:false,
-				processData:false,
-				beforeSend:function(){
-					$('#msg').html('Loading......');
-				},
-				success:function(data){
-					console.log(data);
-					$('#msg').html(data);
-					
-				}
-				});
-			});
-		});*/
-	</script>
-	
-{% endblock %}
 
 
 
