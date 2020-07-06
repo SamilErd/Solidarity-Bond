@@ -31,7 +31,42 @@ class ProjectController extends AbstractController
             'num' => $num
         ]);
     }
-   
+   /**
+     * @Route("/comment/like", name="like_comment")
+     */
+    public function like_comment(CommentRepository $commentrepo)
+    {
+        $user = $this->getUser();
+        $comment = $commentrepo->find($_POST['id']);
+        $liked = false;        
+        $users = [];
+        foreach($comment->getLikes() as $like){
+            array_push($users, $like);
+        }
+        if(in_array($user, $users)){
+            $comment->removeLike($user);
+            $liked = false;
+        } else {
+            $comment->addLike($user);
+            $liked = true;
+        }
+        //getting the instance of the entity manager and 
+        $entityManager = $this->getDoctrine()->getManager();
+        //tells the entity manager to manage the product
+        $entityManager->persist($comment);
+        //inserting the product in the database
+        $entityManager->flush();
+        
+        
+        $response = new Response(json_encode(array(
+            'clikes' => sizeof($comment->getLikes()),
+            'cliked' => $liked,
+
+        )
+            ));
+          $response->headers->set('Content-Type', 'application/json');
+          return $response;
+    }
     /**
      * @Route("/project/like", name="like_project")
      */
@@ -62,7 +97,6 @@ class ProjectController extends AbstractController
         $response = new Response(json_encode(array(
             'likes' => sizeof($project->getLikes()),
             'liked' => $liked,
-            'id' => $_POST['id']
 
         )
             ));
@@ -109,18 +143,35 @@ class ProjectController extends AbstractController
         $authors = [];
         $ids = [];
         $cids = [];
+        $ulikes = [];
+        $commentlike = [];
+        $likenum = [];
         foreach($project->getComments() as $comment){
             $author = $comment->getIdUser()->getFirstName()." ".$comment->getIdUser()->getLastName();
             array_push($authors, $author);
             array_push($comments , $comment->getComment());
             array_push($ids , $comment->getIdUser()->getId());
             array_push($cids , $comment->getId());
+            array_push($likenum, count($comment->getLikes()));
+            foreach($comment->getLikes() as $like){
+                array_push($ulikes, $like->getId());
+                array_push($commentlike, $comment->getId());
+            }
         }
+
+
+
+        
         $response = new Response(json_encode(array(
             'comments' => $comments,
             'authors' => $authors,
             'id_user' => $ids,
             'id_comment' => $cids,
+            'ulikes' => $ulikes,
+            'cl' => $commentlike,
+            'ln' => $likenum
+
+
             
         )));
         $response->headers->set('Content-Type', 'application/json');

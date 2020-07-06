@@ -79,9 +79,7 @@
             $( "#delbtn"+{{project.id}} ).css("display","block");
 
         }, function() {
-            $( "#comDiv"+{{project.id}} ).empty();
             $("#popup"+{{project.id}}).css("display", "none");
-            $("#comments"+{{project.id}}).css("display", "none");
             $( "#delbtn"+{{project.id}} ).css("display","none");
         });
 
@@ -155,13 +153,22 @@
                 id: id,
             }, // serializes the form's elements.
             beforeSend:function(){
-                    $('#demo').html('Loading......');
+                    $('#comDiv'+id).html('Loading......');
                 },
             success:function(data){
+                
+                console.log(data);
                     $( "#comDiv"+id ).append( "<div><hr></hr><p>"+data.authors[data.authors.length - 1]+"</p><p>"+data.comments[data.comments.length - 1]+"</p></div>" );
                     $( "#comDiv"+id ).empty();
                     $( data.authors ).each(function(key, value) {     
-                    $( "#comDiv"+id ).append( "<div><hr></hr><p>"+value+"</p><p>"+data.comments[key]+"</p></div>" );
+                    var myid = {{app.user.id}};
+                    if(data.ulikes[key] !== myid){
+                        $( "#comDiv"+id ).append( "<div><hr></hr><p>"+value+"</p><p>"+data.comments[key]+"</p><button class='btn' id='commentlike' onclick='{% if is_granted('IS_AUTHENTICATED_FULLY') %}commentlikeButton("+data.id_comment[key]+"){% else %}login(){% endif %}'><span id='lc"+data.id_comment[key]+"'>"+ data.ln[key]+"</span> <i id='comheart"+data.id_comment[key]+"' class='fas fa-heart text-danger'></i></button></div>" );
+                    } else {
+                        $( "#comDiv"+id ).append( "<div><hr></hr><p>"+value+"</p><p>"+data.comments[key]+"</p><button class='btn' id='commentlike' onclick='{% if is_granted('IS_AUTHENTICATED_FULLY') %}commentlikeButton("+data.id_comment[key]+"){% else %}login(){% endif %}'><span id='lc"+data.id_comment[key]+"'>"+ data.ln[key]+"</span> <i id='comheart"+data.id_comment[key]+"' class='far fa-heart'></i></button></div>" );
+                    
+                    }
+                     
                     {% if app.user %}
                         if(data.id_user[key] == {{app.user? app.user.id: false}} || {{is_granted('ROLE_FABLAB')? 'true' : 'false'}}){
                         $( "#comDiv"+id ).append( "<button id='del' onclick='deleteCom("+ data.id_comment[key]+","+id+")' >X</button> ");
@@ -179,6 +186,28 @@
             $('#comments'+id).css('display', 'block');  
 
     }
+
+    function commentlikeButton(id){
+        $.ajax({
+				url: '{{path('like_comment')}}', // point to server-side PHP script 
+				method:'POST',
+                data:{id:id},
+                dataType : 'json',
+				success:function(data){
+                    console.log(data)
+                    $('#lc'+id).html(data.clikes);
+                    if(data.cliked == true){
+                        $('#comheart'+id).removeClass("far fa-heart");
+                        $('#comheart'+id).addClass("fas fa-heart text-danger");
+                    } else {
+                        $('#comheart'+id).removeClass("fas fa-heart text-danger");
+                        $('#comheart'+id).addClass("far fa-heart");
+                    }
+                }
+				});
+    }
+
+
     function deleteCom(id, pid) {
     $.ajax({
         type: "POST",
