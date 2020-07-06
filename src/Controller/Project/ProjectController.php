@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Service\Cart\CartService;
 use App\Repository\ProjectRepository;
 use App\Entity\Project;
+use App\Entity\Comment;
 use App\Form\NewProjectType;
 
 class ProjectController extends AbstractController
@@ -66,6 +67,56 @@ class ProjectController extends AbstractController
             ));
           $response->headers->set('Content-Type', 'application/json');
           return $response;
+    }
+    /**
+     * @Route("/project/comment", name="comment_project")
+     */
+    public function comment_project(ProjectRepository $projectrepo)
+    {
+        $user = $this->getUser();
+        $commentstr = $_POST['comment'];
+        $project = $projectrepo->find($_POST['id']);
+        
+        if(!empty($commentstr)){
+            $comment = new Comment();
+            $comment->setIdUser($user);
+            $comment->setComment($commentstr);
+            $project->addComment($comment);
+            //getting the instance of the entity manager and 
+            $entityManager = $this->getDoctrine()->getManager();
+            //tells the entity manager to manage the product
+            $entityManager->persist($comment);
+            $entityManager->persist($project);
+            //inserting the product in the database
+            $entityManager->flush();
+        }
+        $response = new Response(json_encode(array(
+            'comments' => sizeof($project->getComments()),
+        )
+            ));
+          $response->headers->set('Content-Type', 'application/json');
+          return $response;
+    }
+    /**
+     * @Route("/project/comments", name="show_comments")
+     */
+    public function show_comments(ProjectRepository $projectrepo)
+    {
+        $user = $this->getUser();
+        $project = $projectrepo->find($_POST['id']);
+        $comments = [];
+        $authors = [];
+        foreach($project->getComments() as $comment){
+            $author = $comment->getIdUser()->getFirstName()." ".$comment->getIdUser()->getLastName();
+            array_push($authors, $author);
+            array_push($comments , $comment->getComment());
+        }
+        $response = new Response(json_encode(array(
+            'comments' => $comments,
+            'authors' => $authors
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
     /**
