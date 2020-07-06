@@ -351,18 +351,6 @@ ul {
   display:block;
 }
 
-.left-element {
-  height: 100%;
-  float:left;
-}
-
-.right-element {
-  height: 100%;
-  width: 100%;
-  float: right;
-  text-align: left; 
-}
-
 .btn-acc{
   background-color: white;
   color: black; /* White text */
@@ -701,6 +689,9 @@ hr.diviser {
   .h4-respons{
     font-size: 25px;
   }
+  .button-dropd{
+    margin-left: -5%;
+  }
 
   .carrou {
     max-width: 384px;
@@ -714,11 +705,8 @@ hr.diviser {
     margin-top: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width: 80%;
-  }
-  .navbar-toggler {
-    margin-left: -10%;
-   }
-}
+  }}
+
 /**
 * Responsive for 768px and up
 */
@@ -756,7 +744,7 @@ hr.diviser {
   .input-form {
     width: 100%;
   }
-  .navbar-toggler {
+  .button-dropd {
     margin-left: -20%;
    }
  }
@@ -773,7 +761,7 @@ hr.diviser {
   .input-form {
     width: 100%;
   }
-  .navbar-toggler {
+  .button-dropd {
     margin-left: -15%;
    }
   } 
@@ -784,6 +772,11 @@ hr.diviser {
   }
 }
 
+@media only screen and (min-width: 575px) {
+  .button-dropd {
+    margin-left: -10%;
+  }
+}
 
 @media only screen and (max-width: 991px) { 
   .navbar-mb {
@@ -807,4 +800,8 @@ hr.diviser {
   .recommendations {
     margin-top: 950px
   }
+ }
+
+ .justify-account{
+   text-align: left;
  }

@@ -14,10 +14,10 @@
 		<p>{{ error_edit }}</p>
 	</div>
 	{% endif %}
-<div class="container width-responsive">
+<div class="container width-responsive justify-account">
 	<div class="row">
-			<div class="col-xl-4 col-md-12">
-				<div class="left-element mb-3">
+			<div class="col-xl-4 col-md-6 col-sm-6 mx-auto mb-3" style="text-algin:center;">
+				<div class="">
 					<button class="btn-acc float-right Toright" onclick="ShowInfos()">{% trans %}Mes informations{% endtrans %} ></button>
 					<button class="btn-acc float-right Toright" onclick="ShowAddress()">{% trans %}Mon adresse{% endtrans %} ></button>
 					<button class="btn-acc float-right Toright" onclick="ShowOrders()">{% trans %}Mes commandes{% endtrans %} ></button>
@@ -25,7 +25,7 @@
 			</div>
 
 			<div class="col-xl-8 col-md-12">
-				<div class="right-element" id="infos"> 
+				<div class="" id="infos"> 
 					
 					<h4><strong>{% trans %}Mes informations de compte{% endtrans %}</strong></h4>
 					<hr class="line">
@@ -78,7 +78,7 @@
 					<button class="btn btn_form_css" id="edit" onclick="ShowPass()" style="margin-bottom:20px">{% trans %}Modifier mon mot de passe{% endtrans %}</button>
 				</div>	
 
-				<div class="right-element" style="display:none; " id="pass">
+				<div class="" style="display:none; " id="pass">
 					<div >
 						<form action="{{path('security_account')}}" method="post" >
 						<input class="form_css" placeholder = "Mot de passe actuel" type="password" name="CurrentPass" style="margin-bottom: 15px"/><br>
@@ -91,7 +91,7 @@
 				</div>
 
 
-				<div class="right-element" id="orders" style="display:none">
+				<div class="" id="orders" style="display:none">
 					<div class="container" style="overflow-x:auto;">
 						<table class="table">
 						<thead >
@@ -124,7 +124,7 @@
 					</div>	
 				</div>
 
-				<div class="right-element" id="address"> 
+				<div class="" id="address" style="display: none;"> 
 					<h4 class="h4-respons"><strong>{% trans %}Mon adresse{% endtrans %}</strong></h4>
 
 					<hr class="diviser">
