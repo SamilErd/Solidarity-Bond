@@ -157,11 +157,10 @@
                 },
             success:function(data){
                 
-                console.log(data);
                     $( "#comDiv"+id ).append( "<div><hr></hr><p>"+data.authors[data.authors.length - 1]+"</p><p>"+data.comments[data.comments.length - 1]+"</p></div>" );
                     $( "#comDiv"+id ).empty();
                     $( data.authors ).each(function(key, value) {     
-                    var myid = {{app.user.id}};
+                    var myid = {{ app.user ? app.user.id : 'false'}};
                     if(data.ulikes[key] !== myid){
                         $( "#comDiv"+id ).append( "<div><hr></hr><p>"+value+"</p><p>"+data.comments[key]+"</p><button class='btn' id='commentlike' onclick='{% if is_granted('IS_AUTHENTICATED_FULLY') %}commentlikeButton("+data.id_comment[key]+"){% else %}login(){% endif %}'><span id='lc"+data.id_comment[key]+"'>"+ data.ln[key]+"</span> <i id='comheart"+data.id_comment[key]+"' class='fas fa-heart text-danger'></i></button></div>" );
                     } else {
@@ -194,7 +193,6 @@
                 data:{id:id},
                 dataType : 'json',
 				success:function(data){
-                    console.log(data)
                     $('#lc'+id).html(data.clikes);
                     if(data.cliked == true){
                         $('#comheart'+id).removeClass("far fa-heart");
