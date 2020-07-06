@@ -249,7 +249,6 @@ $(document).ready(function(){
 			var yyyy = today.getFullYear();
 			today = mm + '/' + dd + '/' + yyyy;
 			var totalcases = Object.values(response)[0][0].total_cases;
-			console.log(typeof totalcases);
 			var totaldeaths = Object.values(response)[0][0].total_deaths;
 			var countries = Object.values(response)[0][0].total_affected_countries;
 			var totalrecovered = Object.values(response)[0][0].total_recovered;
