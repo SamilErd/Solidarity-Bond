@@ -12,6 +12,7 @@ use App\Repository\CommentRepository;
 use App\Entity\Project;
 use App\Entity\Comment;
 use App\Form\NewProjectType;
+use Symfony\Component\Filesystem\Filesystem;
 
 class ProjectController extends AbstractController
 {
@@ -161,7 +162,7 @@ class ProjectController extends AbstractController
 
 
 
-        
+
         $response = new Response(json_encode(array(
             'comments' => $comments,
             'authors' => $authors,
@@ -204,13 +205,17 @@ class ProjectController extends AbstractController
         $project = $projectrepo->find($_POST['id']);
         //getting the instance of the entity manager and 
         $entityManager = $this->getDoctrine()->getManager();
+        foreach($project->getImages() as $image){
+            $filename = $image;
+            $filesystem = new Filesystem();
+            $filesystem->remove($this->getParameter('upload_directory_photos_project')."/".$filename);
+        }
         //tells the entity manager to manage the product
         $entityManager->remove($project);
         //inserting the product in the database
         $entityManager->flush();
         $response = new Response(json_encode(array(
             'res' => 'OK'
-            
         )));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
@@ -234,7 +239,6 @@ class ProjectController extends AbstractController
 
         //if the form is submitted without errors
         if ($formnp->isSubmitted() && $formnp->isValid()) {
-
             //The file is taken for thhe image
             $files = $formnp['images']->getData();
             foreach($files as $file){
