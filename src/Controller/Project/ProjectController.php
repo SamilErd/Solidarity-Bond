@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\Cart\CartService;
 use App\Repository\ProjectRepository;
+use App\Repository\CommentRepository;
 use App\Entity\Project;
 use App\Entity\Comment;
 use App\Form\NewProjectType;
@@ -106,15 +107,59 @@ class ProjectController extends AbstractController
         $project = $projectrepo->find($_POST['id']);
         $comments = [];
         $authors = [];
+        $ids = [];
+        $cids = [];
         foreach($project->getComments() as $comment){
             $author = $comment->getIdUser()->getFirstName()." ".$comment->getIdUser()->getLastName();
             array_push($authors, $author);
             array_push($comments , $comment->getComment());
+            array_push($ids , $comment->getIdUser()->getId());
+            array_push($cids , $comment->getId());
         }
         $response = new Response(json_encode(array(
             'comments' => $comments,
             'authors' => $authors,
-            'POST' => $_POST
+            'id_user' => $ids,
+            'id_comment' => $cids,
+            
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+    /**
+     * @Route("/project/comment/delete", name="delete_comment")
+     */
+    public function delete_comments(CommentRepository $commentrepo)
+    {
+        $comment = $commentrepo->find($_POST['id']);
+        //getting the instance of the entity manager and 
+        $entityManager = $this->getDoctrine()->getManager();
+        //tells the entity manager to manage the product
+        $entityManager->remove($comment);
+        //inserting the product in the database
+        $entityManager->flush();
+        $response = new Response(json_encode(array(
+            'res' => 'OK'
+            
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+    /**
+     * @Route("/project/delete", name="delete_project")
+     */
+    public function delete_project(ProjectRepository $projectrepo)
+    {
+        $project = $projectrepo->find($_POST['id']);
+        //getting the instance of the entity manager and 
+        $entityManager = $this->getDoctrine()->getManager();
+        //tells the entity manager to manage the product
+        $entityManager->remove($project);
+        //inserting the product in the database
+        $entityManager->flush();
+        $response = new Response(json_encode(array(
+            'res' => 'OK'
+            
         )));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
