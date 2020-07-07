@@ -807,3 +807,17 @@ hr.diviser {
  .button-dropd{
    margin-left: -65px;
  }
+
+ .btn-projects {
+  background-color: white;
+  width: auto;
+ }
+
+ .project-relative {
+  position: relative;
+ }
+
+ .project-absolute {
+   position: absolute;
+   right: 0;
+ }

@@ -123,7 +123,10 @@
 
         <div class="row text-center py-3" id="copyright">
             <div class="col-lg">
-                <a href="{{path('about_fablab')}}" id="text_color">{% trans %}En savoir plus{% endtrans %}</a>
+                <div class="row">
+                    <a class="col-12 mb-2" href="{{path('about_fablab')}}" id="text_color">{% trans %}En savoir plus{% endtrans %}</a><br>
+                    <a class="col-12 mb-2" href="{{path('about_group')}}" id="text_color">{% trans %}À Propos {% endtrans %}</a>
+                </div>
             </div>
             <div class="footer-copyright col-lg" >© 2020 Copyright:
                 <a href="https://solidarity-bond.fr/" id="text_color"> solidarity-bond.fr</a>
