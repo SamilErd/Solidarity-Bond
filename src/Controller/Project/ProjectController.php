@@ -183,7 +183,9 @@ class ProjectController extends AbstractController
      */
     public function delete_comments(CommentRepository $commentrepo)
     {
+
         $comment = $commentrepo->find($_POST['id']);
+        $project = $comment->getIdProject();
         //getting the instance of the entity manager and 
         $entityManager = $this->getDoctrine()->getManager();
         //tells the entity manager to manage the product
@@ -191,7 +193,8 @@ class ProjectController extends AbstractController
         //inserting the product in the database
         $entityManager->flush();
         $response = new Response(json_encode(array(
-            'res' => 'OK'
+            'res' => 'OK',
+            'comments' => sizeof($project->getComments())
             
         )));
         $response->headers->set('Content-Type', 'application/json');

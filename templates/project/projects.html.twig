@@ -235,6 +235,7 @@
                 $('#demo'+id).html('Loading......');
             },
         success:function(data){
+            $('#cc'+pid).html(data.comments);
             $( "#com"+id).remove();
             $( "#delcom"+id).remove();
         }
