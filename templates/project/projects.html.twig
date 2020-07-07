@@ -32,7 +32,7 @@
                     {% endif %}
                     <div class="project-relative">
                         {% if is_granted('ROLE_FABLAB') %}
-                        <button id="delbtn{{project.id}}" class="sbtn btn btn-projects project-absolute" style="display:none" onclick="showDeleteProject({{project.id}})"><i class='fas fa-times'></i></button>
+                        <button id="delbtn{{project.id}}" class="sbtn btn btn-projects project-absolute" onclick="showDeleteProject({{project.id}})"><i class='fas fa-times'></i></button>
                         {% endif %}
                         <div class="project_images" style="width: 100%">
                         {% for image in project.images %}
@@ -79,18 +79,19 @@
 {% block javascripts_footer %}
     {{ parent() }}
     <script>
-    
-        {% for project in projects %}
-        $( "#card-project"+{{project.id}}).hover(
-        function() {
-            $( "#delbtn"+{{project.id}} ).css("display","block");
-        }, function() {
-            $( "#comDiv"+{{project.id}}).empty();
-            $( "#comments"+{{project.id}}).hide();
-            $("#popup"+{{project.id}}).css("display", "none");
-            $( "#delbtn"+{{project.id}} ).css("display","none");
-        });
-        {% endfor %} 
+
+
+    function showDeleteCommentButton(cid){
+
+                $("#com"+cid).hover(function(){
+                $( "#delcom"+cid).css("display","block");
+                }, function(){
+                $("#delcom"+cid).css("display", "none");
+                });
+
+    }
+
+                
         
 
     
@@ -195,9 +196,11 @@
                         
                      {% if app.user %}
                         if(data.id_user[key] == {{app.user? app.user.id: false}} || {{is_granted('ROLE_FABLAB')? 'true' : 'false'}}){
-                        $( "#comDiv"+id ).append( "<button class='sbtn btn btn-projects' id='delcom"+ data.id_comment[key]+"' onclick='deleteCom("+ data.id_comment[key]+","+id+")' ><i class='fas fa-times'></i></button> ");
+                        $( "#com"+data.id_comment[key] ).append( "<button class='sbtn btn btn-projects' id='delcom"+ data.id_comment[key]+"' style='display:none' onclick='deleteCom("+ data.id_comment[key]+","+id+")' ><i class='fas fa-times'></i></button> ");
                         }
                     {% endif %}
+
+                        showDeleteCommentButton(data.id_comment[key])
                     }); 
                 
                 },
