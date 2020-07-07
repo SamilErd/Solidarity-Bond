@@ -137,7 +137,9 @@
                 $( data.res ).each(function(key, image) {
                         if(data.res[key] === data.res[data.res.length - 1]){
                            $( "#divProject"+id).append("<div id='img"+key+id+"' class='div-image-project' style='display: inline-block;'>"+{% if is_granted('ROLE_FABLAB') %}"<button id='delbtnimage"+key+id+"' class='sbtn btn del-btn-image project-absolute ' onclick='deletePhoto("+key+", "+id+")' style='display: none;top:4%; right:6%'><i class='fas fa-times'></i></button>"+{% endif %}"<img class='image-project-card img-fluid' data-src='holder.js/100px180/' alt='100%x180' src='../images/project/"+data.res[data.res.length - 1]+"' data-holder-rendered='true'></div>");
+                        
                         }
+                        showDeletePhotoButton() 
                       });
             }
    });
