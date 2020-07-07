@@ -16,11 +16,11 @@
 	{% endif %}
 <div class="container width-responsive justify-account">
 	<div class="row">
-			<div class="col-xl-4 col-md-6 col-sm-6 mx-auto mb-3" style="text-algin:center;">
-				<div class="">
-					<button class="btn-acc float-right Toright" onclick="ShowInfos()">{% trans %}Mes informations{% endtrans %} ></button>
-					<button class="btn-acc float-right Toright" onclick="ShowAddress()">{% trans %}Mon adresse{% endtrans %} ></button>
-					<button class="btn-acc float-right Toright" onclick="ShowOrders()">{% trans %}Mes commandes{% endtrans %} ></button>
+			<div class="col-xl-4 col-md-12 mx-auto mb-3 text-center">
+				<div style="margin: 0 auto; width: auto;">
+					<button class="btn-acc Toright text-center" onclick="ShowInfos()">{% trans %}Mes informations{% endtrans %}</button>
+					<button class="btn-acc Toright text-center" onclick="ShowAddress()">{% trans %}Mon adresse{% endtrans %}</button>
+					<button class="btn-acc Toright text-center" onclick="ShowOrders()">{% trans %}Mes commandes{% endtrans %}</button>
 				</div>
 			</div>
 
@@ -84,8 +84,8 @@
 						<input class="form_css" placeholder = "Mot de passe actuel" type="password" name="CurrentPass" style="margin-bottom: 15px"/><br>
 						<input class="form_css mr-5" placeholder = "Nouveau mot de passe" type="password" name="NewPass" style="margin-bottom: 15px"/>
 						<input class="form_css" placeholder = "Confirmez votre mot de passe" type="password" name="ConfirmPass" style="margin-bottom: 15px" />
-						<button type="submit" class="btn btn-dark " id="btn" style="display:block ; width: 200px; margin-bottom: 10px">{% trans %}Mettre à jour{% endtrans %}</button>
-						<button class="btn btn-dark " id="btn" onclick="ShowPass()" style="display:block; width: 200px">{% trans %}Annuler{% endtrans %}</button>
+						<button type="submit" class="btn btn-dark " style="display:block ; width: 200px; margin-bottom: 10px">{% trans %}Mettre à jour{% endtrans %}</button>
+						<button class="btn btn-dark " onclick="ShowPass()" style="display:block; width: 200px">{% trans %}Annuler{% endtrans %}</button>
 						</form>
 					</div>
 				</div>
