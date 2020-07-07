@@ -263,6 +263,7 @@ class ProjectController extends AbstractController
         //getting the instance of the entity manager and 
         $entityManager = $this->getDoctrine()->getManager();
         $images = $project->getImages();
+        $addedimages = [];
         $countfiles = count($_FILES['files'.$id]['name']);
         
         $upload_location = $this->getParameter('upload_directory_photos_project');
@@ -290,6 +291,7 @@ class ProjectController extends AbstractController
                 // Upload file
                 if(move_uploaded_file($_FILES['files'.$id]['tmp_name'][$index],$path)){
                     array_push($images,$filename);
+                    array_push($addedimages,$filename);
                 }
             } else {
                 $error="Format d'image non valide!";
@@ -308,7 +310,7 @@ class ProjectController extends AbstractController
         
         $response = new Response(json_encode(array(
             'res' => $images,
-            'filename' => $countfiles,
+            'addedimages' => $addedimages,
             'error' => $error,
         )));
         $response->headers->set('Content-Type', 'application/json');
