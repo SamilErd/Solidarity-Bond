@@ -23,21 +23,21 @@
                 {% for project in projects %}
                 <div class="card-pr mt-3 mb-5 " id='card-project{{project.id}}' >
                     {% if is_granted('ROLE_FABLAB') %}
-                    <div id="popupDel{{project.id}}" class="delproj text-center mx-auto box-project" style="display:none">
-                    <p>{% trans %}Voulez vous vraiment supprimer ce projet ?{% endtrans %}<p>
-                    <button class="sbtn btn" id="button" onclick="deleteProject({{project.id}})">{% trans %}Supprimer{% endtrans %}</button>
-                    <button class="sbtn btn" id="button" onclick="showDeleteProject({{project.id}})">{% trans %}Annuler{% endtrans %}</button>
+                    <div id="popupDel{{project.id}}" class="text-center mx-auto box-project" style="display:none">
+                        <p>{% trans %}Voulez vous vraiment supprimer ce projet ?{% endtrans %}<p>
+                        <button class="sbtn btn" id="button" onclick="deleteProject({{project.id}})">{% trans %}Supprimer{% endtrans %}</button>
+                        <button class="sbtn btn" id="button" onclick="showDeleteProject({{project.id}})">{% trans %}Annuler{% endtrans %}</button>
                     </div>
                     {% endif %}
                     {% if is_granted('ROLE_FABLAB') %}
-                    <div id="popupLoad{{project.id}}" class="upload text-center mx-auto " style="display:none">
-                    <p>{% trans %}Choisissez une photo à charger{% endtrans %}<p>
-                    <form method="post" enctype="multipart/form-data">
-                    <input id="inputPhotos{{project.id}}" type="file" name="files{{project.id}}[]" multiple><br><br>
-                    <input  type="hidden" name="id" value="{{project.id}}">
-                    <button class="sbtn btn" type="button" id="submit{{project.id}}" onclick="UploadPhoto({{project.id}})">{% trans %}Charger{% endtrans %}</button>
-                    <button class="sbtn btn" type="button" id="button" onclick="showUploadPhoto({{project.id}})">{% trans %}Annuler{% endtrans %}</button>
-                    </form>
+                    <div id="popupLoad{{project.id}}" class="upload text-center mx-auto box-project" style="display:none">
+                        <p>{% trans %}Choisissez une photo à charger{% endtrans %}</p>
+                        <form method="post" enctype="multipart/form-data">
+                            <input id="inputPhotos{{project.id}}" type="file" name="files{{project.id}}[]" multiple><br><br>
+                            <input  type="hidden" name="id" value="{{project.id}}">
+                            <button class="sbtn btn btn_form_css" type="button" id="submit{{project.id}}" onclick="UploadPhoto({{project.id}})">{% trans %}Charger{% endtrans %}</button>
+                            <button class="sbtn btn" type="button" id="button" onclick="showUploadPhoto({{project.id}})">{% trans %}Annuler{% endtrans %}</button>
+                        </form>
                     </div>
                     
                         
@@ -45,15 +45,12 @@
                     <div class="project-relative" id='divProject{{project.id}}'>
                         {% if is_granted('ROLE_FABLAB') %}
 
-                        <div class="btn-group dropleft project-absolute absolute-delete ">
-                        <button type="button" class="sbtn btn " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-ellipsis-h"></i>
-                        </button>
-                        <div class="dropdown-menu " >
-                        <button id="delbtn{{project.id}}" class="sbtn btn " onclick="showDeleteProject({{project.id}})">Supprimer le projet</button>
-                        <hr></hr>
-                        <button id="loadbtn{{project.id}}" class="sbtn btn " onclick="showUploadPhoto({{project.id}})">Charger une photo</button>
-                        </div>
+                        <div class="dropdown dropleft project-absolute absolute-delete ">
+                            <button type="button" class="sbtn btn" id="dropdownMenuButtonProject" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-ellipsis-h"></i></button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonProject" >
+                                <a id="delbtn{{project.id}}" class="btn-drop dropdown-item" onclick="showDeleteProject({{project.id}})">{% trans %}Supprimer le projet{% endtrans %}</a>
+                                <a id="loadbtn{{project.id}}" class="btn-drop dropdown-item" onclick="showUploadPhoto({{project.id}})">{% trans %}Charger une photo{% endtrans %}</a>
+                            </div>
                         </div>
                         {% endif %}
                         {% for key,image in project.images %}
@@ -113,7 +110,7 @@
 
         var totalfiles = document.getElementById('inputPhotos'+id).files.length;
         if(totalfiles === 0){
-            alert("choisissez au moins une image");
+            alert("{% trans %}Choisissez au moins une image{% endtrans %}");
         } else {
             for (var index = 0; index < totalfiles; index++) {
             form_data.append("files"+id+"[]", document.getElementById('inputPhotos'+id).files[index]);
