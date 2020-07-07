@@ -30,14 +30,14 @@
                     </div>
                     {% endif %}
                     {% if is_granted('ROLE_FABLAB') %}
-                    <div id="popupLoad{{project.id}}" class="upload text-center mx-auto box-project" style="display:none">
-                        <p>{% trans %}Choisissez une photo à charger{% endtrans %}</p>
-                        <form method="post" enctype="multipart/form-data">
-                            <input id="inputPhotos{{project.id}}" type="file" name="files{{project.id}}[]" multiple><br><br>
-                            <input  type="hidden" name="id" value="{{project.id}}">
-                            <button class="sbtn btn btn_form_css" type="button" id="submit{{project.id}}" onclick="UploadPhoto({{project.id}})">{% trans %}Charger{% endtrans %}</button>
-                            <button class="sbtn btn" type="button" id="button" onclick="showUploadPhoto({{project.id}})">{% trans %}Annuler{% endtrans %}</button>
-                        </form>
+                    <div id="popupLoad{{project.id}}" class="upload text-center mx-auto " style="display:none">
+                    <p>{% trans %}Choisissez une photo à charger{% endtrans %}<p>
+                    <form method="post" enctype="multipart/form-data">
+                    <input id="inputPhotos{{project.id}}" type="file" name="files{{project.id}}[]" multiple><br><br>
+                    <input  type="hidden" name="id" value="{{project.id}}">
+                    <button class="sbtn btn" type="button" id="button" onclick="UploadPhoto({{project.id}})">{% trans %}Charger{% endtrans %}</button>
+                    <button class="sbtn btn" type="button" id="button" onclick="showUploadPhoto({{project.id}})">{% trans %}Annuler{% endtrans %}</button>
+                    </form>
                     </div>
                     
                         
@@ -104,296 +104,286 @@
     <script>
 
 
-    function UploadPhoto(id){
+        function UploadPhoto(id){
         
-        var form_data = new FormData();
-
-        var totalfiles = document.getElementById('inputPhotos'+id).files.length;
-        if(totalfiles === 0){
-            alert("{% trans %}Choisissez au moins une image{% endtrans %}");
-        } else {
-            for (var index = 0; index < totalfiles; index++) {
-            form_data.append("files"+id+"[]", document.getElementById('inputPhotos'+id).files[index]);
-            form_data.append("id", id);
-        }
-
-
-        $.ajax({
-            type: "POST",
-            url: '{{path('upload_project_photo')}}',
-            data: form_data,
-            cache: false,
-            dataType: 'json',
-            contentType: false,
-            processData: false,             
-            beforeSend:function(){
-                    
-                },
-            success:function(data){
-                console.log(data)
-                $( data.addedimages ).each(function(key, addedimage) {
-                     $( data.res ).each(function(key2, dbimage) {
-
-                        if(data.res[key2] == data.addedimages[key]){
-                            console.log(data.res[key2]);
-                            $( "#divProject"+id).append("<div id='img"+key+id+"' class='div-image-project' style='display: inline-block;'>"+{% if is_granted('ROLE_FABLAB') %}"<button id='delbtnimage"+key+id+"' class='sbtn btn del-btn-image project-absolute ' onclick='deletePhoto("+key+", "+id+")' style='display: none;top:4%; right:6%'><i class='fas fa-times'></i></button>"+{% endif %}"<img class='image-project-card img-fluid' data-src='holder.js/100px180/' alt='100%x180' src='../images/project/"+data.res[key2]+"' data-holder-rendered='true'></div>");
-                            showDeletePhotoButton() 
-                        }
-
-                      });
-
-                });
-
-                }
-            });
-
-        }
-        
-    }      
-
+            var form_data = new FormData();
     
-        
- 
-
-
-
-    function showDeleteCommentButton(cid){
-
-                $("#com"+cid).hover(function(){
-                $( "#delcom"+cid).css("display","block");
-                }, function(){
-                $("#delcom"+cid).css("display", "none");
-                });
-
-    }
-
-    {% for project in projects %}
-                 $("#card-project"+{{project.id}}).hover(function(){
-                 showDeletePhotoButton()    
-                });
-
-                $("#card-project"+{{project.id}}).focusout(function() {
-                   
-                })
-
-    {% endfor %}
-
-  function showDeletePhotoButton() {
-    {% for project in projects %}
-                {% for key,image in project.images %}
-                $("#img{{key}}{{project.id}}").hover(function(){
-                $( "#delbtnimage{{key}}{{project.id}}").css("display","block");
-                }, function(){
-                 $( "#delbtnimage{{key}}{{project.id}}").css("display","none");
-                
-                });
-                {% endfor %}
-    {% endfor %}
-  }
-        
-
-    function deletePhoto(key, pid) {
-        $.ajax({
-        type: "POST",
-        url: '{{path('delete_photo')}}',
-        data: {pid: pid, key : key}, 
-        success:function(data){
-        $( "#img"+key+pid).remove();
-        }
-    });
-    }
+            var totalfiles = document.getElementById('inputPhotos'+id).files.length;
+            if(totalfiles === 0){
+                alert("{% trans %}Choisissez au moins une image{% endtrans %}");
+            } else {
+                for (var index = 0; index < totalfiles; index++) {
+                form_data.append("files"+id+"[]", document.getElementById('inputPhotos'+id).files[index]);
+                form_data.append("id", id);
+            }
     
-
-
-    function showDeleteProject(id) {
-        {% for project in projects %}
-        if(id == {{project.id}}){
-        var id = document.getElementById("popupDel"+{{project.id}})
-        var btn = document.getElementById("delbtn"+{{project.id}})
-        if( id.style.display === "none"){
-            id.style.display = 'block';
-            btn.style.display = 'none';
-        } else {
-            id.style.display = 'none';
-            btn.style.display = 'block';
-        }
-        }
-        {% endfor %}
-        
-        
-        
-    }
-
-        function showUploadPhoto(id) {
-        {% for project in projects %}
-        if(id == {{project.id}}){
-        var id = document.getElementById("popupLoad"+{{project.id}})
-        var btn = document.getElementById("delbtn"+{{project.id}})
-        if( id.style.display === "none"){
-            id.style.display = 'block';
-            btn.style.display = 'none';
-        } else {
-            id.style.display = 'none';
-            btn.style.display = 'block';
-        }
-        }
-        {% endfor %}
-        
-        
-        
-    }
-
-    function deleteProject(id) {
-        $.ajax({
-        type: "POST",
-        url: '{{path('delete_project')}}',
-        data: {id: id}, 
-        success:function(data){
-        $( "#card-project"+id).remove();
-        }
-    });
-    }
-
-    function login(){
-    window.location.href="{{path('security_login')}}"
-    }
- 
-
-
-        
-   
-    function subform(id){
-        if(!$("#textarea"+id).val()){
-        } else {
+    
             $.ajax({
                 type: "POST",
-                url: '{{path('comment_project')}}',
-                data: {comment: $("#textarea"+id).val(), id: id},                
+                url: "{{path('upload_project_photo')}}",
+                data: form_data,
+                cache: false,
+                dataType: 'json',
+                contentType: false,
+                processData: false,             
                 beforeSend:function(){
-                        $('#demo'+id).html('{% trans %}Loading......{% endtrans %}');
+                        
                     },
                 success:function(data){
-                    $('#cc'+id).html(data.comments);
-                    show_comment(id);
-                    $("#textarea"+id).val("");
-                    
-                }
+                    $( data.addedimages ).each(function(key, addedimage) {
+                         $( data.res ).each(function(key2, dbimage) {
+    
+                            if(data.res[key2] == data.addedimages[key]){
+                                $( "#divProject"+id).append("<div id='img"+key+id+"' class='div-image-project' style='display: inline-block;'>"+{% if is_granted('ROLE_FABLAB') %}"<button id='delbtnimage"+key+id+"' class='sbtn btn del-btn-image project-absolute ' onclick='deletePhoto("+key+", "+id+")' style='display: none;top:4%; right:6%'><i class='fas fa-times'></i></button>"+{% endif %}"<img class='image-project-card img-fluid' data-src='holder.js/100px180/' alt='100%x180' src='../images/project/"+data.res[key2]+"' data-holder-rendered='true'></div>");
+                                showDeletePhotoButton(key2, id)
+                                
+                            }
+                          });
+    
+                     
+                    });
+    
+                    }
+                });
+    
+            }
+            
+        }
+        function showDeleteCommentButton(cid){
+            $("#com"+cid).hover(function(){
+            $( "#delcom"+cid).css("display","block");
+            }, function(){
+            $("#delcom"+cid).css("display", "none");
+            });
+        }
+        {% for project in projects %}
+            $("#card-project"+{{project.id}}).hover(function(){
+            showDeletePhotoButton()    
+            });
+        {% endfor %}
+    
+      function showDeletePhotoButton(key2, id) {
+        if(key2){
+            $("#img"+key2+id).hover(function(){
+            $( "#delbtnimage"+key2+id).css("display","block");
+            }, function(){
+            $( "#delbtnimage"+key2+id).css("display","none");
             });
         }
         
-    }
-
+        {% for project in projects %}
+                    {% for key,image in project.images %}
+                    $("#img{{key}}{{project.id}}").hover(function(){
+                    $( "#delbtnimage{{key}}{{project.id}}").css("display","block");
+                    }, function(){
+                    $( "#delbtnimage{{key}}{{project.id}}").css("display","none");
+                    });
+                    {% endfor %}
+        {% endfor %}
+      }
+            
     
-
-    function show_comment(id){
-        var classheart = "far fa-heart";
-        var found = 'false';
+        function deletePhoto(key, pid) {
             $.ajax({
             type: "POST",
-            url: '{{path('show_comments')}}',
-            data: {
-                id: id,
-            }, // serializes the form's elements.
+            url: '{{path('delete_photo')}}',
+            data: {pid: pid, key : key}, 
+            success:function(data){
+            $( "#img"+key+pid).remove();
+            }
+        });
+        }
+        
+    
+    
+        function showDeleteProject(id) {
+            {% for project in projects %}
+            if(id == {{project.id}}){
+            var id = document.getElementById("popupDel"+{{project.id}})
+            var btn = document.getElementById("delbtn"+{{project.id}})
+            if( id.style.display === "none"){
+                id.style.display = 'block';
+                btn.style.display = 'none';
+            } else {
+                id.style.display = 'none';
+                btn.style.display = 'block';
+            }
+            }
+            {% endfor %}
+            
+            
+            
+        }
+    
+            function showUploadPhoto(id) {
+            {% for project in projects %}
+            if(id == {{project.id}}){
+            var id = document.getElementById("popupLoad"+{{project.id}})
+            var btn = document.getElementById("delbtn"+{{project.id}})
+            if( id.style.display === "none"){
+                id.style.display = 'block';
+                btn.style.display = 'none';
+            } else {
+                id.style.display = 'none';
+                btn.style.display = 'block';
+            }
+            }
+            {% endfor %}
+            
+            
+            
+        }
+    
+        function deleteProject(id) {
+            $.ajax({
+            type: "POST",
+            url: '{{path('delete_project')}}',
+            data: {id: id}, 
+            success:function(data){
+            $( "#card-project"+id).remove();
+            }
+        });
+        }
+    
+        function login(){
+        window.location.href="{{path('security_login')}}"
+        }
+     
+    
+    
+            
+       
+        function subform(id){
+            if(!$("#textarea"+id).val()){
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: '{{path('comment_project')}}',
+                    data: {comment: $("#textarea"+id).val(), id: id},                
+                    beforeSend:function(){
+                            $('#demo'+id).html('{% trans %}Loading......{% endtrans %}');
+                        },
+                    success:function(data){
+                        $('#cc'+id).html(data.comments);
+                        show_comment(id);
+                        $("#textarea"+id).val("");
+                        
+                    }
+                });
+            }
+            
+        }
+    
+        
+    
+        function show_comment(id){
+            var classheart = "far fa-heart";
+            var found = 'false';
+                $.ajax({
+                type: "POST",
+                url: '{{path('show_comments')}}',
+                data: {
+                    id: id,
+                }, // serializes the form's elements.
+                beforeSend:function(){
+                        $('#comDiv'+id).html('{% trans %}Loading......{% endtrans %}');
+                    },
+                success:function(data){
+                        $( "#comDiv"+id ).append( "<div><hr></hr><p>"+data.authors[data.authors.length - 1]+"</p><p>"+data.comments[data.comments.length - 1]+"</p></div>" );
+                        $( "#comDiv"+id ).empty();
+                        $( data.authors ).each(function(key, value) {     
+                        var myid = {{ app.user ? app.user.id : 'false'}};
+                        $( "#comDiv"+id ).append( "<div class='project-relative' id='com"+data.id_comment[key]+"'><hr></hr><p>"+value+"</p><p>"+data.comments[key]+"</p><button class='sbtn btn btn-projects' id='commentlike' onclick='{% if is_granted('IS_AUTHENTICATED_FULLY') %}commentlikeButton("+data.id_comment[key]+"){% else %}login(){% endif %}'><span id='lc"+data.id_comment[key]+"'>"+ data.ln[key]+"</span> <i id='comheart"+data.id_comment[key]+"' class='"+classheart+"'></i></button></div>" );    
+                       
+                        $( data.cl ).each(function(key2, value2) {
+                            if(data.cl[key2] === data.id_comment[key] && data.ulikes[key2] === myid){
+                                
+                                var found = 'true';
+                                $('#comheart'+data.id_comment[key]).removeClass("far fa-heart");                        
+                                $('#comheart'+data.id_comment[key]).addClass("fas fa-heart text-danger");
+                                
+                            } else {
+                                alert
+                                if(found == 'false'){
+                                $('#comheart'+data.id_comment[key]).removeClass("fas fa-heart text-danger");
+                                $('#comheart'+data.id_comment[key]).addClass("far fa-heart");  
+                                } 
+                               
+    
+                            }
+                          });
+                            
+                            
+                         {% if app.user %}
+                            if(data.id_user[key] == {{app.user? app.user.id: false}} || {{is_granted('ROLE_FABLAB')? 'true' : 'false'}}){
+                            $( "#com"+data.id_comment[key] ).append( "<button class='sbtn btn btn-projects project-absolute absolute-delete' id='delcom"+ data.id_comment[key]+"' style='display:none' onclick='deleteCom("+ data.id_comment[key]+","+id+")' ><i class='fas fa-times'></i></button> ");
+                            }
+                        {% endif %}
+    
+                            showDeleteCommentButton(data.id_comment[key])
+                        }); 
+                    
+                    },
+                });
+                $('#comments'+id).css('display', 'block');  
+    
+        }
+    
+        function commentlikeButton(id){
+            $.ajax({
+                    url: '{{path('like_comment')}}', // point to server-side PHP script 
+                    method:'POST',
+                    data:{id:id},
+                    dataType : 'json',
+                    success:function(data){
+                        $('#lc'+id).html(data.clikes);
+                        if(data.cliked == true){
+                            $('#comheart'+id).removeClass("far fa-heart");
+                            $('#comheart'+id).addClass("fas fa-heart text-danger");
+                        } else {
+                            $('#comheart'+id).removeClass("fas fa-heart text-danger");
+                            $('#comheart'+id).addClass("far fa-heart");
+                        }
+                    }
+                    });
+        }
+    
+    
+        function deleteCom(id, pid) {
+        $.ajax({
+            type: "POST",
+            url: '{{path('delete_comment')}}',
+            data: {id: id},                
             beforeSend:function(){
-                    $('#comDiv'+id).html('{% trans %}Loading......{% endtrans %}');
+                    $('#demo'+id).html('{% trans %}Loading......{% endtrans %}');
                 },
             success:function(data){
-                console.log(data);
-                    $( "#comDiv"+id ).append( "<div><hr></hr><p>"+data.authors[data.authors.length - 1]+"</p><p>"+data.comments[data.comments.length - 1]+"</p></div>" );
-                    $( "#comDiv"+id ).empty();
-                    $( data.authors ).each(function(key, value) {     
-                    var myid = {{ app.user ? app.user.id : 'false'}};
-                    $( "#comDiv"+id ).append( "<div class='project-relative' id='com"+data.id_comment[key]+"'><hr></hr><p>"+value+"</p><p>"+data.comments[key]+"</p><button class='sbtn btn btn-projects' id='commentlike' onclick='{% if is_granted('IS_AUTHENTICATED_FULLY') %}commentlikeButton("+data.id_comment[key]+"){% else %}login(){% endif %}'><span id='lc"+data.id_comment[key]+"'>"+ data.ln[key]+"</span> <i id='comheart"+data.id_comment[key]+"' class='"+classheart+"'></i></button></div>" );    
-                   
-                    $( data.cl ).each(function(key2, value2) {
-                        if(data.cl[key2] === data.id_comment[key] && data.ulikes[key2] === myid){
-                            
-                            var found = 'true';
-                            $('#comheart'+data.id_comment[key]).removeClass("far fa-heart");                        
-                            $('#comheart'+data.id_comment[key]).addClass("fas fa-heart text-danger");
-                            
-                        } else {
-                            alert
-                            if(found == 'false'){
-                            $('#comheart'+data.id_comment[key]).removeClass("fas fa-heart text-danger");
-                            $('#comheart'+data.id_comment[key]).addClass("far fa-heart");  
-                            } 
-                           
-
-                        }
-                      });
-                        
-                        
-                     {% if app.user %}
-                        if(data.id_user[key] == {{app.user? app.user.id: false}} || {{is_granted('ROLE_FABLAB')? 'true' : 'false'}}){
-                        $( "#com"+data.id_comment[key] ).append( "<button class='sbtn btn btn-projects project-absolute absolute-delete' id='delcom"+ data.id_comment[key]+"' style='display:none' onclick='deleteCom("+ data.id_comment[key]+","+id+")' ><i class='fas fa-times'></i></button> ");
-                        }
-                    {% endif %}
-
-                        showDeleteCommentButton(data.id_comment[key])
-                    }); 
-                
-                },
-            });
-            $('#comments'+id).css('display', 'block');  
-
-    }
-
-    function commentlikeButton(id){
-        $.ajax({
-				url: '{{path('like_comment')}}', // point to server-side PHP script 
-				method:'POST',
-                data:{id:id},
-                dataType : 'json',
-				success:function(data){
-                    $('#lc'+id).html(data.clikes);
-                    if(data.cliked == true){
-                        $('#comheart'+id).removeClass("far fa-heart");
-                        $('#comheart'+id).addClass("fas fa-heart text-danger");
-                    } else {
-                        $('#comheart'+id).removeClass("fas fa-heart text-danger");
-                        $('#comheart'+id).addClass("far fa-heart");
-                    }
-                }
-				});
-    }
-
-
-    function deleteCom(id, pid) {
-    $.ajax({
-        type: "POST",
-        url: '{{path('delete_comment')}}',
-        data: {id: id},                
-        beforeSend:function(){
-                $('#demo'+id).html('{% trans %}Loading......{% endtrans %}');
-            },
-        success:function(data){
-            $('#cc'+pid).html(data.comments);
-            $( "#com"+id).remove();
-            $( "#delcom"+id).remove();
+                $('#cc'+pid).html(data.comments);
+                $( "#com"+id).remove();
+                $( "#delcom"+id).remove();
+            }
+        });
         }
-    });
-    }
-    function likeButton(id) {
-        $.ajax({
-				url: '{{path('like_project')}}', // point to server-side PHP script 
-				method:'POST',
-                data:{id:id, },
-                dataType : 'json',
-				beforeSend:function(){
-					$('#demo'+id).html('{% trans %}Loading......{% endtrans %}');
-				},
-				success:function(data){
-                    $('#ll'+id).html(data.likes);
-                    if(data.liked == true){
-                        $('#heart'+id).removeClass("far fa-heart");
-                        $('#heart'+id).addClass("fas fa-heart text-danger");
-                    } else {
-                        $('#heart'+id).removeClass("fas fa-heart text-danger");
-                        $('#heart'+id).addClass("far fa-heart");
+        function likeButton(id) {
+            $.ajax({
+                    url: '{{path('like_project')}}', // point to server-side PHP script 
+                    method:'POST',
+                    data:{id:id, },
+                    dataType : 'json',
+                    beforeSend:function(){
+                        $('#demo'+id).html('{% trans %}Loading......{% endtrans %}');
+                    },
+                    success:function(data){
+                        $('#ll'+id).html(data.likes);
+                        if(data.liked == true){
+                            $('#heart'+id).removeClass("far fa-heart");
+                            $('#heart'+id).addClass("fas fa-heart text-danger");
+                        } else {
+                            $('#heart'+id).removeClass("fas fa-heart text-danger");
+                            $('#heart'+id).addClass("far fa-heart");
+                        }
                     }
-                }
-				});
-    }
+                    });
+        }
     </script>
 {% endblock %}
