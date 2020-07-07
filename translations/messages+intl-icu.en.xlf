@@ -1201,7 +1201,7 @@
         <source>Votre adresse email n'éxiste pas sur notre site web.</source>
         <target>Your email address does not exist on our website.</target>
       </trans-unit>
-      <trans-unit id="anS7yXr" resname="Votre mot de passe a été modifié avec succès.">
+      <trans-unit id="WENCWar" resname="Votre mot de passe a été modifié avec succès.">
         <source>Votre mot de passe a été modifié avec succès.</source>
         <target>Your password has been changed successfully.</target>
       </trans-unit>
@@ -1216,6 +1216,28 @@
       <trans-unit id="ceO7LVo" resname="Solidarity-bond">
         <source>Solidarity-bond</source>
         <target>Solidarity-bond</target>
+      </trans-unit>
+      <trans-unit id="jycFEb3" resname="Ajouter un projet">
+        <source>Ajouter un projet</source>
+        <target>Add a project</target>
+      </trans-unit>
+      <trans-unit id="Che1VGe" resname="Choisissez vos images">
+        <source>Choisissez vos images</source>
+        <target>Choose your images</target>
+      </trans-unit>
+      <trans-unit id="BOKpcor" resname="Projects">
+        <source>Projects</source>
+        <target>Projects</target>
+      </trans-unit>
+      <trans-unit id="B2fS8FH" resname="Solidarity Bond imprime des visières de protections que cela soit pour des professionnels de la santé, des entreprises, des commerces ou encore des particuliers.&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;Il y a également un outil permettant d'ouvrir des portes ou d'autre actions nécessitant de toucher des surfaces.">
+        <source>Solidarity Bond imprime des visières de protections que cela soit pour des professionnels de la santé, des entreprises, des commerces ou encore des particuliers.
+							Il y a également un outil permettant d'ouvrir des portes ou d'autre actions nécessitant de toucher des surfaces.</source>
+        <target>olidarity Bond prints protective visors for healthcare professionals, companies, businesses and individuals.
+							There is also a tool for opening doors or other actions requiring touching surfaces.</target>
+      </trans-unit>
+      <trans-unit id="zExCS1c" resname="Téléphone">
+        <source>Téléphone</source>
+        <target>Phone</target>
       </trans-unit>
     </body>
   </file>

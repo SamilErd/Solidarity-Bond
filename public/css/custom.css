@@ -33,7 +33,6 @@ body {
     border: none;
     border-bottom: 2px solid;
     color: #999999;
-    width: 30%;
   }
 
   .btn_form_css {
@@ -69,11 +68,6 @@ body {
   #button:hover {
     color: white;
     background-color: #e71818;
-  }
-
-  .width-form-contact{
-    min-width: 207px;
-    max-width: 410px;
   }
 
 /**
@@ -286,10 +280,11 @@ ul {
 }
 
 .form_css_pro-description {
+  width: 50%;
   padding: 12px 20px;
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 2px solid;
+  border: solid;
+  border-radius: 8px;
+  border-width: 2px;
   color: #999999;
 }
 
@@ -303,8 +298,6 @@ ul {
 }
 
 .form_css_option {
-    width: 50%;
-    max-width: 45%;
     padding: 12px 20px;
     box-sizing: border-box;
     border: none;
@@ -672,6 +665,15 @@ hr.diviser {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width: 90%;
   }
+  .width-form-contact{
+    width: 85%;
+  }
+  .width-form-register{
+    width: 55%;
+  }
+  .width-form-projects {
+    width: 85%;
+  }
 }
 /**
 * Responsive for 600px and up
@@ -689,8 +691,16 @@ hr.diviser {
   .h4-respons{
     font-size: 25px;
   }
-  .button-dropd{
-    margin-left: -5%;
+
+  .width-form-contact{
+    width: 350px;
+  }
+  .width-form-register{
+    width: 250px;
+  }
+
+  .width-form-projects {
+    width: 350px;
   }
 
   .carrou {
@@ -744,9 +754,6 @@ hr.diviser {
   .input-form {
     width: 100%;
   }
-  .button-dropd {
-    margin-left: -20%;
-   }
  }
 
 /* Small devices (phones, 369px and up) */
@@ -761,20 +768,11 @@ hr.diviser {
   .input-form {
     width: 100%;
   }
-  .button-dropd {
-    margin-left: -15%;
-   }
   } 
 
 @media only screen and (min-width: 992px) {
   .input-form {
     width: 100%;
-  }
-}
-
-@media only screen and (min-width: 575px) {
-  .button-dropd {
-    margin-left: -10%;
   }
 }
 
@@ -804,4 +802,8 @@ hr.diviser {
 
  .justify-account{
    text-align: left;
+ }
+
+ .button-dropd{
+   margin-left: -65px;
  }
