@@ -223,6 +223,27 @@ class ProjectController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
+    /**
+     * @Route("/project/delete/photo", name="delete_photo")
+     */
+    public function delete_photo(ProjectRepository $projectrepo)
+    {
+        $project = $projectrepo->find($_POST['pid']);
+        //getting the instance of the entity manager and 
+        $entityManager = $this->getDoctrine()->getManager();
+        $filename = $project->getImages[$_POST['key']];
+        $filesystem = new Filesystem();
+        $filesystem->remove($this->getParameter('upload_directory_photos_project')."/".$filename);
+        //tells the entity manager to manage the product
+        $entityManager->persist($project);
+        //inserting the product in the database
+        $entityManager->flush();
+        $response = new Response(json_encode(array(
+            'res' => 'OK'
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
 
 
     /**

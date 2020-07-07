@@ -35,8 +35,11 @@
                         <button id="delbtn{{project.id}}" class="sbtn btn btn-projects project-absolute" onclick="showDeleteProject({{project.id}})"><i class='fas fa-times'></i></button>
                         {% endif %}
                         <div class="project_images" style="width: 100%">
-                        {% for image in project.images %}
-                            <img class="image-product-card img-fluid project_image" data-src="holder.js/100px180/" alt="100%x180" src="../images/project/{{image}}" data-holder-rendered="true">
+                        {% for key,image in project.images %}
+                            {% if is_granted('ROLE_FABLAB') %}
+                            <button id="delbtnimage{{key}}" class="sbtn btn btn-projects" onclick="deletePhoto({{key}}, {{project.id}})" style="display:none"><i class='fas fa-times'></i></button>
+                            {% endif %}
+                            <img id="img{{key}}" class="image-product-card img-fluid project_image" data-src="holder.js/100px180/" alt="100%x180" src="../images/project/{{image}}" data-holder-rendered="true">
                         {% endfor %}
                         
                      </div>
@@ -91,10 +94,41 @@
 
     }
 
-                
+    {% for project in projects %}
+                 $("#card-project"+{{project.id}}).hover(function(){
+                 showDeletePhotoButton()    
+                });
+
+                $("#card-project"+{{project.id}}).focusout(function() {
+                   
+                   
+                })
+
+    {% endfor %}
+
+  function showDeletePhotoButton() {
+    {% for project in projects %}
+                {% for key,image in project.images %}
+                $("#img{{key}}").hover(function(){
+                $( "#delbtnimage{{key}}").css("display","block");
+                }, function(){
+                $( "#delbtnimage{{key}}").css("display","none");
+                });
+                {% endfor %}
+    {% endfor %}
+  }
         
 
-    
+    function deletePhoto(key, pid) {
+        $.ajax({
+        type: "POST",
+        url: '{{path('delete_photo')}}',
+        data: {pid: pid, key : key}, 
+        success:function(data){
+        $( "#img"+key).remove();
+        }
+    });
+    }
     
 
 
