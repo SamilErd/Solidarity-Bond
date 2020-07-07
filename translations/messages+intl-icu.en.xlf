@@ -1239,6 +1239,34 @@
         <source>Téléphone</source>
         <target>Phone</target>
       </trans-unit>
+      <trans-unit id="XCELJ7C" resname="Reservations">
+        <source>Reservations</source>
+        <target>Reservations</target>
+      </trans-unit>
+      <trans-unit id="vF90Qgx" resname="Voulez vous vraiment supprimer ce projet ?">
+        <source>Voulez vous vraiment supprimer ce projet ?</source>
+        <target>Do you really want to delete this project?</target>
+      </trans-unit>
+      <trans-unit id="Xl0CFs4" resname="Supprimer">
+        <source>Supprimer</source>
+        <target>Delete</target>
+      </trans-unit>
+      <trans-unit id="0o_ykG2" resname="commentaire">
+        <source>commentaire</source>
+        <target>comment</target>
+      </trans-unit>
+      <trans-unit id="QSFlXNm" resname="Si vous souhaitez commenter">
+        <source>Si vous souhaitez commenter</source>
+        <target>If you wish to comment</target>
+      </trans-unit>
+      <trans-unit id="L12sg7u" resname="connectez-vous">
+        <source>connectez-vous</source>
+        <target>log on to</target>
+      </trans-unit>
+      <trans-unit id="pifgBLG" resname="Loading......">
+        <source>Chargement......</source>
+        <target>Loading......</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
