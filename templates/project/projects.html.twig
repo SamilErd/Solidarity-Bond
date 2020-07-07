@@ -24,9 +24,9 @@
                 <div class="card-pr mt-3 mb-5 " id='card-project{{project.id}}' >
                     {% if is_granted('ROLE_FABLAB') %}
                     <div id="popup{{project.id}}" class="delproj text-center" style="width:100%; ; border:solid; margin: 0 auto; display:none">
-                    <p>voulez vous vraiment supprimer ce projet ?<p>
-                    <button onclick="deleteProject({{project.id}})">Supprimer</button>
-                    <button onclick="showDeleteProject({{project.id}})">Annuler</button>
+                    <p>{% trans %}Voulez vous vraiment supprimer ce projet ?{% endtrans %}<p>
+                    <button onclick="deleteProject({{project.id}})">{% trans %}Supprimer{% endtrans %}</button>
+                    <button onclick="showDeleteProject({{project.id}})">{% trans %}Annuler{% endtrans %}</button>
                     </div>
                         
                     {% endif %}
@@ -48,7 +48,7 @@
                     <p class="card-text-shop">{{project.description}}</p>
                     <hr></hr>
                     <button class="btn mb-2 btn-projects" id="like" onclick="{% if is_granted('IS_AUTHENTICATED_FULLY') %}likeButton({{project.id}}){% else %}login(){% endif %}"><span id="ll{{project.id}}">{{project.likes | length}}</span> <i id="heart{{project.id}}" class="fa{% if app.user in project.likes %}s fa-heart text-danger{% else %}r fa-heart{% endif %}"></i></button>
-                    <button class="btn mb-2 btn-projects" id="comment" onclick="show_comment({{project.id}})"><span id="cc{{project.id}}">{{project.comments | length}}</span> commentaire{% if project.comments | length <= 1 %}{% else %}s{% endif %} 
+                    <button class="btn mb-2 btn-projects" id="comment" onclick="show_comment({{project.id}})"><span id="cc{{project.id}}">{{project.comments | length}}</span> {% trans %}commentaire{% endtrans %}{% if project.comments | length <= 1 %}{% else %}s{% endif %} 
                     </button>
                     </div>
                     <div id="comments{{project.id}}" style="display:none">
@@ -64,7 +64,7 @@
 				    </form>
                     {% else %}
                     <hr></hr>
-                    <p style="display:inline-block">si vous voulez commenter, </p><a href="{{path('security_login')}}"> connectez-vous.</a>   
+                    <p style="display:inline-block">{% trans %}Si vous souhaitez commenter{% endtrans %}, </p><a href="{{path('security_login')}}"> {% trans %}connectez-vous{% endtrans %}.</a>   
                     {% endif %}
                     </div>
 
@@ -164,7 +164,7 @@
                 id: id,
             }, // serializes the form's elements.
             beforeSend:function(){
-                    $('#comDiv'+id).html('Loading......');
+                    $('#comDiv'+id).html('{% trans %}Loading......{% endtrans %}');
                 },
             success:function(data){
                 console.log(data);
@@ -172,7 +172,7 @@
                     $( "#comDiv"+id ).empty();
                     $( data.authors ).each(function(key, value) {     
                     var myid = {{ app.user ? app.user.id : 'false'}};
-                    $( "#comDiv"+id ).append( "<div id='com"+data.id_comment[key]+"'><hr></hr><p>"+value+"</p><p>"+data.comments[key]+"</p><button class='btn' id='commentlike' onclick='{% if is_granted('IS_AUTHENTICATED_FULLY') %}commentlikeButton("+data.id_comment[key]+"){% else %}login(){% endif %}'><span id='lc"+data.id_comment[key]+"'>"+ data.ln[key]+"</span> <i id='comheart"+data.id_comment[key]+"' class='"+classheart+"'></i></button></div>" );    
+                    $( "#comDiv"+id ).append( "<div id='com"+data.id_comment[key]+"'><hr></hr><p>"+value+"</p><p>"+data.comments[key]+"</p><button class='btn btn-projects' id='commentlike' onclick='{% if is_granted('IS_AUTHENTICATED_FULLY') %}commentlikeButton("+data.id_comment[key]+"){% else %}login(){% endif %}'><span id='lc"+data.id_comment[key]+"'>"+ data.ln[key]+"</span> <i id='comheart"+data.id_comment[key]+"' class='"+classheart+"'></i></button></div>" );    
                    
                     $( data.cl ).each(function(key2, value2) {
                         if(data.cl[key2] === data.id_comment[key] && data.ulikes[key2] === myid){
