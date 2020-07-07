@@ -28,8 +28,12 @@
                     <button onclick="deleteProject({{project.id}})">Supprimer</button>
                     <button onclick="showDeleteProject({{project.id}})">Annuler</button>
                     </div>
+                        
+                    {% endif %}
                     <div class="project-relative">
+                        {% if is_granted('ROLE_FABLAB') %}
                         <button id="delbtn{{project.id}}" class="btn btn-projects project-absolute" style="display:none" onclick="showDeleteProject({{project.id}})"><i class='fas fa-times'></i></button>
+                        {% endif %}
                         <div class="project_images" style="width: 100%">
                         {% for image in project.images %}
                             <img class="image-product-card img-fluid project_image" data-src="holder.js/100px180/" alt="100%x180" src="../images/project/{{image}}" data-holder-rendered="true">
