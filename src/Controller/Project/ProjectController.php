@@ -253,8 +253,68 @@ class ProjectController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
+    /**
+     * @Route("/projects/new/photo", name="upload_project_photo")
+     */
+    public function upload_project_photo(ProjectRepository $projectrepo, Request $request,CartService $cartService)
+    {
+        $id = $_POST['id'];
+        $project = $projectrepo->find($id);
+        //getting the instance of the entity manager and 
+        $entityManager = $this->getDoctrine()->getManager();
+        $images = $project->getImages();
+        $countfiles = count($_FILES['files'.$id]['name']);
+        
+        $upload_location = $this->getParameter('upload_directory_photos_project');
+        $error = "";
+        
 
+        for($index = 0;$index < $countfiles;$index++){
 
+            // File name
+            $filename = $_FILES['files'.$id]['name'][$index];
+         
+            // Get extension
+            $ext = pathinfo($filename, PATHINFO_EXTENSION);
+         
+            // Valid image extension
+            $valid_ext = array("png","jpeg","jpg","ico","PNG","JPEG","JPG","ICO");
+         
+            // Check extension
+            if(in_array($ext, $valid_ext)){
+            
+                $filename = md5(uniqid()).'.'.$ext;
+                // File path
+                $path = $upload_location."/".$filename;
+            
+                // Upload file
+                if(move_uploaded_file($_FILES['files'.$id]['tmp_name'][$index],$path)){
+                    array_push($images,$filename);
+                }
+            } else {
+                $error="Format d'image non valide!";
+            }
+         
+         }
+        
+        //setting the image field of the product with the filename
+        $project->setImages($images);
+        
+        
+        //tells the entity manager to manage the product
+        $entityManager->persist($project);
+        //inserting the product in the database
+        $entityManager->flush();
+        
+        $response = new Response(json_encode(array(
+            'res' => $images,
+            'filename' => $countfiles,
+            'error' => $error,
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+
+    }
     /**
      * @Route("/projects/new", name="new_project")
      */
