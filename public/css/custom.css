@@ -821,3 +821,8 @@ hr.diviser {
    position: absolute;
    right: 0;
  }
+
+ .sbtn:focus {
+  outline:none;
+  box-shadow: none;
+}

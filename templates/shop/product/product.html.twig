@@ -15,7 +15,7 @@
                 <input class="form_css_pro" value = "{{product.ProductName}}" type="text"  name="NI" />
             </form>
             <div class="acc-edit text-right ">
-                <button class="btn acc-edit-btn" onclick="ShowName();"><i  class="fa fa-edit" ></i></button>
+                <button class="sbtn btn acc-edit-btn" onclick="ShowName();"><i  class="fa fa-edit" ></i></button>
             </div>
             {% endif %}
 
@@ -37,7 +37,7 @@
                 <img class="image-product img-fluid mb-3" src="../images/products/{{product.Image}}">
                 {% if is_granted('ROLE_FABLAB')%}
                 <div class="acc-edit text-right ">
-				<button class="btn acc-edit-btn" onclick="ShowImage();">
+				<button class="sbtn btn acc-edit-btn" onclick="ShowImage();">
 				<i  class="fa fa-edit " ></i>
 				</button></div>
 				<form id="II" style="display:none" action="{{path('show_product', {'id': product.id })}}" method="post" enctype="multipart/form-data">
@@ -61,7 +61,7 @@
 				</form>
                 <h4 class="acc-edit mr-7 mb-7 h4-respons"> €</h4>
 				<div class="acc-edit text-right ">
-				<button class="btn acc-edit-btn" onclick="ShowPrice();">
+				<button class="sbtn btn acc-edit-btn" onclick="ShowPrice();">
 				<i  class="fa fa-edit " ></i>
 				</button></div>
                 {% endif %}
@@ -76,7 +76,7 @@
 				</form>
                 <h4 class="acc-edit mr-7 mb-7 h4-respons"> {% trans %}unités restants{% endtrans %}</h4>
 				<div class="acc-edit text-right ">
-				<button class="btn acc-edit-btn" onclick="ShowStock();">
+				<button class="sbtn btn acc-edit-btn" onclick="ShowStock();">
 				<i  class="fa fa-plus" ></i>
 				</button></div>
                 {% endif %}
@@ -92,7 +92,7 @@
 				</form>
 
 				<div class="acc-edit text-right ">
-				<button class="btn acc-edit-btn" onclick="ShowDescription();">
+				<button class="sbtn btn acc-edit-btn" onclick="ShowDescription();">
 				<i  class="fa fa-edit " ></i>
 				</button></div>
                 {% endif %}
@@ -117,7 +117,7 @@
                 </select>
                 <br><br>
                 
-                <button id="button" class="btn mt-3" onclick="add_cart()">{% trans %}Ajouter au panier{% endtrans %}</button>
+                <button id="button" class="sbtn btn mt-3" onclick="add_cart()">{% trans %}Ajouter au panier{% endtrans %}</button>
                 {% endif %}
             </div>
         </div>
