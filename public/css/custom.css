@@ -821,8 +821,8 @@ hr.diviser {
    position: absolute;
  }
  .absolute-delete{
-   right: 40%;
-   top: 95%;
+   right: 5px;
+   top: 5px;
  }
 
  .sbtn:focus {
