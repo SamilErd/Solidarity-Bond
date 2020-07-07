@@ -259,6 +259,11 @@ ul {
   padding: 10px;
   border-radius: 10%;
 }
+.image-project-card {
+  width:300px;
+  height:300px;
+  border-radius: 10%;
+}
 
 
 .form_css_pro {
@@ -808,15 +813,21 @@ hr.diviser {
    margin-left: -65px;
  }
 
- .btn-projects {
+ .del-btn-image {
   background-color: white;
   width: auto;
+  border-radius: 20px;
+  z-index: 1
  }
 
  .project-relative {
   position: relative;
  }
 
+ .div-image-project{
+  position: relative;
+  margin-top: 50px
+ }
  .project-absolute {
    position: absolute;
  }

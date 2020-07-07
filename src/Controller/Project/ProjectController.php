@@ -231,15 +231,24 @@ class ProjectController extends AbstractController
         $project = $projectrepo->find($_POST['pid']);
         //getting the instance of the entity manager and 
         $entityManager = $this->getDoctrine()->getManager();
-        $filename = $project->getImages[$_POST['key']];
-        $filesystem = new Filesystem();
-        $filesystem->remove($this->getParameter('upload_directory_photos_project')."/".$filename);
+        $images = [];
+        $filename = $project->getImages()[$_POST['key']];
+        foreach($project->getImages() as $key=>$image){
+            array_push($images, $image);
+            if($image == $filename){
+                
+                $filesystem = new Filesystem();
+                $filesystem->remove($this->getParameter('upload_directory_photos_project')."/".$filename);
+                unset($images[$key]);
+            }
+        }
+        $project->setImages($images);
         //tells the entity manager to manage the product
         $entityManager->persist($project);
         //inserting the product in the database
         $entityManager->flush();
         $response = new Response(json_encode(array(
-            'res' => 'OK'
+            'res' => $images
         )));
         $response->headers->set('Content-Type', 'application/json');
         return $response;

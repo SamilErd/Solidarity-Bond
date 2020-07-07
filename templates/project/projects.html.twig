@@ -30,21 +30,19 @@
                     </div>
                         
                     {% endif %}
-                    <div class="project-relative">
+                    <div class="project-relative ">
                         {% if is_granted('ROLE_FABLAB') %}
-                        <button id="delbtn{{project.id}}" class="sbtn btn btn-projects project-absolute" style="right: 0" onclick="showDeleteProject({{project.id}})"><i class='fas fa-times'></i></button>
+                        <button id="delbtn{{project.id}}" class="sbtn btn btn-projects project-absolute absolute-delete" onclick="showDeleteProject({{project.id}})"><i class='fas fa-times'></i></button>
                         {% endif %}
-                        
                         {% for key,image in project.images %}
-                        <div style="width: 100%">
+                        <div  id="img{{key}}{{project.id}}" class="div-image-project" style="display: inline-block;">
                             {% if is_granted('ROLE_FABLAB') %}
-                            <button id="delbtnimage{{key}}" class="sbtn btn btn-projects position-absolute button-proj-image" onclick="deletePhoto({{key}}, {{project.id}})" style="display:none"><i class='fas fa-times'></i></button>
+                            <button id="delbtnimage{{key}}{{project.id}}" class="sbtn btn del-btn-image project-absolute " onclick="deletePhoto({{key}}, {{project.id}})" style="display: none;top:4%; right:6%"><i class='fas fa-times'></i></button>
                             {% endif %}
-                            <img id="img{{key}}" class="image-product-card img-fluid" data-src="holder.js/100px180/" alt="100%x180" src="../images/project/{{image}}" data-holder-rendered="true">
+                            <img class="image-project-card img-fluid" data-src="holder.js/100px180/" alt="100%x180" src="../images/project/{{image}}" data-holder-rendered="true">
                         </div>
                         {% endfor %}
                         
-                     
                     </div>
 
                     <div>
@@ -103,13 +101,6 @@
                 });
 
                 $("#card-project"+{{project.id}}).focusout(function() {
-                   setTimeout(
-                    function() 
-                    {
-                    $( "#comDiv"+{{project.id}} ).empty(); 
-                    $( "#comments"+{{project.id}} ).hide(); 
-                    }, 5000);
-                   
                    
                 })
 
@@ -118,10 +109,11 @@
   function showDeletePhotoButton() {
     {% for project in projects %}
                 {% for key,image in project.images %}
-                $("#img{{key}}").hover(function(){
-                $( "#delbtnimage{{key}}").css("display","block");
+                $("#img{{key}}{{project.id}}").hover(function(){
+                $( "#delbtnimage{{key}}{{project.id}}").css("display","block");
                 }, function(){
-                $( "#delbtnimage{{key}}").css("display","none");
+                 $( "#delbtnimage{{key}}{{project.id}}").css("display","none");
+                
                 });
                 {% endfor %}
     {% endfor %}
@@ -134,7 +126,7 @@
         url: '{{path('delete_photo')}}',
         data: {pid: pid, key : key}, 
         success:function(data){
-        $( "#img"+key).remove();
+        $( "#img"+key+pid).remove();
         }
     });
     }
