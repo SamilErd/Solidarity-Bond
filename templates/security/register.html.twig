@@ -35,7 +35,7 @@
 					<div class="col-xl-6 col-md-12 mb-3 mt-3">
 						{{ form_widget(form.FirstName, {'attr':
                         {
-						'class' : 'form_css',
+						'class' : 'form_css width-form-contact',
                         'placeholder' : 'Prénom'|trans
                         }
                     }) 
@@ -44,7 +44,7 @@
 					<div class="col-xl-6 col-md-12 mb-3 mt-3">
 						{{ form_widget(form.LastName, {'attr':
                         {
-						'class' : 'form_css',
+						'class' : 'form_css width-form-contact',
                         'placeholder' : 'Nom'|trans
                         }
                     }) 
@@ -53,7 +53,7 @@
 					<div class="col-xl-6 col-md-12 mb-3">
 						{{ form_widget(form.password.first, {'attr':
                         {
-						'class' : 'form_css',
+						'class' : 'form_css width-form-contact',
                         'placeholder' : 'Mot de passe'|trans
                         }
                     	}) 
@@ -62,7 +62,7 @@
 					<div class="col-xl-6 col-md-12 mb-3">
 						{{ form_widget(form.password.second, {'attr':
                         {
-						'class' : 'form_css',
+						'class' : 'form_css width-form-contact',
                         'placeholder' : 'Confirmez le mot de passe'|trans
                         }
                     }) 
@@ -71,7 +71,7 @@
 					<div class="col-xl-6 col-md-12 mb-3">
 						{{ form_widget(form.email, {'attr':
                     {
-					'class' : 'form_css',
+					'class' : 'form_css width-form-contact',
                     'placeholder' : 'Adresse Email'|trans
                     }
                 }) 
@@ -79,14 +79,14 @@
 					</div>
 					<div class="col-xl-6 col-md-12 mb-3">
 					
-						<select class="form_css_option" name="C" id="ccode-select" onchange="changeCountryCode()" style="width:100px">
-                        <option value= "+33">+33</option>
-						<option value= "+49">+49</option>                    
+						<select class="form_css_option width-form-register-op" name="C" id="ccode-select" onchange="changeCountryCode()" style="width:100px">
+							<option value= "+33">+33</option>
+							<option value= "+49">+49</option>                    
                 		</select>
 					
 						{{ form_widget(form.phoneNum, {'attr':
                             {
-							'class' : 'form_css_phone',
+							'class' : 'form_css_phone width-form-register',
                             'placeholder' : 'Téléphone'|trans
                             }
                         }) 
@@ -98,7 +98,7 @@
 					<div class="col-xl-6 col-md-12 mb-3" id="phone">
 							{{ form_widget(form.street, {'attr':
 						{
-						'class' : 'form_css',
+						'class' : 'form_css width-form-contact',
 						'placeholder' : 'Adresse'|trans
 						}
 					}) 
@@ -107,7 +107,7 @@
 					<div class="col-xl-6 col-md-12 mb-3">
 							{{ form_widget(form.postalcode, {'attr':
 						{
-						'class' : 'form_css',
+						'class' : 'form_css width-form-contact',
 						'placeholder' : 'Code Postal'|trans
 						}
 					}) 
