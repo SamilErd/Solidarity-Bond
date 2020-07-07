@@ -23,7 +23,7 @@
     <header class="navbar-mb">      
 
          <nav class="navbar navbar-expand-lg navbar-light fixed-top"> 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation" > 
+            <button class="navbar-toggler button-dropd" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation" > 
                 <span class="navbar-toggler-icon text-nowrap" ></span>
             </button>
 
@@ -44,6 +44,9 @@
                     </li class="nav-item">
 		    <li class="nav-item">
                         <a class="nav-link" href="{{path('reservation')}}">{% trans %}Reservations{% endtrans %}</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('show_projects')}}">{% trans %}Projects{% endtrans %}</a>
+
                     </li class="nav-item">
 
                 </ul>
@@ -113,7 +116,7 @@
 
         <div class="container-fluid">
             <div class="col-sm text-center mb-3">
-                            <h4>{% trans %}Suivez nous sur :{% endtrans %}</h4>
+                            <h4 class="h4-respons">{% trans %}Suivez nous sur :{% endtrans %}</h4>
                             <a target="_blank"  id="text_color" href="https://www.facebook.com/pg/Solidarity-Bond-Strasbourg-102482274841635/posts/?ref=page_internal" ><i class="fab fa-facebook-f  fa-2x"></i></a>
                             <span style="margin-left : 20px;margin-right : 20px"></span>
                             <a target="_blank"  id="text_color" href="https://twitter.com/SolidarityStras" ><i class="fab fa-twitter fa-2x"></i></a>
@@ -141,6 +144,9 @@
 
 
     
+    
+    
+    {% block javascripts_footer %}
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -150,13 +156,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
-    <script
-          src="https://code.jquery.com/jquery-3.4.1.min.js"
-          integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-          crossorigin="anonymous"></script>
-    <script src="{{asset('js/index.js')}}"></script>
-    
-    {% block javascripts %}{% endblock %}
+    <script type="text/javascript"src="{{asset('js/core/jquery.js')}}"></script>
+    <script src="{{asset('js/index.js')}}"></script>         
+    {% endblock %}
 </body>
 
 </html>

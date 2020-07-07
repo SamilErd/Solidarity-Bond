@@ -199,6 +199,13 @@ main {
   text-align: center;
   font-family: arial;
 }
+.card-pr {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
 
 .price {
   color: grey;
@@ -344,33 +351,21 @@ ul {
   display:block;
 }
 
-.left-element {
-  height: 100%;
-  float:left;
-}
-
-.right-element {
-  height: 100%;
-  width: 100%;
-  float:right;
-  text-align: left; 
-}
-
 .btn-acc{
   background-color: white;
   color: black; /* White text */
   display: block; /* Make the buttons appear below each other */
-  width: 300px;
+  width: 100%;
   height: 50px;
-  text-align: right;
   border: 1px solid gray;
+  border-radius : 6px;
   margin-bottom: 2px;
   outline:none;
 }
 
 
 .Toright{
-  padding-left: 50px;
+  
   transition: transform .2s;
 }
 .Toright:hover {
@@ -587,6 +582,10 @@ hr.diviser {
   transition: transform 0.5s ease;
 }
 
+.btn-covid {
+  text-align: center;
+}
+
 /**
 * CSS for form payment
 */
@@ -648,9 +647,6 @@ hr.diviser {
     max-width: 180px;
     height: auto;
   }
-  .display-4{
-    font-size: 40px;
-  }
   .width-responsive{
     width: 90%;
   }
@@ -663,6 +659,13 @@ hr.diviser {
   .h2-respons{
     font-size: 30px;
   }
+  .h3-respons{
+    font-size: 25px;
+  }
+  .h4-respons{
+    font-size: 20px;
+  }
+
   .card-payment {
     padding: 40px 40px;
     margin-top: 10px;
@@ -674,9 +677,22 @@ hr.diviser {
 * Responsive for 600px and up
 */
 @media only screen and (min-width: 600px) {
-  .display-4{
-    font-size: 50px;
+  .h1-respons {
+    font-size: 40px;
   }
+  .h2-respons{
+    font-size: 35px;
+  }
+  .h3-respons{
+    font-size: 30px;
+  }
+  .h4-respons{
+    font-size: 25px;
+  }
+  .button-dropd{
+    margin-left: -5%;
+  }
+
   .carrou {
     max-width: 384px;
     height: auto;
@@ -689,8 +705,8 @@ hr.diviser {
     margin-top: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width: 80%;
-  }
-}
+  }}
+
 /**
 * Responsive for 768px and up
 */
@@ -728,6 +744,9 @@ hr.diviser {
   .input-form {
     width: 100%;
   }
+  .button-dropd {
+    margin-left: -20%;
+   }
  }
 
 /* Small devices (phones, 369px and up) */
@@ -735,14 +754,17 @@ hr.diviser {
   .input-form {
     width: 100%;
   }
-   } 
+  } 
 
 /* Desktops (Others, 425px and up) */
 @media only screen and (min-width: 425px) { 
   .input-form {
     width: 100%;
   }
-   } 
+  .button-dropd {
+    margin-left: -15%;
+   }
+  } 
 
 @media only screen and (min-width: 992px) {
   .input-form {
@@ -750,12 +772,17 @@ hr.diviser {
   }
 }
 
+@media only screen and (min-width: 575px) {
+  .button-dropd {
+    margin-left: -10%;
+  }
+}
 
 @media only screen and (max-width: 991px) { 
   .navbar-mb {
     margin-bottom: 70px;
   }
-   } 
+} 
 
 @media only screen and (min-width: 992px) {
   .navbar-mb {
@@ -767,12 +794,14 @@ hr.diviser {
 @media only screen and (min-width: 1147px) { 
   .recommendations {
     margin-top: 600px
- }
+  }
  }
  @media only screen and (max-width: 1146px) { 
   .recommendations {
     margin-top: 950px
- }
+  }
  }
 
-
+ .justify-account{
+   text-align: left;
+ }

@@ -1,0 +1,237 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Projects{% endtrans %}
+{% endblock %}
+
+    {% block stylesheets %}{% endblock %}
+
+{% block body %}
+
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">{% trans %}Projects{% endtrans %}</h1>
+        </div>
+    </div>     
+
+    {% if is_granted('ROLE_FABLAB')%}
+    <div style="text-align:center">
+        <a href="{{path('new_project')}}" class="btn" id="button">{% trans %}Ajouter un projet{% endtrans %}</a>
+    </div>
+    {% endif %}
+    <div class="container">
+    
+                {% for project in projects %}
+                <div class="card-pr mt-3 mb-5 " id='card-project{{project.id}}' >
+                    <div id="popup{{project.id}}" class="delproj text-center" style="width:100%; ; border:solid; margin: 0 auto; display:none">
+                    <p>voulez vous vraiment supprimer ce projet ?<p>
+                    <button onclick="deleteProject({{project.id}})">Supprimer</button>
+                    <button onclick="showDeleteProject({{project.id}})">Annuler</button>
+                    </div>
+                    <button id="delbtn{{project.id}}" style="display:none" onclick="showDeleteProject({{project.id}})">X</button>
+                    <div class="project_images" style="width: 100%">
+                    {% for image in project.images %}
+                        <img class="image-product-card img-fluid project_image" data-src="holder.js/100px180/" alt="100%x180" src="../images/project/{{image}}" data-holder-rendered="true">
+                    {% endfor %}
+                    
+                    </div>
+                    <div >
+                    <hr></hr>
+                    <h4 class="card-title-shop">{{project.name}}</h4>
+                    <hr></hr>
+                    <p class="card-text-shop">{{project.description}}</p>
+                    <hr></hr>
+                    <button class="btn" id="like" onclick="{% if is_granted('IS_AUTHENTICATED_FULLY') %}likeButton({{project.id}}){% else %}login(){% endif %}"><span id="ll{{project.id}}">{{project.likes | length}}</span> <i id="heart{{project.id}}" class="fa{% if app.user in project.likes %}s fa-heart text-danger{% else %}r fa-heart{% endif %}"></i></button>
+                    <button class="btn" id="comment" onclick="show_comment({{project.id}})"><span id="cc{{project.id}}">{{project.comments | length}}</span> commentaire{% if project.comments | length <= 1 %}{% else %}s{% endif %} 
+                    </button>
+                    </div>
+                    <div id="comments{{project.id}}" style="display:none">
+                        <div id="comDiv{{project.id}}">
+
+                        </div>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <hr></hr>
+                    <form id="commentForm" method="post">
+				    <textarea id="textarea{{project.id}}" class="form_css_pro-description"  type="text" placeholder="Postez un commentaire..." name="comment" style="border : solid; width: 50%"></textarea>
+                    <input id="id" type="hidden" value="{{project.id}}"/>
+                    <button type="button" id="sub" onclick="{% if is_granted('IS_AUTHENTICATED_FULLY') %}subform({{project.id}}){% else %}login(){% endif %}">Poster</button>
+				    </form>
+                    {% else %}
+                    <hr></hr>
+                    <p style="display:inline-block">si vous voulez commenter, </p><a href="{{path('security_login')}}"> connectez-vous.</a>   
+                    {% endif %}
+                    </div>
+
+                </div>
+                {% endfor %}
+
+                
+                
+
+    </div>
+{% endblock %}
+{% block javascripts_footer %}
+    {{ parent() }}
+    <script>
+    {% if is_granted('ROLE_FABLAB')%}
+    {% for project in projects %}
+        $( "#card-project"+{{project.id}}).hover(
+        function() {
+            $( "#delbtn"+{{project.id}} ).css("display","block");
+        }, function() {
+            $("#popup"+{{project.id}}).css("display", "none");
+            $( "#delbtn"+{{project.id}} ).css("display","none");
+        });
+
+
+    {% endfor %}
+    
+    {% endif %}
+
+    function showDeleteProject(id) {
+        {% for project in projects %}
+        if(id == {{project.id}}){
+        var id = document.getElementById("popup"+{{project.id}})
+        var btn = document.getElementById("delbtn"+{{project.id}})
+        if( id.style.display === "none"){
+            id.style.display = 'block';
+            btn.style.display = 'none';
+        } else {
+            id.style.display = 'none';
+            btn.style.display = 'block';
+        }
+        }
+        {% endfor %}
+        
+        
+        
+    }
+
+    function deleteProject(id) {
+        $.ajax({
+        type: "POST",
+        url: '{{path('delete_project')}}',
+        data: {id: id}, 
+        success:function(data){
+        $( "#card-project"+id).remove();
+        }
+    });
+    }
+
+    function login(){
+    window.location.href="{{path('security_login')}}"
+    }
+   
+    function subform(id){
+        if(!$("#textarea"+id).val()){
+        } else {
+            $.ajax({
+                type: "POST",
+                url: '{{path('comment_project')}}',
+                data: {comment: $("#textarea"+id).val(), id: id},                
+                beforeSend:function(){
+                        $('#demo'+id).html('Loading......');
+                    },
+                success:function(data){
+                    $('#cc'+id).html(data.comments);
+                    show_comment(id);
+                    $("#textarea"+id).val("");
+                    
+                }
+            });
+        }
+        
+    }
+
+    
+
+    function show_comment(id){
+            $.ajax({
+            type: "POST",
+            url: '{{path('show_comments')}}',
+            data: {
+                id: id,
+            }, // serializes the form's elements.
+            beforeSend:function(){
+                    $('#comDiv'+id).html('Loading......');
+                },
+            success:function(data){
+                    $( "#comDiv"+id ).append( "<div><hr></hr><p>"+data.authors[data.authors.length - 1]+"</p><p>"+data.comments[data.comments.length - 1]+"</p></div>" );
+                    $( "#comDiv"+id ).empty();
+                    $( data.authors ).each(function(key, value) {     
+                    var myid = {{ app.user ? app.user.id : 'false'}};
+                    if(data.ulikes[key] == myid){
+                        $( "#comDiv"+id ).append( "<div id='com"+data.id_comment[key]+"'><hr></hr><p>"+value+"</p><p>"+data.comments[key]+"</p><button class='btn' id='commentlike' onclick='{% if is_granted('IS_AUTHENTICATED_FULLY') %}commentlikeButton("+data.id_comment[key]+"){% else %}login(){% endif %}'><span id='lc"+data.id_comment[key]+"'>"+ data.ln[key]+"</span> <i id='comheart"+data.id_comment[key]+"' class='fas fa-heart text-danger'></i></button></div>" );
+                    } else {
+                        $( "#comDiv"+id ).append( "<div id='com"+data.id_comment[key]+"'><hr></hr><p>"+value+"</p><p>"+data.comments[key]+"</p><button class='btn' id='commentlike' onclick='{% if is_granted('IS_AUTHENTICATED_FULLY') %}commentlikeButton("+data.id_comment[key]+"){% else %}login(){% endif %}'><span id='lc"+data.id_comment[key]+"'>"+ data.ln[key]+"</span> <i id='comheart"+data.id_comment[key]+"' class='far fa-heart'></i></button></div>" );
+                    }
+                    {% if app.user %}
+                        if(data.id_user[key] == {{app.user? app.user.id: false}} || {{is_granted('ROLE_FABLAB')? 'true' : 'false'}}){
+                        $( "#comDiv"+id ).append( "<button id='delcom"+ data.id_comment[key]+"' onclick='deleteCom("+ data.id_comment[key]+","+id+")' >X</button> ");
+                        }
+                    {% endif %}
+                    }); 
+                
+                },
+            });
+            $('#comments'+id).css('display', 'block');  
+
+    }
+
+    function commentlikeButton(id){
+        $.ajax({
+				url: '{{path('like_comment')}}', // point to server-side PHP script 
+				method:'POST',
+                data:{id:id},
+                dataType : 'json',
+				success:function(data){
+                    $('#lc'+id).html(data.clikes);
+                    if(data.cliked == true){
+                        $('#comheart'+id).removeClass("far fa-heart");
+                        $('#comheart'+id).addClass("fas fa-heart text-danger");
+                    } else {
+                        $('#comheart'+id).removeClass("fas fa-heart text-danger");
+                        $('#comheart'+id).addClass("far fa-heart");
+                    }
+                }
+				});
+    }
+
+
+    function deleteCom(id, pid) {
+    $.ajax({
+        type: "POST",
+        url: '{{path('delete_comment')}}',
+        data: {id: id},                
+        beforeSend:function(){
+                $('#demo'+id).html('Loading......');
+            },
+        success:function(data){
+            $( "#com"+id).remove();
+            $( "#delcom"+id).remove();
+        }
+    });
+    }
+    function likeButton(id) {
+        $.ajax({
+				url: '{{path('like_project')}}', // point to server-side PHP script 
+				method:'POST',
+                data:{id:id, },
+                dataType : 'json',
+				beforeSend:function(){
+					$('#demo'+id).html('Loading......');
+				},
+				success:function(data){
+                    $('#ll'+id).html(data.likes);
+                    if(data.liked == true){
+                        $('#heart'+id).removeClass("far fa-heart");
+                        $('#heart'+id).addClass("fas fa-heart text-danger");
+                    } else {
+                        $('#heart'+id).removeClass("fas fa-heart text-danger");
+                        $('#heart'+id).addClass("far fa-heart");
+                    }
+                }
+				});
+    }
+
+    </script>
+{% endblock %}

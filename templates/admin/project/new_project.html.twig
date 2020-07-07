@@ -9,10 +9,9 @@
 
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="h1-respons">{% trans %}Ajouter un produit{% endtrans %}</h1>
+			<h1 class="display-4">{% trans %}Ajouter un projet{% endtrans %}</h1>
 		</div>
 	</div>
-
 				{{ form_start(formnp) }}
 			<div class="container mx-auto text-center">	
 				<div class="form">
@@ -20,7 +19,7 @@
 					{{ form_errors(formnp) }}
 					<div class="row">
 						<div class="col-12 mb-3 mt-3">
-							{{ form_widget(formnp.ProductName, {'attr':
+							{{ form_widget(formnp.name, {'attr':
 							{
 							'class' : 'form_css',
 							'placeholder' : 'Nom du produit'|trans
@@ -29,7 +28,7 @@
 						}}
 						</div>
 						<div class="col-12 mb-3 mt-3">
-							{{ form_widget(formnp.Description, {'attr':
+							{{ form_widget(formnp.description, {'attr':
 							{
 							'class' : 'form_css',
 							'placeholder' : 'Description'|trans
@@ -37,34 +36,20 @@
 							}) 
 						}}
 						</div>
-						<div class="col-12 mb-3">
-							{{ form_widget(formnp.Price, {'attr':
+						<div class="col-12 mb-3" >
+							{{ form_widget(formnp.images, {'attr':
 							{
-							'class' : 'form_css',
-							'placeholder' : 'Prix'|trans
+							'class' : 'form_css mt-2',
+							'placeholder' : 'Choisissez vos images'|trans,
 							}
 							}) 
 						}}
 						
-						</div>
-						<div class="col-12 mb-3">
-							{{ form_widget(formnp.Stock, {'attr':
-							{
-							'class' : 'form_css',
-							'placeholder' : 'Stock'|trans
-							}
-							}) 
-						}}
-						</div>
-						<div class="col-12 mb-3" >
-							{{ form_widget(formnp.Image, {'attr':
-							{
-							'class' : 'form_css mt-2',
-							'placeholder' : 'Choisissez votre image'|trans
-							}
-							}) 
-						}}
 						</div> 
+						<div style="text-align:center; width: 100%; margin: 0 auto;">
+						
+							<span id="msg" style="color:red"></span><br/>
+						</div>
 						<div class="col-12 mb-3 btn-center" >
 							{{ form_widget(formnp.Ajouter, {'attr':
 							{
@@ -78,11 +63,11 @@
 			</div>
 
 {{ form_end(formnp) }}
-
-
-
-
-
 {% endblock %}
+
+
+
+
+    
 	
 		

@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     upload_directory_photos: '%kernel.project_dir%/public/images/products'
+    upload_directory_photos_project: '%kernel.project_dir%/public/images/project'
     app.locales: [fr, en]
 
 services:

@@ -9,18 +9,18 @@
 <div id="all">
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">{% trans %}Commande numéro{% endtrans %} {{order.id}}</h1>
+			<h1 class="h1-respons">{% trans %}Commande numéro{% endtrans %} {{order.id}}</h1>
         </div>
     </div>     
 
 <div class="container width-responsive">
     <div style="text-align: center">
 
-    <h4>{% trans %}Status de la commande{% endtrans %}:<h4>
-    <h5>{{order.status}}<h5>
+    <h4 class="h4-respons">{% trans %}Status de la commande{% endtrans %}:</h4>
+    <h5>{{order.status}}</h5>
     <br></br>
 
-    <h4>{% trans %}Détail de la commande{% endtrans %}</h4>
+    <h4 class="h4-respons">{% trans %}Détail de la commande{% endtrans %}</h4>
     <div class="mb-5">
         <table class="table">
             <thead>

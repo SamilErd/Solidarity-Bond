@@ -7,7 +7,7 @@
 <div>
 	<div class="jumbotron jumbotron-fluid ">
 		<div class="container">
-			<h1 class="display-4">Solidarity-Bond</h1>
+			<h1 class="h1-respons">Solidarity-Bond</h1>
 			<p class="lead policy-width">{% trans %}Bienvenue sur le site de Solidarity-Bond de Strasbourg, un projet mis en place par des étudiants du CESI Strasbourg dans le but de vendre des visières et outils pour les commerçants et particuliers !{% endtrans %}</p>
 		</div>
 	</div>
@@ -90,9 +90,11 @@
 <div class="container-fluid " style="margin-top; 50px">
 	<div class="container width-responsive mx-auto mt-5">
 		<h1 class="mb-1 h1-respons">{% trans %}Point Coronavirus à la date du{% endtrans %} <span id="date"></span></h1>
-		<h3 class="mb-3">(source : <a href="http://thevirustracker.com">thevirustracker.com)</a></h3>
-		<button class="world-btn btn"  id="button" onclick="">{% trans %}Monde{% endtrans %}</button>
-		<button class="france-btn btn" id="button" onclick="">{% trans %}France{% endtrans %}</button>
+		<h3 class="mb-3 h3-respons">(source : <a href="http://thevirustracker.com">thevirustracker.com)</a></h3>
+		<div class="btn-covid">
+			<button class="world-btn btn"  id="button" onclick="">{% trans %}Monde{% endtrans %}</button>
+			<button class="france-btn btn" id="button" onclick="">{% trans %}France{% endtrans %}</button>
+		</div>
 	</div>
 </div>
 
@@ -188,15 +190,15 @@
 	<h2 class="mb-5 h2-respons">{% trans %}Questions sur le Coronavirus{% endtrans %}</h2>
 	<div class="mb-5">
 		<p>{% trans %}Ce sont là quelques-unes des questions génériques concernant l'épidémie de coronavirus dans le monde.{% endtrans %}</p>
-			<h4>{% trans %}Le coronavirus se propage-t-il d'une personne à l'autre ?{% endtrans %}</h4>
+			<h4 class="h4-respons">{% trans %}Le coronavirus se propage-t-il d'une personne à l'autre ?{% endtrans %}</h4>
 			<p>{% trans %}Malheureusement, c'est le cas. Cela se produit généralement au moyen de gouttelettes de liquide corporel qui sont dispersées dans l'atmosphère lorsqu'un individu éternue ou tousse.
 			Partager des gouttelettes au moyen de poignées de main ou partager une boisson où des fluides corporels sont transférés à quelqu'un peut augmenter le risque d'infection.
 			Essayez toujours de vous laver les mains, c'est la chose la plus importante que vous puissiez faire pour éviter d'être infecté par le coronavirus.{% endtrans %}</p>
 			
-			<h4>{% trans %}Quelle est la période d'incubation du Coronavirus ?{% endtrans %}</h4>
+			<h4 class="h4-respons">{% trans %}Quelle est la période d'incubation du Coronavirus ?{% endtrans %}</h4>
 			<p>{% trans %}Une période d'incubation est le temps qu'il faut au coronavirus pour s'emparer d'une personne et que celle-ci commence à présenter des symptômes. Avec le coronavirus, cela prend généralement entre un et 14 jours.{% endtrans %}</p>
 			
-			<h4>{% trans %}Y a-t-il un vaccin disponible pour le Coronavirus ?{% endtrans %}</h4>
+			<h4 class="h4-respons">{% trans %}Y a-t-il un vaccin disponible pour le Coronavirus ?{% endtrans %}</h4>
 			<p>{% trans %}Pour l'instant, il n'y a pas de vaccin disponible, mais les scientifiques travaillent 24 heures sur 24 pour en créer un - le délai habituel est de 1,5 à 2 ans.{% endtrans %}</p>
 			
 			<h4>{% trans %}Existe-t-il un traitement contre les coronavirus ?{% endtrans %}</h4>
@@ -247,7 +249,6 @@ $(document).ready(function(){
 			var yyyy = today.getFullYear();
 			today = mm + '/' + dd + '/' + yyyy;
 			var totalcases = Object.values(response)[0][0].total_cases;
-			console.log(typeof totalcases);
 			var totaldeaths = Object.values(response)[0][0].total_deaths;
 			var countries = Object.values(response)[0][0].total_affected_countries;
 			var totalrecovered = Object.values(response)[0][0].total_recovered;
