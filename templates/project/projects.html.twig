@@ -53,9 +53,9 @@
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <hr></hr>
                     <form id="commentForm" method="post">
-				    <textarea id="textarea{{project.id}}" class="form_css_pro-description"  type="text" placeholder="Postez un commentaire..." name="comment" style="border : solid; width: 50%"></textarea>
-                    <input id="id" type="hidden" value="{{project.id}}"/>
-                    <button type="button" id="sub" onclick="{% if is_granted('IS_AUTHENTICATED_FULLY') %}subform({{project.id}}){% else %}login(){% endif %}">Poster</button>
+                        <textarea id="textarea{{project.id}}" class="form_css_pro-description" type="text" placeholder="Postez un commentaire..." name="comment"></textarea>
+                        <input id="id" type="hidden" value="{{project.id}}"/>
+                        <button class="btn btn_form_css mb-4" type="button" id="sub" onclick="{% if is_granted('IS_AUTHENTICATED_FULLY') %}subform({{project.id}}){% else %}login(){% endif %}">Poster</button>
 				    </form>
                     {% else %}
                     <hr></hr>
