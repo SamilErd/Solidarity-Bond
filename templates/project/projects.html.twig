@@ -32,14 +32,11 @@
                     {% endif %}
                     <div class="project-relative">
                         {% if is_granted('ROLE_FABLAB') %}
-                        <button id="delbtn{{project.id}}" class="sbtn btn btn-projects project-absolute" onclick="showDeleteProject({{project.id}})"><i class='fas fa-times'></i></button>
+                        <button id="delbtn{{project.id}}" class="sbtn btn btn-projects project-absolute" style="right:0;" onclick="showDeleteProject({{project.id}})"><i class='fas fa-times'></i></button>
                         {% endif %}
                         <div class="project_images" style="width: 100%">
-                        {% for key,image in project.images %}
-                            {% if is_granted('ROLE_FABLAB') %}
-                            <button id="delbtnimage{{key}}" class="sbtn btn btn-projects" onclick="deletePhoto({{key}}, {{project.id}})" style="display:none"><i class='fas fa-times'></i></button>
-                            {% endif %}
-                            <img id="img{{key}}" class="image-product-card img-fluid project_image" data-src="holder.js/100px180/" alt="100%x180" src="../images/project/{{image}}" data-holder-rendered="true">
+                        {% for image in project.images %}
+                            <img class="image-product-card img-fluid project_image" data-src="holder.js/100px180/" alt="100%x180" src="../images/project/{{image}}" data-holder-rendered="true">
                         {% endfor %}
                         
                      </div>
