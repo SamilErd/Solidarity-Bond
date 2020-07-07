@@ -23,19 +23,41 @@
                 {% for project in projects %}
                 <div class="card-pr mt-3 mb-5 " id='card-project{{project.id}}' >
                     {% if is_granted('ROLE_FABLAB') %}
-                    <div id="popup{{project.id}}" class="delproj text-center mx-auto box-project" style="display:none">
+                    <div id="popupDel{{project.id}}" class="delproj text-center mx-auto box-project" style="display:none">
                     <p>{% trans %}Voulez vous vraiment supprimer ce projet ?{% endtrans %}<p>
                     <button class="sbtn btn" id="button" onclick="deleteProject({{project.id}})">{% trans %}Supprimer{% endtrans %}</button>
                     <button class="sbtn btn" id="button" onclick="showDeleteProject({{project.id}})">{% trans %}Annuler{% endtrans %}</button>
                     </div>
+                    {% endif %}
+                    {% if is_granted('ROLE_FABLAB') %}
+                    <div id="popupLoad{{project.id}}" class="upload text-center mx-auto " style="display:none">
+                    <p>{% trans %}Choisissez une photo à charger{% endtrans %}<p>
+                    <form method="post" enctype="multipart/form-data">
+                    <input id="inputPhotos{{project.id}}" type="file" name="files{{project.id}}[]" multiple><br><br>
+                    <input  type="hidden" name="id" value="{{project.id}}">
+                    <button class="sbtn btn" type="button" id="submit{{project.id}}" onclick="UploadPhoto({{project.id}})">{% trans %}Charger{% endtrans %}</button>
+                    <button class="sbtn btn" type="button" id="button" onclick="showUploadPhoto({{project.id}})">{% trans %}Annuler{% endtrans %}</button>
+                    </form>
+                    </div>
+                    
                         
                     {% endif %}
-                    <div class="project-relative ">
+                    <div class="project-relative" id='divProject{{project.id}}'>
                         {% if is_granted('ROLE_FABLAB') %}
-                        <button id="delbtn{{project.id}}" class="sbtn btn btn-projects project-absolute absolute-delete" onclick="showDeleteProject({{project.id}})"><i class='fas fa-times'></i></button>
+
+                        <div class="btn-group dropleft project-absolute absolute-delete ">
+                        <button type="button" class="sbtn btn " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-ellipsis-h"></i>
+                        </button>
+                        <div class="dropdown-menu " >
+                        <button id="delbtn{{project.id}}" class="sbtn btn " onclick="showDeleteProject({{project.id}})">Supprimer le projet</button>
+                        <hr></hr>
+                        <button id="loadbtn{{project.id}}" class="sbtn btn " onclick="showUploadPhoto({{project.id}})">Charger une photo</button>
+                        </div>
+                        </div>
                         {% endif %}
                         {% for key,image in project.images %}
-                        <div  id="img{{key}}{{project.id}}" class="div-image-project" style="display: inline-block;">
+                        <div id="img{{key}}{{project.id}}" class="div-image-project" style="display: inline-block;">
                             {% if is_granted('ROLE_FABLAB') %}
                             <button id="delbtnimage{{key}}{{project.id}}" class="sbtn btn del-btn-image project-absolute " onclick="deletePhoto({{key}}, {{project.id}})" style="display: none;top:4%; right:6%"><i class='fas fa-times'></i></button>
                             {% endif %}
@@ -83,6 +105,59 @@
 {% block javascripts_footer %}
     {{ parent() }}
     <script>
+
+
+    function UploadPhoto(id){
+        
+        var form_data = new FormData();
+
+        var totalfiles = document.getElementById('inputPhotos'+id).files.length;
+        if(totalfiles === 0){
+            alert("choisissez au moins une image");
+        } else {
+            for (var index = 0; index < totalfiles; index++) {
+            form_data.append("files"+id+"[]", document.getElementById('inputPhotos'+id).files[index]);
+            form_data.append("id", id);
+        }
+
+
+        $.ajax({
+            type: "POST",
+            url: '{{path('upload_project_photo')}}',
+            data: form_data,
+            cache: false,
+            dataType: 'json',
+            contentType: false,
+            processData: false,             
+            beforeSend:function(){
+                    
+                },
+            success:function(data){
+                console.log(data)
+                $( data.addedimages ).each(function(key, addedimage) {
+                     $( data.res ).each(function(key2, dbimage) {
+
+                        if(data.res[key2] == data.addedimages[key]){
+                            console.log(data.res[key2]);
+                            $( "#divProject"+id).append("<div id='img"+key+id+"' class='div-image-project' style='display: inline-block;'>"+{% if is_granted('ROLE_FABLAB') %}"<button id='delbtnimage"+key+id+"' class='sbtn btn del-btn-image project-absolute ' onclick='deletePhoto("+key+", "+id+")' style='display: none;top:4%; right:6%'><i class='fas fa-times'></i></button>"+{% endif %}"<img class='image-project-card img-fluid' data-src='holder.js/100px180/' alt='100%x180' src='../images/project/"+data.res[key2]+"' data-holder-rendered='true'></div>");
+                            showDeletePhotoButton() 
+                        }
+
+                      });
+
+                });
+
+                }
+            });
+
+        }
+        
+    }      
+
+    
+        
+ 
+
 
 
     function showDeleteCommentButton(cid){
@@ -136,7 +211,26 @@
     function showDeleteProject(id) {
         {% for project in projects %}
         if(id == {{project.id}}){
-        var id = document.getElementById("popup"+{{project.id}})
+        var id = document.getElementById("popupDel"+{{project.id}})
+        var btn = document.getElementById("delbtn"+{{project.id}})
+        if( id.style.display === "none"){
+            id.style.display = 'block';
+            btn.style.display = 'none';
+        } else {
+            id.style.display = 'none';
+            btn.style.display = 'block';
+        }
+        }
+        {% endfor %}
+        
+        
+        
+    }
+
+        function showUploadPhoto(id) {
+        {% for project in projects %}
+        if(id == {{project.id}}){
+        var id = document.getElementById("popupLoad"+{{project.id}})
         var btn = document.getElementById("delbtn"+{{project.id}})
         if( id.style.display === "none"){
             id.style.display = 'block';
@@ -166,6 +260,10 @@
     function login(){
     window.location.href="{{path('security_login')}}"
     }
+ 
+
+
+        
    
     function subform(id){
         if(!$("#textarea"+id).val()){
@@ -300,6 +398,5 @@
                 }
 				});
     }
-
     </script>
 {% endblock %}
