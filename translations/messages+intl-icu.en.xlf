@@ -1264,8 +1264,24 @@
         <target>log on to</target>
       </trans-unit>
       <trans-unit id="pifgBLG" resname="Loading......">
-        <source>Chargement......</source>
+        <source>Loading......</source>
         <target>Loading......</target>
+      </trans-unit>
+      <trans-unit id="y3jWoUH" resname="Postez un commentaire...">
+        <source>Postez un commentaire...</source>
+        <target>Post a comment...</target>
+      </trans-unit>
+      <trans-unit id="G6dup_P" resname="Poster">
+        <source>Poster</source>
+        <target>To post</target>
+      </trans-unit>
+      <trans-unit id="JDSMwQu" resname="Réservation de matériel">
+        <source>Réservation de matériel</source>
+        <target>Reservation of material</target>
+      </trans-unit>
+      <trans-unit id="UxulwYP" resname="Réserve">
+        <source>Réserve</source>
+        <target>Reserve</target>
       </trans-unit>
     </body>
   </file>

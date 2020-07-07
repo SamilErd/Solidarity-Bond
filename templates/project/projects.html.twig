@@ -62,9 +62,9 @@
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <hr></hr>
                     <form id="commentForm" method="post">
-                        <textarea id="textarea{{project.id}}" class="form_css_pro-description" type="text" placeholder="Postez un commentaire..." name="comment"></textarea>
+                        <textarea id="textarea{{project.id}}" class="form_css_pro-description" type="text" placeholder="{% trans %}Postez un commentaire...{% endtrans %}" name="comment"></textarea>
                         <input id="id" type="hidden" value="{{project.id}}"/>
-                        <button class="sbtn btn btn_form_css mb-4" type="button" id="sub" onclick="{% if is_granted('IS_AUTHENTICATED_FULLY') %}subform({{project.id}}){% else %}login(){% endif %}">Poster</button>
+                        <button class="sbtn btn btn_form_css mb-4" type="button" id="sub" onclick="{% if is_granted('IS_AUTHENTICATED_FULLY') %}subform({{project.id}}){% else %}login(){% endif %}">{% trans %}Poster{% endtrans %}</button>
 				    </form>
                     {% else %}
                     <hr></hr>
@@ -175,7 +175,7 @@
                 url: '{{path('comment_project')}}',
                 data: {comment: $("#textarea"+id).val(), id: id},                
                 beforeSend:function(){
-                        $('#demo'+id).html('Loading......');
+                        $('#demo'+id).html('{% trans %}Loading......{% endtrans %}');
                     },
                 success:function(data){
                     $('#cc'+id).html(data.comments);
@@ -270,7 +270,7 @@
         url: '{{path('delete_comment')}}',
         data: {id: id},                
         beforeSend:function(){
-                $('#demo'+id).html('Loading......');
+                $('#demo'+id).html('{% trans %}Loading......{% endtrans %}');
             },
         success:function(data){
             $('#cc'+pid).html(data.comments);
@@ -286,7 +286,7 @@
                 data:{id:id, },
                 dataType : 'json',
 				beforeSend:function(){
-					$('#demo'+id).html('Loading......');
+					$('#demo'+id).html('{% trans %}Loading......{% endtrans %}');
 				},
 				success:function(data){
                     $('#ll'+id).html(data.likes);
