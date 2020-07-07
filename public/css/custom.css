@@ -819,10 +819,21 @@ hr.diviser {
 
  .project-absolute {
    position: absolute;
-   right: 0;
+ }
+ .absolute-delete{
+   right: 40%;
+   top: 95%;
  }
 
  .sbtn:focus {
   outline:none;
   box-shadow: none;
+}
+
+.box-project {
+  width: 75%;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  text-align: center;
 }

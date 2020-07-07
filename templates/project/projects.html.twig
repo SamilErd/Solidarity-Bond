@@ -21,18 +21,18 @@
     <div class="container">
     
                 {% for project in projects %}
-                <div class="card-pr mt-3 mb-5 " id='card-project{{project.id}}' >
+                <div class="card-pr mt-3 mb-5 " id='card-project{{project.id}}'>
                     {% if is_granted('ROLE_FABLAB') %}
-                    <div id="popup{{project.id}}" class="delproj text-center" style="width:100%; ; border:solid; margin: 0 auto; display:none">
+                    <div id="popup{{project.id}}" class="delproj box-project mx-auto text-center" style="display: none">
                     <p>{% trans %}Voulez vous vraiment supprimer ce projet ?{% endtrans %}<p>
-                    <button class="sbtn" onclick="deleteProject({{project.id}})">{% trans %}Supprimer{% endtrans %}</button>
-                    <button class="sbtn" onclick="showDeleteProject({{project.id}})">{% trans %}Annuler{% endtrans %}</button>
+                    <button class="sbtn btn" id="button" onclick="deleteProject({{project.id}})">{% trans %}Supprimer{% endtrans %}</button>
+                    <button class="sbtn btn" id="button" onclick="showDeleteProject({{project.id}})">{% trans %}Annuler{% endtrans %}</button>
                     </div>
                         
                     {% endif %}
                     <div class="project-relative">
                         {% if is_granted('ROLE_FABLAB') %}
-                        <button id="delbtn{{project.id}}" class="sbtn btn btn-projects project-absolute" onclick="showDeleteProject({{project.id}})"><i class='fas fa-times'></i></button>
+                        <button id="delbtn{{project.id}}" class="sbtn btn btn-projects project-absolute" style="right:0;" onclick="showDeleteProject({{project.id}})"><i class='fas fa-times'></i></button>
                         {% endif %}
                         <div class="project_images" style="width: 100%">
                         {% for image in project.images %}
@@ -196,7 +196,7 @@
                         
                      {% if app.user %}
                         if(data.id_user[key] == {{app.user? app.user.id: false}} || {{is_granted('ROLE_FABLAB')? 'true' : 'false'}}){
-                        $( "#com"+data.id_comment[key] ).append( "<button class='sbtn btn btn-projects' id='delcom"+ data.id_comment[key]+"' style='display:none' onclick='deleteCom("+ data.id_comment[key]+","+id+")' ><i class='fas fa-times'></i></button> ");
+                        $( "#com"+data.id_comment[key] ).append( "<button class='sbtn btn btn-projects project-absolute absolute-delete' id='delcom"+ data.id_comment[key]+"' style='display:none' onclick='deleteCom("+ data.id_comment[key]+","+id+")' ><i class='fas fa-times'></i></button> ");
                         }
                     {% endif %}
 
