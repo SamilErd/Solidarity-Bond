@@ -9,7 +9,7 @@
 
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">{% trans %}Projects{% endtrans %}</h1>
+			<h1 class="h1-respons">{% trans %}Projects{% endtrans %}</h1>
         </div>
     </div>     
 
@@ -329,24 +329,7 @@
     
         }
     
-        function commentlikeButton(id){
-            $.ajax({
-                    url: '{{path('like_comment')}}', // point to server-side PHP script 
-                    method:'POST',
-                    data:{id:id},
-                    dataType : 'json',
-                    success:function(data){
-                        $('#lc'+id).html(data.clikes);
-                        if(data.cliked == true){
-                            $('#comheart'+id).removeClass("far fa-heart");
-                            $('#comheart'+id).addClass("fas fa-heart text-danger");
-                        } else {
-                            $('#comheart'+id).removeClass("fas fa-heart text-danger");
-                            $('#comheart'+id).addClass("far fa-heart");
-                        }
-                    }
-                    });
-        }
+ 
     
     
         function deleteCom(id, pid) {

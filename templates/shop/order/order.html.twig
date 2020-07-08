@@ -76,12 +76,16 @@
             document.getElementById("price").innerHTML = "{% trans %}Cela fera{% endtrans %} "+{{ total}} + "€. " ;
             sure.style.display = "block";
             all.style.pointerEvents = "none";
+            $('body,html').addClass('stop-scrolling')
+            $('body,html').bind('touchmove', function(e){e.preventDefault()})
         }
 
         function hide_confirm(){
             var sure = document.getElementById('sure');
             var all = document.getElementById('all');
             if (sure.style.display === "block") {
+                $('body,html').removeClass('stop-scrolling')
+                $('body,html').unbind('touchmove')
                 sure.style.display = "none";
                 all.style.pointerEvents = "auto";
                 
@@ -93,7 +97,7 @@
 
 
     </script>
-    <div class="confirm_div" id="sure" >
+    <div class="popup" id="sure" >
         <h2 class="h2-respons" id="text"></h2>
         <h3 class="h3-respons" id="price"></h2>
         <div class="confirm_buttons">
