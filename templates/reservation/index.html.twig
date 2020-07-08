@@ -11,6 +11,7 @@
 {% if is_granted('ROLE_FABLAB')%}
 <form action="{{path('add_machine')}}" method="POST" >
     <input type="text" placeholder="Entrez le nom d'une machine" name="machine" id="name" required>
+    <input type="hidden" name="_csrf_token" value="{{csrf_token('machine')}}">
     <input type="submit" value="Mettre à jour">
 </form>
 {% endif %}

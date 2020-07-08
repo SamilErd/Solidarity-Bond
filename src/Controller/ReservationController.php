@@ -7,6 +7,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\MachineRepository;
 use App\Service\Cart\CartService;
 use App\Entity\Machine;
+use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class ReservationController extends AbstractController
 {
@@ -100,8 +102,13 @@ class ReservationController extends AbstractController
     /**
      * @Route("/reservation/machine/add", name="add_machine")
      */
-    public function add_machine(MachineRepository $mrepo)
+    public function add_machine(CsrfTokenManagerInterface $csrfTokenManager)
     {
+        $token = new CsrfToken('machine', $_POST['_csrf_token']);
+
+        if (!$csrfTokenManager->isTokenValid($token)) {
+            throw $this->createAccessDeniedException('Token CSRF invalide');
+        }
         $machine = new Machine();
         $machine->setName($_POST['machine']);
         $entityManager = $this->getDoctrine()->getManager();
