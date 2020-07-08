@@ -30,7 +30,6 @@
         <tr>
         <th scope="col">#</th>
         <th scope="col">{% trans %}Nom de la machine{% endtrans %}</th>
-        <th scope="col">{% trans %}Disponibilité{% endtrans %}</th>
         <th scope="col">{% trans %}Réservation{% endtrans %}</th>
         </tr>
       </thead>
@@ -40,30 +39,15 @@
         <td scope="col">{{machine.id}}</td>
         <td scope="col">{{machine.name}}</td>
         <td scope="col">
-          {% if machines is empty%}
-
-            {% trans %}Machine non disponible{% endtrans %}
-
-          {% else %}
-
-            {% trans %}Machine disponible{% endtrans %}
-
-          {% endif %}
-        </td>
-        <td scope="col">
-          <ul>
-            <li>
-              <div class="dropdown">
-                <button class="sbtn btn dropdown-toggle nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {% trans %}Quand souhaitez vous réserver ?{% endtrans%}
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" id="button-drop" href="machine">{% trans %}Matin{% endtrans %}</a>
-                  <a class="dropdown-item" id="button-drop" href="machine">{% trans %}Après-Midi{% endtrans %}</a>
-                </div>
-              </div>
-            </li>
-          </ul>
+          <div class="dropdown">
+            <button class="sbtn btn dropdown-toggle btn_form_css" type="button" id="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% trans %}Quand souhaitez vous réserver ?{% endtrans %}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" id="button-drop" href="{{path('machine')}}">{% trans %}Matin{% endtrans %}</a>
+              <a class="dropdown-item" id="button-drop" href="{{path('machine')}}">{% trans %}Après-Midi{% endtrans %}</a>
+            </div>
+          </div>
         </td>
         </tr>
       {% endfor %}

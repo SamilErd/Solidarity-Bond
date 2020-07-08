@@ -34,7 +34,7 @@ class ReservationController extends AbstractController
      */
     public function reserve_machine(MachineRepository $mrepo)
     {
-        $client = new Google_Client();
+        $client = new \Google_Client();
         $client->setAuthConfig('client_secret.json');
         $client->addScope(Google_Service_Calendar::CALENDAR);
         $client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/oauth2callback.php');
@@ -83,8 +83,8 @@ class ReservationController extends AbstractController
      */
     public function move_reservations(int $delay, MachineRepository $mrepo)
     {
-        $client = new Google_Client();
-        $client->setAuthConfig('client_secret.json');
+        $client = new \Google_Client();
+        $client->setAuthConfig($this->getParameter('project_directory').'/client_secret.json');
         $client->addScope(Google_Service_Calendar::CALENDAR);
         $client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/oauth2callback.php');
         // offline access will give you both an access and refresh token so that
