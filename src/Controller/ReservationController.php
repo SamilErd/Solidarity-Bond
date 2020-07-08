@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\MachineRepository;
 use App\Service\Cart\CartService;
+use App\Entity\Machine;
 
 class ReservationController extends AbstractController
 {
@@ -96,4 +97,22 @@ class ReservationController extends AbstractController
 	$events = $service->events->listEvents($calendar.id);
         $event = $client->events->patch($calendar.id, $event);
     }
+    /**
+     * @Route("/reservation/machine/add", name="add_machine")
+     */
+    public function add_machine(MachineRepository $mrepo)
+    {
+        $machine = new Machine();
+        $machine->setName($_POST['machine']);
+        $entityManager = $this->getDoctrine()->getManager();
+        //tells the entity manager to manage the product
+        $entityManager->persist($machine);
+        //updating the product in the database
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('reservation');
+    }
+
+
+
 }

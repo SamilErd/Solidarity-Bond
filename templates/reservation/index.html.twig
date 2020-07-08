@@ -8,6 +8,14 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
+{% if is_granted('ROLE_FABLAB')%}
+<form action="{{path('add_machine')}}" method="POST" >
+    <input type="text" placeholder="Entrez le nom d'une machine" name="machine" id="name" required>
+    <input type="submit" value="Mettre à jour">
+</form>
+{% endif %}
+
+
 <div class="example-wrapper">
     <h1>Reservations</h1>
 <br>
