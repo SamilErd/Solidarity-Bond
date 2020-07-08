@@ -13,26 +13,23 @@
 <br>
     Reserve:
     <ul class="list-group">
+{% if machines is empty%}
+<h5>no available machines<h5>
+{% endif %}
+
+{% for machine in machines %}
      <li class="list-group-item">
 	<div class="dropdown">
   <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{machines.0.name}}
+    {{machine.name}}
   </a>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" href="machine">Morning</a>
     <a class="dropdown-item" href="machine">Afternoon</a>
   </div>
      </li>
-     <li class="list-group-item">
-	<div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{machines.1.name}}
-  </a>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="machine">Morning</a>
-    <a class="dropdown-item" href="machine">Afternoon</a>
-  </div>
-     </li>
+{% endfor %}
+
 </ul>
 </div>
 {% endblock %}
