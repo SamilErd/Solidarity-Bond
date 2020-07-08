@@ -9,12 +9,15 @@
 
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Erreur 404</h1>
-            <p>Le lien que vous cherchez n'existe pas.</p>
+			<h1 class="h1-respons">{% trans %}Erreur 404{% endtrans %}</h1>
         </div>
-        
     </div>
 
+    <div class="container width-responsive text-center mx-auto">
+        <h3 class="h1-respons">{% trans %}Le lien que vous cherchez n'existe pas{% endtrans %}.</h3>
+        <br>
+        <a class="btn btn_form_css" href="/" role="button">{% trans %}Revenir à l'accueil{% endtrans %}</a>
+    </div>
 
 
 {% endblock %}

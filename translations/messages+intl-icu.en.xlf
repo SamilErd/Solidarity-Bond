@@ -1347,6 +1347,26 @@
         <source>Quand souhaitez vous réserver ?</source>
         <target>When would you like to book ?</target>
       </trans-unit>
+      <trans-unit id="VfaFoj7" resname="Mot de passe actuel">
+        <source>Mot de passe actuel</source>
+        <target>Current password</target>
+      </trans-unit>
+      <trans-unit id="2OC7RUL" resname="Confirmez votre mot de passe">
+        <source>Confirmez votre mot de passe</source>
+        <target>Confirm your password</target>
+      </trans-unit>
+      <trans-unit id="cw8EcCt" resname="Erreur 404">
+        <source>Erreur 404</source>
+        <target>Error 404</target>
+      </trans-unit>
+      <trans-unit id="8Y0MKT0" resname="Le lien que vous cherchez n'existe pas">
+        <source>Le lien que vous cherchez n'existe pas</source>
+        <target>The link you are looking for does not exist</target>
+      </trans-unit>
+      <trans-unit id="z_UaBcs" resname="Revenir à l'accueil">
+        <source>Revenir à l'accueil</source>
+        <target>Back to home page</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
