@@ -1,44 +1,95 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReservationController!{% endblock %}
+{% block title %}{% trans %}Réservation{% endtrans %}{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-{% if is_granted('ROLE_FABLAB')%}
-<form action="{{path('add_machine')}}" method="POST" >
-    <input type="text" placeholder="Entrez le nom d'une machine" name="machine" id="name" required>
-    <input type="hidden" name="_csrf_token" value="{{csrf_token('machine')}}">
-    <input type="submit" value="Mettre à jour">
-</form>
-{% endif %}
+  <div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="h1-respons">{% trans %}Réservation de matériel{% endtrans %}</h1>
+		</div>
+	</div>
 
-
-<div class="example-wrapper">
-    <h1>Reservations</h1>
-<br>
-    Reserve:
-    <ul class="list-group">
-{% if machines is empty%}
-<h5>no available machines<h5>
-{% endif %}
-
-{% for machine in machines %}
-     <li class="list-group-item">
-	<div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{machine.name}}
-  </a>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="machine">Morning</a>
-    <a class="dropdown-item" href="machine">Afternoon</a>
+  <div class="container width-responsive mb-5 mx-auto text-center">
+    {% if is_granted('ROLE_FABLAB')%}
+    <h3 class="h3-respons">{% trans %}Ajouter des machines{% endtrans %}</h3>
+    <br>
+    <form action="{{path('add_machine')}}" method="POST" >
+      <input class="form_css width-reservation" type="text" placeholder="{% trans %}Entrez le nom de la machine à rajouter{% endtrans %}" name="machine" id="name" required>
+      <input type="hidden" name="_csrf_token" value="{{csrf_token('machine')}}">
+      <br>
+      <input class="btn mt-3" id="button" type="submit" value="{% trans %}Ajouter{% endtrans %}">
+    </form>
+    {% endif %}
   </div>
-     </li>
-{% endfor %}
 
-</ul>
-</div>
+
+  <div class="container width-responsive" style="overflow-x:auto;">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">{% trans %}Nom de la machine{% endtrans %}</th>
+        <th scope="col">{% trans %}Disponibilité{% endtrans %}</th>
+        <th scope="col">{% trans %}Réservation{% endtrans %}</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for machine in machines %}
+        <tr>
+        <td scope="col">{{machine.id}}</td>
+        <td scope="col">{{machine.name}}</td>
+        <td scope="col">
+          {% if machines is empty%}
+
+            {% trans %}Machine non disponible{% endtrans %}
+
+          {% else %}
+
+            {% trans %}Machine disponible{% endtrans %}
+
+          {% endif %}
+        </td>
+        <td scope="col">
+          <ul>
+            <li>
+              <div class="dropdown">
+                <button class="sbtn btn dropdown-toggle nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {% trans %}Quand souhaitez vous réserver ?{% endtrans %}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" id="button-drop" href="machine">{% trans %}Matin{% endtrans %}</a>
+                  <a class="dropdown-item" id="button-drop" href="machine">{% trans %}Après-Midi{% endtrans %}</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+
+    </table>
+  </div>
+        
+      {# <ul class="list-group">
+        {% if machines is empty%}
+        <h5>no available machines<h5>
+        {% endif %}
+
+      {% for machine in machines %}
+        <li class="list-group-item">
+          <div class="dropdown">
+          <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{machine.name}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="machine">Morning</a>
+            <a class="dropdown-item" href="machine">Afternoon</a>
+          </div>
+        </li>
+    {% endfor %}
+
+      </ul>
+  </div>#}
 {% endblock %}

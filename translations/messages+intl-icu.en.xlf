@@ -1283,6 +1283,70 @@
         <source>Réserve</source>
         <target>Reserve</target>
       </trans-unit>
+      <trans-unit id="AH_.PA5" resname="Réservation">
+        <source>Réservation</source>
+        <target>Reservation</target>
+      </trans-unit>
+      <trans-unit id="mYEMmRZ" resname="Choisissez une photo à charger">
+        <source>Choisissez une photo à charger</source>
+        <target>Choose a photo to upload</target>
+      </trans-unit>
+      <trans-unit id=".TUWVPR" resname="Charger">
+        <source>Charger</source>
+        <target>Upload</target>
+      </trans-unit>
+      <trans-unit id="6gZaPiw" resname="Supprimer le projet">
+        <source>Supprimer le projet</source>
+        <target>Delete the project</target>
+      </trans-unit>
+      <trans-unit id="M0GW4i3" resname="Charger une photo">
+        <source>Charger une photo</source>
+        <target>Upload a photo</target>
+      </trans-unit>
+      <trans-unit id="r4QLga5" resname="Choisissez au moins une image">
+        <source>Choisissez au moins une image</source>
+        <target>Choose at least one image</target>
+      </trans-unit>
+      <trans-unit id=".5XapSI" resname="Ajouter des machines">
+        <source>Ajouter des machines</source>
+        <target>Add machines</target>
+      </trans-unit>
+      <trans-unit id="JrbJ6wp" resname="Entrez le nom de la machine à rajouter">
+        <source>Entrez le nom de la machine à rajouter</source>
+        <target>Enter the name of the machine to be added</target>
+      </trans-unit>
+      <trans-unit id="APnFM0V" resname="Ajouter">
+        <source>Ajouter</source>
+        <target>Add</target>
+      </trans-unit>
+      <trans-unit id="zNO9aJ4" resname="Nom de la machine">
+        <source>Nom de la machine</source>
+        <target>Name of the machine</target>
+      </trans-unit>
+      <trans-unit id="KgMkuv8" resname="Disponibilité">
+        <source>Disponibilité</source>
+        <target>Availability</target>
+      </trans-unit>
+      <trans-unit id="RJJf8by" resname="Machine non disponible">
+        <source>Machine non disponible</source>
+        <target>Machine not available</target>
+      </trans-unit>
+      <trans-unit id="TDzbIX1" resname="Machine disponible">
+        <source>Machine disponible</source>
+        <target>Machine available</target>
+      </trans-unit>
+      <trans-unit id="sADxu8x" resname="Matin">
+        <source>Matin</source>
+        <target>Morning</target>
+      </trans-unit>
+      <trans-unit id="vduDAyz" resname="Après-Midi">
+        <source>Après-Midi</source>
+        <target>Afternoon</target>
+      </trans-unit>
+      <trans-unit id="e7edCfw" resname="Quand souhaitez vous réserver ?">
+        <source>Quand souhaitez vous réserver ?</source>
+        <target>When would you like to book ?</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -679,6 +679,9 @@ hr.diviser {
   .width-form-projects {
     width: 85%;
   }
+  .width-reservation {
+    width: 85%;
+  }
 }
 /**
 * Responsive for 600px and up
@@ -705,6 +708,10 @@ hr.diviser {
   }
 
   .width-form-projects {
+    width: 350px;
+  }
+
+  .width-reservation {
     width: 350px;
   }
 
