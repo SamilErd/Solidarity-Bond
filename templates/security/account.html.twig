@@ -81,11 +81,11 @@
 				<div class="" style="display:none; " id="pass">
 					<div >
 						<form action="{{path('security_account')}}" method="post" >
-						<input class="form_css" placeholder = "Mot de passe actuel" type="password" name="CurrentPass" style="margin-bottom: 15px"/><br>
-						<input class="form_css mr-5" placeholder = "Nouveau mot de passe" type="password" name="NewPass" style="margin-bottom: 15px"/>
-						<input class="form_css" placeholder = "Confirmez votre mot de passe" type="password" name="ConfirmPass" style="margin-bottom: 15px" />
-						<button type="submit" class="btn btn-dark " style="display:block ; width: 200px; margin-bottom: 10px">{% trans %}Mettre à jour{% endtrans %}</button>
-						<button class="btn btn-dark " onclick="ShowPass()" style="display:block; width: 200px">{% trans %}Annuler{% endtrans %}</button>
+						<input class="form_css" placeholder = "{% trans %}Mot de passe actuel{% endtrans %}" type="password" name="CurrentPass" style="margin-bottom: 15px"/><br>
+						<input class="form_css mr-5" placeholder = "{% trans %}Nouveau mot de passe{% endtrans %}" type="password" name="NewPass" style="margin-bottom: 15px"/><br>
+						<input class="form_css" placeholder = "{% trans %}Confirmez votre mot de passe{% endtrans %}" type="password" name="ConfirmPass" style="margin-bottom: 15px" />
+						<button type="submit" class="btn btn_form_css" style="display:block ; width: 200px; margin-bottom: 10px">{% trans %}Mettre à jour{% endtrans %}</button>
+						<button class="btn btn_form_css " onclick="ShowPass()" style="display:block; width: 200px">{% trans %}Annuler{% endtrans %}</button>
 						</form>
 					</div>
 				</div>
