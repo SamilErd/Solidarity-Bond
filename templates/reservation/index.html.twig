@@ -58,8 +58,8 @@
                 {% trans %}Quand souhaitez vous réserver ?{% endtrans %}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" id="button-drop" href="machine">{% trans %}Matin{% endtrans %}</a>
-                  <a class="dropdown-item" id="button-drop" href="machine">{% trans %}Après-Midi{% endtrans %}</a>
+                  <a class="dropdown-item" id="button-drop" href="{{path('machine')}}">{% trans %}Matin{% endtrans %}</a>
+                  <a class="dropdown-item" id="button-drop" href="{{path('machine')}}">{% trans %}Après-Midi{% endtrans %}</a>
                 </div>
               </div>
             </li>
