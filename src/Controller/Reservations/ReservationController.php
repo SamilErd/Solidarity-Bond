@@ -610,6 +610,30 @@ class ReservationController extends AbstractController
 	return $this->render('reservation/reserved.html.twig', [
             'num' => $num
         ]);
+	}
+	
+
+	/**
+     * @Route("/reservation/machine/add", name="add_machine")
+     */
+    public function add_machine(CsrfTokenManagerInterface $csrfTokenManager)
+    {
+        $token = new CsrfToken('machine', $_POST['_csrf_token']);
+
+        if (!$csrfTokenManager->isTokenValid($token)) {
+            throw $this->createAccessDeniedException('Token CSRF invalide');
+        }
+        $machine = new Machine();
+        $machine->setName($_POST['machine']);
+        $entityManager = $this->getDoctrine()->getManager();
+        //tells the entity manager to manage the product
+        $entityManager->persist($machine);
+        //updating the product in the database
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('reservation');
     }
+
+
 
 }
