@@ -2,7 +2,6 @@
 
 namespace App\Controller\Admin;
 
-require_once '/home/victor/Projects/Solidarity-Bond/vendor/autoload.php';
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;

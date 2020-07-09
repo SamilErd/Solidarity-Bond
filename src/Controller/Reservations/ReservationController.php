@@ -2,7 +2,6 @@
 
 namespace App\Controller\Reservations;
 
-require_once '/home/victor/Projects/Solidarity-Bond/vendor/autoload.php';
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -66,7 +65,7 @@ class ReservationController extends AbstractController
     // The file token.json stores the user's access and refresh tokens, and is
     // created automatically when the authorization flow completes for the first
     // time.
-    $tokenPath = '/home/victor/Projects/Solidarity-Bond/token.json';
+    $tokenPath = $this->getParameter('project_directory').'/token.json';
     if (file_exists($tokenPath)) {
         $accessToken = json_decode(file_get_contents($tokenPath), true);
         $client->setAccessToken($accessToken);
@@ -124,7 +123,7 @@ class ReservationController extends AbstractController
     // The file token.json stores the user's access and refresh tokens, and is
     // created automatically when the authorization flow completes for the first
     // time.
-    $tokenPath = '/home/victor/Projects/Solidarity-Bond/token.json';
+    $tokenPath = $this->getParameter('project_directory').'/token.json';
     if (file_exists($tokenPath)) {
         $accessToken = json_decode(file_get_contents($tokenPath), true);
         $client->setAccessToken($accessToken);
@@ -182,7 +181,7 @@ class ReservationController extends AbstractController
     // The file token.json stores the user's access and refresh tokens, and is
     // created automatically when the authorization flow completes for the first
     // time.
-    $tokenPath = '/home/victor/Projects/Solidarity-Bond/token.json';
+    $tokenPath = $this->getParameter('project_directory').'/token.json';
     if (file_exists($tokenPath)) {
         $accessToken = json_decode(file_get_contents($tokenPath), true);
         $client->setAccessToken($accessToken);
@@ -240,7 +239,7 @@ class ReservationController extends AbstractController
     // The file token.json stores the user's access and refresh tokens, and is
     // created automatically when the authorization flow completes for the first
     // time.
-    $tokenPath = '/home/victor/Projects/Solidarity-Bond/token.json';
+    $tokenPath = $this->getParameter('project_directory').'/token.json';
     if (file_exists($tokenPath)) {
         $accessToken = json_decode(file_get_contents($tokenPath), true);
         $client->setAccessToken($accessToken);
@@ -298,7 +297,7 @@ class ReservationController extends AbstractController
     // The file token.json stores the user's access and refresh tokens, and is
     // created automatically when the authorization flow completes for the first
     // time.
-    $tokenPath = '/home/victor/Projects/Solidarity-Bond/token.json';
+    $tokenPath = $this->getParameter('project_directory').'/token.json';
     if (file_exists($tokenPath)) {
         $accessToken = json_decode(file_get_contents($tokenPath), true);
         $client->setAccessToken($accessToken);
@@ -356,7 +355,7 @@ class ReservationController extends AbstractController
     // The file token.json stores the user's access and refresh tokens, and is
     // created automatically when the authorization flow completes for the first
     // time.
-    $tokenPath = '/home/victor/Projects/Solidarity-Bond/token.json';
+    $tokenPath = $this->getParameter('project_directory').'/token.json';
     if (file_exists($tokenPath)) {
         $accessToken = json_decode(file_get_contents($tokenPath), true);
         $client->setAccessToken($accessToken);
@@ -414,7 +413,7 @@ class ReservationController extends AbstractController
     // The file token.json stores the user's access and refresh tokens, and is
     // created automatically when the authorization flow completes for the first
     // time.
-    $tokenPath = '/home/victor/Projects/Solidarity-Bond/token.json';
+    $tokenPath = $this->getParameter('project_directory').'/token.json';
     if (file_exists($tokenPath)) {
         $accessToken = json_decode(file_get_contents($tokenPath), true);
         $client->setAccessToken($accessToken);
@@ -472,7 +471,7 @@ class ReservationController extends AbstractController
     // The file token.json stores the user's access and refresh tokens, and is
     // created automatically when the authorization flow completes for the first
     // time.
-    $tokenPath = '/home/victor/Projects/Solidarity-Bond/token.json';
+    $tokenPath = $this->getParameter('project_directory').'/token.json';
     if (file_exists($tokenPath)) {
         $accessToken = json_decode(file_get_contents($tokenPath), true);
         $client->setAccessToken($accessToken);
@@ -530,7 +529,7 @@ class ReservationController extends AbstractController
     // The file token.json stores the user's access and refresh tokens, and is
     // created automatically when the authorization flow completes for the first
     // time.
-    $tokenPath = '/home/victor/Projects/Solidarity-Bond/token.json';
+    $tokenPath = $this->getParameter('project_directory').'/token.json';
     if (file_exists($tokenPath)) {
         $accessToken = json_decode(file_get_contents($tokenPath), true);
         $client->setAccessToken($accessToken);
@@ -588,7 +587,7 @@ class ReservationController extends AbstractController
     // The file token.json stores the user's access and refresh tokens, and is
     // created automatically when the authorization flow completes for the first
     // time.
-    $tokenPath = '/home/victor/Projects/Solidarity-Bond/token.json';
+    $tokenPath = $this->getParameter('project_directory').'/token.json';
     if (file_exists($tokenPath)) {
         $accessToken = json_decode(file_get_contents($tokenPath), true);
         $client->setAccessToken($accessToken);

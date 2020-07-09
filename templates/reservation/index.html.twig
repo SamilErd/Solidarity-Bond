@@ -4,45 +4,65 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>Reservations</h1>
-<br>
-    Reserve:
-    <ul class="list-group">
-     <li class="list-group-item">
-	<div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{machines.0.name}}
-  </a>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="{{ url('monday_morning', {id: machines.0.name}) }}">Lundi matin</a>
-    <a class="dropdown-item" href="{{ url('monday_afternoon', {id: machines.0.name}) }}">Lundi apres-midi</a>
-    <a class="dropdown-item" href="{{ url('tuesday_morning', {id: machines.0.name}) }}">Mardi matin</a>
-    <a class="dropdown-item" href="{{ url('tuesday_afternoon', {id: machines.0.name}) }}">Mardi apres-midi</a>
-    <a class="dropdown-item" href="{{ url('wednesday_morning', {id: machines.0.name}) }}">Mercredi matin</a>
-    <a class="dropdown-item" href="{{ url('wednesday_afternoon', {id: machines.0.name}) }}">Mercredi apres-midi</a>
-    <a class="dropdown-item" href="{{ url('thursday_morning', {id: machines.0.name}) }}">Jeudi matin</a>
-    <a class="dropdown-item" href="{{ url('thursday_afternoon', {id: machines.0.name}) }}">Jeudi apres-midi</a>
-    <a class="dropdown-item" href="{{ url('friday_morning', {id: machines.0.name}) }}">Vendredi Matin</a>
-    <a class="dropdown-item" href="{{ url('friday_afternoon', {id: machines.0.name}) }}">Vendredi apres-midi</a>
+  <div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="h1-respons">{% trans %}Réservation de matériel{% endtrans %}</h1>
+		</div>
+	</div>
+
+  <div class="container width-responsive mb-5 mx-auto text-center">
+    {% if is_granted('ROLE_FABLAB')%}
+    <h3 class="h3-respons">{% trans %}Ajouter des machines{% endtrans %}</h3>
+    <br>
+    <form action="{{path('add_machine')}}" method="POST" >
+      <input class="form_css width-reservation" type="text" placeholder="{% trans %}Entrez le nom de la machine à rajouter{% endtrans %}" name="machine" id="name" required>
+      <input type="hidden" name="_csrf_token" value="{{csrf_token('machine')}}">
+      <br>
+      <input class="btn mt-3" id="button" type="submit" value="{% trans %}Ajouter{% endtrans %}">
+    </form>
+    {% endif %}
   </div>
-     </li>
-     <li class="list-group-item">
-	<div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{machines.1.name}}
-  </a>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="{{ url('monday_morning', {id: machines.1.name}) }}">Lundi matin</a>
-    <a class="dropdown-item" href="{{ url('monday_afternoon', {id: machines.1.name}) }}">Lundi apres-midi</a>
-    <a class="dropdown-item" href="{{ url('tuesday_morning', {id: machines.1.name}) }}">Mardi matin</a>
-    <a class="dropdown-item" href="{{ url('tuesday_afternoon', {id: machines.1.name}) }}">Mardi apres-midi</a>
-    <a class="dropdown-item" href="{{ url('wednesday_morning', {id: machines.1.name}) }}">Mercredi matin</a>
-    <a class="dropdown-item" href="{{ url('wednesday_afternoon', {id: machines.1.name}) }}">Mercredi apres-midi</a>
-    <a class="dropdown-item" href="{{ url('thursday_morning', {id: machines.1.name}) }}">Jeudi matin</a>
-    <a class="dropdown-item" href="{{ url('thursday_afternoon', {id: machines.1.name}) }}">Jeudi apres-midi</a>
-    <a class="dropdown-item" href="{{ url('friday_morning', {id: machines.1.name}) }}">Vendredi Matin</a>
-    <a class="dropdown-item" href="{{ url('friday_afternoon', {id: machines.1.name}) }}">Vendredi apres-midi</a>
-  </div>
+
+<div class="container width-responsive" style="overflow-x:auto;">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+        <th scope="col">{% trans %}Nom de la machine{% endtrans %}</th>
+        <th scope="col">{% trans %}Réservation{% endtrans %}</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for machine in machines %}
+        <tr>
+        <td scope="col">{{machine.name}}</td>
+        <td scope="col">
+          <ul>
+            <li>
+              <div class="dropleft">
+                <button class="sbtn btn dropdown-toggle nav-link" type="button" id="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {% trans %}Quand souhaitez vous réserver ?{% endtrans%}
+                </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{{ url('monday_morning', {id: machine.name}) }}">Lundi matin</a>
+                    <a class="dropdown-item" href="{{ url('monday_afternoon', {id: machine.name}) }}">Lundi apres-midi</a>
+                    <a class="dropdown-item" href="{{ url('tuesday_morning', {id: machine.name}) }}">Mardi matin</a>
+                    <a class="dropdown-item" href="{{ url('tuesday_afternoon', {id: machine.name}) }}">Mardi apres-midi</a>
+                    <a class="dropdown-item" href="{{ url('wednesday_morning', {id: machine.name}) }}">Mercredi matin</a>
+                    <a class="dropdown-item" href="{{ url('wednesday_afternoon', {id: machine.name}) }}">Mercredi apres-midi</a>
+                    <a class="dropdown-item" href="{{ url('thursday_morning', {id: machine.name}) }}">Jeudi matin</a>
+                    <a class="dropdown-item" href="{{ url('thursday_afternoon', {id: machine.name}) }}">Jeudi apres-midi</a>
+                    <a class="dropdown-item" href="{{ url('friday_morning', {id: machine.name}) }}">Vendredi Matin</a>
+                    <a class="dropdown-item" href="{{ url('friday_afternoon', {id: machine.name}) }}">Vendredi apres-midi</a>
+                  </div>
+              </div>
+            </li>
+          </ul>
+        </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+
+  </table>
+</div>
  
 {% endblock %}
