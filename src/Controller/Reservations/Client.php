@@ -23,7 +23,7 @@ public function getClient()
     $client = new Google_Client();
     $client->setApplicationName('Solidarity-Bond');
     $client->setScopes(Google_Service_Calendar::CALENDAR);
-    $client->setAuthConfig($this->getParameter('project_directory').'/credentials.json');
+    $client->setAuthConfig('/home/victor/Projects/Solidarity-Bond/credentials.json');
     $client->setRedirectUri('https://127.0.0.1:8000/client/validate');
     $client->setAccessType('offline');
     $client->setPrompt('select_account consent');
@@ -37,7 +37,7 @@ public function validate()
 	
 	$client = $this->getClient();
 	$authCode = $_GET['code'];
-	$tokenPath = $this->getParameter('project_directory').'/token.json';
+	$tokenPath = '/home/victor/Projects/Solidarity-Bond/token.json';
 	$accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
 	$accessToken = json_decode(file_get_contents($tokenPath), true);
         $client->setAccessToken($accessToken);
