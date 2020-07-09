@@ -171,7 +171,6 @@ main {
 */
 
 .zoom {
-  padding: 50px;
   transition: transform .2s;
   width: auto;
   height: auto;
@@ -216,7 +215,7 @@ main {
 }
 .card-text-shop{
   overflow: hidden;
-  width: 100%;
+  width: 90%;
   display: -webkit-box;
   padding: 0px 5px;
   -webkit-line-clamp: 3;
@@ -226,7 +225,7 @@ main {
   }
   .card-title-shop{
     overflow: hidden;
-    width:300px;
+    width:80%;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -257,6 +256,11 @@ ul {
   width:300px;
   height:300px;
   padding: 10px;
+  border-radius: 10%;
+}
+.image-project-card {
+  width:300px;
+  height:300px;
   border-radius: 10%;
 }
 
@@ -306,25 +310,7 @@ ul {
     text-align: center;
 }
 
-.confirm_div{
-  background-color: white;
-  
-  display: none;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  
-  left: 0;
-  right: 0;
 
-  margin: auto;
-  width:450px;
-  height:240px;
-  
-  text-align: center;
-  border: 1px solid #000000;
-  border-radius: 2%;
-}
 
 .confirm_buttons{
   position: absolute; 
@@ -438,7 +424,7 @@ hr.diviser {
   width: 100%;
   background-color: #fff;
   transition: 0.6s;
-  padding: 15px 75px;
+  padding-top: 15px;
 }
 
 .navbar-B {
@@ -463,7 +449,7 @@ hr.diviser {
 }
 
 .nav-sticky {
-  padding: 5px 75px;
+  padding-top: 5px;
   background: #e6e6e6;
   transition: 0.6s;
   
@@ -674,6 +660,9 @@ hr.diviser {
   .width-form-projects {
     width: 85%;
   }
+  .width-reservation {
+    width: 85%;
+  }
 }
 /**
 * Responsive for 600px and up
@@ -700,6 +689,10 @@ hr.diviser {
   }
 
   .width-form-projects {
+    width: 350px;
+  }
+
+  .width-reservation {
     width: 350px;
   }
 
@@ -807,3 +800,65 @@ hr.diviser {
  .button-dropd{
    margin-left: -65px;
  }
+
+ .del-btn-image {
+  background-color: white;
+  width: auto;
+  border-radius: 20px;
+  z-index: 1
+ }
+
+ .project-relative {
+  position: relative;
+ }
+
+ .div-image-project{
+  position: relative;
+  margin-top: 50px
+ }
+ .project-absolute {
+   position: absolute;
+ }
+ .absolute-delete{
+   right: 5px;
+   top: 5px;
+ }
+
+ .sbtn:focus {
+  outline:none;
+  box-shadow: none;
+}
+
+.box-project {
+  width: 75%;
+  border-style: solid;
+  border-color: #999999;
+  border-radius: 5px;
+  border-width: 2px;
+  text-align: center;
+}
+
+.btn-drop:hover {
+  background-color: #cccccc;
+}
+
+.popup {
+  width: 90%;
+  background-color: white;
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height:240px;
+  text-align: center;
+  border: 1px solid #000000;
+  border-radius: 2%;
+  padding:15px;
+}
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}

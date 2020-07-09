@@ -183,7 +183,9 @@ class ProjectController extends AbstractController
      */
     public function delete_comments(CommentRepository $commentrepo)
     {
+
         $comment = $commentrepo->find($_POST['id']);
+        $project = $comment->getIdProject();
         //getting the instance of the entity manager and 
         $entityManager = $this->getDoctrine()->getManager();
         //tells the entity manager to manage the product
@@ -191,7 +193,8 @@ class ProjectController extends AbstractController
         //inserting the product in the database
         $entityManager->flush();
         $response = new Response(json_encode(array(
-            'res' => 'OK'
+            'res' => 'OK',
+            'comments' => sizeof($project->getComments())
             
         )));
         $response->headers->set('Content-Type', 'application/json');
@@ -220,8 +223,100 @@ class ProjectController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
+    /**
+     * @Route("/project/delete/photo", name="delete_photo")
+     */
+    public function delete_photo(ProjectRepository $projectrepo)
+    {
+        $project = $projectrepo->find($_POST['pid']);
+        //getting the instance of the entity manager and 
+        $entityManager = $this->getDoctrine()->getManager();
+        $images = [];
+        $filename = $project->getImages()[$_POST['key']];
+        foreach($project->getImages() as $key=>$image){
+            array_push($images, $image);
+            if($image == $filename){
+                
+                $filesystem = new Filesystem();
+                $filesystem->remove($this->getParameter('upload_directory_photos_project')."/".$filename);
+                unset($images[$key]);
+            }
+        }
+        $project->setImages($images);
+        //tells the entity manager to manage the product
+        $entityManager->persist($project);
+        //inserting the product in the database
+        $entityManager->flush();
+        $response = new Response(json_encode(array(
+            'res' => $images
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+    /**
+     * @Route("/projects/new/photo", name="upload_project_photo")
+     */
+    public function upload_project_photo(ProjectRepository $projectrepo, Request $request,CartService $cartService)
+    {
+        $id = $_POST['id'];
+        $project = $projectrepo->find($id);
+        //getting the instance of the entity manager and 
+        $entityManager = $this->getDoctrine()->getManager();
+        $images = $project->getImages();
+        $addedimages = [];
+        $countfiles = count($_FILES['files'.$id]['name']);
+        
+        $upload_location = $this->getParameter('upload_directory_photos_project');
+        $error = "";
+        
 
+        for($index = 0;$index < $countfiles;$index++){
 
+            // File name
+            $filename = $_FILES['files'.$id]['name'][$index];
+         
+            // Get extension
+            $ext = pathinfo($filename, PATHINFO_EXTENSION);
+         
+            // Valid image extension
+            $valid_ext = array("png","jpeg","jpg","ico","PNG","JPEG","JPG","ICO");
+         
+            // Check extension
+            if(in_array($ext, $valid_ext)){
+            
+                $filename = md5(uniqid()).'.'.$ext;
+                // File path
+                $path = $upload_location."/".$filename;
+            
+                // Upload file
+                if(move_uploaded_file($_FILES['files'.$id]['tmp_name'][$index],$path)){
+                    array_push($images,$filename);
+                    array_push($addedimages,$filename);
+                }
+            } else {
+                $error="Format d'image non valide!";
+            }
+         
+         }
+        
+        //setting the image field of the product with the filename
+        $project->setImages($images);
+        
+        
+        //tells the entity manager to manage the product
+        $entityManager->persist($project);
+        //inserting the product in the database
+        $entityManager->flush();
+        
+        $response = new Response(json_encode(array(
+            'res' => $images,
+            'addedimages' => $addedimages,
+            'error' => $error,
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+
+    }
     /**
      * @Route("/projects/new", name="new_project")
      */

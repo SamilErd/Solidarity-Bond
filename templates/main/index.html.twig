@@ -19,7 +19,7 @@
 		{% for message in app.flashes('succes') %}
 			<div class="alert alert-success alert-dismissible fade show" role="alert" id="notification">
 				{{message}}
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<button type="button" class="sbtn close" data-dismiss="alert" aria-label="Close">
     				<span aria-hidden="true">&times;</span>
  				</button>
 			</div>
@@ -66,34 +66,23 @@
 			</div>
 		</div>
 		<a class="carousel-control-prev" href="#carouselCaptions" role="button" data-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<i class="fas fa-angle-left" aria-hidden="true" style="color: black;"></i>
 			<span class="sr-only">Previous</span>
 		</a>
 		<a class="carousel-control-next" href="#carouselCaptions" role="button" data-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<i class="fas fa-angle-right" aria-hidden="true" style="color: black;"></i>
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
 </div>
-
-{# <div class="container mt-5 width-responsive mx-auto">
-	<div class="row">
-		<h1 class="col-12">Présentation des objets</h1>
-		<br><br><br>
-		<div class="row col-6">
-			<p></p>
-		</div>
-	</div>
-</div> #}
-
 
 <div class="container-fluid " style="margin-top; 50px">
 	<div class="container width-responsive mx-auto mt-5">
 		<h1 class="mb-1 h1-respons">{% trans %}Point Coronavirus à la date du{% endtrans %} <span id="date"></span></h1>
 		<h3 class="mb-3 h3-respons">(source : <a href="http://thevirustracker.com">thevirustracker.com)</a></h3>
 		<div class="btn-covid">
-			<button class="world-btn btn"  id="button" onclick="">{% trans %}Monde{% endtrans %}</button>
-			<button class="france-btn btn" id="button" onclick="">{% trans %}France{% endtrans %}</button>
+			<button class="sbtn world-btn btn"  id="button" onclick="">{% trans %}Monde{% endtrans %}</button>
+			<button class="sbtn france-btn btn" id="button" onclick="">{% trans %}France{% endtrans %}</button>
 		</div>
 	</div>
 </div>

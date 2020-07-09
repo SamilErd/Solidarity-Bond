@@ -34,7 +34,7 @@
                     <td>{{user.Email}}</td>
                     <td>{{user.phoneNum}}</td>
                     <td>{{user.Street}}, {{user.PostalCode}}, {{user.country}}</td>
-                    <td><a class="btn btn-sm" href="{{path('user_delete',{'id' : user.id, _csrf_token: csrf_token('delete')})}}"><i class="fas fa-times"></i></a></td>
+                    <td><a class="sbtn btn btn-sm" href="{{path('user_delete',{'id' : user.id, _csrf_token: csrf_token('delete')})}}"><i class="fas fa-times"></i></a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

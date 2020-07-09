@@ -41,7 +41,7 @@
 				<td>{{order.Iduser.Email}}</td>
                 <td>{{order.Iduser.Street}}, {{order.Iduser.PostalCode}}, {{order.Iduser.country}}</td>
                 <td>{{order.status}}</td>
-				<td><a href="{{path('order_detail',{'id' : order.id})}}" class="btn" id="button">{% trans %}Voir la commande{% endtrans %}</td>
+				<td><a href="{{path('order_detail',{'id' : order.id})}}" class="sbtn btn" id="button">{% trans %}Voir la commande{% endtrans %}</td>
                 </tr>
             {% endfor %}
             </tbody>
