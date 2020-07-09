@@ -1379,6 +1379,18 @@
         <source>La machine a été réservé !</source>
         <target>The machine has been reserved !</target>
       </trans-unit>
+      <trans-unit id="7IKHjnE" resname="L'équipe Solidarity-Bond">
+        <source>L'équipe Solidarity-Bond</source>
+        <target>The Solidarity-Bond team</target>
+      </trans-unit>
+      <trans-unit id="kXLo7sm" resname="Bonjour">
+        <source>Bonjour</source>
+        <target>Hello</target>
+      </trans-unit>
+      <trans-unit id="zII2Y5d" resname="vous avez fait une demande de réinitialisation de votre mot de passe, si cétais bien vous, veuillez cliquer sur le lien ci-dessous pour le reinitialiser">
+        <source>vous avez fait une demande de réinitialisation de votre mot de passe, si cétais bien vous, veuillez cliquer sur le lien ci-dessous pour le reinitialiser</source>
+        <target>you have requested a password reset, if this was you, please click on the link below to reset your password.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
