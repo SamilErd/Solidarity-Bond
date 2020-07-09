@@ -80,12 +80,12 @@
     <br><br>
     <hr style="color:#F45E43; width: 100%"></hr>
     <br><br>
-    <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;">Bonjour {{user.FirstName}} {{user.LastName}}, vous avez fait une demande de réinitialisation de votre mot de passe, si cétais bien vous, veuillez cliquer sur le lien ci-dessous pour le reinitialiser.</div>
+    <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;">{% trans %}Bonjour {% endtrans %}{{user.FirstName}} {{user.LastName}}, {% trans %}vous avez fait une demande de réinitialisation de votre mot de passe, si cétais bien vous, veuillez cliquer sur le lien ci-dessous pour le reinitialiser{% endtrans %}.</div>
     <br><br>
-    <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;"><a href="127.0.0.1:8000/password_reset/{{token.Token}}">127.0.0.1:8000/password_reset/{{token.Token}}</a></div>
+    <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;"><a href="solidarity-bond.fr/password_reset/{{token.Token}}">solidarity-bond.fr/password_reset/{{token.Token}}</a></div>
     <br><br>
     <br><br>         
-    <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;">l'équipe Solidarity-Bond.</div>     
+    <div style="font-family:helvetica;font-size:15px;line-height:1;text-align:left;">{% trans %}L'équipe Solidarity-Bond{% endtrans %}.</div>     
   </div>
 </body>
 
