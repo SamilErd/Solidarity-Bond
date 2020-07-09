@@ -19,8 +19,16 @@
     {{machines.0.name}}
   </a>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="machine">Morning</a>
-    <a class="dropdown-item" href="machine">Afternoon</a>
+    <a class="dropdown-item" href="{{ url('monday_morning', {id: machines.0.name}) }}">Lundi matin</a>
+    <a class="dropdown-item" href="{{ url('monday_afternoon', {id: machines.0.name}) }}">Lundi apres-midi</a>
+    <a class="dropdown-item" href="{{ url('tuesday_morning', {id: machines.0.name}) }}">Mardi matin</a>
+    <a class="dropdown-item" href="{{ url('tuesday_afternoon', {id: machines.0.name}) }}">Mardi apres-midi</a>
+    <a class="dropdown-item" href="{{ url('wednesday_morning', {id: machines.0.name}) }}">Mercredi matin</a>
+    <a class="dropdown-item" href="{{ url('wednesday_afternoon', {id: machines.0.name}) }}">Mercredi apres-midi</a>
+    <a class="dropdown-item" href="{{ url('thursday_morning', {id: machines.0.name}) }}">Jeudi matin</a>
+    <a class="dropdown-item" href="{{ url('thursday_afternoon', {id: machines.0.name}) }}">Jeudi apres-midi</a>
+    <a class="dropdown-item" href="{{ url('friday_morning', {id: machines.0.name}) }}">Vendredi Matin</a>
+    <a class="dropdown-item" href="{{ url('friday_afternoon', {id: machines.0.name}) }}">Vendredi apres-midi</a>
   </div>
      </li>
      <li class="list-group-item">
@@ -29,8 +37,16 @@
     {{machines.1.name}}
   </a>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="machine">Morning</a>
-    <a class="dropdown-item" href="machine">Afternoon</a>
+    <a class="dropdown-item" href="{{ url('monday_morning', {id: machines.1.name}) }}">Lundi matin</a>
+    <a class="dropdown-item" href="{{ url('monday_afternoon', {id: machines.1.name}) }}">Lundi apres-midi</a>
+    <a class="dropdown-item" href="{{ url('tuesday_morning', {id: machines.1.name}) }}">Mardi matin</a>
+    <a class="dropdown-item" href="{{ url('tuesday_afternoon', {id: machines.1.name}) }}">Mardi apres-midi</a>
+    <a class="dropdown-item" href="{{ url('wednesday_morning', {id: machines.1.name}) }}">Mercredi matin</a>
+    <a class="dropdown-item" href="{{ url('wednesday_afternoon', {id: machines.1.name}) }}">Mercredi apres-midi</a>
+    <a class="dropdown-item" href="{{ url('thursday_morning', {id: machines.1.name}) }}">Jeudi matin</a>
+    <a class="dropdown-item" href="{{ url('thursday_afternoon', {id: machines.1.name}) }}">Jeudi apres-midi</a>
+    <a class="dropdown-item" href="{{ url('friday_morning', {id: machines.1.name}) }}">Vendredi Matin</a>
+    <a class="dropdown-item" href="{{ url('friday_afternoon', {id: machines.1.name}) }}">Vendredi apres-midi</a>
   </div>
      </li>
 </ul>
