@@ -1,7 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReservationController!{% endblock %}
+{% block title %}{% trans %}Réservation{% endtrans %}{% endblock %}
 
 {% block body %}
-<h1>Reserved!</h1>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="h1-respons">{% trans %}Réservation de matériel{% endtrans %}</h1>
+    </div>
+</div>
+
+<div class="container width-responsive mx-atuo text-center">
+    <h1 class="h1-respons">{% trans %}La machine a été réservé !{% endtrans %}</h1>
+</div>
 {% endblock %}

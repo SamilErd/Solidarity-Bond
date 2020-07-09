@@ -663,6 +663,23 @@ hr.diviser {
   .width-reservation {
     width: 85%;
   }
+
+  .popup {
+    width: 80%;
+    background-color: white;
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height:240px;
+    text-align: center;
+    border: 1px solid #000000;
+    border-radius: 2%;
+    padding:15px;
+  }
 }
 /**
 * Responsive for 600px and up
@@ -702,6 +719,22 @@ hr.diviser {
   }
   .width-responsive{
     width: 80%;
+  }
+  .popup {
+    width: 50%;
+    background-color: white;
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height:240px;
+    text-align: center;
+    border: 1px solid #000000;
+    border-radius: 2%;
+    padding:15px;
   }
   .card-payment {
     padding: 50px 50px;
@@ -842,22 +875,6 @@ hr.diviser {
   background-color: #cccccc;
 }
 
-.popup {
-  width: 90%;
-  background-color: white;
-  display: none;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  height:240px;
-  text-align: center;
-  border: 1px solid #000000;
-  border-radius: 2%;
-  padding:15px;
-}
 .stop-scrolling {
   height: 100%;
   overflow: hidden;

@@ -1367,6 +1367,18 @@
         <source>Revenir à l'accueil</source>
         <target>Back to home page</target>
       </trans-unit>
+      <trans-unit id="Ozo.qSs" resname="Vous pouvez consulter les réservations">
+        <source>Vous pouvez consulter les réservations</source>
+        <target>You can consult the reservations</target>
+      </trans-unit>
+      <trans-unit id="h55g57Z" resname="Calendrier des réservations">
+        <source>Calendrier des réservations</source>
+        <target>Booking Calendar</target>
+      </trans-unit>
+      <trans-unit id="iMPXdJ5" resname="La machine a été réservé !">
+        <source>La machine a été réservé !</source>
+        <target>The machine has been reserved !</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
