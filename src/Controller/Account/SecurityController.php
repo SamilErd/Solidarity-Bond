@@ -69,7 +69,7 @@ class SecurityController extends AbstractController
             
 
             //redirecting to homepage
-            //after creting the user, redirecting onto the login page
+            //after creating the user, redirecting onto the login page
             
             return $this->redirectToRoute('post_register', [
                 'tid' => $token->getId()
